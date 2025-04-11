@@ -1,0 +1,41 @@
+[26-Sep-2024 15:40:10 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 37
+[26-Sep-2024 15:40:10 UTC] PHP Fatal error:  Uncaught TypeError: number_format(): Argument #1 ($num) must be of type float, string given in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php:52
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php(52): number_format('')
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 52
+[01-Oct-2024 05:20:17 UTC] PHP Warning:  Undefined array key "emma_load_route_name" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_route_values.php on line 5
+[01-Oct-2024 05:20:17 UTC] PHP Warning:  Undefined array key "emma_load_route_amount" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_route_values.php on line 6
+[01-Oct-2024 05:20:17 UTC] PHP Warning:  Undefined array key "emma_data_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_route_values.php on line 7
+[01-Oct-2024 05:20:17 UTC] PHP Warning:  Undefined array key "emma_camp_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_route_values.php on line 8
+[01-Oct-2024 05:20:17 UTC] PHP Warning:  Undefined array key "institution_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_route_values.php on line 9
+[01-Oct-2024 13:29:13 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 37
+[01-Oct-2024 13:29:13 UTC] PHP Fatal error:  Uncaught TypeError: number_format(): Argument #1 ($num) must be of type float, string given in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php:52
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php(52): number_format('')
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 52
+[01-Oct-2024 14:46:04 UTC] PHP Warning:  Undefined array key "abba-change-institution" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 6
+[01-Oct-2024 14:46:04 UTC] PHP Warning:  Undefined array key "emma_display_route_details" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 7
+[01-Oct-2024 14:46:04 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php:14
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php(14): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 14
+[01-Oct-2024 19:45:56 UTC] PHP Warning:  Undefined array key "getting_route_userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_values.php on line 4
+[01-Oct-2024 19:45:56 UTC] PHP Warning:  Undefined array key "getting_route_usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_values.php on line 5
+[01-Oct-2024 19:45:56 UTC] PHP Warning:  Undefined array key "get_the_route_name" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_values.php on line 6
+[01-Oct-2024 19:45:56 UTC] PHP Warning:  Undefined array key "get_the_route_amount" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_values.php on line 7
+[01-Oct-2024 19:45:56 UTC] PHP Warning:  Undefined array key "emmaamount-forrouteid" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_values.php on line 8
+[01-Oct-2024 19:45:56 UTC] PHP Warning:  Undefined array key "abba-change-institution" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_edit_values.php on line 9
+[03-Oct-2024 04:03:16 UTC] PHP Warning:  Undefined array key "emma_delete_userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_delete_transport_values.php on line 7
+[03-Oct-2024 04:03:16 UTC] PHP Warning:  Undefined array key "emma_delete_usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_delete_transport_values.php on line 8
+[03-Oct-2024 04:03:16 UTC] PHP Warning:  Undefined array key "delete_route_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_delete_transport_values.php on line 9
+[03-Oct-2024 04:03:16 UTC] PHP Warning:  Undefined array key "delete_this_campus_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_delete_transport_values.php on line 10
+[03-Oct-2024 04:03:16 UTC] PHP Warning:  Undefined array key "abba-change-institution" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/emma_delete_transport_values.php on line 11
+[03-Oct-2024 11:27:26 UTC] PHP Warning:  Undefined array key "abba_instituion_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/prosget-campusforhostelandtansport.php on line 5
+[03-Oct-2024 11:27:26 UTC] PHP Warning:  Undefined array key "data_get_status" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_transport/prosget-campusforhostelandtansport.php on line 6
+[14-Oct-2024 17:02:42 UTC] PHP Warning:  number_format() expects parameter 1 to be float, string given in /home/triomind/public_html/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 52
+[20-Oct-2024 11:40:12 UTC] PHP Warning:  number_format() expects parameter 1 to be float, string given in /home/triomind/public_html/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 52
+[11-Jan-2025 11:02:03 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 14
+[11-Jan-2025 11:02:03 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/emma_transport/emma_send_route_values.php on line 15

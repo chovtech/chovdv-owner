@@ -1,0 +1,36 @@
+SubcategoryIDOld,CategoryIDOld,InstitutionID,SubcategoryTitle,SubcategoryIDNew,CategoryIDNew,SubcategoryTitleNew
+99,51,66,Tuition,2,13,"TUITION FEE"
+100,51,66,"Medicals/ Toiletries",NULL,NULL,NULL
+105,51,66,Computer,106,8,COMPUTER
+102,51,66,Stationary,NULL,NULL,NULL
+103,51,66,"Exam Fees",NULL,NULL,NULL
+104,51,66,"Speech Drills",107,5,"SPEECH DRILLS"
+107,51,66,Practicals,NULL,NULL,NULL
+108,51,66,Marketing,NULL,NULL,NULL
+109,51,66,Uniform,62,4,UNIFORM
+110,51,66,"I.D. Card",NULL,NULL,NULL
+111,51,66,"Branded shoe",104,4,"BRANDED SHOE"
+112,51,66,"Branded socks",105,4,"BRANDED SOCKS"
+113,51,66,"orange polo shirt",NULL,NULL,NULL
+114,51,66,Apron,109,4,APRON
+115,51,66,"Text Books",NULL,NULL,NULL
+116,52,66,"Branded socks",105,4,"BRANDED SOCKS"
+117,52,66,"Branded Shoes",NULL,NULL,NULL
+118,52,66,"Uniform Boys",NULL,NULL,NULL
+119,52,66,"Uniform Girls",NULL,NULL,NULL
+120,52,66,"Orange Polo",NULL,NULL,NULL
+121,52,66,Cardigan,NULL,NULL,NULL
+122,52,66,Blazers,111,4,BLAZERS
+123,52,66,"Sports wears",NULL,NULL,NULL
+124,52,66,Apron,109,4,APRON
+125,52,66,"Cultural Wears",103,4,"CULTURAL WEARS"
+126,52,66,Lapel,110,4,LAPEL
+127,51,66,Lapel,110,4,LAPEL
+3628,51,66,"Uniform top",NULL,NULL,NULL
+3629,51,66,"Uniform down",NULL,NULL,NULL
+3646,51,66,Coaching,NULL,NULL,NULL
+3645,51,66," Valedictory Night",NULL,NULL,NULL
+3641,51,66,Testimonial,NULL,NULL,NULL
+3642,51,66," FSLC",NULL,NULL,NULL
+3643,51,66," Graduation  Party",NULL,NULL,NULL
+3644,51,66," Transiting Party",NULL,NULL,NULL

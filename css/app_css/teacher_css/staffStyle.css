@@ -1,0 +1,1092 @@
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+
+body {
+    margin: 0;
+    padding: 0;
+     font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+    background-color: #ebe8ed;
+    color: #666666;
+    font-size: 13px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0066FF;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #0066FF;
+}
+
+.material-icons-Sharp {
+    vertical-align: middle;
+    line-height: 1px;
+}
+
+.text-primary{
+    color: #666666;
+}
+
+.text-blue {
+    color: #246dec;
+}
+
+.text-red{
+    color: #cc3c43;
+}
+
+.text-green{
+    color: #367952;
+}
+
+.text-orange{
+    color: #f5b74f;
+}
+
+.font-weight-bold{
+    font-weight: 600;
+    color: #292929;
+}
+
+
+/*========HEADER-=========*/
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas: 
+        "sidebar header header header"
+        "sidebar main main main";
+    height: 100vh;
+}
+
+
+/*========HEADER-=========*/
+
+.chiheader{
+    grid-area: header;
+    /*background: #fff;*/
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Poppins", sans-serif !important;
+    padding: 0 30px 0 30px;
+    /*box-shadow: 0px 8px 16px 0px rgba(194, 192, 192, 0.2);*/
+}
+
+.menu-icon{
+    display: none;
+}
+
+
+
+
+/*========DropDown-=========*/
+
+  
+  /* Language Dropdown */
+
+  .langdropbtn {
+    color: #666666;
+    border: none;
+    }
+
+    .langdropdown {
+    position: relative;
+    display: inline-block;
+    }
+
+    .langdropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 10px;
+    }
+
+    .langdropdown-content a {
+    font-size: 12px;
+    color: black;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+    }
+
+    .langdropdown-content a img{
+        width: 20px;
+        height: 15px;
+    }
+
+    .langdropdown-content a:hover {background-color: #ddd; border-radius: 10px;}
+
+    .langdropdown:hover .langdropdown-content {display: block;}
+
+    /* Language Dropdown */
+
+    /*Profile Dropdown */
+
+    .profileDropD {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 200px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      right: 0;
+      z-index: 1;
+      border-radius: 10px;
+      border: none;
+      line-height: 15px;
+    }
+    
+    .profileDropD a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-size: 13px;
+    }
+
+    /*Profile Dropdown */
+
+ 
+  /* Switch Dropdown */
+
+  .dropbtn {
+    border-style: solid;
+    border-width: 1px;
+    color: #0066FF;
+    padding: 7px;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #ffffff;
+    color: #0066FF;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 180px;
+    overflow: auto;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown a:hover {
+    background-color: #ddd;
+    border-radius: 10px;
+    }
+  
+  .show {display: block;}
+
+
+  
+
+/*========DropDown-=========*/
+
+
+
+
+
+/*========SIDEBAR-=========*/
+
+#sidebar{
+    grid-area: sidebar;
+    height: 100%;
+    background-color: #ffffff;
+    color: #666666;
+    overflow-y: auto;
+    font-family: "Poppins", sans-serif !important;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+  
+}
+
+.sidebar-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:  20px 20px 20px 20px;
+    margin-bottom: 30px;
+    font-family: "Poppins", sans-serif !important;
+}
+
+.sidebar-title > .close-icon{
+    display: none;
+}
+
+.sidebar-brand{
+    margin-top: -5px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #0066FF;
+}
+
+.sidebar-List{
+    padding: 0;
+    margin-top: -25px;
+    list-style-type: none;
+    
+}
+
+.sidebar-list-item {
+    padding: 10px 10px 10px 30px;
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.sidebar-List .sidebar-list-item a:hover{
+  transition: all 200ms ease;
+  cursor: pointer;
+  color: #0066FF;
+  font-weight: 700;
+  
+}
+
+.sidebar-List .sidebar-list-item a{
+    color: #666666;
+    font-weight: 500;
+    text-decoration: none;
+    
+}
+
+.sidebar-responsive {
+    display: inline !important;
+    position: absolute;
+}
+
+
+
+/*========MAIN-=========*/
+
+.main-container{
+    grid-area: main;
+    overflow-y: auto;
+    padding: 20px 20px;
+    font-family: "Poppins", sans-serif!important;
+}
+
+/*
+.main-title{
+  display: ;
+  justify-content: space-between;
+} */
+
+.main-title > span {
+  font-size: 19px;
+}
+
+
+.main-cards .topSecCards{
+  background: #fafffa;
+  border-radius: 8px;
+  box-shadow: #a0a1a133 0px 8px 24px;
+}
+
+
+.main-cards .kidsCards{
+  width: 100%;
+  height: 100%;
+  background: #0066FF;
+  box-shadow: #a0a1a133 0px 8px 24px;
+}
+
+.main-cards .kidsCardLight{
+  width: 100%;
+  height: 100%;
+  background:#fafffa;
+  box-shadow: #a0a1a133 0px 8px 24px;
+}
+
+.main-cards .weeklyCard{
+  width: 100%;
+  height: 100%;
+  background: #fafffa;
+  /*background: #f7fff7; */
+  box-shadow: #a0a1a133 0px 8px 24px;
+}
+
+
+.main-cards .kidsPicture{
+  width: 40%;
+
+  border-radius: 50%;
+  margin-left: 25%;
+  margin-top: 10px;
+}
+
+.main-cards .topSecCardsPrimary{
+  background: #0066FF;
+  border-radius: 8px;
+  box-shadow: #c8d1da33 0px 8px 24px;
+}
+
+
+.main-cards .chiPerCardLeft{
+  box-shadow: #9494a81a 0px 0px 16px;
+  background-color: #fafffa;
+  margin-top: 5px;
+  border-radius: 15px;
+  border: none;
+}
+
+.main-cards .chiBadgeCardOrange{
+  height: 30px;
+  width: 30px;
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 6px 8px 6px 8px;
+  background-color: #c6dff8;
+}
+
+.main-cards .chiBadgeCardTextOrange{
+  font-size: 15px;
+  margin-left: 0px;
+  font-weight: 600;
+  color: #007bff;
+}
+
+.main-cards .chiPerCardRight{
+  background-color: #fafffa;
+  border: none;
+}
+
+.main-cards .chiBadgeCardBlue{
+  height: 40px;
+  width: 40px;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 6px 8px 6px 8px;
+  background-color: #afcfff;
+}
+
+.main-cards .chiBadgeCardTextBlue{
+  font-size: 20px;
+  margin-left: 3px;
+  font-weight: 600;
+  color: #002fff;
+}
+
+
+.main-cards .chiBadgeRed{
+  height: 40px;
+  width: 40px;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 6px 8px 6px 8px;
+  background-color: #ff8686;
+}
+
+.main-cards .chiBadgeCardTextRed{
+  font-size: 20px;
+  margin-left: 3px;
+  font-weight: 600;
+  color: #ff0000;
+}
+
+.main-cards .chiCommentSec{
+  box-shadow: rgba(8, 8, 235, 0.2) 0px 7px 29px 0px;
+  background: #f7fff7;
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  border: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Calender 
+
+ /* Calender UI */
+ * {
+  box-sizing: border-box;
+  font-family: "Poppins" sans-serif;
+}
+
+.twoheader .button {
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  border: 0px;
+}
+.twobase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
+}
+
+.twocentering {
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+}
+.twocalender {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  max-width: 400px;
+  /* box-shadow: 0px 0.5px 0.5px 1px rgba(0,0,0,0.100); */
+  border-radius: 16px;
+  overflow-y: auto;
+}
+.twoheader {
+  width: 100%;
+  height: 50px;
+  display: grid;
+  background-color:#fafffa;
+  grid-template-columns: 50px 1fr 50px;
+}
+.twoheaderName {
+  transition: all .3s ease;
+  color: lightgrey;
+  width: 100%;
+  height: 80%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0px;
+}
+.twonav {
+  border: 0px;
+  background-color: transparent;
+  font-size: 10px;
+  font-weight: 400;
+  transition: all .3s ease;
+  padding: 15px;
+  height: 80%;
+}
+.twonav:hover, .twoheaderName:hover {
+  background-color: #0066FF;
+  color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.twocontent {
+  position: relative;
+  overflow: hidden;
+}
+
+.twodayNames, .twodayDates {
+  margin: 5px 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.twodayNames div {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+.twodayDates button {
+  height: 40px;
+  background-color: transparent;
+  border: 0px;
+  transition: all .3s ease;
+  font-size: 11px;
+}
+.twodayDates button:hover,
+.twomonthSection button:hover,
+.twoyearSection button:hover {
+  background-color: #f1f1f1;
+}
+.twooffset {
+  color: #c5c5c5;
+}
+
+.twomonthSection, .twoyearSection {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: white;
+  transform: scale(1.1);
+  transition: all .25s ease-out;
+  visibility: hidden;
+  opacity: 0;
+}
+.twoselect {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.show {
+  transform: scale(1);
+  visibility: visible;
+  opacity: 1;
+}
+.twomonthSection button, .yearSection button {
+  transition: all .3s ease;
+}
+.mark span {
+  padding: 6px 10px;
+  background-color: #1582ff;
+  border-radius: 18px;
+  color: white;
+}
+
+
+/*Calender 
+
+ /* Calender UI */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.chiCharts{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.chiCharts-card{
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 25px;
+  box-sizing: border-box;
+  -webkit-column-break-inside: avoid;
+  border: 1px solid #d2d2d3;
+  border-radius: 5px;
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.chiChart-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+
+
+
+
+
+
+
+/* Floating Buttom */
+
+    .dashfloat {
+      position:fixed;
+      width:80px;
+      height:38px;
+      bottom:40px;
+      right:40px;
+      background-color: #0066FF;
+      color:#FFF;
+      border-top-left-radius: 18px;
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+      text-align:center;
+      padding: 8px;
+      box-shadow: 2px 2px 3px #999;
+      z-index:1000;
+      animation: bot-to-top 2s ease-out;
+    }
+      /*
+      * Submenu - Buttons
+      */
+      .floatBtn {
+          position: fixed;
+          right: 40px;
+          padding-bottom: 10px;
+          bottom: 80px;
+          z-index: 100;
+      }
+      .floatBtn .floatBtnli {
+          list-style: none;
+          margin-bottom: 10px;
+      }
+      .floatBtn .floatBtnli a {
+          width: 120px;
+          height: 40px;
+          background-color: #0066FF;
+          color: #FFF;
+          border-radius: 20px;
+          text-align: center;
+          text-decoration: none;
+          box-shadow: 2px 2px 3px #999;
+          display: block;
+          padding: 10px;
+      }
+      /* Hidden Buttons */
+      a.dashfloat + .floatBtn {
+      visibility: hidden;
+      }
+      /* Visible Buttons */
+      a.dashfloat:hover + .floatBtn {
+      visibility: visible;
+      animation: scale-in 0.5s;
+      }
+      .floatBtn:hover {
+          visibility: visible !important;
+      }
+      /* Center icons */
+      a .chifloatmin.icon {
+          font-size: 20px;
+          margin-top: 305px;
+      }
+
+      
+
+
+
+
+
+
+
+      
+  /*
+  * Animations
+  */
+  a.dashfloat i{
+      animation: rotate-in 0.5s;
+  }
+  a.dashfloat:hover > i{
+      animation: rotate-out 0.5s;
+  }
+  @keyframes bot-to-top {
+      0%   {bottom: -60px}
+      50%  {bottom: 40px}
+  }
+  @keyframes scale-in {
+      from {transform: scale(0);opacity: 0;}
+      to {transform: scale(1);opacity: 1;}
+  }
+  @keyframes rotate-in {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
+  }
+  @keyframes rotate-out {
+      from {transform: rotate(360deg);}
+      to {transform: rotate(0deg);}
+  }
+
+
+
+/*=============== MEDIA QUERIES ================== */
+  
+  /* Large <= 1200px */
+    @media (max-width: 1200px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.2fr 3fr;
+        grid-template-areas: 
+          "header"
+          "main";
+      }
+      
+
+      #sidebar {
+        display: none;
+        box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        z-index: 20;
+      }
+
+      .menu-icon {
+        display: inline;
+      }
+
+      .sidebar-title > .close-icon {
+        display: inline;
+      }
+  
+    }
+
+  /* Medium <= 992px */
+    @media screen and (max-width: 900px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.2fr 3fr;
+        grid-template-areas: 
+          "header"
+          "main";
+      }
+
+      .main-cards{
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 0;
+      }
+  
+      .chiCharts{
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+      }
+
+      #sidebar {
+        display: none;
+        box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        z-index: 20;
+      }
+
+      .menu-icon {
+        display: inline;
+      }
+
+      .sidebar-title > .close-icon {
+        display: inline;
+      }
+      
+      .termCLA{
+        display: none;
+      }
+    
+    }
+
+  /* Small <= 700px */
+
+  @media screen and (max-width: 700px) {
+
+    #sidebar {
+      box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+      z-index: 20;
+    }
+
+    .main-cards{
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 0;
+    }
+
+    .chiCharts{
+      grid-template-columns: 1fr;
+      margin-top: 30px;
+    }
+
+    .chiInviteBtn{
+      display: none;
+    }
+
+   }
+
+     /* Extra Small <= 400px */
+
+  @media screen and (max-width: 400px) {
+
+    #sidebar {
+      box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+      z-index: 20;
+    }
+
+
+    .dropbtn {
+      border-style: solid;
+      border-width: 1px;
+      color: #0066FF;
+      padding: 8px;
+      font-weight: 600;
+      font-size: 7px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+      background-color: #ffffff;
+      color: #0066FF;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 200px;
+      overflow: auto;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 6px 8px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown a:hover {
+      background-color: #ddd;
+      }
+    
+    .show {display: block;}
+
+   
+   }
+
+    
+
+
+   
+/* ============updates============ */
+    .upgrades {
+      justify-content: center;
+      align-items: center;
+      background: #f6f6f9;
+      border-radius: 1rem;
+      text-align: center;
+      padding: 25px;
+      width: 69%;
+      height: 140px;
+      margin: auto;
+      margin-top: 3rem;
+    }
+
+    .upgrades h6 {
+      font-size: 10px;
+    }
+  
+
+    /*-----Right Sidebar-----*/
+
+    .dialogcontent {
+      width: 292px;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      right: 0;
+      margin: 0;
+      border: none;
+      box-shadow: none;
+      z-index: 1050;
+      background-color: #292929;
+      overflow-y: auto;
+      overflow-x: hidden;
+      outline: 0;
+      transition: right 0.3s ease-out;
+    }
+
+    .modalcontent {
+      height: 100%;
+      border: none;
+    }
+
+    .modalbodycontent {
+      padding: 0;
+    }
+
+    /* Define a custom transition for the modal */
+    .modalshow.modalfade .dialogcontent {
+      transform: translate3d(100%, 0, 0);
+      transition: transform 0.5s ease-out;
+    }
+
+    /* Define the CSS properties for the transition */
+    .modalshow.modalfade.show .dialogcontent {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .rightModalItems{
+      color: #fff;
+      list-style-type: none;
+      line-height: 40px;
+    }
+
+    .rightModalItems li a{
+      color: #fff;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .rightModalItems li a i{
+      margin-right: 10px;
+    }
+
+    .rightModalItems .chiTag{
+      font-size: 9px;
+    }
+
+    .rightModalItems .chiTagLine{
+      width: 90%;
+      border: #ccc solid 1px;
+    }
+
+
+
+
+
+    /* Tari Style  */
+
+    	
+		/* Dasboard Card */
+    
+		.tari-topBanner {
+			position: relative;
+			border-radius: 20px;
+			height: 210px;
+			width: 100%;
+      padding: 20px 20px 0px 20px;
+      box-shadow: #a0a1a133 0px 8px 24px;
+			/* margin-top: 30px; */
+			background-color:transparent;
+      background-image: url('banners/7.png');
+			background-repeat: no-repeat;
+			background-size: 1000px;
+			bottom: 0;
+			display: flex;
+			align-items: left;
+		}
+
+		.tari_img-card {
+			height: auto;
+			width: 42%;
+			position: absolute;
+			bottom: 2px;
+			right: 10px;
+		}
+
+    .tari_image_row{
+			margin-top: -10px;
+		}
+    
+    
+		/* Image Container */
+		.tari_image-container {
+			display: flex;
+			margin-top: 30px;
+		}
+
+		.tari_image-container img {
+			position: absolute;
+			margin-left: 120px;
+			width: 30px;
+		}
+
+		.tari_image-container img:last-child {
+			margin-right: 0px;
+		}
+
+		.tari_image-container img:nth-child(1) {
+			z-index: 5;
+			left: -30px;
+		}
+
+		.tari_image-container img:nth-child(2) {
+			z-index: 4;
+			left: -44px;
+		}
+
+		.tari_image-container img:nth-child(3) {
+			z-index: 3;
+			left: -58px;
+		}
+
+		.tari_image-container img:nth-child(4) {
+			z-index: 2;
+			left: -72px;
+		}
+
+		.tari_image-container img:nth-child(5) {
+			z-index: 1;
+			left: -86px;
+		}
+
+		.tari_image-container img:nth-child(6) {
+			z-index: 0;
+			left: -100px;
+		}
+
+		/* End Dashboard Card */
+
+
+
+
+
+
+
+
+
+
+/* What course are taking section */
+
+  .chiCourseCard{
+    background: #fafffa;
+    border-radius: 15px;
+    box-shadow: #a0a1a133 0px 8px 24px;
+    margin-top: 10px;
+    height: 100%; 
+    width: 100%;
+    padding-bottom: 20px;
+  }
+
+.chiCourseList{
+    box-shadow: #4f4f5a1a 0px 0px 16px;
+    background-color: #fafffa;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+   
+  }

@@ -1,0 +1,13 @@
+SubcategoryIDOld,CategoryIDOld,InstitutionID,SubcategoryTitle,SubcategoryIDNew,CategoryIDNew,SubcategoryTitleNew
+3246,312,94,"Tuition fee",2,13,"TUITION FEE"
+3245,314,94," friday wear",NULL,NULL,NULL
+3244,314,94," sport wear",NULL,NULL,NULL
+3243,314,94,"primary uniform",NULL,NULL,NULL
+3242,314,94,"secondary uniform",NULL,NULL,NULL
+3241,313,94,"Royal noodles",NULL,NULL,NULL
+3240,313,94," daily drop",NULL,NULL,NULL
+3239,313,94,"Abacha road",NULL,NULL,NULL
+3238,313,94,"Rugan juli ",NULL,NULL,NULL
+3237,315,94," Exercise Books",NULL,NULL,NULL
+3236,315,94,Textbooks,11,16,TEXTBOOKS
+3247,312,94," New intake ",NULL,NULL,NULL

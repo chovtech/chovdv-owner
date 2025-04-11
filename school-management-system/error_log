@@ -1,0 +1,78 @@
+[15-Sep-2023 18:27:26 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 18:27:26 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 18:27:26 UTC] PHP Warning:  include(): Failed opening '../lang/null.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 18:28:08 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 18:28:08 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 18:28:08 UTC] PHP Warning:  include(): Failed opening '../lang/null.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 21:37:48 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 21:37:48 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 21:37:48 UTC] PHP Warning:  include(): Failed opening '../lang/null.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 21:38:04 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 21:38:04 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[15-Sep-2023 21:38:04 UTC] PHP Warning:  include(): Failed opening '../lang/null.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[21-Sep-2023 12:59:41 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[21-Sep-2023 12:59:41 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[21-Sep-2023 12:59:41 UTC] PHP Warning:  include(): Failed opening '../lang/null.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[24-Sep-2023 15:23:00 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[24-Sep-2023 15:23:00 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[24-Sep-2023 15:23:00 UTC] PHP Warning:  include(): Failed opening '../lang/null.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[24-Sep-2023 15:26:44 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[24-Sep-2023 15:26:44 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[24-Sep-2023 15:26:44 UTC] PHP Warning:  include(): Failed opening '../lang/null.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[26-Sep-2023 11:31:43 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[26-Sep-2023 11:31:43 UTC] PHP Warning:  include(../lang/null.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[26-Sep-2023 11:31:43 UTC] PHP Warning:  include(): Failed opening '../lang/null.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/school-management-system/index.php on line 12
+[02-Oct-2024 13:43:49 UTC] PHP Warning:  Undefined variable $k12_page_banner_Pre_Header in /home/chovmxyy/edumess.com/school-management-system/index.php on line 76
+[02-Oct-2024 14:13:09 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "php" in /home/chovmxyy/edumess.com/school-management-system/index.php:87
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess.com/school-management-system/index.php on line 87
+[02-Oct-2024 14:13:16 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "php" in /home/chovmxyy/edumess.com/school-management-system/index.php:87
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess.com/school-management-system/index.php on line 87
+[04-Oct-2024 20:55:51 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/school-management-system/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[04-Oct-2024 22:25:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/school-management-system/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[05-Oct-2024 01:05:59 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/school-management-system/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[05-Oct-2024 01:07:57 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/school-management-system/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[05-Oct-2024 01:38:36 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/school-management-system/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[05-Oct-2024 01:40:28 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/school-management-system/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[02-Jan-2025 02:13:34 UTC] PHP Warning:  include(../lang/english'.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/school-management-system/index.php on line 12
+[02-Jan-2025 02:13:34 UTC] PHP Warning:  include(../lang/english'.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/school-management-system/index.php on line 12
+[02-Jan-2025 02:13:34 UTC] PHP Warning:  include(): Failed opening '../lang/english'.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/triomind/public_html/edumess.com/school-management-system/index.php on line 12
+[04-Feb-2025 11:53:07 UTC] PHP Warning:  include(../lang/english'.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/school-management-system/index.php on line 12
+[04-Feb-2025 11:53:08 UTC] PHP Warning:  include(../lang/english'.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/school-management-system/index.php on line 12
+[04-Feb-2025 11:53:08 UTC] PHP Warning:  include(): Failed opening '../lang/english'.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/triomind/public_html/edumess.com/school-management-system/index.php on line 12
+[08-Feb-2025 01:49:55 UTC] PHP Warning:  include(../lang/english'.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/school-management-system/index.php on line 12
+[08-Feb-2025 01:49:55 UTC] PHP Warning:  include(../lang/english'.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/school-management-system/index.php on line 12
+[08-Feb-2025 01:49:55 UTC] PHP Warning:  include(): Failed opening '../lang/english'.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/triomind/public_html/edumess.com/school-management-system/index.php on line 12

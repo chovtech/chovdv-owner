@@ -1,0 +1,13 @@
+SubcategoryIDOld,CategoryIDOld,InstitutionID,SubcategoryTitle,SubcategoryIDNew,CategoryIDNew,SubcategoryTitleNew
+291,140,62,"Admission Form",NULL,NULL,NULL
+292,141,62,"Other Fees",NULL,NULL,NULL
+293,139,62,Tuition,2,13,"TUITION FEE"
+3984,139,62,PTA,24,14,"PTA (PARENT-TEACHER ASSOCIATION) FEE"
+3985,139,62,Elocution,NULL,NULL,NULL
+3986,139,62,Robotics,41,8,"ROBOTICS EDUCATION"
+3987,139,62,"Lesson ",NULL,NULL,NULL
+3988,139,62,Praticals,NULL,NULL,NULL
+3989,139,62,ICT,74,13,DICTION
+3990,139,62,"Extra curricular activities",NULL,NULL,NULL
+3991,139,62,"External Exam Registration",NULL,NULL,NULL
+3992,139,62,Montessori,NULL,NULL,NULL

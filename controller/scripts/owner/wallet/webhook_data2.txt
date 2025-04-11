@@ -1,0 +1,58 @@
+Array
+(
+    [eventData] => Array
+        (
+            [product] => Array
+                (
+                    [reference] => RX20240701025023176956119-51
+                    [type] => RESERVED_ACCOUNT
+                )
+
+            [transactionReference] => MNFY|49|20240712095643|401862
+            [paymentReference] => MNFY|49|20240712095643|401862
+            [paidOn] => 2024-07-12 09:56:43.322
+            [paymentDescription] => chi
+            [metaData] => Array
+                (
+                )
+
+            [paymentSourceInformation] => Array
+                (
+                    [0] => Array
+                        (
+                            [bankCode] => 305
+                            [amountPaid] => 200
+                            [accountName] => CHIKE VITALIS OKOLI
+                            [sessionId] => 100004240712085559116668629590
+                            [accountNumber] => 07063859559
+                        )
+
+                )
+
+            [destinationAccountInformation] => Array
+                (
+                    [bankCode] => 035
+                    [bankName] => Wema bank
+                    [accountNumber] => 8834754784
+                )
+
+            [amountPaid] => 200
+            [totalPayable] => 200
+            [cardDetails] => Array
+                (
+                )
+
+            [paymentMethod] => ACCOUNT_TRANSFER
+            [currency] => NGN
+            [settlementAmount] => 197.85
+            [paymentStatus] => PAID
+            [customer] => Array
+                (
+                    [name] => Sunday Abba
+                    [email] => hello@loadme.chovgroup.com
+                )
+
+        )
+
+    [eventType] => SUCCESSFUL_TRANSACTION
+)

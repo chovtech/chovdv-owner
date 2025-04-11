@@ -1,0 +1,44 @@
+[01-Oct-2024 07:48:27 UTC] PHP Warning:  Undefined array key "campusID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 6
+[01-Oct-2024 07:48:27 UTC] PHP Warning:  Undefined array key "prosselectsession" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 7
+[01-Oct-2024 07:48:27 UTC] PHP Warning:  Undefined array key "term" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 8
+[01-Oct-2024 07:48:27 UTC] PHP Warning:  Undefined array key "classid" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 9
+[01-Oct-2024 07:48:27 UTC] PHP Warning:  Undefined array key "subjectID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 10
+[01-Oct-2024 07:48:27 UTC] PHP Warning:  Undefined array key "instutitionID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 13
+[01-Oct-2024 07:48:27 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 14
+[01-Oct-2024 07:48:27 UTC] PHP Warning:  Undefined array key "userID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 15
+[01-Oct-2024 07:48:27 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_num_rows(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php:27
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php(27): mysqli_num_rows(false)
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 27
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Undefined array key "userID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 5
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 6
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Undefined array key "campusID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 7
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Undefined array key "classid" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 9
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Undefined array key "subjectID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 10
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Undefined array key "start_classdate" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 14
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Undefined array key "start_time" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 15
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Undefined array key "end_time" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 16
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Undefined array key "instutitionID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 18
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Undefined array key "virtual_ID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 20
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 33
+[01-Oct-2024 16:27:51 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/pros_editlive_class.php on line 37
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "userID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 5
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 6
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "campusID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 7
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "prosselectsession" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 8
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "term" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 9
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "classid" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 10
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "subjectID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 11
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "instutitionID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 15
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 16
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "userID" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 17
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "start_classdate" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 19
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "start_time" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 20
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Undefined array key "end_time" in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 21
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 35
+[01-Oct-2024 21:19:12 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/chovmxyy/edumess.com/controller/scripts/owner/liveclass/set-virtualclass.php on line 39
+[26-Oct-2024 12:58:05 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 27
+[26-Oct-2024 12:58:05 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 28
+[27-Jan-2025 12:16:07 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 27
+[27-Jan-2025 12:16:07 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/liveclass/pros-load-liveclass-content.php on line 28

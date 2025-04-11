@@ -1,0 +1,154 @@
+
+            .select-menu{
+                margin:30px auto;
+            }
+            
+        .select-menu .select-btn{
+            display: flex;
+            height: 55px;
+            background: #fff;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 400;
+            border-radius: 8px;
+            align-items: center;
+            cursor: pointer;
+            justify-content: space-between;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .select-btn i{
+            font-size: 25px;
+            transition: 0.3s;
+        }
+        .select-menu.active .select-btn i{
+            transform: rotate(-180deg);
+        }
+        .select-menu .options{
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 0 3px rgba(0,0,0,0.1);
+            display: none;
+        }
+        .select-menu.active .options{
+            display: block;
+        }
+        .options .option{
+            display: flex;
+            height: 55px;
+            cursor: pointer;
+            padding: 0 16px;
+            border-radius: 8px;
+            align-items: center;
+            background: #fff;
+        }
+        .options .option:hover{
+            background: #F2F2F2;
+        }
+        .option i{
+            font-size: 25px;
+            margin-right: 12px;
+        }
+        .option .option-text{
+            font-size: 18px;
+            color: #333;
+        }
+
+        .accordion .accordion-item:active {
+            box-shadow:none;
+        }
+
+
+
+
+    .tari-tari_checkbox-group {
+    display: flex;
+    margin-right:7rem;
+    /* flex-wrap: wrap; */
+    /* justify-content: center; */
+    /* user-select: none; */
+    }
+    .tari-tari_checkbox-group > * {
+        margin: 0.5rem 0.5rem;
+    }
+
+    .tari_checkbox-input {
+        clip: rect(0 0 0 0);
+        clip-path: inset(100%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+    .tari_checkbox-input:checked + .tari_checkbox-tile {
+        border-color: #2260ff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        color: #2260ff;
+    }
+    .tari_checkbox-input:checked + .tari_checkbox-tile:before {
+        transform: scale(1);
+        opacity: 1;
+        background-color: #2260ff;
+        border-color: #2260ff;
+    }
+    .tari_checkbox-input:checked + .tari_checkbox-tile .tari_checkbox-icon, .tari_checkbox-input:checked + .tari_checkbox-tile .tari_checkbox-label {
+        color: #2260ff;
+    }
+    .tari_checkbox-input:focus + .tari_checkbox-tile {
+        border-color: #2260ff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
+    }
+    .tari_checkbox-input:focus + .tari_checkbox-tile:before {
+        transform: scale(1);
+        opacity: 1;
+    }
+    .tari_checkbox-tile {
+        display: flex;
+        /* flex-direction: column; */
+        align-items: center;
+        justify-content: center;
+        width: 6rem;
+        min-height: 2rem;
+        border-radius: 0.5rem;
+        border: 2px solid #b5bfd9;
+        background-color: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        transition: 0.15s ease;
+        cursor: pointer;
+        position: relative;
+    }
+    .tari_checkbox-tile:before {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 2px solid #b5bfd9;
+        background-color: #fff;
+        border-radius: 50%;
+        top: 0.25rem;
+        left: 0.25rem;
+        opacity: 0;
+        transform: scale(0);
+        transition: 0.25s ease;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+        background-size: 12px;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+    .tari_checkbox-tile:hover {
+        border-color: #2260ff;
+    }
+    .tari_checkbox-tile:hover:before {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .tari_checkbox-label {
+        color: #707070;
+        transition: 0.375s ease;
+        text-align:center;
+    }

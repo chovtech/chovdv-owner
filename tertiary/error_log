@@ -1,0 +1,253 @@
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  include(../lang/english?lang=english.php): Failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 12
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  include(): Failed opening '../lang/english?lang=english.php' for inclusion (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 12
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_title in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 30
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_about in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 15
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_product in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 20
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_k_12 in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 25
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_tertiary in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 30
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_pricing in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 37
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_franchise in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 42
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_insight in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 47
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_blogs in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 52
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_events in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 57
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_login in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 65
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_signup in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 68
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_banner_h4 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 77
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_animate_txt1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 83
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_animate_txt2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 83
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_animate_txt3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 83
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_banner_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 91
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_banner_started_btn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 99
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_banner_watch_btn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 107
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_brand_head_txt in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 131
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_small in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 250
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 253
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_customer_title in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 270
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_customer_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 274
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_flexibl_title in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 286
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_flexibl_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 290
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_friendly_title in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 302
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_friendly_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 306
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_customizable_title in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 318
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_customizable_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 322
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_feature_head_txt in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 338
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 359
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_descri in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 364
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_list1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 377
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_list2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 391
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_list3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 405
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_list4 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 419
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_course_registration_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 436
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_course_registration_description in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 441
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 449
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_payment_processor_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 480
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_payment_processor_descri in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 485
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_payment_processor_list1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 497
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_payment_processor_list2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 509
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 521
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_result_processing_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 543
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_result_processing_descri_txt in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 548
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_result_processing_list1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 560
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_result_processing_list2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 572
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_result_processing_list3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 585
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_certificate_processing in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 612
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_certificate_descri in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 617
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_certificate_processing_list1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 630
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_certificate_processing_list2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 642
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_certificate_processing_list3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 655
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 668
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_e_learning_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 685
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_e_learning_descri in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 690
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_access_classrooms in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 701
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_access_classrooms1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 703
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_access_classrooms2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 705
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learning_material in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 718
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learning_material1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 720
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learning_material2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 722
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learning_material3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 724
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_e_library_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 749
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_e_library_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 754
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 762
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_virtual_classroom_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 784
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_virtual_classroom_descr1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 789
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_virtual_classroom_descr2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 790
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_without_walls_1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 801
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_schedule_lecture in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 811
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_schedule_lecture2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 824
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 836
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_robust_and_advance_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 864
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_robust_and_advance_descri in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 869
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_staff_bio in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 881
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_student_bio in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 893
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_computer_based_testing_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 912
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_computer_based_testing_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 917
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 926
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_advanced_finance_management_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 958
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_advanced_finance_management_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 963
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_descr_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 980
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_descr1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 985
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_descr2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 987
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_list1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 999
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_list2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 1011
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_list3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 1023
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_list4 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 1035
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_list5 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 1049
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_h1 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 4
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_small_txt in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 6
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_txt_desc1 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 18
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_name1 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 25
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_job1 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 26
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_txt_desc2 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 32
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_name2 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 39
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_job2 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 40
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_txt_desc3 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 46
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_name3 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 53
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_testimonials_job3 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 54
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_download_app_txt in /home/chovmxyy/edumess-v2.edumess.com/includes/download-app-section-for-other-page.php on line 5
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_app in /home/chovmxyy/edumess-v2.edumess.com/includes/download-app-section-for-other-page.php on line 28
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_app in /home/chovmxyy/edumess-v2.edumess.com/includes/download-app-section-for-other-page.php on line 42
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_app in /home/chovmxyy/edumess-v2.edumess.com/includes/website-footer.php on line 18
+[17-Aug-2024 08:17:27 UTC] PHP Warning:  Undefined variable $website_app in /home/chovmxyy/edumess-v2.edumess.com/includes/website-footer.php on line 30
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  include(../lang/english?lang=english.php): Failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 12
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  include(): Failed opening '../lang/english?lang=english.php' for inclusion (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 12
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_title in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 30
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_about in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 15
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_product in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 20
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_k_12 in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 25
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_tertiary in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 30
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_pricing in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 37
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_franchise in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 42
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_insight in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 47
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_blogs in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 52
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_events in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 57
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_login in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 65
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_signup in /home/chovmxyy/edumess-v2.edumess.com/includes/website-header.php on line 68
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_banner_h4 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 77
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_animate_txt1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 83
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_animate_txt2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 83
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_animate_txt3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 83
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_banner_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 91
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_banner_started_btn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 99
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_banner_watch_btn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 107
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_brand_head_txt in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 131
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_small in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 250
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 253
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_customer_title in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 270
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_customer_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 274
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_flexibl_title in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 286
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_flexibl_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 290
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_friendly_title in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 302
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_friendly_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 306
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_customizable_title in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 318
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $k12_page_why_edumess_customizable_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 322
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_feature_head_txt in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 338
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 359
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_descri in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 364
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_list1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 377
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_list2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 391
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_list3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 405
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_admission_management_list4 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 419
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_course_registration_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 436
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_course_registration_description in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 441
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 449
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_payment_processor_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 480
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_payment_processor_descri in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 485
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_payment_processor_list1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 497
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_payment_processor_list2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 509
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 521
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_result_processing_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 543
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_result_processing_descri_txt in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 548
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_result_processing_list1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 560
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_result_processing_list2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 572
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_result_processing_list3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 585
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_certificate_processing in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 612
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_certificate_descri in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 617
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_certificate_processing_list1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 630
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_certificate_processing_list2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 642
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_certificate_processing_list3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 655
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 668
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_e_learning_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 685
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_e_learning_descri in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 690
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_access_classrooms in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 701
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_access_classrooms1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 703
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_access_classrooms2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 705
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learning_material in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 718
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learning_material1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 720
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learning_material2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 722
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learning_material3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 724
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_e_library_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 749
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_e_library_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 754
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 762
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_virtual_classroom_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 784
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_virtual_classroom_descr1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 789
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_virtual_classroom_descr2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 790
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_without_walls_1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 801
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_schedule_lecture in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 811
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_schedule_lecture2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 824
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 836
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_robust_and_advance_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 864
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_robust_and_advance_descri in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 869
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_staff_bio in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 881
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_student_bio in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 893
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_computer_based_testing_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 912
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_computer_based_testing_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 917
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_learn_morebtn in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 926
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_advanced_finance_management_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 958
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_advanced_finance_management_descr in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 963
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_descr_h1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 980
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_descr1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 985
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_descr2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 987
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_list1 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 999
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_list2 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 1011
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_list3 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 1023
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_list4 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 1035
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $tertiary_page_hostel_management_list5 in /home/chovmxyy/edumess-v2.edumess.com/tertiary/index.php on line 1049
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_h1 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 4
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_small_txt in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 6
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_txt_desc1 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 18
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_name1 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 25
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_job1 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 26
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_txt_desc2 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 32
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_name2 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 39
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_job2 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 40
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_txt_desc3 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 46
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_name3 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 53
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_testimonials_job3 in /home/chovmxyy/edumess-v2.edumess.com/includes/testimonials2.php on line 54
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_download_app_txt in /home/chovmxyy/edumess-v2.edumess.com/includes/download-app-section-for-other-page.php on line 5
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_app in /home/chovmxyy/edumess-v2.edumess.com/includes/download-app-section-for-other-page.php on line 28
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_app in /home/chovmxyy/edumess-v2.edumess.com/includes/download-app-section-for-other-page.php on line 42
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_app in /home/chovmxyy/edumess-v2.edumess.com/includes/website-footer.php on line 18
+[17-Aug-2024 08:18:13 UTC] PHP Warning:  Undefined variable $website_app in /home/chovmxyy/edumess-v2.edumess.com/includes/website-footer.php on line 30
+[04-Oct-2024 21:41:39 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/tertiary/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[05-Oct-2024 01:05:37 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/tertiary/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[05-Oct-2024 01:07:27 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/tertiary/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[05-Oct-2024 01:38:14 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/tertiary/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[05-Oct-2024 01:40:11 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'triomind_edumessversiontwo'@'localhost' (using password: YES) in /home/triomind/public_html/edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'triomind_edumes...', '7l8^GDxW-RlZ', 'triomind_edumes...')
+#1 /home/triomind/public_html/edumess.com/tertiary/index.php(2): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 9
+[14-Mar-2025 20:36:08 UTC] PHP Warning:  include(../lang/english'[0].php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/tertiary/index.php on line 12
+[14-Mar-2025 20:36:08 UTC] PHP Warning:  include(../lang/english'[0].php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/tertiary/index.php on line 12
+[14-Mar-2025 20:36:08 UTC] PHP Warning:  include(): Failed opening '../lang/english'[0].php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/triomind/public_html/edumess.com/tertiary/index.php on line 12

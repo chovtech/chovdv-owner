@@ -1,0 +1,739 @@
+:root {
+    --blue: #0071FF;
+    --light-blue: #B6DBF6;
+    --dark-blue: #005DD1;
+    --grey: #f2f2f2;
+}
+
+.main-content .wizard-form .progressbar-list::before {
+
+    content: "";
+    background-color: rgb(46, 45, 45);
+    border: 10px solid #fff;
+    border-radius: 50%;
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 9px auto;
+    box-shadow: 1px 1px 3px #606060;
+    transition: all;
+}
+
+.main-content .wizard-form .progressbar-list::after {
+    content: "";
+    background-color: gray;
+    padding: 0px 0px;
+    position: absolute;
+    top: 14px;
+    left: -50%;
+    width: 100%;
+    height: 1px;
+    margin: 9px auto;
+    z-index: -1 !important;
+    transition: all 0.8s;
+}
+
+.main-content .wizard-form .progressbar-list.active::after {
+    background-color: #3c68b0;
+}
+
+.main-content .wizard-form .progressbar-list:first-child::after {
+    content: none;
+}
+
+.main-content .wizard-form .progressbar-list.active::before {
+    font-family: "Font Awesome 5 free";
+    content: "\f00c";
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    padding: 6px;
+    background-color: #3c3cb0;
+    border: 1px solid #3c3cb0;
+    box-shadow: 0 0 0 7.5px rgb(118 60 176 / 11%);
+}
+
+.progressbar-list {
+    color: #6f787d;
+}
+
+.active {
+    color: #1c317e;
+}
+
+/* .card{
+            border: 3px solid rgb(217, 244, 244);
+            cursor: pointer;
+            width: 100%;
+        } */
+/* .active-card{
+            color:white;
+            font-weight: bold;
+            border: 1px solid #094b92;
+            background: linear-gradient(0deg, rgba(0,50,204,1) 0%, rgba(0,127,251,1) 100%);
+        animation: pulse 1s infinite ease-in-out alternate;
+        } */
+
+/* @keyframes pulse {
+            from { transform: scale(1.0); }
+            to { transform: scale(1.1); }
+        } */
+
+.form-check-input:focus {
+    box-shadow: none;
+}
+
+.bg-color-info {
+    background-color: #0066FF;
+}
+
+.border-color {
+    border-color: #25da4c;
+}
+
+.back-to-wizard {
+    transform: translate(-50%, -139%) !important;
+}
+
+.bg-success-color {
+    background-color: #87D185;
+}
+
+.bg-success-color:focus {
+    box-shadow: 0 0 0 0.25rem rgb(55 197 20 /25%);
+}
+
+
+.pros-dotted-box {
+    /* border: 2px dashed #000; */
+    border: 1px dashed rgb(186, 186, 206);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.6);
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    top: 4rem;
+    left: 6rem;
+    /* height: 200px; */
+}
+
+.schooliconinform {
+    position: relative;
+    top: 4rem;
+    left: 5rem;
+    width: 20%;
+}
+
+.pros-schooliconinform-schoolhead-image {
+    width: 70%;
+    position: relative;
+    top: -4rem;
+    left: -3rem;
+    opacity: 0.8;
+}
+
+
+
+
+
+/* DROPDOWN STYLE HERE FOR ADMISSION ONBIOARDING */
+/* pros multiple dropdown start here */
+.pros-container {
+    position: relative;
+    /* max-width:320px; */
+    width: 100%;
+    margin: 2px auto 10px;
+
+}
+
+
+
+
+
+.pros-select-btn {
+
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.pros-select-btn .btn-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+}
+
+.pros-select-btn .arrow-dwn {
+    display: flex;
+    height: 21px;
+    width: 21px;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 50%;
+    background: #6e93f7;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.pros-select-btn.open .arrow-dwn {
+    transform: rotate(-180deg);
+}
+
+.list-items {
+    position: relative;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.pros-select-btn.open~.list-items {
+    display: block;
+}
+
+.list-items .item {
+    align-items: center;
+    list-style: none;
+    height: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 0 15px;
+    border-radius: 8px;
+}
+
+.list-items .item:hover {
+    background-color: #e7edfe;
+    width: 100%;
+}
+
+.item .item-text {
+    font-size: 11px;
+    font-weight: 400;
+    color: #333;
+}
+
+/* DROPDOWN STYLE HERE FOR ADMISSION ONBIOARDING */
+
+
+
+.prospaymentnxt {
+    /* PAYMENT PROCEED BUTTON MSG BUTTON */
+
+    position: relative;
+    right: -85%;
+}
+
+.prospaymentnxtinput {
+    /* PAYMENT PROCEED BUTTON MSG BUTTON */
+
+    position: relative;
+    right: -76%;
+}
+
+
+.prosgenralnxtbutton {
+    /* PAYMENT PROCEED BUTTON MSG BUTTON */
+    position: relative;
+    right: -76%;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url('../../assets/images/users/dropdownforinput.png');
+    /* Replace with your arrow image path */
+    background-size: cover;
+    pointer-events: none;
+}
+
+
+
+.proscontainerimage {
+    max-width: 400px;
+    width: 100%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 30px;
+    color: #6990F2;
+}
+
+.img-area {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    background: #fff;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px dashed #6990F2;
+    color: #6990F2;
+}
+
+.img-area .icon {
+    /* font-size: 100px; */
+    font-size: 100px;
+}
+
+.img-area h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #6990F2;
+}
+
+.img-area p {
+    color: #6990F2;
+}
+
+.img-area p span {
+    font-weight: 600;
+}
+
+.img-area img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 100;
+}
+
+.img-area::before {
+    content: attr(data-img);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: all .3s ease;
+    z-index: 200;
+}
+
+.img-area.active:hover::before {
+    opacity: 1;
+}
+
+
+
+
+
+
+/* Accordion Css */
+/* .accordion {
+            width: 400px;
+        } */
+
+.accordion__collapsible {
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+.accordion__collapsible:not(:last-child) {
+    border-bottom: none;
+}
+
+.collapsible__header {
+    background-color: rgb(243, 242, 242);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+    background: #fff;
+    background: -moz-linear-gradient(top, #fff 1%, #eaeaea 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #fff), color-stop(100%, #eaeaea));
+    background: -webkit-linear-gradient(top, #fff 1%, #eaeaea 100%);
+    background: -o-linear-gradient(top, #fff 1%, #eaeaea 100%);
+    background: -ms-linear-gradient(top, #fff 1%, #eaeaea 100%);
+    background: linear-gradient(top, #fff 1%, #eaeaea 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#eaeaea', GradientType=0);
+    font-size: 12px;
+    height: 50px;
+    line-height: 20px;
+}
+
+.collapsible__header::after {
+    content: '+';
+    position: relative;
+    right: 10px;
+}
+
+.collapsible__content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 1s, opacity 1s;
+}
+
+.collapsible--open .collapsible__header::after {
+    content: '-';
+}
+
+.collapsible--open .collapsible__content {
+    max-height: 200px;
+    opacity: 10;
+}
+
+
+/* Content styles - To make inner content look better */
+.collapsible__header p {
+    font-size: medium;
+}
+
+.collapsible__content p {
+    font-size: small;
+    margin: 10px;
+}
+
+
+/* description css */
+.prosadmindes-wrapper {
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    padding: 15px 40px;
+    border-radius: 5px;
+    box-shadow: 0 6px 9px rgba(0, 0, 30, 0.1);
+}
+
+.prosadmindes-toggle,
+.prosadmindes-content {
+    font-family: "Poppins", sans-serif;
+}
+
+.prosadmindes-toggle {
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #111130;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 15px 0;
+}
+
+.prosadmindes-content {
+    position: relative;
+    font-size: 14px;
+    text-align: justify;
+    line-height: 30px;
+    height: 0;
+    overflow: hidden;
+    transition: all 1s;
+}
+/* description css here */
+
+ 
+
+/*chat send login btn design here  */
+
+ 
+  .prosiconsadminrecord a{
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    
+  }
+  
+  
+  
+  .proscontentadminrecord .prosiconsadminrecord a{
+    display: flex;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 50%;
+  }
+  .prosiconsadminrecord a i{
+    transition: transform 0.3s ease-in-out;
+  }
+  
+
+  #proswhatappbtn{
+    color: #25D366;
+    border-color: #bef4d2;
+  }
+  #proswhatappbtn:hover{
+    background: #25D366;
+    color: white;
+  }
+
+
+  #pros-smsbtn{
+    color: #46C1F6;
+    border-color: #b6e7fc;
+  }
+  #pros-smsbtn:hover{
+    background: #46C1F6;
+    color: white;
+  }
+
+  .prosiconsadminrecord a:nth-child(3){
+    color: #e1306c;
+    border-color: #f5bccf;
+  }
+  .prosiconsadminrecord a:nth-child(3):hover{
+    background: #e1306c;
+  }
+  
+  .prosiconsadminrecord a:hover{
+    color: #fff;
+    border-color: transparent;
+  }
+  .prosiconsadminrecord a:hover i{
+    transform: scale(1.2);
+  }
+/*chat send login btn design here  */
+  
+
+
+
+.prosdesfaq-accordion{
+    /* background-color: #ffffff; */
+    margin-bottom: 20px;
+    padding: 15px 40px;
+  }
+ 
+  
+ 
+  .prosdesfaq-accordion .prosdesfaq-accordion-text .title{
+    font-size: 35px;
+    font-weight: 600;
+    color: #6990F2;
+    font-family: 'Fira Sans', sans-serif;
+  }
+  .prosdesfaq-accordion .prosdesfaq-accordion-text .faq-text{
+    margin-top: 25px;
+    height: 263px;
+    overflow-y: auto;
+  }
+  .faq-text::-webkit-scrollbar{
+    display: none;
+  }
+  .prosdesfaq-accordion .prosdesfaq-accordion-text li{
+    list-style: none;
+    cursor: pointer;
+  }
+  .prosdesfaq-accordion-text li .question-arrow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .prosdesfaq-accordion-text li .question-arrow .question{
+    font-size: 15px;
+    font-weight: 500;
+    color: #595959;
+    transition: all 0.3s ease;
+  }
+  .prosdesfaq-accordion-text li .question-arrow .arrow{
+    font-size: 20px;
+    color: #595959;
+    transition: all 0.3s ease;
+  }
+  .prosdesfaq-accordion-text li.showAnswer .question-arrow .arrow{
+    transform: rotate(-180deg);
+  }
+  .prosdesfaq-accordion-text li:hover .question-arrow .question,
+  .prosdesfaq-accordion-text li:hover .question-arrow .arrow{
+    color: #6990F2;
+  }
+  .prosdesfaq-accordion-text li.showAnswer .question-arrow .question,
+  .prosdesfaq-accordion-text li.showAnswer .question-arrow .arrow{
+    color: #6990F2;
+  }
+  .prosdesfaq-accordion-text li .line{
+    display: block;
+    height: 2px;
+    width: 100%;
+    margin: 10px 0;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  .prosdesfaq-accordion-text li p{
+    width: 92%;
+    font-size: 15px;
+    font-weight: 500;
+    color: #595959;
+    display: none;
+  }
+  .prosdesfaq-accordion-text li.showAnswer p{
+    display: block;
+  }
+  
+  @media (max-width: 994px) {
+    /*body{*/
+    /*  padding: 40px 20px;*/
+    /*}*/
+    .prosdesfaq-accordion{
+      max-width: 100%;
+      padding: 45px 60px 45px 60px;
+    }
+    
+    .prosdesfaq-accordion .prosdesfaq-accordion-text{
+      width: 63%;
+    }
+  }
+  @media (max-width: 820px) {
+    .prosdesfaq-accordion{
+      flex-direction: column;
+    }
+    .prosdesfaq-accordion .image-box{
+      height: 360px;
+      width: 300px;
+      background: #7d2ae8;
+      width: 100%;
+      border-radius: 25px;
+      padding: 30px;
+    }
+    .prosdesfaq-accordion .prosdesfaq-accordion-text{
+      width: 100%;
+      margin-top: 30px;
+    }
+  }
+  @media (max-width: 538px) {
+    .prosdesfaq-accordion{
+      padding: 25px;
+    }
+    .prosdesfaq-accordion-text li p{
+      width: 98%;
+    }
+  }
+
+
+
+
+
+
+  /* Global styles for the letter header */
+.prosheader-letter {
+  /* background-color: #f2f2f2; */
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  font-family: 'Times New Roman', serif;
+}
+
+.proslogo-letter{
+  width: 90px;
+  margin-right: 20px;
+}
+
+.institution-details {
+  text-align: center;
+}
+
+.institution-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+
+.letter-name {
+  margin-top: 50px; /* Add margin to create space between the header and the letter name */
+}
+
+.institution-motto,
+.institution-phone {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive styles */
+/* @media (max-width: 768px) {
+  .prosheader-letter{
+    flex-direction: column;
+  }
+  
+  .proslogo-letter {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+} */
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 767px) {
+
+    .prospaymentnxt {
+        /* PAYMENT PROCEED BUTTON MSG BUTTON  MOBILE VIEW*/
+        position: relative;
+        right: -62%;
+
+    }
+
+
+    .prosgenralnxtbutton {
+        /* PAYMENT PROCEED BUTTON MSG BUTTON  MOBILE VIEW*/
+        position: relative;
+        right: -62%;
+
+    }
+
+
+
+
+    .prospaymentnxtinput {
+        /* PAYMENT PROCEED BUTTON MSG BUTTON */
+
+        position: relative;
+        right: -57%;
+    }
+
+
+    .prosheader-letter{
+      flex-direction: column;
+    }
+    
+    .proslogo-letter {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+}

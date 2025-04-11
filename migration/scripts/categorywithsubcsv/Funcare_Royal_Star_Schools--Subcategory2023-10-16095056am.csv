@@ -1,0 +1,335 @@
+SubcategoryIDOld,CategoryIDOld,InstitutionID,SubcategoryTitle,SubcategoryIDNew,CategoryIDNew,SubcategoryTitleNew
+194,60,47,"Data subscription",NULL,NULL,NULL
+230,67,47,officer,NULL,NULL,NULL
+193,60,47,Startimes,NULL,NULL,NULL
+188,64,47,"Haice ABC 216XK",NULL,NULL,NULL
+189,64,47,"Hyundai ABC 219AA",NULL,NULL,NULL
+232,105,47,"Kid monitor",NULL,NULL,NULL
+231,67,47,S.O,NULL,NULL,NULL
+252,63,47,"fuel consumption",NULL,NULL,NULL
+253,66,47,"carpenter works ",NULL,NULL,NULL
+236,85,47,"Registration ",1,13,"REGISTRATION FEE"
+235,92,47,"Registration fee",1,13,"REGISTRATION FEE"
+234,92,47,"Termly Renewal",NULL,NULL,NULL
+233,81,47,"uniform material",NULL,NULL,NULL
+255,112,47,"p.t.a Refreshment",NULL,NULL,NULL
+61,31,47,Tuition,2,13,"TUITION FEE"
+62,31,47,"Caution Fee",72,14,"CAUTION FEE"
+63,31,47,Form,44,8,"ONLINE LEARNING PLATFORMS"
+64,31,47,Books,11,16,TEXTBOOKS
+65,31,47,"PTA Levy",NULL,NULL,NULL
+66,31,47,Examination,3,13,"EXAMINATION FEE"
+67,31,47,Uniform,62,4,UNIFORM
+68,32,47,Shorts,NULL,NULL,NULL
+69,32,47,"Short sleeve shirts",NULL,NULL,NULL
+70,32,47,Cardigan,NULL,NULL,NULL
+71,32,47,"sports wear",NULL,NULL,NULL
+72,33,47,"After school care",75,5,"AFTER SCHOOL CARE"
+73,33,47,"School lesson",NULL,NULL,NULL
+74,34,47,Ballet,NULL,NULL,NULL
+75,34,47,Music,7,5,"MUSIC LESSONS"
+76,34,47,"Taekwando ",NULL,NULL,NULL
+77,34,47,Chess,81,5,"CHESS AND SCRABBLE"
+78,34,47,"Readers Club",NULL,NULL,NULL
+79,34,47,"French Club",84,6,"FRENCH CLUB"
+80,32,47,"Friday Wears",60,4,"FRIDAY WEARS"
+81,34,47,"Coding and Robotics",NULL,NULL,NULL
+229,72,47,"Nepa bills",NULL,NULL,NULL
+228,31,47,"Biometric Device",NULL,NULL,NULL
+187,64,47,"Haice ABC 526ZY",NULL,NULL,NULL
+254,112,47,"p.t.a expenses",NULL,NULL,NULL
+150,31,47,"Capital Levy",NULL,NULL,NULL
+151,56,47,"Karu 2 Ways",NULL,NULL,NULL
+152,56,47,"Karu  1 way",NULL,NULL,NULL
+153,56,47,"City College 2ways",NULL,NULL,NULL
+154,56,47,"city college 1 way",NULL,NULL,NULL
+155,56,47,"Nyanya 1 Way",NULL,NULL,NULL
+156,56,47,"Nyanya 2 ways",NULL,NULL,NULL
+157,56,47,"Jikwoyi/Kpegyi 1 way",NULL,NULL,NULL
+158,56,47,"Jikwoyi/Kpegyi 2 ways",NULL,NULL,NULL
+159,56,47,"Ajanta/Kurudu 1 Way",NULL,NULL,NULL
+160,56,47,"Ajanta/Kurudu 2 ways",NULL,NULL,NULL
+161,56,47,"Karu Village 1 way",NULL,NULL,NULL
+162,56,47,"Karu Village 2 ways",NULL,NULL,NULL
+163,56,47,"Nyanya/Aso C 1 Way",NULL,NULL,NULL
+164,56,47,"Nyanya/Aso C 2 Ways",NULL,NULL,NULL
+165,56,47,"Town 1 way",NULL,NULL,NULL
+166,56,47,"Town 2 ways",NULL,NULL,NULL
+2878,71,47,"casting of school entrance",NULL,NULL,NULL
+195,114,47,"Haice ABC 526ZY",NULL,NULL,NULL
+196,114,47,"Haice ABJ 216XK",NULL,NULL,NULL
+197,114,47,"Hyundai ABC 219AA",NULL,NULL,NULL
+198,117,47,"Washing machine",NULL,NULL,NULL
+199,73,47,"l.G washing machine",NULL,NULL,NULL
+259,73,47,"computer system",NULL,NULL,NULL
+201,118,47,C-way,NULL,NULL,NULL
+202,118,47,"Water Board",NULL,NULL,NULL
+203,118,47,"Swam Water",NULL,NULL,NULL
+204,118,47,"Water Bills",NULL,NULL,NULL
+205,72,47,"Electrical works",NULL,NULL,NULL
+206,72,47,Bulbs,NULL,NULL,NULL
+207,119,47,"Plumbing labour",NULL,NULL,NULL
+208,62,47,"Recharge card",NULL,NULL,NULL
+209,62,47,Data,NULL,NULL,NULL
+210,81,47,"Uniform Repairs",NULL,NULL,NULL
+211,81,47,"Sport wear",61,4,"SPORT WEARS"
+212,81,47,T-Shirt,NULL,NULL,NULL
+213,81,47,Shorts,NULL,NULL,NULL
+214,83,47,Access,NULL,NULL,NULL
+215,83,47,Rasmed,NULL,NULL,NULL
+216,83,47,"Evans Brothers",NULL,NULL,NULL
+217,105,47,Installation,NULL,NULL,NULL
+218,105,47,Data,NULL,NULL,NULL
+237,85,47,"New intake",NULL,NULL,NULL
+238,70,47,"Mr Tai",NULL,NULL,NULL
+239,105,47,"Speed limit device",NULL,NULL,NULL
+241,131,47,"Inter- House venue",NULL,NULL,NULL
+242,131,47,Refreshment,NULL,NULL,NULL
+243,131,47,outfits,NULL,NULL,NULL
+244,131,47,"small chops",NULL,NULL,NULL
+245,132,47,Legos,NULL,NULL,NULL
+246,133,47,Books,11,16,TEXTBOOKS
+247,132,47,"Plastic Rubbers",NULL,NULL,NULL
+248,71,47,jangolova,NULL,NULL,NULL
+249,71,47,"jangolova repairs",NULL,NULL,NULL
+277,77,47,greese,NULL,NULL,NULL
+256,78,47,"Access ",NULL,NULL,NULL
+257,78,47,Rasmed,NULL,NULL,NULL
+258,115,47,"support and transportation",NULL,NULL,NULL
+260,117,47,"Gift and Transportation",NULL,NULL,NULL
+261,117,47,"Hospital bills",NULL,NULL,NULL
+262,78,47,"stapling pins",NULL,NULL,NULL
+263,135,47,FINE,NULL,NULL,NULL
+264,135,47,OFFENSE,NULL,NULL,NULL
+265,94,47,"Refuse disposed",NULL,NULL,NULL
+266,72,47,"Replacement of lamp holders",NULL,NULL,NULL
+267,94,47,chairs,NULL,NULL,NULL
+268,94,47,tables,NULL,NULL,NULL
+269,77,47,diesel,NULL,NULL,NULL
+270,102,47,"taxable charges",NULL,NULL,NULL
+271,70,47,"Vivian Orogevia",NULL,NULL,NULL
+272,105,47,inverter,NULL,NULL,NULL
+273,86,47,signage,NULL,NULL,NULL
+274,91,47,"Association fee",NULL,NULL,NULL
+275,105,47,"Internet Renewal",NULL,NULL,NULL
+278,133,47,"library books",NULL,NULL,NULL
+279,95,47,"School shift",NULL,NULL,NULL
+280,75,47,"chess club",NULL,NULL,NULL
+281,61,47,mortein,NULL,NULL,NULL
+282,61,47,izal,NULL,NULL,NULL
+283,69,47,"Mr. Stephen",NULL,NULL,NULL
+284,77,47,"engine oil",NULL,NULL,NULL
+285,138,47,"HAICE 1",NULL,NULL,NULL
+286,138,47,"HAICE 2",NULL,NULL,NULL
+287,138,47,"HYUNDAI 291AA",NULL,NULL,NULL
+288,135,47,WATER,NULL,NULL,NULL
+294,142,47,"Phone Repairs",NULL,NULL,NULL
+295,61,47,"Morning Fresh",NULL,NULL,NULL
+296,82,47,"cooking gas",NULL,NULL,NULL
+297,95,47,"Internet Services ",NULL,NULL,NULL
+298,70,47,"Mr. . Abraham",NULL,NULL,NULL
+299,73,47,gift,NULL,NULL,NULL
+300,72,47,"Extension Box",NULL,NULL,NULL
+301,102,47,"PAYE January",NULL,NULL,NULL
+302,102,47,"PEYE February",NULL,NULL,NULL
+303,104,47,"photocopier repairs ",NULL,NULL,NULL
+304,143,47,"Repairs and maintenance",NULL,NULL,NULL
+305,143,47,"painting of vehicle",NULL,NULL,NULL
+306,143,47,services,NULL,NULL,NULL
+307,88,47,Questions,NULL,NULL,NULL
+308,131,47,drinks,NULL,NULL,NULL
+309,131,47,Rentals,NULL,NULL,NULL
+310,131,47,"whistle and balls",NULL,NULL,NULL
+311,131,47,Marking,NULL,NULL,NULL
+312,131,47,"Sacks ",NULL,NULL,NULL
+313,131,47,"police agencies",NULL,NULL,NULL
+314,131,47,Band,NULL,NULL,NULL
+315,131,47,"panel of judges",NULL,NULL,NULL
+316,131,47,"Packs ",NULL,NULL,NULL
+317,131,47,"Ballet Outfits",NULL,NULL,NULL
+318,87,47,"T- SHIRTS",NULL,NULL,NULL
+319,75,47,"All clubs",NULL,NULL,NULL
+320,76,47,"Lesson fee",NULL,NULL,NULL
+321,90,47,"March Salary",NULL,NULL,NULL
+322,90,47,"February Salary ",NULL,NULL,NULL
+323,90,47,"April Salary",NULL,NULL,NULL
+324,90,47,"January Salary",NULL,NULL,NULL
+2637,117,47,"Condolence visit",NULL,NULL,NULL
+2638,160,47,"French teacher",NULL,NULL,NULL
+2639,160,47,"French institute",NULL,NULL,NULL
+2640,161,47,"HYUNDAI 219AA",NULL,NULL,NULL
+2643,161,47,"HAICE  ABJ 216XK",NULL,NULL,NULL
+2644,161,47,"HAICE 2 ABC-526ZY",NULL,NULL,NULL
+2645,137,47,"Mechanical Works",NULL,NULL,NULL
+2646,137,47,"Set of Plugs",NULL,NULL,NULL
+2647,137,47,"Servicing of nuzzle",NULL,NULL,NULL
+2648,143,47,"Break light bulb repairs",NULL,NULL,NULL
+2649,143,47,"2 head light bulbs",NULL,NULL,NULL
+2650,143,47,"Replacement of shocks",NULL,NULL,NULL
+2651,143,47,"Replacement of stabilizer lickage",NULL,NULL,NULL
+2652,162,47,"labour ",NULL,NULL,NULL
+2653,70,47,"Mrs Alfred Gadzama",NULL,NULL,NULL
+2654,61,47,"Cleaning Agent",NULL,NULL,NULL
+2666,102,47,"PEYE MARCH",NULL,NULL,NULL
+2667,102,47,"PAYE APRIL",NULL,NULL,NULL
+2754,137,47,"panel beater",NULL,NULL,NULL
+2753,143,47,Alignment,NULL,NULL,NULL
+2755,144,47,"Repairs of chairs",NULL,NULL,NULL
+2756,144,47,"Tyres Repairs",NULL,NULL,NULL
+2761,63,47,"A.Y.M SHAFA",NULL,NULL,NULL
+2762,63,47,"Fuel Deposit",NULL,NULL,NULL
+2763,94,47,chemicals,NULL,NULL,NULL
+2764,103,47,"fumigation first Term ",NULL,NULL,NULL
+2765,103,47,"fumigation second Term",NULL,NULL,NULL
+2766,103,47,"fumigation third Term",NULL,NULL,NULL
+2767,178,47,"School stamp",NULL,NULL,NULL
+2768,179,47,"developmental fee",NULL,NULL,NULL
+2769,180,47,"premises levy ( FIRS)",NULL,NULL,NULL
+2770,181,47,"Transportation FIRS",NULL,NULL,NULL
+2771,182,47,"Battery terminal",NULL,NULL,NULL
+2776,101,47,"drinks and water for teachers",NULL,NULL,NULL
+2777,70,47,"Mum Amina",NULL,NULL,NULL
+2779,81,47,"Taekwando outfits",NULL,NULL,NULL
+2780,143,47,"Brake pad replacement",NULL,NULL,NULL
+2781,185,47,"Estate management",NULL,NULL,NULL
+2782,81,47,cardigan,NULL,NULL,NULL
+2783,70,47,"Mum AL Qassim",NULL,NULL,NULL
+2791,92,47,GIFT,NULL,NULL,NULL
+2792,194,47,"Staff Training",NULL,NULL,NULL
+2793,137,47,Alignment,NULL,NULL,NULL
+2794,143,47,"AC repairs",NULL,NULL,NULL
+2795,143,47,labour,NULL,NULL,NULL
+2796,78,47,"painting brush",NULL,NULL,NULL
+2797,195,47,"photo shoots",NULL,NULL,NULL
+2798,78,47,"Maxing Tape",NULL,NULL,NULL
+2799,137,47,"Gaging of tyres",NULL,NULL,NULL
+2800,137,47,Hub,NULL,NULL,NULL
+2801,137,47,"Engine Oil",NULL,NULL,NULL
+2802,144,47,"fuel consumption",NULL,NULL,NULL
+2803,143,47,"fuel consumption",NULL,NULL,NULL
+2804,137,47,"fuel consumption",NULL,NULL,NULL
+2841,195,47,"Hard Materials",NULL,NULL,NULL
+2842,71,47,"Welding works",NULL,NULL,NULL
+2887,81,47,"uniforms supplied part payment",NULL,NULL,NULL
+2886,90,47,"June Salary",NULL,NULL,NULL
+2885,90,47,"May Salary",NULL,NULL,NULL
+2884,74,47,"Party Gifts",NULL,NULL,NULL
+2883,71,47,"water pipes",NULL,NULL,NULL
+2882,94,47,"Salvage Blockage",NULL,NULL,NULL
+2888,102,47,"Tax consultant",NULL,NULL,NULL
+2889,102,47,"PAYE May",NULL,NULL,NULL
+2890,102,47,"PAYE June",NULL,NULL,NULL
+3112,89,47,"Note Books",NULL,NULL,NULL
+3113,94,47,"Painting deposit",NULL,NULL,NULL
+3114,84,47,"Deposit for cardgan",NULL,NULL,NULL
+3115,94,47,"Part payment 4 painting",NULL,NULL,NULL
+3116,81,47,"Transpotation 4 uniforms ",NULL,NULL,NULL
+3117,300,47,"planting of flowers",NULL,NULL,NULL
+3118,300,47,"part payment 4 flowers",NULL,NULL,NULL
+3119,83,47,"U .S.E Text books",NULL,NULL,NULL
+3120,102,47,"Tenement Rate premises inspection 2022",NULL,NULL,NULL
+3121,102,47,"Tenement Rate 2022/2023",NULL,NULL,NULL
+3122,94,47,"Paid for the remaining paint Balance",NULL,NULL,NULL
+3123,71,47,cement,31,15,"ROOM KEY REPLACEMENT"
+3259,66,47,"Chairs Repairs",NULL,NULL,NULL
+3260,81,47,"Black Leather",NULL,NULL,NULL
+3261,300,47,"Grace flowers",NULL,NULL,NULL
+3262,113,47,"All the buses",NULL,NULL,NULL
+3263,79,47,"printer Repairs",NULL,NULL,NULL
+3264,177,47,"supplies and management ltd",NULL,NULL,NULL
+3265,323,47,"Evans books supplied",NULL,NULL,NULL
+3266,324,47,"Gulf educational publishing limited",NULL,NULL,NULL
+3296,332,47,"Learning Aids",NULL,NULL,NULL
+3297,89,47,"Gideon Ohioze",NULL,NULL,NULL
+3298,113,47,"Generator Repairs",NULL,NULL,NULL
+3299,113,47,"Pannel Beater ABC219AA",NULL,NULL,NULL
+3300,333,47,"plates and spoons",NULL,NULL,NULL
+3301,94,47,"Roof Repairs",NULL,NULL,NULL
+3302,137,47,"Repairs and Replacement",NULL,NULL,NULL
+3303,137,47,"vehicle Renewal",NULL,NULL,NULL
+3304,83,47,"Jolly phonics ",NULL,NULL,NULL
+3305,92,47,"Inspection VECAS",NULL,NULL,NULL
+3306,81,47,"uniform for staff",NULL,NULL,NULL
+3307,143,47,"fancap Repairs",NULL,NULL,NULL
+3308,137,47,"Fancap Repairs",NULL,NULL,NULL
+3309,137,47,"fancap workmanship",NULL,NULL,NULL
+3310,94,47,"Repairs of gold post",NULL,NULL,NULL
+3311,98,47,"fire extinquisher",NULL,NULL,NULL
+3312,93,47,"health officer",NULL,NULL,NULL
+3313,102,47,"Tax PAYE month of  september",NULL,NULL,NULL
+3314,102,47,"PAYE octorber",NULL,NULL,NULL
+3315,102,47,"PAYE November",NULL,NULL,NULL
+3316,102,47,"PAYE December",NULL,NULL,NULL
+3317,334,47,"Watering cane",NULL,NULL,NULL
+3318,68,47,"hydrogen and spirit",NULL,NULL,NULL
+3319,90,47,"mr. stephen salary",NULL,NULL,NULL
+3320,63,47,"AA RANO",NULL,NULL,NULL
+3321,79,47,"Typing expenses",NULL,NULL,NULL
+3322,90,47,"other salaries",NULL,NULL,NULL
+3330,137,47,"Tube fixing",NULL,NULL,NULL
+3331,90,47,"August ",NULL,NULL,NULL
+3332,90,47,September,NULL,NULL,NULL
+3333,90,47,Octorber,NULL,NULL,NULL
+3334,90,47,November,NULL,NULL,NULL
+3494,137,47,"key starter",NULL,NULL,NULL
+3492,418,47,"All the buses",NULL,NULL,NULL
+3493,137,47,"Battery Repairs",NULL,NULL,NULL
+3501,137,47,"Fuel pump ",NULL,NULL,NULL
+3521,137,47,"Fan Belt",NULL,NULL,NULL
+3522,137,47,compressor,NULL,NULL,NULL
+3523,182,47,"New Battery ",NULL,NULL,NULL
+3524,182,47,"Battery Repairs",NULL,NULL,NULL
+3525,442,47,"Set of carpet ",NULL,NULL,NULL
+3526,70,47,"Mrs Adewuyi",NULL,NULL,NULL
+3532,94,47,speaker,NULL,NULL,NULL
+3535,115,47,"Burial support",NULL,NULL,NULL
+3536,94,47,"Street security",NULL,NULL,NULL
+3601,66,47,"Furniture and fittings",NULL,NULL,NULL
+3602,66,47," Foreign plastic chairs and desks",NULL,NULL,NULL
+3603,66,47,"fixing of the desks",NULL,NULL,NULL
+3604,94,47,"cottons Replaced ",NULL,NULL,NULL
+3605,144,47,"Repairs and Replacement of Gum",NULL,NULL,NULL
+3606,100,47,"Tablats soap",NULL,NULL,NULL
+3607,100,47,"cleaning Agents supplied",NULL,NULL,NULL
+3608,119,47,"plumbing work",NULL,NULL,NULL
+3609,144,47,"Gear oil",NULL,NULL,NULL
+3610,458,47,"the 3 buses",NULL,NULL,NULL
+3611,459,47," payment for playing house",NULL,NULL,NULL
+3612,61,47,"fumigation and cleaning ",NULL,NULL,NULL
+3613,95,47,"C.D Plates for pre - nursery class ",NULL,NULL,NULL
+3614,79,47,"photocopy machine repairs",NULL,NULL,NULL
+3615,460,47,"Generator repairs",NULL,NULL,NULL
+3616,460,47,"servicing of the generator",NULL,NULL,NULL
+3617,67,47,"Estate security ",NULL,NULL,NULL
+3618,185,47,"Estate Security",NULL,NULL,NULL
+3619,100,47,Toilatries,NULL,NULL,NULL
+3620,459,47,"construction of play house",NULL,NULL,NULL
+3621,461,47,"paid for vest ",NULL,NULL,NULL
+3624,462,47,"Purchase 3 Footmat @",NULL,NULL,NULL
+3625,131,47,"sporty items",NULL,NULL,NULL
+3658,461,47,"transportation for the vest supplied",NULL,NULL,NULL
+3659,143,47,"Gum ",NULL,NULL,NULL
+3660,144,47,"Repairs and Replacent of bus particules",NULL,NULL,NULL
+3661,459,47,"playing house Repairs",NULL,NULL,NULL
+3662,143,47,"power steering replaced",NULL,NULL,NULL
+3663,143,47,"fixing of Bowrice",NULL,NULL,NULL
+3664,94,47,"cutting of grasses outside the school",NULL,NULL,NULL
+3665,144,47,"fixing of school bus doors",NULL,NULL,NULL
+3666,144,47,"fuel injector",NULL,NULL,NULL
+3667,137,47,"Fuel Injector",NULL,NULL,NULL
+3668,137,47,"master Brake",NULL,NULL,NULL
+3669,144,47,"plate Number Renewal",NULL,NULL,NULL
+3670,70,47,"Mrs johnson",NULL,NULL,NULL
+3671,144,47,"fixing of coil",NULL,NULL,NULL
+3672,103,47,"insectide ( creche)",NULL,NULL,NULL
+3673,144,47,"Repairs of Horn",NULL,NULL,NULL
+3674,81,47,"logitics for uniform $ others",NULL,NULL,NULL
+3675,144,47,"Welding of back sits ",NULL,NULL,NULL
+3676,117,47,NSITF,NULL,NULL,NULL
+3696,137,47,"Carliber  Repairs",NULL,NULL,NULL
+3697,137,47,"Relay and carliber transportation",NULL,NULL,NULL
+3698,144,47,"Road worthiness Renewal ",NULL,NULL,NULL
+3699,138,47,"Repairs of tyres",NULL,NULL,NULL
+3700,74,47,"party balance",NULL,NULL,NULL
+3701,117,47,"Staff monthly contribution Refund",NULL,NULL,NULL
+3702,476,47,"school signage",NULL,NULL,NULL

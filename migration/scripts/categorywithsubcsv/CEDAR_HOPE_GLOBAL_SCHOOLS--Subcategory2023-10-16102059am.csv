@@ -1,0 +1,4 @@
+SubcategoryIDOld,CategoryIDOld,InstitutionID,SubcategoryTitle,SubcategoryIDNew,CategoryIDNew,SubcategoryTitleNew
+2760,175,73,"Graduation Fees",NULL,NULL,NULL
+2759,175,73,"Lesson Fees",NULL,NULL,NULL
+2758,175,73,"School Fees",NULL,NULL,NULL
