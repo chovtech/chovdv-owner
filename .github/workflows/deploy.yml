@@ -6,25 +6,20 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v3
 
-      # Optional: Build your project if necessary
-      - name: 🏗️ Build Project (optional)
-        run: |
-          # Example build command, you can modify as per your setup
-          # npm run build
-
-      - name: 📤 Deploy to SmartWeb via SFTP
-        uses: appleboy/scp-action@v0.1.0
+      - name: 📤 Deploy via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
         with:
-          host: ${{ secrets.FTP_HOST }}
+          server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 22                     # Use 22 for SFTP
-          source: ./                   # Local directory to upload
-          target: /public_html/dev.edumess.com/ # Remote directory
+          protocol: "sftp"         # set to "ftp" if you're still on FTP (not recommended)
+          port: 22                 # Confirm your SFTP port — usually 22
+          local-dir: "./"
+          server-dir: "/public_html/dev.edumess.com/"
