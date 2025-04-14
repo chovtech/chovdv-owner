@@ -1,4 +1,4 @@
-name: 🚀 Deploy to SmartWeb via FTP
+name: 🚀 Deploy to SmartWeb via FTP (Passive Mode)
 
 on:
   push:
@@ -23,3 +23,9 @@ jobs:
           port: 21
           local-dir: "./"
           server-dir: "/public_html/dev.edumess.com/"
+          exclude: |
+            .git*
+            .github*
+            node_modules/*
+            .ftpquota
+          passive: true
