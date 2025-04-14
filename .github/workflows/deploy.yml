@@ -1,4 +1,4 @@
-name: 🚀 Deploy to SmartWeb via SCP (SFTP over SSH)
+name: 🚀 Deploy to SmartWeb via FTP
 
 on:
   push:
@@ -13,12 +13,13 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v3
 
-      - name: 📤 Deploy via SCP
-        uses: appleboy/scp-action@v0.1.4
+      - name: 📤 Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          host: ${{ secrets.FTP_HOST }}
+          server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 22
-          source: "./"
-          target: "/public_html/dev.edumess.com/"
+          protocol: "ftp"
+          port: 21
+          local-dir: "./"
+          server-dir: "/public_html/dev.edumess.com/"
