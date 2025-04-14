@@ -26,6 +26,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 22                     # Use 22 for SFTP
-          source: "./"                 # The directory with your files to deploy
-          target: "/public_html/dev.edumess.com/"   # The path on the server
-          secure: true                 # Ensure that you're using a secure connection (SFTP)
+          timeout: 30                  # Optional: Timeout for the connection
+          command_timeout: 30         # Optional: Timeout for each command
+          script: |
+            # This command uploads the entire local directory to your server
+            scp -r ./ ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_HOST }}:/public_html/dev.edumess.com/
