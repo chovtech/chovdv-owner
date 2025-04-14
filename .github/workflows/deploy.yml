@@ -33,3 +33,4 @@ jobs:
           port: ${{ secrets.FTP_PORT }}                 # Optional, specify port if needed
           local-dir: ./                                 # The directory with your files to deploy
           server-dir: /public_html/dev.edumess.com/     # The directory on your server where files should go
+          passive: true     
