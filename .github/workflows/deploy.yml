@@ -23,3 +23,6 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           local-dir: "./"
           server-dir: "/public_html/dev.edumess.com/"
+          passive: true
+          verbose: true  # Enable debug logging
+          timeout: 300  # Increase the timeout (in seconds)
