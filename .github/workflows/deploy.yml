@@ -1,28 +1,35 @@
-name: FTP Deploy
+name: 🚀 Deploy to SmartWeb via FTP
 
 on:
   push:
     branches:
-      - main
+      - main  # or "master", depending on your default branch
 
 jobs:
-  ftp-deploy:
-    name: Deploy to SmartWeb via FTP
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo
+      - name: 📥 Checkout Repository
         uses: actions/checkout@v3
 
-      - name: FTP Deploy Action
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4  # Change to @latest or @v4
+      # If you don't need to install dependencies like Composer, you can skip this step
+      # If you have build scripts for your project, you can run them here
+      
+      - name: 🏗️ Build Project (optional)
+        run: |
+          # Add commands to build your project if necessary
+          # For example, if you are generating static content or have assets to build, run those commands here.
+          # Example:
+          # npm run build (for JS apps)
+          # Or skip if there's nothing to build.
+
+      - name: 📤 Deploy to SmartWeb via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: ${{ secrets.FTP_PORT }}
-          local-dir: "./"
-          server-dir: "/public_html/dev.edumess.com/"
-          passive: true
-          verbose: true  # Enable debug logging
-          timeout: 300  # Increase the timeout (in seconds)
+          server: ${{ secrets.FTP_HOST }}               # Replace with your FTP server secret
+          username: ${{ secrets.FTP_USERNAME }}         # Replace with your FTP username secret
+          password: ${{ secrets.FTP_PASSWORD }}         # Replace with your FTP password secret
+          port: ${{ secrets.FTP_PORT }}                 # Optional, specify port if needed
+          local-dir: ./                                 # The directory with your files to deploy
+          server-dir: /public_html/dev.edumess.com/     # The directory on your server where files should go
