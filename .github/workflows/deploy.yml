@@ -1,9 +1,9 @@
-name: 🚀 Deploy to SmartWeb via FTP
+name: 🚀 Deploy to SmartWeb via SFTP
 
 on:
   push:
     branches:
-      - main  # or "master", depending on your default branch
+      - main
 
 jobs:
   build-and-deploy:
@@ -13,24 +13,19 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v3
 
-      # If you don't need to install dependencies like Composer, you can skip this step
-      # If you have build scripts for your project, you can run them here
-      
+      # Optional: Build your project if necessary
       - name: 🏗️ Build Project (optional)
         run: |
-          # Add commands to build your project if necessary
-          # For example, if you are generating static content or have assets to build, run those commands here.
-          # Example:
-          # npm run build (for JS apps)
-          # Or skip if there's nothing to build.
+          # Example build command, you can modify as per your setup
+          # npm run build
 
-      - name: 📤 Deploy to SmartWeb via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: 📤 Deploy to SmartWeb via SFTP
+        uses: appleboy/ssh-action@v0.1.0
         with:
-          server: ${{ secrets.FTP_HOST }}               # Replace with your FTP server secret
-          username: ${{ secrets.FTP_USERNAME }}         # Replace with your FTP username secret
-          password: ${{ secrets.FTP_PASSWORD }}         # Replace with your FTP password secret
-          port: ${{ secrets.FTP_PORT }}                 # Optional, specify port if needed
-          local-dir: ./                                 # The directory with your files to deploy
-          server-dir: /public_html/dev.edumess.com/     # The directory on your server where files should go
-          passive: true     
+          host: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 22                     # Use 22 for SFTP
+          source: "./"                 # The directory with your files to deploy
+          target: "/public_html/dev.edumess.com/"   # The path on the server
+          secure: true                 # Ensure that you're using a secure connection (SFTP)
