@@ -25,7 +25,7 @@ jobs:
           host: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 22                     # Use 22 for SFTP
+          port: 21                     # Use 22 for SFTP
           timeout: 30s                 # 30 seconds timeout
           command_timeout: 30s         # 30 seconds timeout for commands
           script: |
