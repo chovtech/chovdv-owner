@@ -1,4 +1,4 @@
-name: 🚀 Deploy to SmartWeb via FTP (Passive Mode)
+name: 🚀 Deploy to SmartWeb via FTP
 
 on:
   push:
@@ -16,16 +16,14 @@ jobs:
       - name: 📤 Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ftp.triominds.com.ng
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: "ftp"
+          protocol: ftp
           port: 21
-          local-dir: "./"
-          server-dir: "/public_html/dev.edumess.com/"
+          local-dir: ./
+          server-dir: /public_html/dev.edumess.com/
           exclude: |
-            .git*
-            .github*
-            node_modules/*
-            .ftpquota
-          passive: true
+            */.git
+            */.github
+            */node_modules/
