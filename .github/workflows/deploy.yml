@@ -20,14 +20,11 @@ jobs:
           # npm run build
 
       - name: 📤 Deploy to SmartWeb via SFTP
-        uses: appleboy/ssh-action@v0.1.0
+        uses: appleboy/scp-action@v0.1.0
         with:
           host: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 21                     # Use 22 for SFTP
-          timeout: 30s                 # 30 seconds timeout
-          command_timeout: 30s         # 30 seconds timeout for commands
-          script: |
-            # This command uploads the entire local directory to your server
-            scp -r ./ ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_HOST }}:/public_html/dev.edumess.com/
+          port: 22                     # Use 22 for SFTP
+          source: ./                   # Local directory to upload
+          target: /public_html/dev.edumess.com/ # Remote directory
