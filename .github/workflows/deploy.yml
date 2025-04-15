@@ -1,4 +1,4 @@
-name: 🚀 Deploy to SmartWeb via FTP
+name: 🚀 Deploy to SmartWeb via SFTP
 
 on:
   push:
@@ -13,17 +13,17 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v3
 
-      - name: 📤 Deploy via FTP
+      - name: 📤 Deploy via SFTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ftp.triominds.com.ng
+          server: triominds.com.ng
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp # <-- switch to 'ftp' for now
-          port: 22
-          local-dir: ./
+          protocol: sftp  # Use 'sftp' instead of 'ftps' or 'ftp'
+          port: 22  # Use port 22 for SFTP
+          local-dir: ./  # Make sure this points to the correct directory
           server-dir: /public_html/dev.edumess.com/
-          timeout: 120
+          timeout: 300  # Increase timeout if necessary
           exclude: |
             .git/
             .github/
