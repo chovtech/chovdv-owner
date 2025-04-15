@@ -3,7 +3,7 @@ name: 🚀 Deploy to SmartWeb via SFTP
 on:
   push:
     branches:
-      - main  # Trigger deployment when changes are pushed to the main branch
+      - main
 
 jobs:
   deploy:
