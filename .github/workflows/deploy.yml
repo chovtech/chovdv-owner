@@ -1,27 +1,31 @@
-name: 🚀 Deploy to Staging Server via SFTP
+name: 🚀 Deploy to SmartWeb via SFTP
 
 on:
   push:
     branches:
-      - main  # Or "master" if that’s your default
+      - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v3
 
-      # Skipping 'Install Dependencies' and 'Build' since you are not using Node.js
+      # Step to set up the SSH key for authentication
+      - name: 🛠️ Set up SSH Key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: 📤 Deploy to Staging via SFTP
+      # Deploy the application via SFTP
+      - name: 📤 Deploy via SFTP
         uses: appleboy/scp-action@v0.1.0
         with:
-          host: ${{ secrets.SFTP_HOST }}  # SFTP host (e.g., triominds.com.ng)
-          username: ${{ secrets.SFTP_USERNAME }}  # SFTP username (e.g., triomind)
-          password: ${{ secrets.SFTP_PASSWORD }}  # SFTP password
-          port: ${{ secrets.SFTP_PORT }}  # SFTP port (typically 22)
-          source: ./  # The local directory to upload from
-          target: /public_html/dev.edumess.com/  # The remote directory to deploy to
-          debug: true  # Optional: Enables debugging output for troubleshooting
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          port: ${{ secrets.SFTP_PORT }}
+          source: ./ # Local directory to upload
+          target: /public_html/dev.edumess.com/ # Remote directory
+          debug: true  # Enable debugging
