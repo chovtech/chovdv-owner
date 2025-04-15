@@ -20,9 +20,6 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          timeout: "120"
-        command_timeout: "60"
-        debug: "true"
-          source: ./ # Local directory to upload
-          target: /public_html/dev.edumess.com/ # Remote directory
-          debug: true # Enable debugging
+          source: ./  # Local directory to upload
+          target: /public_html/dev.edumess.com/  # Remote directory
+          debug: true  # Enable debugging
