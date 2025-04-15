@@ -25,11 +25,20 @@ jobs:
           # Or skip if there's nothing to build.
       - name: 📤 Deploy to SmartWeb via FTP
         uses: appleboy/scp-action@v0.1.7
-
         with:
-          server: ${{ secrets.SFTP_HOST }}               # Replace with your FTP server secret
-          username: ${{ secrets.SFTP_USERNAME }}         # Replace with your FTP username secret
-          password: ${{ secrets.SFTP_PASSWORD }}         # Replace with your FTP password secret
-          port: ${{ secrets.SFTP_PORT }}                 # Optional, specify port if needed
-          local-dir: ./                                 # The directory with your files to deploy
-          server-dir: /public_html/dev.edumess.com/     # The directory on your server where files should go
+          host: ${{ secrets.SFTP_SERVER }}           # Change "server" to "host"
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22                                   # Port if not default (22)
+          source: ./                                  # Replace "local-dir" with "source"
+          target: /public_html/dev.edumess.com/      # Replace "server-dir" with "target"
+          timeout: 30s
+          command_timeout: 10m
+          use_insecure_cipher: false
+          rm: false
+          debug: false
+          strip_components: 0
+          overwrite: false
+          tar_dereference: false
+          tar_exec: tar
+           # The directory on your server where files should go
