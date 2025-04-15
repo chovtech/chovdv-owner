@@ -19,12 +19,11 @@ jobs:
           server: ftp.triominds.com.ng
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps # Changed to 'ftps' for secure FTP
+          protocol: ftp # <-- switch to 'ftp' for now
           port: 21
-          local-dir: ./ # Ensure this points to the correct directory
+          local-dir: ./
           server-dir: /public_html/dev.edumess.com/
-          passive: true # Added to enable passive mode
-          timeout: 120  # Added to increase timeout
+          timeout: 120
           exclude: |
             .git/
             .github/
