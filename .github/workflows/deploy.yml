@@ -15,14 +15,13 @@ jobs:
 
       # Skipping 'Install Dependencies' and 'Build' since you are not using Node.js
 
-      - name: 📤 Deploy to STAGING via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: 📤 Deploy to Staging via SFTP
+        uses: appleboy/scp-action@v0.1.0
         with:
-          server: ${{ secrets.SFTP_HOST }}  # SFTP host (e.g., triominds.com.ng)
+          host: ${{ secrets.SFTP_HOST }}  # SFTP host (e.g., triominds.com.ng)
           username: ${{ secrets.SFTP_USERNAME }}  # SFTP username (e.g., triomind)
           password: ${{ secrets.SFTP_PASSWORD }}  # SFTP password
           port: ${{ secrets.SFTP_PORT }}  # SFTP port (typically 22)
-          protocol: sftp  # Ensure the protocol is set to SFTP
-          local-dir: ./  # The directory you want to upload from (can be adjusted)
-          remote-dir: /public_html/dev.edumess.com/  # The remote directory to deploy to
+          source: ./  # The local directory to upload from
+          target: /public_html/dev.edumess.com/  # The remote directory to deploy to
           debug: true  # Optional: Enables debugging output for troubleshooting
