@@ -3,7 +3,7 @@ name: 🚀 Deploy to SmartWeb via SFTP
 on:
   push:
     branches:
-      - main  # Deploy when changes are pushed to the main branch
+      - main  # Trigger deployment when changes are pushed to the main branch
 
 jobs:
   deploy:
@@ -17,8 +17,9 @@ jobs:
         uses: appleboy/scp-action@v0.1.0
         with:
           host: triominds.com.ng
-          username: triomind
-          password: Ve6+u3Y!1WjA8h
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
           port: 22
           source: ./ # Local directory to upload
           target: /public_html/dev.edumess.com/ # Remote directory
+          debug: true # Enable debugging
