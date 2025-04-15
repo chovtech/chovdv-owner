@@ -23,3 +23,8 @@ jobs:
           source: ./  # Local directory to upload
           target: /public_html/dev.edumess.com/  # Remote directory
           debug: true  # Enable debugging
+          timeout: 600  # Timeout in seconds (10 minutes)
+          # Optional: Use SSH key instead of password for more security
+          # key: ${{ secrets.SFTP_PRIVATE_KEY }}  # Uncomment if using SSH key authentication
+          # passphrase: ${{ secrets.SFTP_PASSPHRASE }}  # Uncomment if your SSH key is passphrase protected
+          # fingerprint: ${{ secrets.SFTP_FINGERPRINT }}  # Uncomment if verifying host fingerprint
