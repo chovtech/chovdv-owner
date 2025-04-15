@@ -3,29 +3,33 @@ name: 🚀 Deploy to SmartWeb via SFTP
 on:
   push:
     branches:
-      - main
+      - main  # or "master", depending on your default branch
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v3
 
-      # Step to set up the SSH key for authentication
-      - name: 🛠️ Set up SSH Key
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      # If you don't need to install dependencies like Composer, you can skip this step
+      # If you have build scripts for your project, you can run them here
+      
+      - name: 🏗️ Build Project (optional)
+        run: |
+          # Add commands to build your project if necessary
+          # For example, if you are generating static content or have assets to build, run those commands here.
+          # Example:
+          # npm run build (for JS apps)
+          # Or skip if there's nothing to build.
+      - name: 📤 Deploy to SmartWeb via FTP
+        uses: appleboy/scp-action@v0.1.7
 
-      # Deploy the application via SFTP
-      - name: 📤 Deploy via SFTP
-        uses: appleboy/scp-action@v0.1.0
         with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          port: ${{ secrets.SFTP_PORT }}
-          source: ./ # Local directory to upload
-          target: /public_html/dev.edumess.com/ # Remote directory
-          debug: true  # Enable debugging
+          server: ${{ secrets.SFTP_HOST }}               # Replace with your FTP server secret
+          username: ${{ secrets.SFTP_USERNAME }}         # Replace with your FTP username secret
+          password: ${{ secrets.SFTP_PASSWORD }}         # Replace with your FTP password secret
+          port: ${{ secrets.SFTP_PORT }}                 # Optional, specify port if needed
+          local-dir: ./                                 # The directory with your files to deploy
+          server-dir: /public_html/dev.edumess.com/     # The directory on your server where files should go
