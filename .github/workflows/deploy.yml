@@ -1,30 +1,28 @@
-name: 🚀 Deploy to SmartWeb via SFTP
+name: 🚀 Deploy to Staging Server via SFTP
 
 on:
   push:
     branches:
-      - main
+      - main  # Or "master" if that’s your default
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v3
 
-      - name: 📤 Deploy via SFTP
-        uses: appleboy/scp-action@v0.1.0
+      # Skipping 'Install Dependencies' and 'Build' since you are not using Node.js
+
+      - name: 📤 Deploy to STAGING via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: ${{ secrets.SFTP_PORT }}
-          source: ./  # Local directory to upload
-          target: /public_html/dev.edumess.com/  # Remote directory
-          debug: true  # Enable debugging
-          timeout: 600  # Timeout in seconds (10 minutes)
-          # Optional: Use SSH key instead of password for more security
-          # key: ${{ secrets.SFTP_PRIVATE_KEY }}  # Uncomment if using SSH key authentication
-          # passphrase: ${{ secrets.SFTP_PASSPHRASE }}  # Uncomment if your SSH key is passphrase protected
-          # fingerprint: ${{ secrets.SFTP_FINGERPRINT }}  # Uncomment if verifying host fingerprint
+          server: ${{ secrets.SFTP_HOST }}  # SFTP host (e.g., triominds.com.ng)
+          username: ${{ secrets.SFTP_USERNAME }}  # SFTP username (e.g., triomind)
+          password: ${{ secrets.SFTP_PASSWORD }}  # SFTP password
+          port: ${{ secrets.SFTP_PORT }}  # SFTP port (typically 22)
+          protocol: sftp  # Ensure the protocol is set to SFTP
+          local-dir: ./  # The directory you want to upload from (can be adjusted)
+          remote-dir: /public_html/dev.edumess.com/  # The remote directory to deploy to
+          debug: true  # Optional: Enables debugging output for troubleshooting
