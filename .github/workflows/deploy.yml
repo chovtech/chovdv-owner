@@ -16,10 +16,10 @@ jobs:
       - name: 📤 Deploy via SFTP
         uses: appleboy/scp-action@v0.1.0
         with:
-          host: triominds.com.ng
+          host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          port: 22
+          port: ${{ secrets.SFTP_PORT }}
           source: ./ # Local directory to upload
           target: /public_html/dev.edumess.com/ # Remote directory
           debug: true # Enable debugging
