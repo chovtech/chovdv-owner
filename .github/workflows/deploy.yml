@@ -1,43 +1,27 @@
-name: 🚀 Deploy to SmartWeb via SFTP
+name: Deploy to Production (Dev Server)
 
 on:
   push:
     branches:
-      - main  # or "master", depending on your default branch
+      - main
 
 jobs:
-  build-and-deploy:
+  deploy-prod:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout Repository
+      - name: Checkout Repo
         uses: actions/checkout@v3
 
-      # If you don't need to install dependencies like Composer, you can skip this step
-      # If you have build scripts for your project, you can run them here
-      - name: 🏗️ Build Project (optional)
-        run: |
-          # Add commands to build your project if necessary
-          # For example, if you are generating static content or have assets to build, run those commands here.
-          # Example:
-          # npm run build (for JS apps)
-          # Or skip if there's nothing to build.
-
-      - name: 📤 Deploy to SmartWeb via SFTP
+      - name: Deploy to Dev Server via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.SFTP_HOST }}                # Replace with your server's host or IP
-          username: ${{ secrets.SFTP_USERNAME }}        # Your SFTP username
-          password: ${{ secrets.SFTP_PASSWORD }}        # Your SFTP password
-          port: ${{ secrets.SFTP_PORT }}                # Optional, specify port if needed (default is 22)
-          source: ./                                    # The local directory to upload
-          target: /public_html/dev.edumess.com/         # The remote directory on the server
-          timeout: 30s
-          command_timeout: 10m
-          use_insecure_cipher: false
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          source: "./*"
+          target: /public_html/dev.edumess.com/
           rm: false
-          debug: false
+          overwrite: true
           strip_components: 0
-          overwrite: false
-          tar_dereference: false
-          tar_exec: tar
