@@ -14,23 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: SSH command to check the directory before upload
-      - name: Check server directory before upload
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: ${{ secrets.SFTP_PORT }}
-          script: |
-            echo "Checking if the target directory exists..."
-            if [ ! -d "/public_html/dev.edumess.com/" ]; then
-              echo "Directory does not exist, please create it manually or adjust permissions."
-            else
-              echo "Directory exists, proceeding with upload."
-            fi
-
-      # Step 3: Upload files via SCP, ensuring no tar and no mkdir
+      # Step 2: Upload files via SCP without tar packaging
       - name: Upload files via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -43,10 +27,10 @@ jobs:
           overwrite: true
           rm: false
           debug: true
-          tar_dereference: false
-          strip_components: 0
+          tar_dereference: false  # Disable tar creation
+          strip_components: 0    # Optionally adjust this if required for subdirectories
 
-      # Step 4: SSH command to restart a service or clean up after upload
+      # Step 3: Run SSH command after upload
       - name: Run SSH command after SCP upload
         uses: appleboy/ssh-action@v0.1.7
         with:
