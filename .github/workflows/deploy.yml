@@ -3,25 +3,58 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - main  # or your deployment branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      # Step 1: Checkout code from the repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Upload files via SCP
+      # Step 2: SSH command to run before SCP upload (e.g., prepare server, check status)
+      - name: Run SSH command before SCP upload
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }}
+          script: |
+            echo "Checking server status"
+            cd /public_html/dev.edumess.com/
+            ls -l
+            # You can add other pre-upload commands here
+
+      # Step 3: Upload files via SCP (no tar, no mkdir)
+      - name: Upload files via SCP (no tar, no mkdir)
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          source: "./*"  # Adjust path if necessary
+          source: "./*"  # your files/folders to upload
           target: "/public_html/dev.edumess.com/"
           overwrite: true
           rm: false
           debug: true
+          tar_dereference: false
+          strip_components: 0
+
+      # Step 4: SSH command to run after SCP upload (e.g., restart a service, clear cache)
+      - name: Run SSH command after SCP upload
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }}
+          script: |
+            echo "Deployment complete, running post-deployment tasks"
+            # Example: restart a service, clear cache, etc.
+            # Restart Nginx (if applicable)
+            sudo systemctl restart nginx
+            # You can add other post-upload commands here
