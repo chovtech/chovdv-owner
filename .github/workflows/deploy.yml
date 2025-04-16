@@ -1,4 +1,4 @@
-name: Deploy to Production (Dev Server)
+name: Deploy to Smart WebServer
 
 on:
   push:
@@ -6,22 +6,20 @@ on:
       - main
 
 jobs:
-  deploy-prod:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Deploy to Dev Server via SCP
+      - name: Deploy via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: 22
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }}
           source: "./*"
-          target: /public_html/dev.edumess.com/
-          rm: false
+          target: "/public_html/dev.edumess.com/"
           overwrite: true
-          strip_components: 0
+          rm: false
