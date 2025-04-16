@@ -10,28 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code from the repository
+      # Step 1: Checkout the repo
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Upload files via SCP without tar packaging
-      - name: Upload files via SCP
+      # Step 2: Prepare deploy folder with only required files
+      - name: Prepare deploy folder
+        run: |
+          mkdir deploy
+          cp -r app/ deploy/
+          cp -r assets/ deploy/
+          cp index.php deploy/
+          cp .htaccess deploy/
+
+      # Step 3: Upload deploy folder via SCP
+      - name: Upload deploy folder via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          source: "./*"  # your files/folders to upload
+          source: "deploy/*"
           target: "/public_html/dev.edumess.com/"
           overwrite: true
           rm: false
           debug: true
-          tar_dereference: false  # Disable tar creation
-          strip_components: 0    # Optionally adjust this if required for subdirectories
+          tar_dereference: false
+          strip_components: 0
 
-      # Step 3: Run SSH command after upload
-      - name: Run SSH command after SCP upload
+      # Step 4: (Optional) Run SSH commands like restarting nginx
+      - name: Post-deployment SSH command
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SFTP_HOST }}
@@ -40,5 +49,4 @@ jobs:
           port: ${{ secrets.SFTP_PORT }}
           script: |
             echo "Deployment complete, running post-deployment tasks."
-            # Example: Restart Nginx or clear any cache
             sudo systemctl restart nginx
