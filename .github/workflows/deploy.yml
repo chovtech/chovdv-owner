@@ -1,25 +1,27 @@
-name: Deploy to Smart WebServer
+name: Deploy to Server
 
 on:
   push:
     branches:
-      - main
+      - main  # or your deployment branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repo
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Deploy via SCP
+      - name: Upload files via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SFTP_HOST }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          source: "./*"
+          source: "./*"  # Adjust path if necessary
           target: "/public_html/dev.edumess.com/"
           overwrite: true
           rm: false
+          debug: true
