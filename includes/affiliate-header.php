@@ -62,7 +62,7 @@
                 </li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <a class="dropdown-item" href="#"><i class='bx bxs-user'></i> Profile</a>
+                    <a class="dropdown-item" href="../profile"><i class='bx bxs-user'></i> Profile</a>
                 </li>
                 <!-- <li><a class="dropdown-item" href="../wallet"><i class="fas fa-wallet"></i> Wallet</a></li> -->
                 <!-- <li><a class="dropdown-item" href="#"><i class='bx bx-credit-card'></i> Subscription</a></li> -->

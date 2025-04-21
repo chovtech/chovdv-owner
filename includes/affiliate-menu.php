@@ -15,7 +15,7 @@
 
     <ul class="sidebar-List">
         <li class="sidebar-list-item ">
-            <a href="">
+            <a href="../home">
                 <i class='bx bx-grid-alt' style="margin-right: 10px;"></i>
                 <span>Dashboard</span>
             </a>
