@@ -17,6 +17,16 @@ include('lang/' . $lang . '.php');
 
 <head>
 
+    <!-- Abba Google Analytic Tag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWRM7XJ9LP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SWRM7XJ9LP');
+    </script>
+
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="author" content="EduMESS" />
 	<meta name="description"
