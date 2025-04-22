@@ -27,7 +27,7 @@
                 
 
         <li class="sidebar-list-item ">
-            <a href="">
+            <a href="../schools">
                 <i class='fa fa-university sideicon' style="margin-right: 10px;"></i>
                 <span class="links_name"> Schools</span>
             </a>
@@ -78,61 +78,61 @@
 
    <!--==== Transfer Modal==== -->
    <div class="modal fade" id="pros_withdrawModal" tabindex="-1" aria-labelledby="withdrawModalLabel"
-                    aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content" style="border-radius: 20px;">
-                                <div class="modal-body">
-                                    <div align="center">
-                                    <h4 class="mt-3"><i class="fas fa-money-bill-wave"></i> Withdraw</h4>
-                                    </div>
-                                    <div class="row" style="padding-top: 50px; margin: 0 5px 0 5px;">
-                                    
-                                    
-                                    <div class="col-12 account_user_name">
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="border-radius: 20px;">
+                <div class="modal-body">
+                    <div align="center">
+                    <h4 class="mt-3"><i class="fas fa-money-bill-wave"></i> Withdraw</h4>
+                    </div>
+                    <div class="row" style="padding-top: 50px; margin: 0 5px 0 5px;">
+                    
+                    
+                    <div class="col-12 account_user_name">
 
 
-                                      <!-- <div class="row">
-                                            <div class="col-md-7 col-12"> -->
-                                            <div class="row">
-                                                <input type="hidden" class="prosloadsalaybulkamount_inititated">
-                                                <div class="col-12 mb-4">
-                                                    <div class="row">
-                                                        <div class="col-md-12 ps-0">
-                                                        <p class="ps-3 textmuted fw-bold h6 mb-0">Wallet Balance</p>
-                                                        <span class="h4 fw-bold d-flex ps-3">₦ <span class="textmuted prosloadamountcontent" >0.00</span></span> 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- </div>
-                                        </div> -->
-
-                                           <div class="mb-2" style="font-weight:600;"><i class="fas fa-user-circle text-primary" style="font-size:18px;"></i> <span class="account_holder_name">Prosper Ortese</span></div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <input type="number"
-                                                style="height: 50px; border: none; border-bottom: #b3b3b3 solid 1px;"
-                                                class="form-control form-control-sm transfer_amt" id="floatingInput"
-                                                placeholder="name">
-                                            <label for="floatingInput"
-                                                style="color: #afafaf; margin-top: 2px; font-weight: 500;">Amount</label>
-                                        </div>
-                                    </div>
-                                    </div>
+                        <!-- <div class="row">
+                            <div class="col-md-7 col-12"> -->
+                            <div class="row">
+                                <input type="hidden" class="prosloadsalaybulkamount_inititated">
+                                <div class="col-12 mb-4">
                                     <div class="row">
-                                    <div class="col-12" style="padding: 30px;">
-                                        <button class="btn btn-primary abba_transfer" style="width: 100%;" type="button">
-                                        <i class="fas fa-money-bill-wave"></i> Withdraw Now
-                                        </button>
-                                        <div align="center" style="color: #afafaf; font-size: 11px; font-weight: 500;">Powered
-                                            by EduMESS
+                                        <div class="col-md-12 ps-0">
+                                        <p class="ps-3 textmuted fw-bold h6 mb-0">Wallet Balance</p>
+                                        <span class="h4 fw-bold d-flex ps-3">₦ <span class="textmuted prosloadamountcontent" >0.00</span></span> 
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- </div>
+                        </div> -->
+
+                            <div class="mb-2" style="font-weight:600;"><i class="fas fa-user-circle text-primary" style="font-size:18px;"></i> <span class="account_holder_name">Prosper Ortese</span></div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating mb-3">
+                            <input type="number"
+                                style="height: 50px; border: none; border-bottom: #b3b3b3 solid 1px;"
+                                class="form-control form-control-sm transfer_amt" id="floatingInput"
+                                placeholder="name">
+                            <label for="floatingInput"
+                                style="color: #afafaf; margin-top: 2px; font-weight: 500;">Amount</label>
                         </div>
                     </div>
-        <!--===Withdrawer Modal=======-->
+                    </div>
+                    <div class="row">
+                    <div class="col-12" style="padding: 30px;">
+                        <button class="btn btn-primary abba_transfer" style="width: 100%;" type="button">
+                        <i class="fas fa-money-bill-wave"></i> Withdraw Now
+                        </button>
+                        <div align="center" style="color: #afafaf; font-size: 11px; font-weight: 500;">Powered
+                            by EduMESS
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--===Withdrawer Modal=======-->
                     
