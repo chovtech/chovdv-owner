@@ -48,16 +48,16 @@
         <div class="btn-group" style="margin-top: -5px; ">
             <span type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
                 <?php
-					// echo '<img src="' . $userPicture . '" style="width: 30px; border-radius: 50%;" id="headerPic">';
+					echo '<img src="../1.png" style="width: 30px; border-radius: 50%;" id="headerPic">';
 				?>
             </span>
             <ul class="dropdown-menu profileDropD dropdown-menu-end">
                 <li style="padding: 10px;">
                     <span > 
                         <?php
-							// echo '<img src="' . $userPicture . '" style="width: 30px; border-radius: 50%;" id="headerPic">';
+							echo '<img src="../1.png" style="width: 30px; border-radius: 50%;" id="headerPic">';
 						?>
-                        <span style="font-size: 14px; font-weight: 500;"><?php #echo $PrimaryName.' '.$SecondaryName; ?></span>
+                        <span style="font-size: 14px; font-weight: 500;"><?php echo 'Prosper Ortese'; ?></span>
                     </span>
                 </li>
                 <li><hr class="dropdown-divider"></li>

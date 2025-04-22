@@ -119,9 +119,6 @@
     </div>
     
     
-    
-    
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.40.0/apexcharts.min.js"></script>
     <script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -135,7 +132,7 @@
 
     <!-- header js -->
     <?php include('../../controller/js/app/header.php'); ?>
-    <?php include("../../js/app_js/dashboardjs.php"); ?>
+
    
     
     
