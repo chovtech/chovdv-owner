@@ -10,9 +10,9 @@
  {
     header('location: ../app/home/');
  }
- elseif(isset($_SESSION['spgconsultant']) && !empty($_SESSION['spgconsultant']))
+ elseif(isset($_SESSION['spgaffiliate']) && !empty($_SESSION['spgaffiliate']))
  {
-    header('location: ../office/home/');
+    header('location: ../affiliate/home/');
  }
 //  else
 //  {

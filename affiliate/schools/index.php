@@ -1,4 +1,4 @@
-<?php #include('../../controller/session/session-checker-owner.php'); ?>
+<?php include('../../controller/session/session-checker-franchise.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -229,7 +229,7 @@ $(document).ready(function () {
         
 
         $('#ownerList').html(`
-                     <li class="list-group-item d-flex justify-content-between align-items-center owner-item" data-owner-id="all">
+                     <li class="list-group-item d-flex justify-content-between align-items-center owner-item active" data-owner-id="all">
                                                 <i class="fas fa-users me-1"></i> All Owners
                                                 <span class="badge bg-primary rounded-pill">-</span>
                                             </li>
@@ -253,8 +253,8 @@ $(document).ready(function () {
 
         // For example purposes, static data (replace with PHP/JSON AJAX call)
         let schools = [
-            { ownerId: '1', name: 'Flex Academy', campuses: 2, students: 180, paid: 140 },
-            { ownerId: '2', name: 'City School', campuses: 1, students: 100, paid: 70 },
+            { ownerId: '1', name: 'Flex Academy', campuses: 2, students: 180, paid: 8, owing:5},
+            { ownerId: '2', name: 'City School', campuses: 1, students: 100, paid: 8,owing:9 },
         ];
 
         // Filter based on ownerId
@@ -266,8 +266,8 @@ $(document).ready(function () {
                 <td><i class="fas fa-school me-1"></i> ${school.name}</td>
                 <td>${school.campuses}</td>
                 <td>${school.students}</td>
-                <td><span class="badge bg-success">${school.paid} Paid</span></td>
-                <td><span class="text-primary" style="cursor:pointer;" data-bs-toggle="collapse" data-bs-target="#campuses${i}"><i class="fas fa-arrow-down"></i> view</span></td>
+                <td><span class="badge bg-success">${school.paid} Paid</span>/<span class="badge bg-danger">${school.owing} Unpaid</span></td>
+                <td><span class="text-primary" style="cursor:pointer;" data-bs-toggle="collapse" data-bs-target="#campuses${i}"><i class="fas fa-eye"></i> </span></td>
             </tr>
 
 
@@ -279,10 +279,12 @@ $(document).ready(function () {
                         <li class="list-group-item d-flex justify-content-between">
                             <span><i class="fas fa-building me-1"></i> Main Campus</span>
                             <span>100 Students </span>
+                            <span class="badge bg-success">${school.paid} Paid</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between">
                             <span><i class="fas fa-building me-1"></i> City Campus</span>
                             <span>80 Students </span>
+                            <span class="badge bg-success">${school.paid} Paid</span>
                         </li>
                         </ul>
                     </div>

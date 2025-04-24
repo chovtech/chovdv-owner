@@ -3743,7 +3743,8 @@
                                            <div class="form-group local-forms">
                                                <label>Country</label>
                                                <select class="form-control shadow-sm select" data-id="country"
-                                                   id="country"> <?php
+                                                   id="country"> 
+                                                   <?php
                         
                                                     $sqltogetcountries = mysqli_query($link,"SELECT * FROM `countries`");
                                                     $rowtogetcountries = mysqli_fetch_assoc($sqltogetcountries);
@@ -3751,35 +3752,35 @@
                                                   
                                                     
                                                   
-                                            if($cnttogetcountries > 0)
-                                            {
-                                                echo '
-                                                    <option value="0" selected>Choose Country</option>'; 
-                                                do{
+                                                        if($cnttogetcountries > 0)
+                                                        {
+                                                            echo '
+                                                                <option value="0" selected>Choose Country</option>'; 
+                                                            do{
 
-                                                    $CountryName = $rowtogetcountries['CountryName'];
-                                                    $countryID = $rowtogetcountries['countryID'];
+                                                                $CountryName = $rowtogetcountries['CountryName'];
+                                                                $countryID = $rowtogetcountries['countryID'];
 
-                                                    if($countryID ==   $StaffCountry)
-                                                    {
-                                                       $countryselected = 'selected';
+                                                                if($countryID ==   $StaffCountry)
+                                                                {
+                                                                $countryselected = 'selected';
 
-                                                    }else
-                                                    {
-                                                        $countryselected = '';
-                                                    }
+                                                                }else
+                                                                {
+                                                                    $countryselected = '';
+                                                                }
 
-                                                echo '
-                                                    <option '.$countryselected.' value="'.$countryID.'">'.$CountryName.'</option>';
+                                                            echo '
+                                                                <option '.$countryselected.' value="'.$countryID.'">'.$CountryName.'</option>';
 
-                                                }while($rowtogetcountries = mysqli_fetch_assoc($sqltogetcountries));
-                                                
-                                            }else{
-                                                echo '
-                                                <option value="0" selected>Choose Country</option>'; 
-                                            }
-                            
-                                ?> </select>
+                                                            }while($rowtogetcountries = mysqli_fetch_assoc($sqltogetcountries));
+                                                            
+                                                        }else{
+                                                            echo '
+                                                            <option value="0" selected>Choose Country</option>'; 
+                                                        }
+                                                        ?>
+                                </select>
                                            </div>
                                        </div>
                                        <div class="col-12 col-sm-4">

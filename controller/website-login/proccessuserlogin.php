@@ -50,12 +50,12 @@
 
 
             } else {
-                $verifycheck = mysqli_query($link, "  SELECT * FROM `consultant` WHERE ConsultantID='$userid'");
+                $verifycheck = mysqli_query($link, "  SELECT * FROM `affiliate` WHERE AffiliateID='$userid'");
                 $verifycheckuserinfocnt = mysqli_num_rows($verifycheck);
                 $verifycheckuserinforow = mysqli_fetch_assoc($verifycheck);
 
 
-                $email = $verifycheckuserinforow['ConsultantEmail'];
+                $email = $verifycheckuserinforow['Email'];
 
             }
 
@@ -68,9 +68,9 @@
         } else {
             // $upatelogininfo = mysqli_query($link, "UPDATE `userlogin` SET `LastLoginDate`='$lastlogin_Date' WHERE UserID='$userid'");
 
-            if ($usertype == 'consultant') {
+            if ($usertype == 'affiliate') {
                 session_start();
-                $_SESSION['spgconsultant'] = $username;
+                $_SESSION['spgaffiliate'] = $username;
                 $_SESSION['spgUserType'] = $usertype;
 
                 $sql_insert_activity_log = ("INSERT INTO `activitylog`(`ActitvityLogID`, `InstitutionIDOrCampusID`, `UserID`, `UserType`, `IpAddress`, `Location`, `Longitude`, `Latitude`, `Description`, `Date/Time`)

@@ -19,36 +19,44 @@ include('../controller/config/config.php');
 @$consultant_uname = $_GET['ref'];
 
 if ($consultant_uname == '') {
-	$select_comany = "SELECT * FROM `userlogin` WHERE UserType='consultant' AND UserRegNumberOrUsername='M002222'";
+	$select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='M002222'";
 	$select_company_result = mysqli_query($link, $select_comany);
 	$select_company_result_cnt = mysqli_num_rows($select_company_result);
 	$select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
 
-	$consultant_id = $select_company_result_cnt_row['UserID'];
+
+	if($select_company_result_cnt > 0)
+	{
+		$consultant_id = $select_company_result_cnt_row['UserID'];
+	}else{
+		$consultant_id = '';
+	}
+
+	
 
 } else {
     
-	$select_consultant = "SELECT * FROM `userlogin` WHERE UserType='consultant' AND UserRegNumberOrUsername='$consultant_uname'";
-	$select_consultant_result = mysqli_query($link, $select_consultant);
-	$select_consultant_result_cnt = mysqli_num_rows($select_consultant_result);
-	$select_consultant_result_cnt_row = mysqli_fetch_assoc($select_consultant_result);
+	// $select_consultant = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='$consultant_uname'";
+	// $select_consultant_result = mysqli_query($link, $select_consultant);
+	// $select_consultant_result_cnt = mysqli_num_rows($select_consultant_result);
+	// $select_consultant_result_cnt_row = mysqli_fetch_assoc($select_consultant_result);
 
-	if ($select_consultant_result_cnt_row['UserID'] == '') {
-		$select_comany = "SELECT * FROM `userlogin` WHERE UserType='consultant' AND UserRegNumberOrUsername='M002222'";
-		$select_company_result = mysqli_query($link, $select_comany);
-		$select_company_result_cnt = mysqli_num_rows($select_company_result);
-		$select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
+	// if ($select_consultant_result_cnt_row['UserID'] == '') {
+	// 	$select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='M002222'";
+	// 	$select_company_result = mysqli_query($link, $select_comany);
+	// 	$select_company_result_cnt = mysqli_num_rows($select_company_result);
+	// 	$select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
 
-		$consultant_id = $select_company_result_cnt_row['UserID'];
+	// 	$consultant_id = $select_company_result_cnt_row['UserID'];
 
-	} else {
-		$select_comany = "SELECT * FROM `userlogin` WHERE UserType='consultant' AND UserRegNumberOrUsername='$consultant_uname'";
-		$select_company_result = mysqli_query($link, $select_comany);
-		$select_company_result_cnt = mysqli_num_rows($select_company_result);
-		$select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
+	// } else {
+	// 	$select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='$consultant_uname'";
+	// 	$select_company_result = mysqli_query($link, $select_comany);
+	// 	$select_company_result_cnt = mysqli_num_rows($select_company_result);
+	// 	$select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
 
-		$consultant_id = $select_company_result_cnt_row['UserID'];
-	}
+		$consultant_id = $consultant_uname ;
+	// }
 }
 
 ?>
@@ -99,6 +107,8 @@ if ($consultant_uname == '') {
 
 	
 	<style>
+
+
 
 
             input[type="number"]::-webkit-inner-spin-button,
@@ -262,6 +272,9 @@ if ($consultant_uname == '') {
 			
 		
 		}
+
+
+
 	</style>
 	
 </head>
@@ -328,6 +341,32 @@ if ($consultant_uname == '') {
 				</div>
 				<div class="chi-formbody" style="margin: 40px 140px 0 40px;">  
 					<div class="row">
+
+
+					<div class="col-12">
+						<div class="form-floating mb-2 ">
+							<!-- <span style="position: absolute; left: 88%; color: #7d8597; margin-top: 15px;">
+							<i class="fa fa-1x fa-chevron-down" aria-hidden="true"></i>
+							</span> -->
+							<select
+							style="height: 54px; box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;"
+							class="form-select form-select-sm"
+							id="signup_as"
+							>
+							<option selected disabled>Sign up as...</option>
+							<option value="affiliate">Affiliate</option>
+							<option value="owner">Owner</option>
+							</select>
+							<label for="signup_as" style="color: #555; margin-top: 2px; font-size: 11px; font-weight: 500;">
+							Sign up as
+							</label>
+						</div>
+					</div>
+
+
+				
+					
+
 						<div class="col-6">
 							<div class="form-floating mb-3 fnamevalidate">
 								<span style="position: absolute; left: 88%; color: #7d8597; margin-top: 15px;"><i class="fa fa-1x fa-user" aria-hidden="true"></i></span>
@@ -410,7 +449,24 @@ if ($consultant_uname == '') {
 		</div>
 	</div>
 	
-	<script>
+	
+
+	<!-- jquery link -->
+	<script src="../assets/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap JavaScript -->
+	<script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/plugins/notify/wnoty.js"></script>
+	
+	<!--web ui content -->
+	<script src="../js/website_js/registration.js"></script>
+	<!--web ui content -->
+	
+	<?php include("../controller/js/website/registrationcall.php"); ?>
+	<script src="../../js/current_page.php"></script>
+
+
+	
+<script>
         const testimonialsContainer = document.querySelector(".testimonials-container");
             const testimonial = document.querySelector(".renxtestimonial");
             const userImage = document.querySelector(".renz_user-image");
@@ -578,19 +634,6 @@ if ($consultant_uname == '') {
         });
 
     </script>
-
-	<!-- jquery link -->
-	<script src="../assets/plugins/jquery/jquery.min.js"></script>
-	<!-- Bootstrap JavaScript -->
-	<script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/plugins/notify/wnoty.js"></script>
-	
-	<!--web ui content -->
-	<script src="../js/website_js/registration.js"></script>
-	<!--web ui content -->
-	
-	<?php include("../controller/js/website/registrationcall.php"); ?>
-	<script src="../../js/current_page.php"></script>
 
 </body>
 
