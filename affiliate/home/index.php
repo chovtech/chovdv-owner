@@ -1,5 +1,5 @@
 <?php
-    // include('../../controller/session/session-checker-owner.php');
+    include('../../controller/session/session-checker-franchise.php');
     // if ($DefaultLanguage == '') {
     //     include('../../lang/english.php');
     
@@ -12,19 +12,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+   
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/adminImg/favicon.png">
-    <title>
-        <?php #echo $portal_onboarding_title; ?> |
-        <?php #echo $fullname; ?>
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="EduMESS" />
+    <meta name="description"
+        content="EduMESS (Education Management and E-Learning Software Solution) 
+        is a leading school management, automation and elearning solution. Since its 
+        launch, EduMESS has grown to become a leader. Our clients say that the simplicity 
+        of our interface, ease of use, cost effectiveness and excellent customer care is 
+        the reason they prefare EduMESS. We have watched schools move from softwares they 
+        are using to EduMESS." />
+    <meta name="keywords"
+        content="Best, School, Management, Best School, Best School Management, 
+        Best School Management Software, Free School Management Software, Portal, 
+        School Owner, Group of School Owner, Consultants, Brand Promoters | School Portal Generator ">
+        <title>EduMESS</title>
+        <!-- FAVICON AND TOUCH ICONS -->
+    <link rel="shortcut icon" href="../../assets/images/website_images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="../../assets/images/website_images/favicon.png" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../assets/images/website_images/favicon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../assets/images/website_images/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/images/website_images/favicon.png">
+    <link rel="apple-touch-icon" href="../../assets/images/website_images/favicon.png">
+    <link rel="icon" href="../../assets/images/website_images/favicon.png" type="image/x-icon">
+   
 
 
     <link href="../../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -93,7 +106,7 @@
             
 
             <div class="main-title">
-                <span class="font-weight-bold">Hello <?php #echo $PrimaryName; ?> </span>
+                <span class="font-weight-bold">Hello <?php echo $PrimaryName; ?> </span>
                 <br>
                 <small style="font-size: 12px;">Welcome Back !!!</small>
             </div>

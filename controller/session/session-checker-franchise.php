@@ -5,11 +5,11 @@
 
 	include('../../controller/config/config.php');
 
-	if (!isset($_SESSION['spgconsultant']) && empty($_SESSION['spgconsultant'])) {
+	if (!isset($_SESSION['spgaffiliate']) && empty($_SESSION['spgaffiliate'])) {
 		header("Location: ../../session-expire/");
 	}
 
-	$UserRegNumberOrUsername = $_SESSION['spgconsultant'];
+	$UserRegNumberOrUsername = $_SESSION['spgaffiliate'];
 	$UType = $_SESSION['spgUserType'];
 
 	$sqlfromsession = ("SELECT * FROM `userlogin` WHERE UserRegNumberOrUsername='$UserRegNumberOrUsername' AND UserType='$UType'");
@@ -21,36 +21,37 @@
 	$UserID = $rowfromsession['UserID'];
 	$UserLoginID = $rowfromsession['UserLoginID'];
 
-	$sqlGetUserDetails = ("SELECT * FROM `consultant` WHERE ConsultantID = '$UserID'");
+	$sqlGetUserDetails = ("SELECT * FROM `affiliate` WHERE AffiliateID = '$UserID'");
 	$resultGetUserDetails = mysqli_query($link, $sqlGetUserDetails);
 	$rowGetUserDetails = mysqli_fetch_assoc($resultGetUserDetails);
 	$row_cntGetUserDetails = mysqli_num_rows($resultGetUserDetails);
 
-	$ConsultantID = $rowGetUserDetails['ConsultantID'];
+	$AffiliateID = $rowGetUserDetails['AffiliateID'];
 
 	
-	$PrimaryName = $rowGetUserDetails['ConsultantName'];
-	$SecondaryName = $rowGetUserDetails['ConsultantNameTwo'];
+	$PrimaryName = $rowGetUserDetails['AffiliateFName'];
+	$SecondaryName = $rowGetUserDetails['AffiliateLName'];
 
 
-// 	$Address = $rowGetUserDetails['AgencyOrSchoolOwnerAddress'];
-// 	$Country = $rowGetUserDetails['AgencyOrSchoolOwnerCountry'];
-// 	$State = $rowGetUserDetails['AgencyOrSchoolOwnerState'];
-// 	$LGA = $rowGetUserDetails['AgencyOrSchoolOwnerLGA'];
-// 	$City = $rowGetUserDetails['AgencyOrSchoolOwnerCity'];
-// 	$Phone = $rowGetUserDetails['AgencyOrSchoolOwnerMainPhone'];
-// 	$Whatsappno = $rowGetUserDetails['AgencyOrSchoolOwnerWhatsAppPhone'];
-// 	$Email = $rowGetUserDetails['AgencyOrSchoolOwnerEmail'];
+	$Address = $rowGetUserDetails['Address'];
+	$Country = $rowGetUserDetails['Country'];
+	$State = $rowGetUserDetails['State'];
+	$LGA = $rowGetUserDetails['LGA'];
+	// $City = $rowGetUserDetails['AgencyOrSchoolOwnerCity'];
+	$Phone = $rowGetUserDetails['Phone'];
+	$Whatsappno = $rowGetUserDetails['Phone'];
+	$Email = $rowGetUserDetails['Email'];
+
 
 
 // 	$tagstate = $rowGetUserDetails['TagState'];
 // 	$DefaultLanguage = $rowGetUserDetails['DefaultLanguage'];
 
 
-// 	$fullname = $PrimaryName . ' ' . $SecondaryName;
-// 	$userType = 'owner';
+	$fullname = $PrimaryName . ' ' . $SecondaryName;
+	$userType = 'Affiliate';
 	
-	$userPicturechecker = $rowGetUserDetails['photo'];
+	$userPicturechecker = $rowGetUserDetails['Photo'];
 	
 	if($userPicturechecker === '' || $userPicturechecker === '0')
 	{
@@ -58,7 +59,7 @@
 	}
 	else
 	{
-	    $userPicture = $rowGetUserDetails['photo'];
+	    $userPicture = $rowGetUserDetails['Photo'];
 	}
 	
 

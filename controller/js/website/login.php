@@ -128,11 +128,11 @@
 
                     var userrole = (data);
                    
-                    if (userrole == 'consultant') {
+                    if (userrole == 'affiliate') {
                         $(this).html("Login");
                         $(this).prop("disabled", false);
                         $(this).html("Redirecting...<i class='fas fa-circle-notch fa-spin'></i>");
-                        window.location.href = "../office/home";
+                        window.location.href = "../affiliate/home";
                         
                         localStorage.setItem('current_username', uname);
                     } else if (userrole == 'owner') {
