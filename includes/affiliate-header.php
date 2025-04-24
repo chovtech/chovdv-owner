@@ -88,7 +88,7 @@
                         <?php
 							echo '<img src="'. $userPicture.'"  class="pros_load_header_image" style="width: 30px; border-radius: 50%;" id="headerPic">';
 						?>
-                        <span style="font-size: 14px; font-weight: 500;"><?php echo $fullname; ?></span>
+                        <span class="prosload_header_fullname" style="font-size: 14px; font-weight: 500;"><?php echo $fullname; ?></span>
                     </span>
                 </li>
                 <li><hr class="dropdown-divider"></li>
