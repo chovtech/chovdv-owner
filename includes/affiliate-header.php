@@ -26,8 +26,12 @@
 			
             <input type="hidden" id="user_id" value="<?php echo $UserID; ?>">
             <input type="hidden" id="user_type" value="<?php echo $UType; ?>">
+
+            <input type="hidden" id="pros_load_crrnt_session_gen" value="<?php echo $pros_get_current_term_fetch['sessionName']; ?>">
+
+            
                 
-			<select class="form-select dropbtn abba-change-institution" id="autoSizingSelect" style="border-left:none;background:transparent;border-color:#007ffb;">
+			<select class="form-select dropbtn abba-change-institution pros_load_session_general" id="autoSizingSelect" style="border-left:none;background:transparent;border-color:#007ffb;">
 				<option value="" selected disabled>Session</option>
 
 
