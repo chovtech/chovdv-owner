@@ -4,6 +4,8 @@
         include('../../lang/english.php');
     
     } else {
+
+        
         include('../../lang/' . $DefaultLanguage . '.php');
     }
     mysqli_set_charset($link, 'utf8');
@@ -22,7 +24,7 @@
 
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/adminImg/favicon.png">
     <title>
-        <?php echo $portal_onboarding_title; ?> |
+        <?php echo $portalindex_title_owner; ?> |
         <?php echo $fullname; ?>
     </title>
 
@@ -162,7 +164,7 @@
         <main class="main-container">
             
             
-            
+            <!-- ---=====Pros subscription count down sql==== -->
             <?php 
             
             
@@ -179,10 +181,7 @@
                     
                     $currentdate = date('Y-m-d');
 
-                     $startcountingdate = date("Y-m-d", strtotime("$StartCountDatenew + $NoDaysToCountnew day"));
-                    
-                    
-                    
+                    $startcountingdate = date("Y-m-d", strtotime("$StartCountDatenew + $NoDaysToCountnew day"));
                                     
                     if ($StartCountDatenew >= $currentdate) {
                         
@@ -208,16 +207,8 @@
                         
                        $styleContent =   'style="border-radius: 14px;display:none;"';
                     }
-                                        
-                                        
-                    
-                    
-                    
-                    
-                    
-            
             ?>
-            
+            <!-- ---=====Pros subscription count down sql==== -->
             
                  
             

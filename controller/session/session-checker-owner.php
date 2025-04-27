@@ -28,7 +28,7 @@
 
 	$AgencyOrSchoolOwnerID = $rowGetUserDetails['AgencyOrSchoolOwnerID'];
 
-	$ConsultantID = $rowGetUserDetails['ConsultantID'];
+	$AffiliateID = $rowGetUserDetails['AffiliateID'];
 
 	
 	$PrimaryName = $rowGetUserDetails['AgencyOrSchoolOwnerName'];
@@ -48,19 +48,33 @@
 	
 	$BVN = $rowGetUserDetails['BVN'];
 	
-	$sqlGet_consultant_Details = ("SELECT * FROM `consultant` WHERE ConsultantID = '$ConsultantID'");
+	$sqlGet_consultant_Details = ("SELECT * FROM `affiliate` WHERE AffiliateID = '$AffiliateID'");
 	$resultGet_consultant_Details = mysqli_query($link, $sqlGet_consultant_Details);
 	$rowGet_consultant_Details = mysqli_fetch_assoc($resultGet_consultant_Details);
 	$row_cntGet_consultant_Details = mysqli_num_rows($resultGet_consultant_Details);
 	
-	$consultant_whats_appno = $rowGet_consultant_Details['ConsultantWhatsAppNumber'];
+	$consultant_whats_appno = $rowGet_consultant_Details['Phone'];
 
 
 	$tagstate = $rowGetUserDetails['TagState'];
-	$DefaultLanguage = $rowGetUserDetails['DefaultLanguage'];
+	
 	
 	$TransactionPin= $rowGetUserDetails['TransactionPin'];
 
+	// PROS GET DEFAULT LANGUAGE HERE
+	$lang_id = $rowGetUserDetails['DefaultLanguage'];
+	$get_lng_sql = mysqli_query($link, "SELECT * FROM `language` WHERE ID='$lang_id'");
+	$get_lng_sql_fetch = mysqli_fetch_assoc($get_lng_sql);
+	$get_lng_sql_rows = mysqli_num_rows($get_lng_sql);
+
+	if($get_lng_sql_rows > 0)
+	{
+		$DefaultLanguage = $get_lng_sql_fetch['Language'];
+	}else
+	{
+		$DefaultLanguage = '';
+	}
+	
 
 
 	$fullname = $PrimaryName . ' ' . $SecondaryName;

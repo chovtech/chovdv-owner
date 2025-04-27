@@ -10,16 +10,17 @@ $term = mysqli_real_escape_string($link, $_POST['term']);
 $ownerId = mysqli_real_escape_string($link, $_POST['ownerId']);
 
 if ($ownerId == 'all') {
+    
     $pros_sql_institution = "
         SELECT * FROM `institution` 
         INNER JOIN `agencyorschoolowner` 
         ON `institution`.`AgencyOrSchoolOwnerID` = `agencyorschoolowner`.`AgencyOrSchoolOwnerID` 
-        WHERE `agencyorschoolowner`.`AffiliateID` = '$user_id'
+        WHERE `agencyorschoolowner`.`AffiliateID` = '$user_id' AND `institution`.`TrashStatus`='0'
     ";
 } else {
     $pros_sql_institution = "
         SELECT * FROM `institution` 
-        WHERE `AgencyOrSchoolOwnerID` = '$ownerId'
+        WHERE `AgencyOrSchoolOwnerID` = '$ownerId' AND `TrashStatus`='0'
     ";
 }
 
@@ -45,9 +46,9 @@ if ($pros_row_cnt_institution_cont > 0) {
 
         // Get campuses
         $select_campus_count_sql = mysqli_query($link, "
-            SELECT * FROM `campus` 
-            WHERE `InstitutionID` = '$InstitutionID'
-        ");
+            SELECT * FROM `campus`  WHERE `InstitutionID` = '$InstitutionID' AND `CampusTrashStatus`='0' ORDER BY CampusName ASC "); 
+           
+       
         
         $campus_camp = 0;
         $student_count_general = 0;
@@ -64,7 +65,7 @@ if ($pros_row_cnt_institution_cont > 0) {
                 INNER JOIN `classordepartmentstudentallocation` 
                 ON `student`.`StudentID` = `classordepartmentstudentallocation`.`StudentID`
                 WHERE `student`.`CampusID` = '$CampusID' 
-                AND `classordepartmentstudentallocation`.`Session` = '$session'
+                AND `classordepartmentstudentallocation`.`Session` = '$session' AND student.StudentTrashStatus='0'
             ");
 
             $campus_student_count = 0;

@@ -3,8 +3,8 @@
             $(document).ready(function () {
 
 
-                var session_name = $('.pros_load_session_general option:selected').val();
-                pros_load_termbase_on_session(session_name);
+                // var session_name = $('.pros_load_session_general option:selected').val();
+                // pros_load_termbase_on_session(session_name);
 
                 
 
@@ -41,42 +41,50 @@
 
 
             $('body').on('change', '.pros_load_session_general', function (){
-                var session_name = $(this).val();
-                pros_load_termbase_on_session(session_name);
+                // var session_name = $(this).val();
+                // pros_load_termbase_on_session(session_name);
+                // $('.owner-item').removeClass('active');
+                // $(this).addClass('active');
+                let ownerId = $('.active').data('id');
+                loadSchools(ownerId);
+                pros_load_dash_borard_content()
 
+            });    // onchange on session
 
+            // onchange on term
+            $('body').on('change', '.abba-change-term', function (){
+                // var session_name = $(this).val();
+                // pros_load_termbase_on_session(session_name);
+                // $('.owner-item').removeClass('active');
+                // $(this).addClass('active');
+                let ownerId = $('.active').data('id');
+                loadSchools(ownerId);
+                pros_load_dash_borard_content()
 
-               
-                    // $('.owner-item').removeClass('active');
-                    // $(this).addClass('active');
-                    // let ownerId = $('.active').data('id');
-                    // alert(ownerId);
-                    
-                
             });
             
 
 
-                function pros_load_termbase_on_session(session_name)
-                {
+                // function pros_load_termbase_on_session(session_name)
+                // {
 
-                            var curnt_session = $('#pros_load_crrnt_session_gen').val();
+                //             var curnt_session = $('#pros_load_crrnt_session_gen').val();
                     
                     
-                            $('#pros_load_term_basesession').html('<option value="NULL"><i class="fa fa-spinner fa-spin">Loading..</i></option>');
-                            $.ajax({
-                                type: "POST",
-                                url: "../../controller/scripts/affiliate/school/load_term.php",
-                                data: {
-                                    session_name: session_name,
-                                    curnt_session:curnt_session
+                //             $('#pros_load_term_basesession').html('<option value="NULL"><i class="fa fa-spinner fa-spin">Loading..</i></option>');
+                //             $.ajax({
+                //                 type: "POST",
+                //                 url: "../../controller/scripts/affiliate/school/load_term.php",
+                //                 data: {
+                //                     session_name: session_name,
+                //                     curnt_session:curnt_session
                                 
-                                },
-                                success: function (response) {
-                                    $('#pros_load_term_basesession').html(response);
-                                }
-                            });
-                }
+                //                 },
+                //                 success: function (response) {
+                //                     $('#pros_load_term_basesession').html(response);
+                //                 }
+                //             });
+                // }
 
 
 
@@ -186,7 +194,7 @@
                 var user_type = $('#user_type').val();
 
                 var session = $('.pros_load_session_general option:selected').val();
-                var term = $('#pros_load_term_basesession option:selected').val(); // fixed: term should be different
+                var term = $('.abba-change-term option:selected').val(); // fixed: term should be different
 
 
 
@@ -290,7 +298,7 @@
                 var user_id = $('#user_id').val();
                 var user_type = $('#user_type').val();
                 var session = $('.pros_load_session_general option:selected').val();
-                var term = $('#pros_load_term_basesession option:selected').val();
+                var term = $('.abba-change-term option:selected').val();
 
                 $.ajax({
                     type: "POST",

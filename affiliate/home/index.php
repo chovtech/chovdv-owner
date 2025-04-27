@@ -57,10 +57,10 @@
 
     <script src="../../assets/plugins/jquery/jquery.min.js"></script>
     <!-- style sheet -->
-    <link rel="stylesheet" href="../../css/admin_css/adminStyle.css">
+    <link rel="stylesheet" href="../../css/app_css/appStyle.css">
         <script type="text/javascript" src="https://sdk.monnify.com/plugin/monnify.js"></script>
   
-    
+        <!-- C:\xampp\htdocs\chovdv-owner\css\app_css\appStyle.css -->
     
     
 </head>
@@ -114,17 +114,90 @@
            
 
             <div class="main-title" style="margin-top: 30px;">
-                <span class="font-weight-bold" style="font-size:18px;">Performance Overview </span>
+                <span class="font-weight-bold" style="font-size:18px;">Dashboard Overview </span>
             </div>
 
 
             <div class="main-cards" style="margin-top: 10px;">
 
+                    <div class="row">
+                            <div class="col-12">
+                                <div class="topSecCards"
+                                    style="width: 100%; height: 100%; padding: 10px 10px 25px 10px; border-radius: 20px;">
+                                    <div class="row">
+                                        
+                                        <div class="col-sm-12 col-md-6 col-lg-4">
+                                            <div align="center" style="padding: 28px 0 0 0px;">
+                                                <div class="proscard"
+                                                    style="width: 100%; border-radius: 15px; height: 170px; background-color:white;">
+                                                    <div style="padding: 10px;">
+                                                        
+                                                        <div class="row pros_school_dashborad_content" style="margin-top: 12px;">
+                                                              
+                                                      
+                                                        </div>
+                                                         
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+
+
+                                        <div class="col-sm-12 col-md-6 col-lg-4">
+                                            <div align="center" style="padding: 28px 0 0 0px;">
+                                                <div class="renfinaceCard"
+                                                    style="width: 100%; border-radius: 15px; height: 170px;">
+                                                    <div style="padding: 10px;">
+                                                        <h6 style="margin-left: -120px; color: #ffffff;">Total Affiliate</h6>
+   
+                                                            
+                                                        <div align="center" class="mt-4">
+                                                            <span style="font-size: 35px; font-weight: 500; color: #ffffff;" id="prosload_total_affiliate">
+                                                              
+                                                            </span>
+                                                          
+
+                                                            
+                                                            <!-- <a 
+                                                                style="font-size: 18px; margin-top: -13px; color: #ffffff; float: right; margin-right: 50px;cursor:pointer;"><i
+                                                                    class="fa fa-eye prosperwalletpendingshowbtn" aria-hidden="true"></i></a> -->
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 col-lg-4">
+                                            <div align="center" style="padding: 28px 0 0 0px;">
+                                                <div class="renbluishCard"
+                                                    style="width: 95%; border-radius: 15px; height: 170px;">
+                                                    <div style=" padding: 10px">
+                                                        <h6 style="margin-left: -120px; color: #ffffff;">My Earning This Term</h6>
+
+                                                        <div align="center" class="mt-4">
+                                                            <span style="font-size: 35px; font-weight: 500; color: #ffffff;" id="prosload_totalearnper_term">
+                                                               
+                                                                </span>
+                                                            <br>
+                                                            <a
+                                                                style="font-size: 18px; margin-top: -13px; color: #ffffff; float: right; margin-right: 25px;cursor:pointer;"><i
+                                                                    class="fa fa-eye proswithdrawnamount" aria-hidden="true"></i></a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    
             </div>
 
-            
-
-           
 
         </main>
 
@@ -145,6 +218,7 @@
 
     <!-- header js -->
     <?php include('../../controller/js/app/header.php'); ?>
+    <?php include('../../controller/js/affiliate/dashboard.php'); ?>
 
    
     

@@ -120,7 +120,7 @@
 
                                     <!-- Schools and Summary -->
                                     <div class="col-lg-9 mb-3">
-
+                                        <!-- 
                                       <div class="row">
                                             <div class="col-md-12 col-lg-4">
                                                 <select style="color: #666666;" class="form-select form-select-sm mb-2"
@@ -128,7 +128,7 @@
                                                     <option value="NULL">Select Term</option>
                                                 </select>
                                             </div>
-                                      </div>
+                                      </div> -->
 
                                         <div class="card mb-3">
                                             <div class="card-header d-flex justify-content-between align-items-center">
