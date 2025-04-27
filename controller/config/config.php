@@ -42,11 +42,22 @@
 	$sql_edumesspaymentcharges = ("SELECT * FROM `edumesspaymentcharges`");
     $result_edumesspaymentcharges = mysqli_query($link, $sql_edumesspaymentcharges);
     $row_edumesspaymentcharges = mysqli_fetch_assoc($result_edumesspaymentcharges);
+    $row_edumesspaymentcharges_ctn = mysqli_num_rows($result_edumesspaymentcharges);
 
-    $charge = floatval($row_edumesspaymentcharges['ChargeAmount']);
-	$Cap = floatval($row_edumesspaymentcharges['Cap']);
-	$StampDuty = floatval($row_edumesspaymentcharges['StampDuty']);
-	
+    if($row_edumesspaymentcharges_ctn > 0)
+    {
+        $charge = floatval($row_edumesspaymentcharges['ChargeAmount']);
+        $Cap = floatval($row_edumesspaymentcharges['Cap']);
+        $StampDuty = floatval($row_edumesspaymentcharges['StampDuty']);
+
+    }
+    else{
+        $charge = 0;
+        $Cap = 0;
+        $StampDuty = 0;
+
+    }
+
 	
 	function getClientIp() {
 		$ipAddress = '';

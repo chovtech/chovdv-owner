@@ -1,0 +1,168 @@
+.card{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+    word-wrap:break-word;
+    background-color:#fff;
+    background-clip:border-box;
+    border:1px solid #e3e6f0;
+    border-radius:.35rem
+}
+.card-body{
+    flex:1 1 auto;
+    min-height:1px;
+    padding:1.25rem
+}
+.border-left-primary{
+    border-left:.25rem solid #0d6efd!important
+}
+.shadow{
+    box-shadow:0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important
+}
+.h-100{
+    height:100%!important
+}
+.pt-2,.py-2{
+    padding-top:.5rem!important
+}
+.pb-2,.py-2{
+    padding-bottom:.5rem!important
+}
+.row{
+    display:flex;
+    flex-wrap:wrap;
+    margin-right:-.75rem;
+    margin-left:-.75rem
+}
+.no-gutters{
+    margin-right:0;
+    margin-left:0
+}
+.no-gutters>.col,.no-gutters>[class*=col-]{
+    padding-right:0;
+    padding-left:0
+}
+.align-items-center{
+    align-items:center!important
+}
+.col{
+    flex-basis:0;
+    flex-grow:1;
+    max-width:100%
+}
+.mr-2,.mx-2{
+    margin-right:.5rem!important
+}
+.text-xs{
+    font-size:.7rem
+}
+.font-weight-bold{
+    font-weight:700!important
+}
+.text-primary{
+    color:#0d6efd!important
+}
+.text-uppercase{
+    text-transform:uppercase!important
+}
+.mb-1,.my-1{
+    margin-bottom:.25rem!important
+}
+h1,h2,h3,h4,h5,h6{
+    margin-top:0;
+    margin-bottom:.5rem
+}
+.mb-0,.my-0{
+    margin-bottom:0!important
+}
+.text-gray-800{
+    color:#5a5c69!important
+}
+.text-gray-300{
+    color:#dddfeb!important
+}
+.col-auto{
+    flex:0 0 auto;
+    width:auto;
+    max-width:100%
+}
+
+
+
+
+/*==============================*/
+/*====== siderbar user profile =====*/
+/*==============================*/
+
+.userprofile {
+    width: 100%;
+    float: left;
+    clear: both;
+    margin: 25px auto
+}
+.userprofile .userpic {
+    height: 100px;
+    width: 100px;
+    clear: both;
+    margin: 0 auto;
+    display: block;
+    border-radius: 100%;
+    box-shadow: 0px 3px 10px 0 rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 3px 10px 0 rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0px 3px 10px 0 rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0px 3px 10px 0 rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+.userprofile .userpic .userpicimg {
+    height: auto;
+    width: 100%;
+    border-radius: 100%;
+}
+.username {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    color: #000000;
+    margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.username+p {
+    color: #607d8b;
+    font-size: 13px;
+    line-height: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#verification-input > input {
+    width: 40px;
+    height: 60px;
+    font-size: 36px;
+    text-align: center;
+    border: 2px solid #666;
+    border-radius: 8px;
+    color:#666;
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}

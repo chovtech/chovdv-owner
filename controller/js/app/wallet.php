@@ -225,7 +225,7 @@
                 const myObj = JSON.parse(abc);
                 var accessstoken = myObj["responseBody"]['accessToken'];
 
-         
+
 
                 localStorage.setItem('storedtoken', accessstoken);
                 // console.log('Body:', accessstoken);
