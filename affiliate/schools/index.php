@@ -94,18 +94,6 @@
 
 
 
-        <!--======Floating Button=========-->
-        <!-- Buttons -->
-        <?php #include('../../includes/floating-btn.php'); ?>
-        <!-- End - Buttons -->
-        <!--======Floating Button=========-->
-
-
-        <!---====Side Modal Start Here====-->
-        <?php #include('../../includes/setting-menu.php'); ?>
-        <!---====Side Modal End Here====-->
-
-
         <!----Main----->
         <main class="main-container">
 
@@ -132,6 +120,16 @@
 
                                     <!-- Schools and Summary -->
                                     <div class="col-lg-9 mb-3">
+
+                                      <div class="row">
+                                            <div class="col-md-12 col-lg-4">
+                                                <select style="color: #666666;" class="form-select form-select-sm mb-2"
+                                                    aria-label=".form-select-sm example" id="pros_load_term_basesession">
+                                                    <option value="NULL">Select Term</option>
+                                                </select>
+                                            </div>
+                                      </div>
+
                                         <div class="card mb-3">
                                             <div class="card-header d-flex justify-content-between align-items-center">
                                                 <span class="fw-bold">Schools</span>
@@ -157,16 +155,17 @@
 
                                         <!-- Summary -->
                                         <div class="card">
-                                            <div class="card-body d-flex flex-wrap justify-content-around text-center">
-                                                <div class="p-2 flex-fill border-end"><i class="fas fa-user-tie me-1"></i><strong>5</strong> Owners</div>
-                                                <div class="p-2 flex-fill border-end"><i class="fas fa-school me-1"></i><strong>10</strong> Schools</div>
-                                                <div class="p-2 flex-fill border-end"><i class="fas fa-building me-1"></i><strong>20</strong> Campuses</div>
-                                                <div class="p-2 flex-fill border-end"><i class="fas fa-users me-1"></i><strong>1,200</strong> Students</div>
-                                                <div class="p-2 flex-fill"><i class="fas fa-wallet me-1"></i><strong>900</strong> Paid</div>
+                                            <div class="card-body d-flex flex-wrap justify-content-around text-center pros_loaddash_boradcont">
+                                               
+                                                <!-- <div class="p-2 flex-fill"><i class="fas fa-wallet me-1"></i><strong>900</strong> Paid</div> -->
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
+
+
+                                
 
                        
                             
@@ -216,114 +215,9 @@
     
     <!-- current page js -->
     <?php include('../../js/current_page.php'); ?>
+    <?php include('../../controller/js/affiliate/schools.php'); ?>
 
 
-    <script>
-
-
-$(document).ready(function () {
-
-    // prosload schoolowner function
-    function loadOwners()
-    {
-        
-
-        $('#ownerList').html(`
-                     <li class="list-group-item d-flex justify-content-between align-items-center owner-item active" data-owner-id="all">
-                                                <i class="fas fa-users me-1"></i> All Owners
-                                                <span class="badge bg-primary rounded-pill">-</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center owner-item" data-owner-id="1">
-                                                <i class="fas fa-user-tie me-1"></i> Prosper Nguper Ortese
-                                                <span class="badge bg-primary rounded-pill">3</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between align-items-center owner-item" data-owner-id="2">
-                                                <i class="fas fa-user-tie me-1"></i> Pst Chike
-                                                <span class="badge bg-primary rounded-pill">2</span>
-                                            </li>
-        
-        `);
-    }
-
-
-    // Function to load schools
-    function loadSchools(ownerId = 'all') {
-        let tableBody = $('#schoolsTable tbody');
-        tableBody.empty();
-
-        // For example purposes, static data (replace with PHP/JSON AJAX call)
-        let schools = [
-            { ownerId: '1', name: 'Flex Academy', campuses: 2, students: 180, paid: 8, owing:5},
-            { ownerId: '2', name: 'City School', campuses: 1, students: 100, paid: 8,owing:9 },
-        ];
-
-        // Filter based on ownerId
-        let filteredSchools = (ownerId === 'all') ? schools : schools.filter(s => s.ownerId === ownerId);
-
-        // Append rows
-        $.each(filteredSchools, function (i, school) {
-            let row = `<tr>
-                <td><i class="fas fa-school me-1"></i> ${school.name}</td>
-                <td>${school.campuses}</td>
-                <td>${school.students}</td>
-                <td><span class="badge bg-success">${school.paid} Paid</span>/<span class="badge bg-danger">${school.owing} Unpaid</span></td>
-                <td><span class="text-primary" style="cursor:pointer;" data-bs-toggle="collapse" data-bs-target="#campuses${i}"><i class="fas fa-eye"></i> </span></td>
-            </tr>
-
-
-            <tr>
-                <td colspan="5" style="padding: 0; border: none;">
-                    <div id="campuses${i}" class="collapse">
-                    <div style="max-height: 200px; overflow-y: auto; padding: 10px;">
-                        <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><i class="fas fa-building me-1"></i> Main Campus</span>
-                            <span>100 Students </span>
-                            <span class="badge bg-success">${school.paid} Paid</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span><i class="fas fa-building me-1"></i> City Campus</span>
-                            <span>80 Students </span>
-                            <span class="badge bg-success">${school.paid} Paid</span>
-                        </li>
-                        </ul>
-                    </div>
-                    </div>
-                </td>
-            </tr>`;
-
-
-
-
-            tableBody.append(row);
-        });
-    }
-
-
-    loadOwners();  // Load owners
-    // Initial load all schools
-    loadSchools();
-
-    // On owner click
-    $(document).on('click', '.owner-item', function () {
-        $('.owner-item').removeClass('active');
-        $(this).addClass('active');
-        let ownerId = $(this).data('owner-id');
-        loadSchools(ownerId);
-    });
-
-    // School search
-    $("#schoolSearch").on("keyup", function () {
-        let value = $(this).val().toLowerCase();
-        $("#schoolsTable tbody tr").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        });
-    });
-});
-
-
-
-    </script>
     
     
 

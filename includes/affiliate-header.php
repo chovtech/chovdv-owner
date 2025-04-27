@@ -23,9 +23,19 @@
 			
             <input type="hidden" id="user_id" value="<?php echo $UserID; ?>">
             <input type="hidden" id="user_type" value="<?php echo $UType; ?>">
+
+            <input type="hidden" id="pros_load_crrnt_session_gen" value="<?php echo $pros_get_current_term_fetch['sessionName']; ?>">
+
+            
                 
+<<<<<<< HEAD
 			<select class="form-select dropbtn abba-change-session" id="autoSizingSelect" style="border-left:none;background:transparent;border-color:#007ffb;">
 				<option value="0" selected>All Session</option>
+=======
+			<select class="form-select dropbtn abba-change-institution pros_load_session_general" id="autoSizingSelect" style="border-left:none;background:transparent;border-color:#007ffb;">
+				<option value="" selected disabled>Session</option>
+
+>>>>>>> a4fd272ea131f98b38f85a842d73a7cfe8421b70
 
                 <?php
 
@@ -103,7 +113,7 @@
                         <?php
 							echo '<img src="'. $userPicture.'"  class="pros_load_header_image" style="width: 30px; border-radius: 50%;" id="headerPic">';
 						?>
-                        <span style="font-size: 14px; font-weight: 500;"><?php echo $fullname; ?></span>
+                        <span class="prosload_header_fullname" style="font-size: 14px; font-weight: 500;"><?php echo $fullname; ?></span>
                     </span>
                 </li>
                 <li><hr class="dropdown-divider"></li>

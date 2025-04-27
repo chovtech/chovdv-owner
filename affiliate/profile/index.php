@@ -220,14 +220,14 @@
 <body>
 
  <!-- Loader -->
- <!-- <div id="gx-overlay">
+ <div id="gx-overlay">
      <div class="gx-ellipsis">
          <div></div>
          <div></div>
          <div></div>
          <div></div>
      </div>
- </div> -->
+ </div>
     <div class="grid-container">
 
    
@@ -279,7 +279,7 @@
                               
                                     class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
                                     <div class="user-profile-info">
-                                        <h6><?php echo ucfirst(strtolower($PrimaryName));  ?>
+                                        <h6 class="pros_load_full_name_profile"><?php echo ucfirst(strtolower($PrimaryName));  ?>
                                             <?php echo ucfirst(strtolower($rowGetUserDetails['AffiliateMName'])); ?>
                                             <?php echo ucfirst(strtolower($SecondaryName)); ?></h6>
                                         <ul
@@ -386,10 +386,10 @@
                                                         
                                                         if($rowGetUserDetails['Gender'] == '1')
                                                         {
-                                                            $status_new = '<span id="prostaffcountryedit">Inactive</span>';
+                                                            $status_new = '<span id="prostaffstatusedit">Inactive</span>';
                                                         }else
                                                         {
-                                                            $status_new = '<span id="prostaffcountryedit">Active</span>';
+                                                            $status_new = '<span id="prostaffstatusedit">Active</span>';
                                                           
                                                         }
                                                        echo $status_new;
@@ -550,15 +550,16 @@
                                                                 <ul class="list-unstyled mb-4 mt-3">
                                                                     <li class="d-flex align-items-center mb-3"><i
                                                                             class="bx bx-user"></i><span
-                                                                            class="fw-semibold mx-2">Account Name:</span> <span>
+                                                                            class="fw-semibold mx-2">Account Name:</span> <span class="pros_load_bank">
                                                                             <?php 
                                                                                     echo $rowGetUserDetails['BankAccName'];
                                                                                 ?>
                                                                         
                                                                         </span></li>
+                                                                       
                                                                     <li class="d-flex align-items-center mb-3"><i
                                                                             class="bx bx-star"></i><span
-                                                                            class="fw-semibold mx-2">Bank Name:</span> <span>
+                                                                            class="fw-semibold mx-2 ">Bank Name:</span> <span class="pros_loadbank_name">
                                                                             <?php 
                                                                         
                                                                               echo $rowGetUserDetails['Bank'];
@@ -566,7 +567,7 @@
                                                                     </span></li>
                                                                     <li class="d-flex align-items-center mb-3"><i
                                                                             class="bx bx-check"></i><span
-                                                                            class="fw-semibold mx-2">Account Number:  <?php  echo $rowGetUserDetails['BankAccNo'];?></span>
+                                                                            class="fw-semibold mx-2">Account Number: <span class="pros_loadbank_accno"> <?php  echo $rowGetUserDetails['BankAccNo'];?></span></span>
                                                                        
                                                                     </li>
                                                                    
@@ -966,7 +967,7 @@
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group local-forms">
                                             <label>Email</label>
-                                            <input class="form-control" type="text"
+                                            <input class="form-control" disabled type="text"
                                                 value="<?php echo $Email;?>" placeholder="Enter Email"
                                                 id="prosstaffemailedit">
                                         </div>
@@ -1012,7 +1013,7 @@
 
       <!---====Edit Profile Bank Details Start Here====-->
       <div class="modal fade modalshow modalfade" id="edit_accdetail_modal" tabindex="-1"
-        aria-labelledby="edit-staffprofileLabel" aria-hidden="true">
+        aria-labelledby="edit_accdetail_modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable dialogcontent"
             style="border-top-left-radius: 30px; width: 100%;">
             <div class="modal-content modalcontent" style="background-color:#ffffff;">
@@ -1037,11 +1038,11 @@
 
                             <form>
                                 <div class="row">
-
+                              
 
                                 <div class="col-12 mb-2">
                                     <div class="form-floating ">
-                                        <select class="form-select bank_code"
+                                        <select class="form-select bank_code_input_pros"
                                             style="font-size: 13px; border: none; border-bottom: #b3b3b3 solid 1px;"
                                             id="floatingSelect" aria-label="Floating label select example">
                                             <option selected></option>
@@ -1083,7 +1084,7 @@
                                     <div class="form-floating mb-3">
                                         <input type="text" value="<?php echo $rowGetUserDetails['BankAccName'];?>"
                                             style="height: 50px; border: none; border-bottom: #b3b3b3 solid 1px;"
-                                            class="form-control form-control-sm account_name" id="pros_staff_account_nameedit"
+                                            class="form-control form-control-sm account_name" id="pros_affiliate_account_nameedit"
                                             placeholder="Acc No">
                                         <label for="floatingInput"
                                             style="color: #afafaf; margin-top: 2px; font-weight: 500;">Account
@@ -1097,7 +1098,7 @@
                                     <div class="form-floating mb-3">
                                         <input type="text" value="<?php echo $rowGetUserDetails['BankAccNo'];?>"
                                             style="height: 50px; border: none; border-bottom: #b3b3b3 solid 1px;"
-                                            class="form-control form-control-sm account_name" id="pros_staff_account_noedit"
+                                            class="form-control form-control-sm account_name" id="pros_affiliate_account_noedit"
                                             placeholder="name">
                                         <label for="floatingInput"
                                             style="color: #afafaf; margin-top: 2px; font-weight: 500;">Account
@@ -1120,7 +1121,7 @@
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
                         <i class="fa fa-times"> Close</i>
                     </button>
-                    <button type="button" class="btn btn-primary btn-sm" id="pros-contactinfobtnhere">
+                    <button type="button" class="btn btn-primary btn-sm" id="pros_edit_bankdetails_btn">
                         <i class="fa fa-edit"> Save</i>
                     </button>
                 </div>
@@ -1131,133 +1132,33 @@
     <!---====End Edit Bank Details Here====-->
 
 
-   
 
-
-
-
-<!-- Image Modal -->
-  <div id="prosloadstaffimagemodal" class="modal" role="dialog">
-     <div class="modal-dialog modal-md">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title">Upload Profile Image</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-             <div class="row justify-content-center">
-             <div class="col-sm-12 col-md-12 col-lg-12 p-2">
-                 <div id="prosloadimage"></div>
-             </div>
-             </div>
-         </div>
-         <div class="modal-footer">
-             <button class="btn btn-success btn-sm prosuploalogobtnhere">Save</button>
-             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-         </div>
-         </div>
-     </div>
- </div>
- <!-- End Image Modal -->
- 
- 
- 
- 
-  <!-- load staff document content -->
-  <div id="prosloaddocumentmodal" class="modal" role="dialog">
-     <div class="modal-dialog modal-md">
-     <div class="modal-content">
-         <div class="modal-header">
-              <h1 class="proloaddocumentuploadtitle"></h1>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-             <input type="hidden" class="prosloaddocumentidtobeuploaded">
-              <div class="row d-flex flex-row">
-                <div class="col-sm-12">
-                    <div class="center ms-4 me-4">
-                             
-                        <div class="dropzone">
-                            <img src="http://100dayscss.com/codepen/upload.svg"
-                                class="upload-icon" />
-                            <input type="file" id="photo" class="upload-input prosloadstaffimagefileselect" />
-                        </div>
-                        <h6>Click here to Select File</h6>
-                        <button type="button" class="btn_upload prosuploaddocumentbtnfinal"
-                            name="uploadbutton" onclick="uploadFileStaff()">Upload file</button>
+        <!-- Image Modal -->
+        <div id="prosloadstaffimagemodal" class="modal" role="dialog">
+            <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Profile Image</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-12 col-lg-12 p-2">
+                        <div id="prosloadimage"></div>
+                    </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn-sm prosuploalogobtnhere">Save</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
             </div>
-             
-            
-         </div>
-         <!--<div class="modal-footer">-->
-         <!--    <button class="btn btn-success btn-sm prosuploalogobtnhere">Save</button>-->
-         <!--    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>-->
-         <!--</div>-->
-         </div>
-     </div>
- </div>
- <!-- load staff document content -->
+        </div>
+        <!-- End Image Modal -->
+        
  
  
- 
- 
- 
-  <!-- prosload staff document -->
-  <div id="prosloadstaffimagemodaldoc" class="modal" role="dialog">
-     <div class="modal-dialog modal-xl" style="height: auto;">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title">View Document</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-                <div id="prosloaddoctypefullcontent"></div>
-                
-                  <!--<i class="fa fa-download text-success"></i>-->
-             <div class="row justify-content-center">
-             <div class="col-sm-12 col-md-12 col-lg-12 p-2">
-                 <div class="prosloaddocumentcontehere_content"></div>
-             </div>
-             </div>
-         </div>
-         <div class="modal-footer">
-             <!--<button class="btn btn-success btn-sm prosuploalogobtnhere">Save</button>-->
-             <!--<button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>-->
-         </div>
-         </div>
-     </div>
- </div>
-  <!-- prosload staff document -->
-  
-  
-  
-  
-  
-   <!-- Image Modal -->
-  <div id="prosloadsignature" class="modal" role="dialog">
-     <div class="modal-dialog modal-md">
-     <div class="modal-content">
-         <div class="modal-header">
-             <h5 class="modal-title">Upload  signature</h5>
-             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-         </div>
-         <div class="modal-body">
-             <div class="row justify-content-center">
-             <div class="col-sm-12 col-md-12 col-lg-12 p-2">
-                 <div id="prosloadsiganture"></div>
-             </div>
-             </div>
-         </div>
-         <div class="modal-footer">
-             <button class="btn btn-success btn-sm prosuploalogobtnheresignature">Submit</button>
-             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-         </div>
-         </div>
-     </div>
- </div>
- <!-- End Image Modal -->
  
  
  
