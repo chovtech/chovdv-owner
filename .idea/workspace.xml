@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="030dc6a7-9b0b-4e6a-af4b-29904f1f8c75" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/affiliate/my-affiliates/index.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/affiliate/transactions/index.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/controller/js/affiliate/affiliate.php" afterDir="false" />
@@ -24,6 +25,9 @@
       <change beforePath="$PROJECT_DIR$/controller/session/session-checker-franchise.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/session/session-checker-franchise.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/affiliate-header.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/affiliate-header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/affiliate-menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/affiliate-menu.php" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> 2b43daee976895f4f1c0bb16708c6a8bacfcb5a1
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,10 +77,14 @@
       <updated>1745233455227</updated>
       <workItem from="1745233456340" duration="1508000" />
       <workItem from="1745245247198" duration="611000" />
+<<<<<<< HEAD
       <workItem from="1745270175542" duration="6791000" />
       <workItem from="1745522224694" duration="5138000" />
       <workItem from="1745587274360" duration="3301000" />
       <workItem from="1745596156830" duration="46626000" />
+=======
+      <workItem from="1745270175542" duration="1183000" />
+>>>>>>> 2b43daee976895f4f1c0bb16708c6a8bacfcb5a1
     </task>
     <servers />
   </component>
