@@ -3,7 +3,7 @@
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
 
-    $pros_get_current_term = mysqli_query($link,"SELECT * FROM `session` INNER JOIN `termorsemester` WHERE `session`.`sessionStatus`='1' AND `termorsemester`.`status`=1");//PROS GET CURRENT TERM AND SESSION HERE
+    $pros_get_current_term = mysqli_query($link,"SELECT * FROM session INNER JOIN termorsemester WHERE session.sessionStatus='1' AND termorsemester.status=1");//PROS GET CURRENT TERM AND SESSION HERE
 
     $pros_get_current_term_fetch = mysqli_fetch_assoc($pros_get_current_term);
 
@@ -23,23 +23,13 @@
 			
             <input type="hidden" id="user_id" value="<?php echo $UserID; ?>">
             <input type="hidden" id="user_type" value="<?php echo $UType; ?>">
-
-            <input type="hidden" id="pros_load_crrnt_session_gen" value="<?php echo $pros_get_current_term_fetch['sessionName']; ?>">
-
-            
                 
-<<<<<<< HEAD
-			<select class="form-select dropbtn abba-change-session" id="autoSizingSelect" style="border-left:none;background:transparent;border-color:#007ffb;">
+			<select class="form-select dropbtn abba-change-session pros_load_session_general" id="autoSizingSelect" style="border-left:none;background:transparent;border-color:#007ffb;">
 				<option value="0" selected>All Session</option>
-=======
-			<select class="form-select dropbtn abba-change-institution pros_load_session_general" id="autoSizingSelect" style="border-left:none;background:transparent;border-color:#007ffb;">
-				<option value="" selected disabled>Session</option>
-
->>>>>>> a4fd272ea131f98b38f85a842d73a7cfe8421b70
 
                 <?php
 
-                    $abba_sql_session = ("SELECT * FROM `session` ORDER BY sessionName DESC");
+                    $abba_sql_session = ("SELECT * FROM session ORDER BY sessionName DESC");
                     $abba_result_session = mysqli_query($link, $abba_sql_session);
                     $abba_row_session = mysqli_fetch_assoc($abba_result_session);
                     $abba_row_cnt_session = mysqli_num_rows($abba_result_session);
@@ -63,13 +53,15 @@
 
             <input type="hidden" id="user_id" value="<?php echo $UserID; ?>">
             <input type="hidden" id="user_type" value="<?php echo $UType; ?>">
+            <input type="hidden" id="pros_load_crrnt_session_gen" value="<?php echo $pros_get_current_term_fetch['sessionName']; ?>">
+            <input type="hidden" id="pros_load_crrnt_term_gen" value="<?php echo $pros_get_current_term_fetch['TermOrSemesterID']; ?>">
 
             <select class="form-select dropbtn abba-change-term" id="autoSizingSelect" style="border-left:none;background:transparent;border-color:#007ffb;">
                 <option value="0" selected>All Term</option>
 
                 <?php
 
-                    $abba_sql_termorsemester = ("SELECT * FROM `termorsemester`");
+                    $abba_sql_termorsemester = ("SELECT * FROM termorsemester");
                     $abba_result_termorsemester = mysqli_query($link, $abba_sql_termorsemester);
                     $abba_row_termorsemester = mysqli_fetch_assoc($abba_result_termorsemester);
                     $abba_row_cnt_termorsemester = mysqli_num_rows($abba_result_termorsemester);
