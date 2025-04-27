@@ -197,14 +197,4 @@
     });
     // load lga on state change
 
-
-
-  
-  
-  
-  
-     
-
-
-
 </script>

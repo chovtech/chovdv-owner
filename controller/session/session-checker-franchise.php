@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 	ob_start();
 	session_start();
 
@@ -27,6 +31,7 @@
 	$row_cntGetUserDetails = mysqli_num_rows($resultGetUserDetails);
 
 	$AffiliateID = $rowGetUserDetails['AffiliateID'];
+	$WalletBal = $rowGetUserDetails['WalletBal'];
 
 	
 	$PrimaryName = $rowGetUserDetails['AffiliateFName'];
@@ -41,6 +46,11 @@
 	$Phone = $rowGetUserDetails['Phone'];
 	$Whatsappno = $rowGetUserDetails['Phone'];
 	$Email = $rowGetUserDetails['Email'];
+
+    $BankAccName = $rowGetUserDetails['BankAccName'];
+    $BankAccNo = $rowGetUserDetails['BankAccNo'];
+    $Bank = $rowGetUserDetails['Bank'];
+    $BankCode = $rowGetUserDetails['BankCode'];
 
 
 
