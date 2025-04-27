@@ -197,6 +197,8 @@
     });
     // load lga on state change
 
+<<<<<<< HEAD
+=======
 
 
      
@@ -705,4 +707,5 @@
 
 
 
+>>>>>>> a4fd272ea131f98b38f85a842d73a7cfe8421b70
 </script>

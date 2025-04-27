@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="030dc6a7-9b0b-4e6a-af4b-29904f1f8c75" name="Changes" comment="">
+<<<<<<< HEAD
+      <change afterPath="$PROJECT_DIR$/affiliate/my-affiliates/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/affiliate/transactions/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/js/affiliate/affiliate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/js/affiliate/transactions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/js/affiliate/withdrawal.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/scripts/affiliate/affiliate/affiliates.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/scripts/affiliate/transactions/transaction.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/scripts/affiliate/withdrawal/proceed_withdrawal.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/scripts/affiliate/withdrawal/verify_withdrawal.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/scripts/email-pack/my-send-mail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/scripts/email-pack/verification-email.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/admin_css/affiliate.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/config/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/config/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/js/affiliate/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/js/affiliate/profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/js/app/wallet.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/js/app/wallet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/session/session-checker-franchise.php" beforeDir="false" afterPath="$PROJECT_DIR$/controller/session/session-checker-franchise.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/affiliate-header.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/affiliate-header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/affiliate-menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/includes/affiliate-menu.php" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> 2b43daee976895f4f1c0bb16708c6a8bacfcb5a1
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2w2ItJfTvNeIrXwhkXVPfvNFXlv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;abba-edumess&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Applications/XAMPP/xamppfiles/htdocs/edumess.com&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="030dc6a7-9b0b-4e6a-af4b-29904f1f8c75" name="Changes" comment="" />
+      <created>1745233455227</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745233455227</updated>
+      <workItem from="1745233456340" duration="1508000" />
+      <workItem from="1745245247198" duration="611000" />
+<<<<<<< HEAD
+      <workItem from="1745270175542" duration="6791000" />
+      <workItem from="1745522224694" duration="5138000" />
+      <workItem from="1745587274360" duration="3301000" />
+      <workItem from="1745596156830" duration="46626000" />
+=======
+      <workItem from="1745270175542" duration="1183000" />
+>>>>>>> 2b43daee976895f4f1c0bb16708c6a8bacfcb5a1
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
