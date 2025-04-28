@@ -168,6 +168,8 @@
 
     $('body').on('click','#signup-btn',function(){
 
+        
+
         $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
         var firstname = $('#firstname').val();
         var lastname = $('#lastname').val();

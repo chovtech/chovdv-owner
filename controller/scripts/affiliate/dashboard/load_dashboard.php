@@ -65,7 +65,7 @@ if ($institution_result && mysqli_num_rows($institution_result) > 0) {
     }
 }
 
-// collect total affilect here
+
 
 
 // GET TERMLY EARNING HERE
@@ -73,9 +73,59 @@ if ($institution_result && mysqli_num_rows($institution_result) > 0) {
 $pros_count_amount = mysqli_query($link, "SELECT SUM(amount) AS TotalAmount FROM 
 `affiliate_earning` WHERE `Session`='$crnt_session' AND `Term`='$crnt_term' AND `affiliate_id`='$user_id'");
 //  $pros_count_amount_rows = mysqli_num_rows($pros_count_amount);
+
+// collect total affilect here
+
     
 $pros_count_amount_row = mysqli_fetch_assoc($pros_count_amount);
 $termly_amount = (int)$pros_count_amount_row['TotalAmount'];
+
+
+// pros get all afiliate here
+$pros_get_affiliate_all = mysqli_query($link, "SELECT 
+  COUNT(*) AS TotalAffiliates
+FROM 
+  `affiliate`
+WHERE 
+  (`affiliate_l1` = '$user_id' OR `affiliate_l2` = '$user_id')
+  AND `DeleteStatus` = 0
+");
+
+$pros_get_affiliate_all_fetch = mysqli_fetch_assoc($pros_get_affiliate_all);
+$total_affilite = (int)$pros_get_affiliate_all_fetch['TotalAffiliates'];
+
+
+// get leveel one
+
+$pros_get_affiliate_all_one = mysqli_query($link, "SELECT 
+  COUNT(*) AS TotalAffiliatesone
+FROM 
+  `affiliate`
+WHERE 
+  `affiliate_l1` = '$user_id' 
+  AND `DeleteStatus` = 0
+");
+
+$pros_get_affiliate_all_fetch_one = mysqli_fetch_assoc($pros_get_affiliate_all_one);
+$total_affilite_one = (int)$pros_get_affiliate_all_fetch_one['TotalAffiliatesone'];
+
+
+
+
+// get leveel two
+
+$pros_get_affiliate_all_two = mysqli_query($link, "SELECT 
+  COUNT(*) AS TotalAffiliatestwo
+FROM 
+  `affiliate`
+WHERE 
+  `affiliate_l2` = '$user_id' 
+  AND `DeleteStatus` = 0
+");
+
+$pros_get_affiliate_all_fetch_two = mysqli_fetch_assoc($pros_get_affiliate_all_two);
+$total_affilite_two = (int)$pros_get_affiliate_all_fetch_two['TotalAffiliatestwo'];
+
 
 
 
@@ -84,9 +134,10 @@ $response =  [
     'total_active_campuses' => $total_active_campus,
     'total_inactive_campuses' => $total_inactive_campus,
     'owner_cont' => $pros_row_cnt_owner,
-    'termly_amount' => number_format($termly_amount)
-
-    
+    'termly_amount' => number_format($termly_amount),
+    'total_affiliate' => number_format($total_affilite),
+    'total_affiliate_one' => number_format($total_affilite_one),
+    'total_affiliate_two' => number_format($total_affilite_two)
 ];
 
 

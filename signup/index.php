@@ -35,28 +35,7 @@ if ($consultant_uname == '') {
 	
 
 } else {
-    
-	// $select_consultant = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='$consultant_uname'";
-	// $select_consultant_result = mysqli_query($link, $select_consultant);
-	// $select_consultant_result_cnt = mysqli_num_rows($select_consultant_result);
-	// $select_consultant_result_cnt_row = mysqli_fetch_assoc($select_consultant_result);
-
-	// if ($select_consultant_result_cnt_row['UserID'] == '') {
-	// 	$select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='M002222'";
-	// 	$select_company_result = mysqli_query($link, $select_comany);
-	// 	$select_company_result_cnt = mysqli_num_rows($select_company_result);
-	// 	$select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
-
-	// 	$consultant_id = $select_company_result_cnt_row['UserID'];
-
-	// } else {
-	// 	$select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='$consultant_uname'";
-	// 	$select_company_result = mysqli_query($link, $select_comany);
-	// 	$select_company_result_cnt = mysqli_num_rows($select_company_result);
-	// 	$select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
-
 		$consultant_id = $consultant_uname ;
-	// }
 }
 
 ?>
@@ -98,15 +77,59 @@ if ($consultant_uname == '') {
 	<link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 	<script src="https://accounts.google.com/gsi/client" async defer></script>
-	<link href="../../assets/plugins/numberformat/intlTelInput.min.css"
+	<link href="../assets/plugins/numberformat/intlTelInput.min.css"
 		rel="stylesheet" />
-	<script src="../../assets/plugins/numberformat/intlTelInput.min.js"></script>
+	<script src="../assets/plugins/numberformat/intlTelInput.min.js"></script>
 	
-	<link href="../../assets/plugins/notify/wnoty.css" rel="stylesheet">
+	<link href="../assets/plugins/notify/wnoty.css" rel="stylesheet">
 
 	
 	<style>
+
+			.form-floating {
+				position: relative;
+			}
+			.form-floating {
+				position: relative;
+			}
+
+			.form-floating i {
+				position: absolute;
+				top: 50%;
+				left: 10px; /* Adjust this based on your preferred icon position */
+				transform: translateY(-50%);
+				color: #7d8597;
+				font-size: 18px;
+			}
+
+			.form-floating input {
+				padding-left: 35px; /* Adjust this to match icon size */
+				width: 100%; /* Ensure input takes full width */
+			}
+
+			@media (max-width: 820px) and (min-width: 576px) { 
+				.form-floating i {
+					font-size: 16px; /* Reduce icon size for tablets */
+					left: -8px; /* Adjust icon position for tablet screens */
+				}
+
+				.form-floating input {
+					padding-left: 38px; /* Adjust padding for tablet screens */
+				}
+			}
+
+			@media (max-width: 576px) and (min-width: 320px) { 
+				.form-floating i {
+					font-size: 14px; /* Reduce icon size for smaller screens */
+					left: -8px;  /* Adjust icon position for mobile screens */
+				}
+
+				.form-floating input {
+					padding-left: 30px; /* Adjust padding for mobile screens */
+				}
+			}
 
 
 
@@ -344,18 +367,20 @@ if ($consultant_uname == '') {
 
 
 					<div class="col-12">
-						<div class="form-floating mb-2 ">
+						<div class="form-floating mb-3 ">
 							<!-- <span style="position: absolute; left: 88%; color: #7d8597; margin-top: 15px;">
 							<i class="fa fa-1x fa-chevron-down" aria-hidden="true"></i>
 							</span> -->
+							<!-- height: auto; /* Let it adjust based on content */
+							max-height: 40px;  -->
 							<select
-							style="height: 54px; box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;"
+							style="height: auto;max-height: 40px; box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;"
 							class="form-select form-select-sm"
 							id="signup_as"
 							>
 							<option selected disabled>Sign up as...</option>
 							<option value="affiliate">Affiliate</option>
-							<option value="owner">Owner</option>
+							<option value="owner">School Owner</option>
 							</select>
 							<label for="signup_as" style="color: #555; margin-top: 2px; font-size: 11px; font-weight: 500;">
 							Sign up as
@@ -367,38 +392,51 @@ if ($consultant_uname == '') {
 				
 					
 
-						<div class="col-6">
-							<div class="form-floating mb-3 fnamevalidate">
-								<span style="position: absolute; left: 88%; color: #7d8597; margin-top: 15px;"><i class="fa fa-1x fa-user" aria-hidden="true"></i></span>
-								<input type="text" style="height: 55px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm" id="firstname" placeholder="<?php echo $website_signup_firstname; ?>">
-								<label for="floatingInput" style="color: #555; margin-top: 2px; font-size: 11px; font-weight: 500;"><?php echo $website_signup_firstname; ?> </label>
-							</div>
+					<div class="col-6">
+						<div class="form-floating mb-3 fnamevalidate position-relative">
+							<span style="position: absolute; left: 88%; color: #7d8597; margin-top: 17px;">
+								<i class="fa fa-user" aria-hidden="true" style="font-size: 13px;"></i>
+							</span>
+							<input 
+								type="text" 
+								style="height: auto; max-height: 40px;  box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" 
+								class="form-control form-control-sm" 
+								id="firstname" 
+								placeholder="<?php echo $website_signup_firstname; ?>"
+							>
+							<label 
+								for="floatingInput" 
+								style="color: #555; margin-top: -8px; font-size: 11px; font-weight: 500;  ">
+								<?php echo $website_signup_firstname; ?>
+							</label>
 						</div>
+					</div>
+
 						<div class="col-6">
-							<div class="form-floating mb-3 secondnamevalidate ">
-							<span style="position: absolute; left: 88%; color: #7d8597; margin-top: 15px;"><i class="fa fa-1x fa-user" aria-hidden="true"></i></span>
-								<input type="text" style="height: 55px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm" id="lastname" placeholder="<?php echo $website_signup_lastname; ?>">
+							<div class="form-floating mb-3 secondnamevalidate position-relative">
+							<span style="position: absolute; left: 88%; color: #7d8597; margin-top: 17px;"><i class="fa fa-1x fa-user" aria-hidden="true" style="font-size: 13px;"></i></span>
+								<input type="text" style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm" id="lastname" placeholder="<?php echo $website_signup_lastname; ?>">
 								<label for="floatingInput" style="color: #555; font-size: 11px; font-weight: 500;"><?php echo $website_signup_lastname; ?></label>
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="form-floating mb-3 emailvalidate">
-								<span style="position: absolute; left: 94%; color: #7d8597; margin-top: 15px;"><i class="fa fa-1x fa-envelope" aria-hidden="true"></i></span>
-								<input type="email"  style="height: 55px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm" id="email" placeholder="<?php echo $website_signup_email; ?>">
+							<div class="form-floating mb-3 emailvalidate position-relative">
+								<span style="position: absolute; left: 94%; color: #7d8597; margin-top: 17px;"><i class="fa fa-1x fa-envelope" aria-hidden="true" style="font-size: 13px;"></i></span>
+								<input type="email"  style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm" id="email" placeholder="<?php echo $website_signup_email; ?>">
 								<label for="floatingInput" style="color: #555; margin-top: 2px; font-size: 11px; font-weight: 500;"><?php echo $website_signup_email; ?> </label>
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="form-floating mb-3 phonevalidate">
-								<span style="position: absolute; left: 94%; color: #7d8597; margin-top: 15px;z-index:6;"><i class="fa fa-1x fa-phone" aria-hidden="true"></i></span>
-								<input type="number" style="height: 55px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm"  id="Phone" placeholder="<?php echo $website_signup_num; ?>" name="phonenum[main]">
+							<div class="form-floating mb-3 phonevalidate position-relative">
+								<span style="position: absolute; left: 94%; color: #7d8597; margin-top: 17px;z-index:6;"><i class="fa fa-1x fa-phone" aria-hidden="true" style="font-size: 13px;"></i></span>
+								<input type="number" style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm"  id="Phone" placeholder="<?php echo $website_signup_num; ?>" name="phonenum[main]">
 								<label for="floatingInput"  style="color: #555; font-size: 11px; font-weight: 500;"></span></label>
 							</div>
 						</div>
 						<div class="col-12">
-							<div class="form-floating mb-3 passwordvalidate">
-							<span class="" style="position: absolute; left: 94%; color: #7d8597; margin-top: 15px;cursor:pointer;"><i class="fa fa-1x fa-eye viewpassresestsignup" aria-hidden="true"></i></span>
-								<input type="password"  style="height: 55px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm signuppassword" id="password" placeholder="<?php echo $website_signup_password; ?>">
+							<div class="form-floating mb-3 passwordvalidate position-relative">
+							<span class="" style="position: absolute; left: 94%; color: #7d8597; margin-top: 17px;cursor:pointer;"><i class="fa fa-1x fa-eye viewpassresestsignup" aria-hidden="true" style="font-size: 13px;"></i></span>
+								<input type="password"  style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm signuppassword" id="password" placeholder="<?php echo $website_signup_password; ?>">
 								<label for="floatingInput" style="color: #555; font-size: 11px; font-weight: 500;"><?php echo $website_signup_password; ?></label>
 							</div>
 							<small class="help-block" id="password-text"></small>
@@ -455,7 +493,7 @@ if ($consultant_uname == '') {
 	<script src="../assets/plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap JavaScript -->
 	<script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/plugins/notify/wnoty.js"></script>
+    <script src="../assets/plugins/notify/wnoty.js"></script>
 	
 	<!--web ui content -->
 	<script src="../js/website_js/registration.js"></script>

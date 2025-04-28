@@ -73,14 +73,14 @@
 <body>
 
     <!-- Loader -->
-    <!-- <div id="gx-overlay">
+    <div id="gx-overlay">
     	<div class="gx-ellipsis">
     		<div></div>
     		<div></div>
     		<div></div>
     		<div></div>
     	</div>
-    </div> -->
+    </div>
 
     <div class="grid-container" >
          <?php include('../../includes/affiliate-header.php'); ?>

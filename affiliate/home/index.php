@@ -68,14 +68,14 @@
 <body>
 
     <!-- Loader -->
-    <!--<div id="gx-overlay">-->
-    <!--	<div class="gx-ellipsis">-->
-    <!--		<div></div>-->
-    <!--		<div></div>-->
-    <!--		<div></div>-->
-    <!--		<div></div>-->
-    <!--	</div>-->
-    <!--</div>-->
+    <div id="gx-overlay">
+    	<div class="gx-ellipsis">
+    		<div></div>
+    		<div></div>
+           	<div></div>
+    		<div></div>
+    	</div>
+    </div>
     
     <div class="grid-container">
         <!-- Header -->
@@ -150,19 +150,20 @@
                                                 <div class="renfinaceCard"
                                                     style="width: 100%; border-radius: 15px; height: 170px;">
                                                     <div style="padding: 10px;">
-                                                        <h6 style="margin-left: -120px; color: #ffffff;">Total Affiliate</h6>
+                                                        <!-- <h6 style="margin-left: -120px; color: #ffffff;">Total Affiliate</h6> -->
    
                                                             
-                                                        <div align="center" class="mt-4">
-                                                            <span style="font-size: 35px; font-weight: 500; color: #ffffff;" id="prosload_total_affiliate">
+                                                        <div  class="row" id="prosload_total_affiliate">
+                                                            <!-- <span style="font-size: 35px; font-weight: 500; color: #ffffff;" id="prosload_total_affiliate">
                                                               
-                                                            </span>
-                                                          
+                                                            </span> -->
+
+
+                                                           
+                                                                                                                
 
                                                             
-                                                            <!-- <a 
-                                                                style="font-size: 18px; margin-top: -13px; color: #ffffff; float: right; margin-right: 50px;cursor:pointer;"><i
-                                                                    class="fa fa-eye prosperwalletpendingshowbtn" aria-hidden="true"></i></a> -->
+                                                           
                                                         </div>
 
                                                     </div>
