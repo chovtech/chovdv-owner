@@ -158,8 +158,7 @@
 
                                 }else 
                                 {
-                                    // prosloadcampaigncontent = `<div class="alert alert-danger" role="alert">
-                                    // <i class="fas fa-exclamation-triangle"></i> ${des} `;
+                                    pros_load_owner_full_content += `<div align="center"> No Records Found</div>`;
                                         // Initial load all schools
 
 
@@ -276,7 +275,7 @@
                                     tableBody.append(row);
                                 });
                             } else {
-                                tableBody.html(`<tr><td colspan="5"><div class="text-center text-danger">${response.responseDescription || 'Failed to load schools.'}</div></td></tr>`);
+                                tableBody.html(`<tr><td colspan="5"><div class="text-center text-danger">No Record Found </div></td></tr>`);
                             }
                         } catch (error) {
                             console.error("Failed to parse response:", error);

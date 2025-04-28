@@ -27,7 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- SITE TITLE -->
     <title>
-
+    EduMESS | Affiliates
     </title>
     <!-- FAVICON AND TOUCH ICONS -->
     <link rel="shortcut icon" href="../../assets/images/website_images/favicon.png" type="image/x-icon">
@@ -322,12 +322,12 @@
                             </li>
                            
                            
-                            <li class="nav-item" role="presentation">
+                            <!-- <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="ex1-tab-3" data-bs-toggle="tab" href="#ex1-tabs-3" role="tab"
                                     aria-controls="ex1-tabs-3" aria-selected="false">Withdrawer History</a>
                             </li>
+                           -->
                           
-                           
                             
                             
                              <!-- <li class="nav-item" role="presentation">

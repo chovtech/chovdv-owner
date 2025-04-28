@@ -28,7 +28,7 @@
         content="Best, School, Management, Best School, Best School Management, 
         Best School Management Software, Free School Management Software, Portal, 
         School Owner, Group of School Owner, Consultants, Brand Promoters | School Portal Generator ">
-        <title>EduMESS</title>
+        <title>EduMESS | Affiliates</title>
         <!-- FAVICON AND TOUCH ICONS -->
     <link rel="shortcut icon" href="../../assets/images/website_images/favicon.png" type="image/x-icon">
     <link rel="icon" href="../../assets/images/website_images/favicon.png" type="image/x-icon">
@@ -181,9 +181,12 @@
                                                                
                                                                 </span>
                                                             <br>
+                                                            <input type="hidden" class="pros_total_earning_input" >
                                                             <a
                                                                 style="font-size: 18px; margin-top: -13px; color: #ffffff; float: right; margin-right: 25px;cursor:pointer;"><i
-                                                                    class="fa fa-eye proswithdrawnamount" aria-hidden="true"></i></a>
+                                                                    class="fa fa-eye pros_earning_clicked_eye" aria-hidden="true"></i></a>
+
+                                                                   
                                                         </div>
 
                                                     </div>

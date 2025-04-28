@@ -8,27 +8,28 @@
         });
 
 
+        
+        var isHidden = true;
+       
+        $('.pros_earning_clicked_eye').on('click', function () {
+            $('.pros_earning_clicked_eye').toggleClass("fa-eye fa-eye-slash");
 
-        // $("body").on("click", ".toggle-visibility", function () {
+            var termly_amount = $('.pros_total_earning_input').val();
+            if (isHidden) {
+                // If currently hidden, show the asterisks
+                $('#prosload_totalearnper_term').text('₦' + '*****');
+               
+                
+            } else {
+                
+                // If currently showing, hide the number
+                $('#prosload_totalearnper_term').text('₦' + termly_amount);
+                
+            }
+            // Toggle the state
+            isHidden = !isHidden;
+        });
 
-        //         var abba_var = $(this).data('id');
-
-        //         var $amount = $("#" + abba_var);
-        //         var originalText = $amount.text();
-        //         var data_amt_Text = $("#" + abba_var).data('amt');
-        //         var hiddenText = "₦*****";
-
-        //         if (originalText === hiddenText) {
-        //             $amount.html(data_amt_Text);
-        //             $("." + abba_var).html(data_amt_Text);
-        //             $(this).removeClass("fa-eye").addClass("fa-eye-slash");
-        //         }
-        //         else {
-        //             $amount.html(hiddenText);
-        //             $("." + abba_var).html(hiddenText);
-        //             $(this).removeClass("fa-eye-slash").addClass("fa-eye");
-        //         }
-        //  });
 
         // pros_load_dash_borard_content function
         function pros_load_dash_borard_content() {
@@ -96,6 +97,7 @@
                           
                             $('#prosload_totalearnper_term').html(`₦`+termly_amount);
                             $('#prosload_total_affiliate').html(3);
+                            $('.pros_total_earning_input').val(termly_amount);
 
 
 
