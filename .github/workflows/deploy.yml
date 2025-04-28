@@ -16,8 +16,8 @@ jobs:
       - name: Prepare deploy folder
         run: |
           mkdir deploy
-          rsync -av --progress app/ deploy/app/
-          rsync -av --progress assets/ deploy/assets/
+          cp -r app/ deploy/
+          cp -r assets/ deploy/
           cp index.php deploy/
           cp .htaccess deploy/
 
@@ -28,13 +28,15 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          source: "deploy/"
-          target: "/public_html/dev.edumess.com"
+          source: "deploy/*"
+          target: "public_html/dev.edumess.com"
           overwrite: true
           rm: false
           debug: true
+          tar_dereference: false
+          strip_components: 0
 
-      - name: Post-deployment SSH commands
+      - name: Post-deployment SSH command
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SFTP_HOST }}
@@ -42,11 +44,4 @@ jobs:
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
           script: |
-            echo "✅ Deployment successful."
-            # Remove this if no nginx restart is needed
-            if command -v sudo && sudo systemctl status nginx; then
-              sudo systemctl restart nginx
-              echo "✅ Nginx restarted."
-            else
-              echo "⚠️ Skipping nginx restart (no sudo access)."
-            fi
+            echo "Deployment complete, running post-deployment tasks."
