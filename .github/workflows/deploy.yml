@@ -10,20 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repo
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Prepare deploy folder with only required files
       - name: Prepare deploy folder
         run: |
           mkdir deploy
-          cp -r app/ deploy/
-          cp -r assets/ deploy/
+          rsync -av --progress app/ deploy/app/
+          rsync -av --progress assets/ deploy/assets/
           cp index.php deploy/
           cp .htaccess deploy/
 
-      # Step 3: Upload deploy folder via SCP
       - name: Upload deploy folder via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -31,16 +28,13 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          source: "deploy/*"
+          source: "deploy/"
           target: "/public_html/dev.edumess.com/"
           overwrite: true
           rm: false
           debug: true
-          tar_dereference: false
-          strip_components: 0
 
-      # Step 4: (Optional) Run SSH commands like restarting nginx
-      - name: Post-deployment SSH command
+      - name: Post-deployment SSH commands
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SFTP_HOST }}
@@ -48,5 +42,11 @@ jobs:
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
           script: |
-            echo "Deployment complete, running post-deployment tasks."
-            sudo systemctl restart nginx
+            echo "✅ Deployment successful."
+            # Remove this if no nginx restart is needed
+            if command -v sudo && sudo systemctl status nginx; then
+              sudo systemctl restart nginx
+              echo "✅ Nginx restarted."
+            else
+              echo "⚠️ Skipping nginx restart (no sudo access)."
+            fi
