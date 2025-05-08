@@ -1,2 +1,0 @@
-[28-Mar-2024 15:33:34 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/chovmxyy/edumess-v2.edumess.com/includes/app-menu.php on line 9
-[29-Mar-2024 09:27:56 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/chovmxyy/edumess-v2.edumess.com/includes/app-menu.php on line 9

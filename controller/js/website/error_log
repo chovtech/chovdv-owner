@@ -1,6 +1,0 @@
-[26-Sep-2024 19:19:12 UTC] PHP Warning:  Undefined variable $defaultUrl in /home/chovmxyy/edumess.com/controller/js/website/pros-franchise-application.php on line 308
-[27-Sep-2024 07:52:13 UTC] PHP Warning:  Undefined variable $uid in /home/chovmxyy/edumess.com/controller/js/website/registrationcall-verification.php on line 5
-[27-Sep-2024 07:52:13 UTC] PHP Warning:  Undefined variable $uid in /home/chovmxyy/edumess.com/controller/js/website/registrationcall-verification.php on line 94
-[27-Sep-2024 07:52:49 UTC] PHP Warning:  Undefined variable $consultant_id in /home/chovmxyy/edumess.com/controller/js/website/registrationcall.php on line 74
-[27-Sep-2024 07:52:49 UTC] PHP Warning:  Undefined variable $consultant_id in /home/chovmxyy/edumess.com/controller/js/website/registrationcall.php on line 199
-[27-Sep-2024 07:52:49 UTC] PHP Warning:  Undefined variable $uid in /home/chovmxyy/edumess.com/controller/js/website/registrationcall.php on line 414

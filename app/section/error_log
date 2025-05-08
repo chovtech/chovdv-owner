@@ -1,5 +1,0 @@
-[28-Mar-2024 16:37:16 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/chovmxyy/edumess-v2.edumess.com/includes/app-menu.php on line 9
-[28-Mar-2024 16:38:19 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/chovmxyy/edumess-v2.edumess.com/includes/app-menu.php on line 9
-[28-Mar-2024 16:44:26 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/chovmxyy/edumess-v2.edumess.com/includes/app-menu.php on line 9
-[12-Apr-2024 02:10:03 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/chovmxyy/edumess-v2.edumess.com/includes/app-menu.php on line 9
-[28-Sep-2024 17:16:02 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/chovmxyy/edumess.com/controller/session/session-checker-owner.php on line 56

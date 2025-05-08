@@ -1,3 +1,0 @@
-[01-Oct-2024 05:50:00 UTC] PHP Warning:  Undefined array key "emma_send_institution" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_class_recording/emma_get_campus_for_class_recording.php on line 5
-[04-Oct-2024 10:17:54 UTC] PHP Warning:  Undefined array key "emma_send_campus_for_subject" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_class_recording/emma_get_subject_for_class_recording.php on line 5
-[04-Oct-2024 10:17:54 UTC] PHP Warning:  Undefined array key "emma_send_class_id_for_subject" in /home/chovmxyy/edumess.com/controller/scripts/owner/emma_class_recording/emma_get_subject_for_class_recording.php on line 6
