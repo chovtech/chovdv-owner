@@ -21,20 +21,20 @@ jobs:
           cp index.php deploy/
           cp .htaccess deploy/
 
-      - name: Upload deploy folder via SCP
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: ${{ secrets.SFTP_PORT }}
-          source: "deploy/*"
-          target: "public_html/dev.edumess.com"
-          overwrite: true
-          rm: false
-          debug: true
-          tar_dereference: false
-          strip_components: 0
+      # - name: Upload deploy folder via SCP
+      #   uses: appleboy/scp-action@v0.1.7
+      #   with:
+      #     host: ${{ secrets.SFTP_HOST }}
+      #     username: ${{ secrets.SFTP_USERNAME }}
+      #     password: ${{ secrets.SFTP_PASSWORD }}
+      #     port: ${{ secrets.SFTP_PORT }}
+      #     source: "deploy/*"
+      #     target: "public_html/dev.edumess.com"
+      #     overwrite: true
+      #     rm: false
+      #     debug: true
+      #     tar_dereference: false
+      #     strip_components: 0
 
       - name: Post-deployment SSH command
         uses: appleboy/ssh-action@v0.1.7
