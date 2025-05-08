@@ -24,12 +24,12 @@ jobs:
       - name: Upload all files via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: ${{ secrets.SFTP_PORT }}
-          source: "."  # This will upload everything in the repository
-          target: "public_html/dev.edumess.com"
+          # host: ${{ secrets.SFTP_HOST }}
+          # username: ${{ secrets.SFTP_USERNAME }}
+          # password: ${{ secrets.SFTP_PASSWORD }}
+          # port: ${{ secrets.SFTP_PORT }}
+          # source: "."  # This will upload everything in the repository
+          # target: "public_html/dev.edumess.com"
           overwrite: true
           rm: false
           debug: true
