@@ -105,13 +105,29 @@
                  <div class="row">
                     <div class="col-sm-12">
                         <div style="background-color:#fff;padding: 35px 35px 35px 35px;margin-top:15px;">
-
-                            
+                                <div class="row">
+                                     <div class="col-md-10 col-lg-10"> </div>
+                                     <div class="col-md-2 col-lg-2">
+                                        <button type="button" style="float: right;font-size: 13px;border:none;font-weight:500;"
+                                            class="btn btn-sm btn-primary text-light" data-bs-toggle="modal"
+                                            data-bs-target="#pros_create_owner_Modal"> <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                height="20" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.91 2.91 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.91 2.91 0 0 0 18 11a3 3 0 0 0 0-6M8 10H5V7H3v3H0v2h3v3h2v-3h3Z" />
+                                            </svg> Create Owner</button>
+                                           
+                                      </div>
+                                    </div>
+                                     <br>
                                 <div class="row">
                                     <!-- School Owners -->
+                                    
+                                    
                                     <div class="col-lg-3 mb-3">
                                         <div class="card h-100" style="border-radius: 0.1rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);">
                                             <div class="card-header fw-bold">School Owners</div>
+                                            
+                                            
                                             <ul class="list-group list-group-flush" id="ownerList">
                                                
                                             </ul>
@@ -130,10 +146,10 @@
                                             </div>
                                       </div> -->
 
-                                        <div class="card mb-3">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
+                                      <div class="card mb-3">
+                                            <div class="card-header d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-2">
                                                 <span class="fw-bold">Schools</span>
-                                                <input type="text" id="schoolSearch" class="form-control form-control-sm w-auto" placeholder="Search school...">
+                                                <input type="text" id="schoolSearch" class="form-control form-control-sm w-100 w-sm-auto" placeholder="Search school...">
                                             </div>
                                             <div class="table-responsive">
                                                 <table class="table mb-0" id="schoolsTable">
@@ -152,6 +168,7 @@
                                                 </table>
                                             </div>
                                         </div>
+
 
                                         <!-- Summary -->
                                         <div class="card">
@@ -185,6 +202,89 @@
 
 
     </div>
+
+
+
+
+
+        <!-- create owner -->
+        <div class="modal fade modalshow modalfade" id="pros_create_owner_Modal" tabindex="-1"
+            aria-labelledby="pros_create_owner_ModalLabel" aria-hidden="true">
+            <div class="modal-dialog dialogcontent modal-dialog-scrollable" style="border-top-left-radius: 20px; width: 100%;">
+                <div class="modal-content modalcontent" style="background-color:#ffffff; ">
+        
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.91 2.91 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.91 2.91 0 0 0 18 11a3 3 0 0 0 0-6M8 10H5V7H3v3H0v2h3v3h2v-3h3Z" />
+                            </svg> Register School Owner
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="position: fixed; margin-left: -10px; margin-top: -30px;">
+                            
+                        </div>
+                        <!-- Navbar pills -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- Nav tabs -->
+                                <div class="col-sm-12">
+                                    <ul class="nav nav-tabs mb-3 customtab" id="abba_ex1" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a
+                                            class="nav-link active"
+                                            id="abba_ex1-tab-10"
+                                            data-bs-toggle="tab"
+                                            href="#abba_ex1-tabs-10"
+                                            role="tab"
+                                            aria-controls="abba_ex1-tabs-10"
+                                            aria-selected="true">Invite Via Whatsapp</a>
+                                        </li>
+                                        <!-- <li class="nav-item" role="presentation">
+                                            <a
+                                            class="nav-link"
+                                            id="abba_ex1-tab-20"
+                                            data-bs-toggle="tab"
+                                            href="#abba_ex1-tabs-20"
+                                            role="tab"
+                                            aria-controls="abba_ex1-tabs-20"
+                                            aria-selected="false">Invite Via Email</a
+                                            >
+                                        </li> -->
+                                    </ul>
+                                
+                                    
+                                    <div class="tab-content" id="ex1-content">
+                                        
+                                        <?php
+                                            $encodedRef = base64_encode($UserID);
+                                        
+                                        ?>
+        
+                                        <div class="tab-pane fade show active" id="abba_ex1-tabs-10" role="tabpanel" aria-labelledby="abba_ex1-tab-10">
+                                            <input type="text" id="pros-text-to-copy" value="<?php echo $defaultUrl ?>signup?ref=<?php echo $encodedRef ?>" readonly style="border:none;width:100%;"><br><br>
+        
+                                            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-file" id="copy-button"> Copy</i></button>
+        
+                                            <a href="whatsapp://send?text=<?php echo $defaultUrl ?>signup?ref=<?php echo $encodedRef ?>"  type="button" class="btn btn-success btn-sm" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"> Share via WhatsApp</i></a>
+                                            
+                                        </div>
+                                        
+                                        <!-- <div class="tab-pane fade" id="abba_ex1-tabs-20" role="tabpanel" aria-labelledby="abba_ex1-tab-20">
+                                            Tab 2 content
+                                        </div> -->
+                                    </div>
+                                    <!-- Tab panes -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Navbar pills -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <!--Script-->
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>

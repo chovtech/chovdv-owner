@@ -2,7 +2,7 @@
 include('../controller/config/config.php');
 
 
-	@$langold = $_GET['lang'];
+	 @$langold = $_GET['lang'];
 
 	if($langold == '' || $langold == NULL || $langold == 'undefined' || $langold == 'null')
 	{
@@ -15,11 +15,14 @@ include('../controller/config/config.php');
 	}
 
 	include ('../lang/'.$lang.'.php'); 
+	
+	
 
-@$consultant_uname = $_GET['ref'];
+  @$consultant_uname = base64_decode($_GET['ref']);
 
 if ($consultant_uname == '') {
-	$select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='M002222'";
+    
+	$select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='edumessoftware@gmail.com'";
 	$select_company_result = mysqli_query($link, $select_comany);
 	$select_company_result_cnt = mysqli_num_rows($select_company_result);
 	$select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
@@ -295,7 +298,79 @@ if ($consultant_uname == '') {
 			
 		
 		}
+		
+		
+		
+		
+	 .tiny-rolebox {
+      font-family: sans-serif;
+      max-width: 340px;
+      font-size: 10px;
+    }
 
+    .tiny-rolebox-options {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .tiny-rolebox-card {
+      position: relative;
+      flex: 1;
+      border: 1px solid #0076c0;
+      border-radius: 3px;
+      background: #f1f9ff;
+      padding: 0.3rem 0.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.3rem;
+      transition: 0.2s;
+    }
+
+    .tiny-rolebox-card:hover {
+      background: #e3f3ff;
+    }
+
+    .tiny-rolebox-card input {
+      display: none;
+    }
+
+    .tiny-rolebox-icon {
+      font-size: 12px;
+      color: #0076c0;
+      margin-top: 0.1rem;
+    }
+
+    .tiny-rolebox-info {
+      flex-grow: 1;
+    }
+
+    .tiny-rolebox-title {
+      font-weight: 600;
+      margin-bottom: 1px;
+    }
+
+    .tiny-rolebox-desc {
+      font-size: 9px;
+      color: #444;
+    }
+
+    .tiny-rolebox-check {
+      display: none;
+      position: absolute;
+      top: 2px;
+      right: 4px;
+      font-size: 9px;
+      color: #0076c0;
+    }
+
+    .tiny-rolebox-card:has(input:checked) {
+      background: #cbe7ff;
+    }
+
+    .tiny-rolebox-card:has(input:checked) .tiny-rolebox-check {
+      display: block;
+    }
 
 
 	</style>
@@ -307,185 +382,186 @@ if ($consultant_uname == '') {
 <body>
 
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-4 col-md-6 col-lg-4 d-none d-sm-block  d-xm-block d-md-block" >
-				<div style="background-color: #007bff; height: 97vh; margin: 10px 0 0 0px; border-radius: 15px;">
-					
-					<div style="padding: 50px 20px 50px; display: flex;">
-						<img src="../assets/images/white-favicon.png" width="23" height="23" alt="">
-						<h5 style="color: white; font-weight: 600;">EduMESS</h5>
-					</div>
-				
-					<div class="chi_ain" style="padding: 0px 50px 20px 30px;" >
-						<p style="font-size: 35px;text-decoration: none;cursor: context-menu; color:#fff; margin-top: -20px; position: fixed;"><?php echo $website_signupbannetxtx;?> </p>
-						<br>
-						<a style="font-size: 35px;text-decoration: none;cursor: context-menu; color:#fff; position: fixed;" href="#" class="typewrite" data-period="3000"
-							data-type='[ "<?php echo $website_signupbannetxtx1;?>", "" ]'>
-							<span class="wrap"></span>
-						</a>									
-					</div>
-
-					<p class="des_txtx" style="color:#e9ecef; font-size: 14px; font-weight: 200; margin-top: 23%; margin-left: 30px;">
-						Sign up now and let your school be equipped<br> with one of the best school management <br> software in Africa.
-					</p>
-						
-					<div class="chi-testimonial-container">
-														
-							<p class="renxtestimonial">
-								Simply unbelievable! I am really satisfied with 
-								this software. This Absolutely wonderful!
-							</p>
-							<div class="chi-user">
-								<img src="../assets/images/website_images/p3.jpeg" alt="user" class="renz_user-image">
-								<div class="renz_user-details">
-									<p class="lausername">Mrs. Ify Eunice Okoli</p>
-									<p class="larole">Proprietress, Deraline Seed of Faith School</p>
-								</div>
-							</div>
-							<div class="chi-progress-bar"></div>
-					</div>
-					
-				
-				</div>
-			</div>
-
-			<div class="col-sm-8 col-md-6 col-lg-8">
-		    	<div class="chiFormLogo" style="float: right; margin-top: 10px; display: none;">
-					<img src="../assets/images/website_images/edumes-blue.png" width="110" alt="">
-				</div>
-				<div style="margin: 40px;">
-					<h2 style="font-weight: 700; color: #555;"><?php echo $website_signuptitle;?></h2>
-					<p style="color:#92929D;font-size:13px;" id="signin">
-							<?php echo $website_signup_havaccount; ?> <a href="../sign-in"> <?php echo $website_signup_signlink; ?> </a>
-					</p>
-					<div>
-					    
-					</div>
-				</div>
-				<div class="chi-formbody" style="margin: 40px 140px 0 40px;">  
-					<div class="row">
-
-
-					<div class="col-12">
-						<div class="form-floating mb-3 ">
-							<!-- <span style="position: absolute; left: 88%; color: #7d8597; margin-top: 15px;">
-							<i class="fa fa-1x fa-chevron-down" aria-hidden="true"></i>
-							</span> -->
-							<!-- height: auto; /* Let it adjust based on content */
-							max-height: 40px;  -->
-							<select
-							style="height: auto;max-height: 40px; box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;"
-							class="form-select form-select-sm"
-							id="signup_as"
-							>
-							<option selected disabled>Sign up as...</option>
-							<option value="affiliate">Affiliate</option>
-							<option value="owner">School Owner</option>
-							</select>
-							<label for="signup_as" style="color: #555; margin-top: 2px; font-size: 11px; font-weight: 500;">
-							Sign up as
-							</label>
-						</div>
-					</div>
-
-
-				
-					
-
-					<div class="col-6">
-						<div class="form-floating mb-3 fnamevalidate position-relative">
-							<span style="position: absolute; left: 88%; color: #7d8597; margin-top: 17px;">
-								<i class="fa fa-user" aria-hidden="true" style="font-size: 13px;"></i>
-							</span>
-							<input 
-								type="text" 
-								style="height: auto; max-height: 40px;  box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" 
-								class="form-control form-control-sm" 
-								id="firstname" 
-								placeholder="<?php echo $website_signup_firstname; ?>"
-							>
-							<label 
-								for="floatingInput" 
-								style="color: #555; margin-top: -8px; font-size: 11px; font-weight: 500;  ">
-								<?php echo $website_signup_firstname; ?>
-							</label>
-						</div>
-					</div>
-
-						<div class="col-6">
-							<div class="form-floating mb-3 secondnamevalidate position-relative">
-							<span style="position: absolute; left: 88%; color: #7d8597; margin-top: 17px;"><i class="fa fa-1x fa-user" aria-hidden="true" style="font-size: 13px;"></i></span>
-								<input type="text" style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm" id="lastname" placeholder="<?php echo $website_signup_lastname; ?>">
-								<label for="floatingInput" style="color: #555; font-size: 11px; font-weight: 500;"><?php echo $website_signup_lastname; ?></label>
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="form-floating mb-3 emailvalidate position-relative">
-								<span style="position: absolute; left: 94%; color: #7d8597; margin-top: 17px;"><i class="fa fa-1x fa-envelope" aria-hidden="true" style="font-size: 13px;"></i></span>
-								<input type="email"  style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm" id="email" placeholder="<?php echo $website_signup_email; ?>">
-								<label for="floatingInput" style="color: #555; margin-top: 2px; font-size: 11px; font-weight: 500;"><?php echo $website_signup_email; ?> </label>
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="form-floating mb-3 phonevalidate position-relative">
-								<span style="position: absolute; left: 94%; color: #7d8597; margin-top: 17px;z-index:6;"><i class="fa fa-1x fa-phone" aria-hidden="true" style="font-size: 13px;"></i></span>
-								<input type="number" style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm"  id="Phone" placeholder="<?php echo $website_signup_num; ?>" name="phonenum[main]">
-								<label for="floatingInput"  style="color: #555; font-size: 11px; font-weight: 500;"></span></label>
-							</div>
-						</div>
-						<div class="col-12">
-							<div class="form-floating mb-3 passwordvalidate position-relative">
-							<span class="" style="position: absolute; left: 94%; color: #7d8597; margin-top: 17px;cursor:pointer;"><i class="fa fa-1x fa-eye viewpassresestsignup" aria-hidden="true" style="font-size: 13px;"></i></span>
-								<input type="password"  style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm signuppassword" id="password" placeholder="<?php echo $website_signup_password; ?>">
-								<label for="floatingInput" style="color: #555; font-size: 11px; font-weight: 500;"><?php echo $website_signup_password; ?></label>
-							</div>
-							<small class="help-block" id="password-text"></small>
-						</div>
-						
-						<div class="col-12">
-							<div align="center">
-								<button class="btn btn-primary btn-lg" data-id="2" id="signup-btn" type="button" style="padding: 12px; border-radius: 10px; font-size: 13px; width: 100%"><?php echo $website_signup_buttontitle; ?></button>
-							</div>
-						</div>
-					</div>
-					<div class="row justify-content-center">
-						<div class="col-3">
-							<hr>
-						</div>
-						<div class="col-auto">
-							<?php echo $website_signup_orgoogletitle; ?>
-						</div>
-						<div class="col-3">
-							<hr>
-						</div>
-					</div>
-
-					<div class="row" align="center" id="googlegrid" data-id="1">
-						<div class="col-lg-1 col-sm-1"></div>
-						<div class="col-lg-10 col-sm-10">
-							<div id="g_id_onload"
-								data-client_id="298617862133-i2vv75kb2a18tacjuakc89n718pagp7v.apps.googleusercontent.com"
-								data-context="signup" data-ux_mode="popup"  data-callback="Signupfunction"
-								data-itp_support="true"></div>
-							<div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline"
-								data-text="signup_with" data-size="large" data-logo_alignment="left"
-								data-width="100% ~ 400px"></div>
-						</div>
-						<div class="col-lg-1 col-sm-1"></div>
-                	</div>
-					
-					<div align="center" style="margin-top: 10px;">
-						
-						<p style="font-size:13px;color:#6c757d;"><?php echo $signupterms_one ; ?> <b>EduMESS</b> <a
-								target="_blank" href="<?php echo $defaultUrl; ?>terms/?lang=<?php echo $lang; ?>"><?php echo $signupterms_two;?></a> <a
-								target="_blank" href="<?php echo $defaultUrl; ?>privacy/?lang=<?php echo $lang; ?>"><?php echo $signupterms_three; ?></a> <?php echo $signupterms_four ?> 
-						</p>
-					</div>
-
-				</div>
-  			</div>
-		</div>
-	</div>
+   <div class="row">
+      <div class="col-sm-4 col-md-6 col-lg-4 d-none d-sm-block  d-xm-block d-md-block" >
+         <div style="background-color: #007bff; height: 97vh; margin: 10px 0 0 0px; border-radius: 15px;">
+            <div style="padding: 50px 20px 50px; display: flex;">
+               <img src="../assets/images/white-favicon.png" width="23" height="23" alt="">
+               <h5 style="color: white; font-weight: 600;">EduMESS</h5>
+            </div>
+            <div class="chi_ain" style="padding: 0px 50px 20px 30px;" >
+               <p style="font-size: 35px;text-decoration: none;cursor: context-menu; color:#fff; margin-top: -20px; position: fixed;"><?php echo $website_signupbannetxtx;?> </p>
+               <br>
+               <a style="font-size: 35px;text-decoration: none;cursor: context-menu; color:#fff; position: fixed;" href="#" class="typewrite" data-period="3000"
+                  data-type='[ "<?php echo $website_signupbannetxtx1;?>", "" ]'>
+               <span class="wrap"></span>
+               </a>									
+            </div>
+            <p class="des_txtx" style="color:#e9ecef; font-size: 14px; font-weight: 200; margin-top: 23%; margin-left: 30px;">
+               Sign up now and let your school be equipped<br> with one of the best school management <br> software in Africa.
+            </p>
+            <div class="chi-testimonial-container">
+               <p class="renxtestimonial">
+                  Simply unbelievable! I am really satisfied with 
+                  this software. This Absolutely wonderful!
+               </p>
+               <div class="chi-user">
+                  <img src="../assets/images/website_images/p3.jpeg" alt="user" class="renz_user-image">
+                  <div class="renz_user-details">
+                     <p class="lausername">Mrs. Ify Eunice Okoli</p>
+                     <p class="larole">Proprietress, Deraline Seed of Faith School</p>
+                  </div>
+               </div>
+               <div class="chi-progress-bar"></div>
+            </div>
+         </div>
+      </div>
+      <div class="col-sm-8 col-md-6 col-lg-8">
+         <div class="chiFormLogo" style="float: right; margin-top: 10px; display: none;">
+            <img src="../assets/images/website_images/edumes-blue.png" width="110" alt="">
+         </div>
+         <div style="margin: 40px;">
+            <h2 sstyle="font-weight: 700; color: #555; margin-bottom: 10px;"><?php echo $website_signuptitle;?></h2>
+            <p style="color:#92929D;font-size:13px;" id="signin">
+               <?php echo $website_signup_havaccount; ?> <a href="../sign-in"> <?php echo $website_signup_signlink; ?> </a>
+            </p>
+            <div>
+            </div>
+         </div>
+         <div class="chi-formbody" style="margin: 0 140px 0 40px;">
+            <div class="row">
+               <div class="col-12 mb-3 ">
+                  <!--<label for="signup_usertype_main" style="color: #555; margin-bottom: 5px; font-size: 12px; font-weight: 500;">-->
+                  <!--Sign up as-->
+                  <!--</label>-->
+                  <select
+                     style="height: 40px; box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;"
+                     class="form-select form-select-sm usertype_validate"
+                     id="signup_usertype_main"
+                     >
+                     <option value="" disabled selected>--  Sign up as --</option>
+                     <option value="affiliate">Affiliate</option>
+                     <option value="owner">School Owner</option>
+                  </select>
+               </div>
+               <div class="col-6">
+                  <div class="form-floating mb-3 fnamevalidate position-relative">
+                     <span style="position: absolute; left: 88%; color: #7d8597; margin-top: 17px;">
+                     <i class="fa fa-user" aria-hidden="true" style="font-size: 13px;"></i>
+                     </span>
+                     <input 
+                        type="text" 
+                        style="height: auto; max-height: 40px;  box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" 
+                        class="form-control form-control-sm" 
+                        id="firstname" 
+                        placeholder="<?php echo $website_signup_firstname; ?>"
+                        >
+                     <label 
+                        for="floatingInput" 
+                        style="color: #555; margin-top: -8px; font-size: 11px; font-weight: 500;  ">
+                     <?php echo $website_signup_firstname; ?>
+                     </label>
+                  </div>
+               </div>
+               <div class="col-6">
+                  <div class="form-floating mb-3 secondnamevalidate position-relative">
+                     <span style="position: absolute; left: 88%; color: #7d8597; margin-top: 17px;"><i class="fa fa-1x fa-user" aria-hidden="true" style="font-size: 13px;"></i></span>
+                     <input type="text" style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm" id="lastname" placeholder="<?php echo $website_signup_lastname; ?>">
+                     <label for="floatingInput" style="color: #555; font-size: 11px; font-weight: 500;"><?php echo $website_signup_lastname; ?></label>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <div class="form-floating mb-3 emailvalidate position-relative">
+                     <span style="position: absolute; left: 94%; color: #7d8597; margin-top: 17px;"><i class="fa fa-1x fa-envelope" aria-hidden="true" style="font-size: 13px;"></i></span>
+                     <input type="email"  style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm" id="email" placeholder="<?php echo $website_signup_email; ?>">
+                     <label for="floatingInput" style="color: #555; margin-top: 2px; font-size: 11px; font-weight: 500;"><?php echo $website_signup_email; ?> </label>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <div class="form-floating mb-3 phonevalidate position-relative">
+                     <span style="position: absolute; left: 94%; color: #7d8597; margin-top: 17px;z-index:6;"><i class="fa fa-1x fa-phone" aria-hidden="true" style="font-size: 13px;"></i></span>
+                     <input type="number" style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm"  id="Phone" placeholder="<?php echo $website_signup_num; ?>" name="phonenum[main]">
+                     <label for="floatingInput"  style="color: #555; font-size: 11px; font-weight: 500;"></span></label>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <div class="form-floating mb-3 passwordvalidate position-relative">
+                     <span class="" style="position: absolute; left: 94%; color: #7d8597; margin-top: 17px;cursor:pointer;"><i class="fa fa-1x fa-eye viewpassresestsignup" aria-hidden="true" style="font-size: 13px;"></i></span>
+                     <input type="password"  style="height: auto; max-height: 40px; box-shadow:0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;" class="form-control form-control-sm signuppassword" id="password" placeholder="<?php echo $website_signup_password; ?>">
+                     <label for="floatingInput" style="color: #555; font-size: 11px; font-weight: 500;"><?php echo $website_signup_password; ?></label>
+                  </div>
+                  <small class="help-block" id="password-text"></small>
+               </div>
+               <div class="col-12">
+                  <div align="center">
+                     <button class="btn btn-primary btn-lg" data-id="2" id="signup-btn" type="button" style="padding: 12px; border-radius: 10px; font-size: 13px; width: 100%"><?php echo $website_signup_buttontitle; ?></button>
+                  </div>
+               </div>
+            </div>
+            <div class="row justify-content-center">
+               <div class="col-3">
+                  <hr>
+               </div>
+               <div class="col-auto">
+                  <?php echo $website_signup_orgoogletitle; ?>
+               </div>
+               <div class="col-3">
+                  <hr>
+               </div>
+            </div>
+            <div class="row" align="center" id="googlegrid" data-id="1">
+               <div class="col-lg-4 col-sm-4"></div>
+               <div class="col-lg-4 col-sm-4">
+                  <center>
+                     <div class="tiny-rolebox">
+                        <div class="tiny-rolebox-options">
+                           <label class="tiny-rolebox-card">
+                              <input type="radio" name="role" class="pros_usertype_signup_google" value="owner" required />
+                              <i class="fas fa-school tiny-rolebox-icon"></i>
+                              <div class="tiny-rolebox-info">
+                                 <div class="tiny-rolebox-title">School Owner</div>
+                                 <!--<div class="tiny-rolebox-desc">Manage schools</div>-->
+                              </div>
+                              <i class="fas fa-check tiny-rolebox-check"></i>
+                           </label>
+                           <label class="tiny-rolebox-card">
+                              <input type="radio" name="role" class="pros_usertype_signup_google" value="affiliate" required />
+                              <i class="fas fa-user-friends tiny-rolebox-icon"></i>
+                              <div class="tiny-rolebox-info">
+                                 <div class="tiny-rolebox-title">Affiliate</div>
+                                 <!--<div class="tiny-rolebox-desc">Refer & earn</div>-->
+                              </div>
+                              <i class="fas fa-check tiny-rolebox-check"></i>
+                           </label>
+                           
+                        </div>
+                     </div>
+                     <p></p>
+                  </center>
+               </div>
+               <div class="col-lg-4 col-sm-4"></div>
+               <div class="col-lg-1 col-sm-1"></div>
+               <div class="col-lg-10 col-sm-10">
+                  <div id="g_id_onload"
+                     data-client_id="298617862133-i2vv75kb2a18tacjuakc89n718pagp7v.apps.googleusercontent.com"
+                     data-context="signup" data-ux_mode="popup"  data-callback="Signupfunction"
+                     data-itp_support="true"></div>
+                  <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="outline"
+                     data-text="signup_with" data-size="large" data-logo_alignment="left"
+                     data-width="100% ~ 400px"></div>
+               </div>
+               <div class="col-lg-1 col-sm-1"></div>
+            </div>
+            <div align="center" style="margin-top: 10px;">
+               <p style="font-size:13px;color:#6c757d;"><?php echo $signupterms_one ; ?> <b>EduMESS</b> <a
+                  target="_blank" href="<?php echo $defaultUrl; ?>terms/?lang=<?php echo $lang; ?>"><?php echo $signupterms_two;?></a> <a
+                  target="_blank" href="<?php echo $defaultUrl; ?>privacy/?lang=<?php echo $lang; ?>"><?php echo $signupterms_three; ?></a> <?php echo $signupterms_four ?> 
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 	
 	
 
@@ -500,7 +576,8 @@ if ($consultant_uname == '') {
 	<!--web ui content -->
 	
 	<?php include("../controller/js/website/registrationcall.php"); ?>
-	<script src="../../js/current_page.php"></script>
+		<?php include("../js/current_page.php"); ?>
+
 
 
 	

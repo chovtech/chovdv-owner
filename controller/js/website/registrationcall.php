@@ -1,5 +1,8 @@
 <script>
 
+
+
+
     $(document).ready(function(){
         var url = window.location.href;
 
@@ -69,9 +72,15 @@
     });
 
     function Signupfunction(response) {
+        
+            // get ref here
 	        const responsePayload = decodeJwtResponse(response.credential);
             // collect lead id
-            var consultandid1 = '<?php echo $consultant_id; ?>';
+            var consultandid1 = '<?= isset($consultant_id) && $consultant_id !== null ? htmlspecialchars($consultant_id, ENT_QUOTES, 'UTF-8') : ''; ?>';
+
+            
+            
+           
             var consultandid2 = localStorage.getItem('consultantid');
 
             if (!consultandid2 || consultandid2 === '0' || consultandid2 === null || consultandid2 === 'null' || consultandid2 === undefined) {
@@ -82,6 +91,11 @@
                 var consultandid = consultandid2;
             }
 
+          // get ref here
+          
+           var signup_as =  $(".pros_usertype_signup_google:checked").val();
+          
+        
           var tagstateid = $("#googlegrid").data('id');
 
 
@@ -105,17 +119,33 @@
 
             var maintoken = localStorage.getItem('storedtoken');
             // collection of user details from Google end here
-
-            //ajax signup request start here
+            
+            
+        if (signup_as === '' || signup_as === '0' || signup_as == null) {
+                    
+                    
+                    $.wnoty({
+                        type: 'warning',
+                        message: "Hey! Kindly select who you want to sign up as (owner or affiliate) just above google button",
+                        autohideDelay: 5000
+                    });
+        }else
+        {
+            
+            //  alert(defaultlang);
+              //ajax signup request start here
             $.ajax({
 
                     type : 'post',
                     url : '../controller/scripts/edumesweb/signupwith-google.php', //Here you will fetch records
-                    data : {firstname:firstname,lastname:lastname,image:image,email:email,consultandid:consultandid,fullname:fullname,defaultlang:defaultlang,tagstateid:tagstateid,maintoken:maintoken}, //Pass $id
+                    data : {firstname:firstname,lastname:lastname,image:image,email:email,consultandid:consultandid,
+                    fullname:fullname,defaultlang:defaultlang,tagstateid:tagstateid,maintoken:maintoken,signup_as:signup_as}, //Pass $id
                     success : function(output)
                     {
                             
                             var prosfeedback = (output);
+                            // alert(prosfeedback);
+
 
                                 if(prosfeedback.trim() === 'found')
                                 {
@@ -131,7 +161,7 @@
                                 {
                                             
                                             
-                                            var redirectUrl2 = "../validate-password/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=" + prosfeedback + "&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&lang=" + lang;
+                                            var redirectUrl2 = "../validate-password/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=" + prosfeedback + "&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&lang=" + lang + "&utype="+signup_as;
 
                                             var ref_id = localStorage.getItem('ref');
                                             var my_name = firstname+' '+lastname;
@@ -139,6 +169,7 @@
                                             var number_new = '';
                                             var amount = '';
                                             var paymentRef = '';
+                                            
 
                                         // salesplode_api(ref_id,my_name,my_email,number_new,amount,paymentRef,redirectUrl2);
 
@@ -147,6 +178,7 @@
                                                             message: "Great!! signup with google successfully.",
                                                             autohideDelay: 5000
                                                 });
+                                                window.location.href = redirectUrl2;
                                             
                                 }
                                     
@@ -154,6 +186,10 @@
                 
             });
             //ajax signup request end here
+            
+        }
+
+          
                 
 	}
 
@@ -179,6 +215,9 @@
         $("input[name='WhatsappNumber[full]'").val(phonenumfull);
     
         var password = $('#password').val();
+        var signup_as = $('#signup_usertype_main option:selected').val();
+        
+      
     
         var regexLength = /.{8,}/;
         var regexUppercase = /[A-Z]/;
@@ -195,8 +234,10 @@
 
         var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        var consultandid  = '<?php echo $consultant_id; ?>';
+        var consultandid  = '<?= isset($consultant_id) && $consultant_id !== null ? htmlspecialchars($consultant_id, ENT_QUOTES, 'UTF-8') : ''; ?>';
         var tagstateid = $(this).data('id');
+        
+
 
 
         var lang = 	localStorage.getItem("lang");
@@ -210,9 +251,25 @@
 
         //  var MainNumberfull = MainNumber.getNumber(intlTelInputUtils.numberFormat.E164);
         // $("input[name='phonenum[full]'").val(MainNumberfull);
-        if(firstname == '')
+        
+    
+
+        
+       if (signup_as === '' || signup_as === '0' || signup_as == null) {
+            $('.usertype_validate').css('outline', '1px solid red');
+            $(this).html('Sign up');
+            $('html, body').animate({ scrollTop: 0 }, 'fast');
+        
+            $.wnoty({
+                type: 'warning',
+                message: "Hey! Kindly select who you want to sign up as (owner or affiliate).",
+                autohideDelay: 5000
+            });
+        }
+       else if(firstname == '')
         {
             $('.fnamevalidate').css('outline', '1px solid red');
+            $('.usertype_validate').css('outline', '1px solid green');
             $(this).html('Sign up');
             $('html,body').animate({scrollTop: 0},'fast');
 
@@ -223,6 +280,7 @@
             });
 		}else if(lastname == '')
         {
+             $('.usertype_validate').css('outline', '1px solid green');
             $('.fnamevalidate').css('outline', '1px solid green');
             $('.secondnamevalidate').css('outline','1px solid red');
 
@@ -237,6 +295,7 @@
                     
 		}else if(email == '')
         {
+             $('.usertype_validate').css('outline', '1px solid green');
             $('.fnamevalidate').css('outline', '1px solid green');
             $('.fnamevalidate').css('outline','1px solid green');
             $('.secondnamevalidate').css('outline','1px solid green');
@@ -251,6 +310,7 @@
             });
 		}else if(!emailPattern.test(email))
         {
+             $('.usertype_validate').css('outline', '1px solid green');
 
             $('.fnamevalidate').css('outline', '1px solid green');
             $('.fnamevalidate').css('outline','1px solid green');
@@ -268,6 +328,8 @@
 		}else if(phone == '')
         {
 
+
+           $('.usertype_validate').css('outline', '1px solid green');
             $('.fnamevalidate').css('outline', '1px solid green');
             $('.secondnamevalidate').css('outline','1px solid green');
             $('.emailvalidate').css('outline','1px solid green');
@@ -282,6 +344,8 @@
 
 		}else if(password == '')
         {
+            
+             $('.usertype_validate').css('outline', '1px solid green');
             $('.fnamevalidate').css('outline', '1px solid green');
             $('.secondnamevalidate').css('outline','1px solid green');
             $('.emailvalidate').css('outline','1px solid green');
@@ -300,7 +364,7 @@
 		}else if(!isValid)
         {
 
-
+            $('.usertype_validate').css('outline', '1px solid green');
             $('.fnamevalidate').css('outline', '1px solid green');
             $('.secondnamevalidate').css('outline','1px solid green');
             $('.emailvalidate').css('outline','1px solid green');
@@ -319,7 +383,7 @@
         {
             
             $('#signup-btn').prop('disabled', true);
-
+            $('.usertype_validate').css('outline', '1px solid green');
             $('.fnamevalidate').css('outline', '1px solid green');
             $('.secondnamevalidate').css('outline','1px solid green');
             $('.emailvalidate').css('outline','1px solid green');
@@ -337,7 +401,8 @@
                     password:password,
                     consultandid:consultandid,
                     defaultlang:defaultlang,
-                    tagid:tagstateid
+                    tagid:tagstateid,
+                    signup_as:signup_as
         		}, //Pass $id
                 success : function(output)
                 {
@@ -365,7 +430,7 @@
                     }else
                     {
                     					           
-                        var redirectUrl2 = "../signup-verification/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&marana=" + email + "&kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6=UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&tak=&oionxx=" + prosfeedback + "&lang=" + defaultlang;
+                        var redirectUrl2 = "../signup-verification/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&marana=" + email + "&kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6=UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&tak=&oionxx=" + prosfeedback + "&lang=" + defaultlang +"&utype=" + signup_as;
 
                         var ref_id = localStorage.getItem('ref');
                         var my_name = firstname+' '+lastname;
@@ -395,20 +460,24 @@
 		}
 		      
 	});
-        // normal signfup herre
+    // normal signfup herre
 
-        // change password  here
+    // change password  here
 
-        // registration cllaback
-        $('body').on('click','#verifybtn',function(){
+    // registration cllaback
+    $('body').on('click','#verifybtn',function(){
 
 
-            $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
-                var UserID = '<?php  echo $uid; ?>';
-                var password = $('#password').val();
-                var Confirmpassword = $('#Confirmpassword').val();
-                var tagstateid = $(this).data('id');
-                //   var tagid = $(this).data('id');
+        $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+           var UserID = $(this).data('userid');
+            var utype = $(this).data('utype');
+            
+            // alert(UserID);
+             
+            var password = $('#password').val();
+            var Confirmpassword = $('#Confirmpassword').val();
+            var tagstateid = $(this).data('id');
+            //   var tagid = $(this).data('id');
 
             var hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{ };':"\\|,.<>\/?]/.test(password);
             var hasNumber = /\d/.test(password);
@@ -417,96 +486,98 @@
 
 
 
-            if(password == '')
-            {
-                $('.mainpasswordverifycontent').css('outline', '1px solid red');
-                    $(this).html('Proceed');
-
-                    $.wnoty({
-                        type: 'warning',
-                    message: "Hey! Pasword required.",
-                    autohideDelay: 5000
-                });
-                                        
-            }else if(Confirmpassword == '')
-                {
-                    //  $('#pwmatcherr').fadeIn();
-                    $('.Confirmpassword').css('outline', '1px solid green');
-                $('.confirmpasswordverifycontent').css('outline','1px solid red');
+        if(password == '')
+        {
+            $('.mainpasswordverifycontent').css('outline', '1px solid red');
                 $(this).html('Proceed');
 
                 $.wnoty({
                     type: 'warning',
-                message: "Hey! confirm your password.",
+                message: "Hey! Pasword required.",
                 autohideDelay: 5000
-                    });
-                    
-            }else if(password != Confirmpassword)
-                {
+            });
+                                    
+        }else if(Confirmpassword == '')
+            {
+                //  $('#pwmatcherr').fadeIn();
+                $('.Confirmpassword').css('outline', '1px solid green');
+            $('.confirmpasswordverifycontent').css('outline','1px solid red');
+            $(this).html('Proceed');
 
-
-                    $.wnoty({
-                        type: 'warning',
-                        message: "Hey! password did not match!.",
-                        autohideDelay: 5000
-                    });
-
-                $('.mainpasswordverifycontent').css('outline','1px solid red');
-                $('.confirmpasswordverifycontent').css('outline','1px solid red');
-                $(this).html('Proceed');
-            }else{ 
+            $.wnoty({
+                type: 'warning',
+            message: "Hey! confirm your password.",
+            autohideDelay: 5000
+                });
                 
-                if (hasSpecialChar && hasNumber && hasCapitalLetter && lowercaseLetters) {
-                    $('#mainpasswordverifycontent').css('outline', '1px solid green');
+        }else if(password != Confirmpassword)
+            {
+
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey! password did not match!.",
+                    autohideDelay: 5000
+                });
+
+            $('.mainpasswordverifycontent').css('outline','1px solid red');
+            $('.confirmpasswordverifycontent').css('outline','1px solid red');
+            $(this).html('Proceed');
+        }else{ 
+            
+            if (hasSpecialChar && hasNumber && hasCapitalLetter && lowercaseLetters) {
+                
+                $('#mainpasswordverifycontent').css('outline', '1px solid green');
                 $('#confirmpasswordverifycontent').css('outline','1px solid green');
                 $('#pwmatcherr').fadeOut();
 
                 $.ajax({
-                    type : 'post',
-                url : '../controller/scripts/edumesweb/resetpassword.php', //Here you will fetch records
-                data : {password:password,UserID:UserID,tagstateid:tagstateid}, //Pass $id
-                success : function(output)
-                {
-                                            var feeedback = (output);
-
-                if(feeedback.trim() === 'success')
-                {
-
-                    $.wnoty({
-                        type: 'success',
-                        message: 'Great!  password reset successfully <a href="../sign-in/">click to login</a>',
-                        autohideDelay: 5000
-                    });
-                window.location.href = "../app/school/";
-                                                        
-                                            }else if(feeedback.trim() === 'notfound')
-                {
-                    $.wnoty({
-                        type: 'warning',
-                        message: 'Hey! this user do no longer exist',
-                        autohideDelay: 5000
-                    });
-                                                
-                                            }else
-
-                {
-
-                    $.wnoty({
-                        type: 'warning',
-                        message: 'Hey! password reset failed try again later.',
-                        autohideDelay: 5000
-                    });
-                                                
-                                            }
-
-                $('#verifybtn').html('Proceed');
-                
-                                        }
+                        type : 'post',
+                    url : '../controller/scripts/edumesweb/resetpassword.php', //Here you will fetch records
+                    data : {password:password,UserID:UserID,tagstateid:tagstateid,utype:utype}, //Pass $id
+                    success : function(output)
+                    {
+                        var feeedback = (output);
+    
+                            if(feeedback.trim() === 'success')
+                            {
+            
+                                $.wnoty({
+                                    type: 'success',
+                                    message: 'Great!  password reset successfully <a href="../sign-in/">click to login</a>',
+                                    autohideDelay: 5000
+                                });
+                              window.location.href = "../app/school/";
+                                                                    
+                            }else if(feeedback.trim() === 'notfound')
+                            {
+                                $.wnoty({
+                                    type: 'warning',
+                                    message: 'Hey! this user do no longer exist',
+                                    autohideDelay: 5000
+                                });
+                                                            
+                                                        }else
+            
+                            {
+            
+                                $.wnoty({
+                                    type: 'warning',
+                                    message: 'Hey! password reset failed try again later.',
+                                    autohideDelay: 5000
+                                });
+                                                            
+                                                        }
+    
+                           $('#verifybtn').html('Proceed');
+                    
+                    }
                                         
-                                    });
-                }else
-                {
-                    $('#pwmatcherr').fadeIn();
+                });
+            
+            }else
+            {
+                $('#pwmatcherr').fadeIn();
                 $('.mainpasswordverifycontent').css('outline','1px solid red');
                 $('.confirmpasswordverifycontent').css('outline','1px solid red');
                 $('#verifybtn').html('Proceed');
@@ -516,14 +587,14 @@
                 message: "Hey! Please include special characters, numbers, and both capital   <br> and small letters in your password for added security.",
                     autohideDelay: 5000
                     });
-                        
                     
-                }
                 
             }
-                     
-        });
-                // registration cllaback
+            
+        }
+                 
+    });
+    // registration cllaback
 
 
                 //change password here

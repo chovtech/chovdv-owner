@@ -394,14 +394,14 @@
          </html>';
  
 
-              $selectserveretails = mysqli_query($link,"SELECT * FROM `serverpassword`");
-              $selectserveretailscnt = mysqli_fetch_assoc($selectserveretails);
+             $selectserveretails = mysqli_query($link,"SELECT * FROM `serverpassword`");
+             $selectserveretailscnt = mysqli_fetch_assoc($selectserveretails);
               
              $servername =  $selectserveretailscnt['ServerName'];
              $serverpwd =  $selectserveretailscnt['ServerPassword'];
  
-             $email_to =  'noreply@edumess.com';
-            $delivery = 'noreply@edumess.com';
+             $email_to =  'verify@edumess.com';
+             $delivery = 'verify@edumess.com';
              $altmess = 'alt';
             // = 'emaildelivery@schoolportalgenerator.com';
             $nameto = '';
@@ -416,11 +416,11 @@
                 $mail->isSMTP();                                            //Send using SMTP
                 $mail->Host       = 'edumess.com';                     //Set the SMTP server to send through
                 $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = 'noreply@edumess.com';                     //SMTP username
-                $mail->Password   = 'Iw.0@S}&[zeU';                             //SMTP password
+                $mail->Username   = 'verify@edumess.com';                     //SMTP username
+                $mail->Password   = 'Year@2025$$';                             //SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                 $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        
+       
                 //Recipients
                 $mail->setFrom($delivery,$owner);
                 $mail->addAddress($email, $nameto);     //Add a recipient

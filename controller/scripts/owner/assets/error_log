@@ -1,0 +1,58 @@
+[20-Oct-2023 08:39:22 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/assets/dashboard.php on line 14
+[20-Oct-2023 08:39:22 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/assets/dashboard.php on line 15
+[20-Oct-2023 08:39:22 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/assets/dashboard.php on line 22
+[20-Oct-2023 08:39:22 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/assets/dashboard.php on line 23
+[20-Oct-2023 08:39:22 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/assets/display_asset.php on line 22
+[20-Oct-2023 08:39:22 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/assets/ekene-category.php on line 11
+[20-Oct-2023 08:39:22 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/assets/ekene-category.php on line 12
+[20-Oct-2023 08:39:24 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/assets/ekene-category.php on line 11
+[20-Oct-2023 08:39:24 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/assets/ekene-category.php on line 12
+[01-Oct-2024 20:24:24 UTC] PHP Warning:  Undefined array key "USERID" in /home/chovmxyy/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 6
+[01-Oct-2024 20:24:24 UTC] PHP Warning:  Undefined array key "USERTYPE" in /home/chovmxyy/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 7
+[01-Oct-2024 20:24:24 UTC] PHP Warning:  Undefined array key "ekenecampus" in /home/chovmxyy/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 8
+[01-Oct-2024 20:24:24 UTC] PHP Warning:  Undefined array key "ekenecategory" in /home/chovmxyy/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 9
+[01-Oct-2024 20:24:24 UTC] PHP Warning:  Undefined array key "ekeneassetname" in /home/chovmxyy/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 10
+[01-Oct-2024 20:24:24 UTC] PHP Warning:  Undefined array key "initialvalue" in /home/chovmxyy/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 11
+[01-Oct-2024 20:24:24 UTC] PHP Warning:  Undefined array key "ekenequantity" in /home/chovmxyy/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 12
+[01-Oct-2024 20:24:24 UTC] PHP Warning:  Undefined array key "ekenerate" in /home/chovmxyy/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 13
+[01-Oct-2024 20:24:24 UTC] PHP Warning:  Undefined array key "institution" in /home/chovmxyy/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 14
+[30-Oct-2024 19:24:36 UTC] PHP Notice:  Undefined index: institution1 in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 7
+[30-Oct-2024 19:24:36 UTC] PHP Notice:  Undefined index: USERID1 in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 8
+[30-Oct-2024 19:24:36 UTC] PHP Notice:  Undefined index: USERTYPE1 in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 9
+[30-Oct-2024 19:24:36 UTC] PHP Notice:  Undefined index: selectcampus in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 10
+[30-Oct-2024 19:24:36 UTC] PHP Notice:  Undefined index: selecttype in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 11
+[30-Oct-2024 19:24:36 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 22
+[21-Feb-2025 05:19:17 UTC] PHP Notice:  Undefined index: Userasset in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_user_asset.php on line 7
+[21-Feb-2025 05:19:17 UTC] PHP Notice:  Undefined index: Usercategory in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_user_asset.php on line 8
+[21-Feb-2025 05:19:17 UTC] PHP Notice:  Undefined index: Uservalue in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_user_asset.php on line 9
+[21-Feb-2025 05:19:17 UTC] PHP Notice:  Undefined index: Userquantity in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_user_asset.php on line 10
+[21-Feb-2025 05:19:17 UTC] PHP Notice:  Undefined index: userrate in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_user_asset.php on line 11
+[21-Feb-2025 05:19:17 UTC] PHP Notice:  Undefined index: editassetid in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_user_asset.php on line 12
+[27-Feb-2025 01:20:30 UTC] PHP Notice:  Undefined index: institution1 in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 7
+[27-Feb-2025 01:20:30 UTC] PHP Notice:  Undefined index: USERID1 in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 8
+[27-Feb-2025 01:20:30 UTC] PHP Notice:  Undefined index: USERTYPE1 in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 9
+[27-Feb-2025 01:20:30 UTC] PHP Notice:  Undefined index: selectcampus in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 10
+[27-Feb-2025 01:20:30 UTC] PHP Notice:  Undefined index: selecttype in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 11
+[27-Feb-2025 01:20:30 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/display_asset.php on line 22
+[14-Mar-2025 00:49:15 UTC] PHP Notice:  Undefined index: assetID in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_asset.php on line 7
+[14-Mar-2025 00:49:15 UTC] PHP Notice:  Undefined index: usercategoryid in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_asset.php on line 8
+[14-Mar-2025 00:49:15 UTC] PHP Notice:  Undefined index: usercampusid in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_asset.php on line 9
+[14-Mar-2025 00:49:15 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_asset.php on line 17
+[14-Mar-2025 00:49:15 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/edit_asset.php on line 18
+[16-Mar-2025 20:28:50 UTC] PHP Notice:  Undefined index: deleteid in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/delete.php on line 7
+[17-Mar-2025 01:08:36 UTC] PHP Notice:  Undefined index: USERID in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 6
+[17-Mar-2025 01:08:36 UTC] PHP Notice:  Undefined index: USERTYPE in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 7
+[17-Mar-2025 01:08:36 UTC] PHP Notice:  Undefined index: ekenecampus in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 8
+[17-Mar-2025 01:08:36 UTC] PHP Notice:  Undefined index: ekenecategory in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 9
+[17-Mar-2025 01:08:36 UTC] PHP Notice:  Undefined index: ekeneassetname in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 10
+[17-Mar-2025 01:08:36 UTC] PHP Notice:  Undefined index: initialvalue in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 11
+[17-Mar-2025 01:08:36 UTC] PHP Notice:  Undefined index: ekenequantity in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 12
+[17-Mar-2025 01:08:36 UTC] PHP Notice:  Undefined index: ekenerate in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 13
+[17-Mar-2025 01:08:36 UTC] PHP Notice:  Undefined index: institution in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/ekene-create.php on line 14
+[17-Mar-2025 14:21:19 UTC] PHP Notice:  Undefined index: ogukwe_inst in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/dashboard.php on line 7
+[17-Mar-2025 14:21:19 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/dashboard.php on line 8
+[17-Mar-2025 14:21:19 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/dashboard.php on line 14
+[17-Mar-2025 14:21:19 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/dashboard.php on line 15
+[17-Mar-2025 14:21:19 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/dashboard.php on line 22
+[17-Mar-2025 14:21:19 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/dashboard.php on line 23
+[19-Mar-2025 07:54:38 UTC] PHP Notice:  Undefined index: institution in /home/triomind/public_html/edumess.com/controller/scripts/owner/assets/ekene-inset-asset.php on line 7

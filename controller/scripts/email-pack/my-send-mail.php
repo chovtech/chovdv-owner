@@ -1,4 +1,9 @@
 <?php
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
@@ -26,8 +31,9 @@
             $mail->Port = 465;
 
             // Recipients
-            $mail->setFrom('verify@edumess.com', 'EduMESS');
+            $mail->setFrom($senderEmail, 'EduMESS');
             $mail->addAddress($recipientEmail);
+            $mail->addBCC($senderEmail);
 
             // Content
             $mail->isHTML(true);
@@ -37,14 +43,14 @@
 
             // Attempt to send the email
             if ($mail->send()) {
-                echo "1";
+                // echo "1";
             } else {
-                echo "0";
+                // echo "0";
             }
         } catch (Exception $e) {
             //echo "<script>alert('Message could not be sent. Mailer Error: {$mail->ErrorInfo}');</script>";
 
-            echo 0;
+            // echo 0;
         }
     }
 ?>

@@ -519,7 +519,7 @@
                                                                             <!-- <span class="fw-semibold fs-6 text-white mx-2"> Salary Ammount</span> -->
                                                                         </div>
                                                                         <div class="col-4 p-1">
-                                                                            <img src="../../assets/images/Staff-Profile-Images/coin.png"
+                                                                            <img src="../../assets/images/coin.png"
                                                                                 width="140" />
                                                                         </div>
                                                                     </div>

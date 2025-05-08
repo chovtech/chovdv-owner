@@ -432,3 +432,9 @@ Stack trace:
 [25-Mar-2025 04:46:30 UTC] PHP Warning:  include(../../lang/.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/controller/website-login/proccessuserlogin.php on line 9
 [25-Mar-2025 04:46:30 UTC] PHP Warning:  include(../../lang/.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/controller/website-login/proccessuserlogin.php on line 9
 [25-Mar-2025 04:46:30 UTC] PHP Warning:  include(): Failed opening '../../lang/.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/triomind/public_html/edumess.com/controller/website-login/proccessuserlogin.php on line 9
+[28-Apr-2025 13:47:13 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in /home/triomind/public_html/dev.edumess.com/controller/config/config.php:9
+Stack trace:
+#0 /home/triomind/public_html/dev.edumess.com/controller/config/config.php(9): mysqli_connect('localhost', 'root', '', 'triomind_edumes...')
+#1 /home/triomind/public_html/dev.edumess.com/controller/website-login/proccessuserlogin.php(5): include('/home/triomind/...')
+#2 {main}
+  thrown in /home/triomind/public_html/dev.edumess.com/controller/config/config.php on line 9

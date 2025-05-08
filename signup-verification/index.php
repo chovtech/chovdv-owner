@@ -53,6 +53,7 @@
 
     <?php
                  $uid = $_GET['oionxx'];
+                 $u_type = $_GET['utype'];
                  
                 
                  

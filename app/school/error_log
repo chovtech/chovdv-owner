@@ -1414,3 +1414,81 @@
 [03-Apr-2025 09:28:08 UTC] PHP Warning:  include(../../lang/2.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/app/school/index.php on line 8
 [03-Apr-2025 09:28:08 UTC] PHP Warning:  include(../../lang/2.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/app/school/index.php on line 8
 [03-Apr-2025 09:28:08 UTC] PHP Warning:  include(): Failed opening '../../lang/2.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/triomind/public_html/edumess.com/app/school/index.php on line 8
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Undefined array key "spgowner" in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 12
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Undefined array key "spgUserType" in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 13
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 29
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 31
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 34
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 35
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 38
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 39
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 40
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 41
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 42
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 43
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 44
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 45
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 47
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 49
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 56
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 59
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 62
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 65
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 83
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-owner.php on line 91
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Undefined variable $portal_onboarding_title in /home/triomind/public_html/dev.edumess.com/app/school/index.php on line 27
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/includes/app-menu.php on line 11
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/includes/app-menu.php on line 12
+[29-Apr-2025 10:21:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/includes/app-menu.php on line 14
+[06-May-2025 23:37:24 UTC] PHP Warning:  Undefined array key "spgowner" in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 12
+[06-May-2025 23:37:24 UTC] PHP Warning:  Undefined array key "spgUserType" in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 13
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 29
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 31
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 34
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 35
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 38
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 39
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 40
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 41
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 42
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 43
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 44
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 45
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 47
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 49
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 56
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 59
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 62
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 65
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 83
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 91
+[06-May-2025 23:37:24 UTC] PHP Warning:  Undefined variable $portal_onboarding_title in /home/edumplvx/dev.edumess.com/app/school/index.php on line 27
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/includes/app-menu.php on line 11
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/includes/app-menu.php on line 12
+[06-May-2025 23:37:24 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/includes/app-menu.php on line 14
+[06-May-2025 23:41:44 UTC] PHP Warning:  Undefined array key "spgowner" in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 12
+[06-May-2025 23:41:44 UTC] PHP Warning:  Undefined array key "spgUserType" in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 13
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 29
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 31
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 34
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 35
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 38
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 39
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 40
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 41
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 42
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 43
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 44
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 45
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 47
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 49
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 56
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 59
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 62
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 65
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 83
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 91
+[06-May-2025 23:41:44 UTC] PHP Warning:  Undefined variable $portal_onboarding_title in /home/edumplvx/dev.edumess.com/app/school/index.php on line 27
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/includes/app-menu.php on line 11
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/includes/app-menu.php on line 12
+[06-May-2025 23:41:44 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/includes/app-menu.php on line 14

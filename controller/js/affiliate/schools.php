@@ -1,5 +1,36 @@
 
 <script>
+
+
+
+        $(document).ready(function() {
+            // When the copy button is clicked
+            $('#copy-button').click(function() {
+                // Select the text input field
+                var textToCopy = $('#pros-text-to-copy');
+        
+                // Copy the text to the clipboard
+                textToCopy.select();
+                document.execCommand('copy');
+        
+                // Deselect the text input field (optional)
+                textToCopy.blur();
+        
+                // Provide feedback to the user
+                $.wnoty({
+                    type: 'success',
+                    message: "Copied.",
+                    autohideDelay: 5000
+                });
+            });
+        
+            
+        });
+
+
+
+
+
             $(document).ready(function () {
 
 
@@ -194,6 +225,7 @@
 
                 var session = $('.pros_load_session_general option:selected').val();
                 var term = $('.abba-change-term option:selected').val(); // fixed: term should be different
+
 
 
 

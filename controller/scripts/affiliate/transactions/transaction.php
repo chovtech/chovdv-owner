@@ -15,11 +15,11 @@
 
     if($aff_level == 1)
     {
-        $query .= "`earning_level` = '$aff_level'";
+        $query .= " AND `earning_level` = '$aff_level'";
     }
     elseif($aff_level == 2)
     {
-        $query .= "`earning_level` = '$aff_level'";
+        $query .= " AND `earning_level` = '$aff_level'";
     }
 
     // Add session filter if needed
@@ -53,7 +53,16 @@
             $earning_level = $sql_affiliate_row['earning_level'];
             $Session_new = $sql_affiliate_row['Session'];
             $Term_new = $sql_affiliate_row['Term'];
-            $status = $sql_affiliate_row['status'];
+            $status = $sql_affiliate_row['transaction_type'];
+            
+            if($status == 'credit')
+            {
+                $color = 'green';
+            }
+            else
+            {
+                $color = 'red';
+            }
             $ref_number = $sql_affiliate_row['ref_number'];
             $date = $sql_affiliate_row['date'];
 
@@ -74,7 +83,7 @@
 
                         <div class="col-lg-3">
                             <small>Type</small><br>
-                            <span style="color:green;font-weight:600;">'.strtoupper($status).'</span>
+                            <span style="color:'.$color.';font-weight:600;">'.strtoupper($status).'</span>
                         </div>
 
                         <div class="col-lg-3">
@@ -164,7 +173,7 @@
     }
 
     // For DB Credit
-    $sql_affiliate_earning_l1_query = "SELECT SUM(amount) as earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `status` = 'credit'";
+    $sql_affiliate_earning_l1_query = "SELECT SUM(amount) as earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `transaction_type` = 'credit'";
 
     // Add session filter if needed
     if ($session != '0') {
@@ -190,7 +199,7 @@
     echo '<input type="hidden" id="credit" value="₦'.$earning_1_db.'">';
 
     // For DB Debit
-    $sql_affiliate_earning_l2_query = "SELECT SUM(amount) as earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `status` = 'debit'";
+    $sql_affiliate_earning_l2_query = "SELECT SUM(amount) as earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `transaction_type` = 'debit'";
 
     // Add session filter if needed
     if ($session != '0') {

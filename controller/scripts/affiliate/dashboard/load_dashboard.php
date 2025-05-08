@@ -71,7 +71,7 @@ if ($institution_result && mysqli_num_rows($institution_result) > 0) {
 // GET TERMLY EARNING HERE
 
 $pros_count_amount = mysqli_query($link, "SELECT SUM(amount) AS TotalAmount FROM 
-`affiliate_earning` WHERE `Session`='$crnt_session' AND `Term`='$crnt_term' AND `affiliate_id`='$user_id'");
+`affiliate_earning` WHERE `Session`='$crnt_session' AND `Term`='$crnt_term' AND `affiliate_id`='$user_id' AND `transaction_type`='credit'");
 //  $pros_count_amount_rows = mysqli_num_rows($pros_count_amount);
 
 // collect total affilect here

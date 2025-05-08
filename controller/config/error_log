@@ -1,0 +1,18 @@
+[25-Sep-2024 03:21:01 UTC] PHP Warning:  Undefined variable $link in /home/chovmxyy/edumess.com/controller/config/config2.php on line 49
+[25-Sep-2024 03:21:01 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /home/chovmxyy/edumess.com/controller/config/config2.php:49
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/config/config2.php(49): mysqli_query(NULL, 'SELECT * FROM u...')
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/config/config2.php on line 49
+[27-Sep-2024 02:55:07 UTC] PHP Warning:  Undefined variable $link in /home/chovmxyy/edumess.com/controller/config/config2.php on line 49
+[27-Sep-2024 02:55:07 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_query(): Argument #1 ($mysql) must be of type mysqli, null given in /home/chovmxyy/edumess.com/controller/config/config2.php:49
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/config/config2.php(49): mysqli_query(NULL, 'SELECT * FROM u...')
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/config/config2.php on line 49
+[25-Nov-2024 11:41:06 UTC] PHP Warning:  mysqli_connect(): The server requested authentication method unknown to the client [caching_sha2_password] in /home/triomind/public_html/edumess.com/controller/config/config2.php on line 9
+[25-Nov-2024 11:41:06 UTC] PHP Warning:  mysqli_connect(): (HY000/2054): The server requested authentication method unknown to the client in /home/triomind/public_html/edumess.com/controller/config/config2.php on line 9
+[03-Apr-2025 11:56:48 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/triomind/public_html/edumess.com/controller/config/config2.php on line 49
+[03-Apr-2025 11:56:48 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/triomind/public_html/edumess.com/controller/config/config2.php on line 50
+[03-Apr-2025 11:56:48 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/triomind/public_html/edumess.com/controller/config/config2.php on line 51
+[03-Apr-2025 11:56:48 UTC] PHP Warning:  mysqli_set_charset() expects parameter 1 to be mysqli, null given in /home/triomind/public_html/edumess.com/controller/config/config2.php on line 309

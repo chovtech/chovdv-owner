@@ -1,0 +1,29 @@
+[28-Apr-2025 13:59:25 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "php" in /home/triomind/public_html/dev.edumess.com/affiliate/transactions/index.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/triomind/public_html/dev.edumess.com/affiliate/transactions/index.php on line 81
+[28-Apr-2025 16:19:48 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "php" in /home/triomind/public_html/dev.edumess.com/affiliate/transactions/index.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/triomind/public_html/dev.edumess.com/affiliate/transactions/index.php on line 81
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Undefined array key "spgaffiliate" in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 16
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Undefined array key "spgUserType" in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 17
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 33
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 34
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 37
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 38
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 41
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 42
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 43
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 44
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 46
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 47
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 48
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 50
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 51
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 52
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 53
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 64
+[30-Apr-2025 19:14:48 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/triomind/public_html/dev.edumess.com/controller/session/session-checker-franchise.php on line 72
+[30-Apr-2025 19:14:48 UTC] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home/triomind/public_html/dev.edumess.com/includes/affiliate-menu.php on line 80
+[30-Apr-2025 19:14:48 UTC] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home/triomind/public_html/dev.edumess.com/includes/affiliate-menu.php on line 112

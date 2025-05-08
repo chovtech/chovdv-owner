@@ -348,7 +348,7 @@
                                                                   padding: 0px;
                                                                 "
                                                               >
-                                                                '.$verification_code.'>
+                                                                '.$verification_code.'
                                                               </p>
                                                             </div>
                                                           </td>

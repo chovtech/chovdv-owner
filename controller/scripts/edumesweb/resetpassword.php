@@ -4,11 +4,21 @@
         $UserID  = $_POST['UserID'];
         $password =  $_POST['password'];
         $tagid =  $_POST['tagstateid'];
+        $utype =  $_POST['utype'];
         $passwordmd5 = md5($password);
         
         
+       
         
-        $verify_schoolownerdetails = mysqli_query($link,"SELECT * FROM `agencyorschoolowner` WHERE AgencyOrSchoolOwnerID='$UserID'");
+        if($utype == 'owner')
+        {
+             $verify_schoolownerdetails = mysqli_query($link,"SELECT * FROM `agencyorschoolowner` WHERE AgencyOrSchoolOwnerID='$UserID'");
+        }else
+        {
+             $verify_schoolownerdetails = mysqli_query($link,"SELECT * FROM `affiliate` WHERE AffiliateID='$UserID'");
+        }
+        
+       
         $verify_schoolownerdetailcnt = mysqli_num_rows($verify_schoolownerdetails);
         
         
@@ -17,13 +27,29 @@
             
             
             
+                        if($utype == 'owner')
+                        {
+                              $resetpassword = mysqli_query($link,"UPDATE `userlogin` SET `UserPassword`='$passwordmd5', `VerificationStatus`='1' WHERE UserID='$UserID' AND UserType='owner'");
+                            
+                        }else
+                        {
+                              $resetpassword = mysqli_query($link,"UPDATE `userlogin` SET `UserPassword`='$passwordmd5', `VerificationStatus`='1' WHERE UserID='$UserID' AND UserType='affiliate'");
+                        }
                         
-                    $resetpassword = mysqli_query($link,"UPDATE `userlogin` SET `UserPassword`='$passwordmd5', `VerificationStatus`='1' WHERE UserID='$UserID' AND UserType='owner'");
+                  
                     
                     if($resetpassword)
                     {
                         
-                         $verify_schoolownerdetails = mysqli_query($link,"SELECT * FROM `agencyorschoolowner` WHERE AgencyOrSchoolOwnerID='$UserID'");
+                         if($utype == 'owner')
+                         {
+                          $verify_schoolownerdetails = mysqli_query($link,"SELECT * FROM `agencyorschoolowner` WHERE AgencyOrSchoolOwnerID='$UserID'");  
+                        }else
+                        {
+                          $verify_schoolownerdetails = mysqli_query($link,"SELECT * FROM `affiliate` WHERE AffiliateID='$UserID'");  
+                        }
+                        
+                         
                         $verify_schoolownerdetailcnt = mysqli_fetch_assoc($verify_schoolownerdetails);
                        
                          $tagcheck = $verify_schoolownerdetailcnt['TagState'];
@@ -33,16 +59,25 @@
                     
                          $tagname =  $verifytagrow['TagName'];
                         
-                            if($tagname == 'Signed up with Gmail')
-                            {
+                            // if($tagname == 'Signed up with Gmail')
+                            // {
                                 
-                                $insertsql = mysqli_query($link,"UPDATE `agencyorschoolowner` SET `TagState`='$tagid' WHERE `AgencyOrSchoolOwnerID`='$UserID'"); 
-                               $update_loginstatus = mysqli_query($link,"UPDATE `userlogin` SET `VerificationStatus`='1' WHERE UserID='$UserID' AND UserType='owner'");
+                               
                                 
-                            }else
-                            {
+                                   if($utype == 'owner')
+                                    {
+                                        $insertsql = mysqli_query($link,"UPDATE `agencyorschoolowner` SET `TagState`='$tagid' WHERE `AgencyOrSchoolOwnerID`='$UserID'");
+                                    }else
+                                    {
+                                      $insertsql = mysqli_query($link,"UPDATE `affiliate` SET `TagState`='$tagid' WHERE `AffiliateID`='$UserID'");  
+                                    }
+                                 
+                                // $update_loginstatus = mysqli_query($link,"UPDATE `userlogin` SET `VerificationStatus`='1' WHERE UserID='$UserID' AND UserType='owner'");
                                 
-                            }
+                            // }else
+                            // {
+                                
+                            // }
             
                          
             

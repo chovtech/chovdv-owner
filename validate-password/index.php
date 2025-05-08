@@ -2,7 +2,7 @@
 
 <?php
 	
-	@$langold = $_GET['lang'];
+	 @$langold = $_GET['lang'];
 
 	if($langold == '' || $langold == NULL || $langold == 'undefined' || $langold == 'null')
 	{
@@ -43,6 +43,10 @@
 	<!-css notify--->
 	
       <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+      
+      	<link href="../assets/plugins/numberformat/intlTelInput.min.css"
+		rel="stylesheet" />
+	<script src="../assets/plugins/numberformat/intlTelInput.min.js"></script>
  </head>
   <body style="overflow-x: hidden;">
         <!--======================== HTML CONTENT===================== -->	
@@ -73,7 +77,15 @@
                           <small class="help-block" id="password-text"></small>
                          <br>
                           
-                        <button type="button" class="btn btn-block btn-lg text-light" data-id="9" id="verifybtn" style="background-color:#007bff;width:100%;"><?php echo $website_validate_password_buttontitle; ?></button><p></p>
+                        <button type="button" class="btn btn-block btn-lg text-light"
+                            data-userid="<?php echo isset($_GET['oionxx']) ? htmlspecialchars($_GET['oionxx']) : ''; ?>"
+                            data-utype="<?php echo isset($_GET['utype']) ? htmlspecialchars($_GET['utype']) : ''; ?>"
+                            data-id="9" id="verifybtn"
+                            style="background-color:#007bff;width:100%;">
+                            <?php echo $website_validate_password_buttontitle; ?>
+                        </button>
+                        <p></p>
+
                         
                     </center>
                     <p align="left" style="font-size:13px;"><?php echo $website_validate_password_donthaveacc; ?><a href="../sign-in"> <?php echo $website_validate_password_signuplink; ?></a></p>
@@ -85,9 +97,10 @@
      <!--======================== HTML CONTENT===================== -->	
      <?php
          $uid = $_GET['oionxx'];
+         $u_type = $_GET['utype'];
       ?> 
        
-    
+
        <!-- EXTERNAL SCRIPTS============================================= -->
         <script src="../assets/plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap tether Core JavaScript -->
@@ -97,9 +110,12 @@
         <!-- web ui content -->
         <script src="../js/website_js/registration.js"></script>
          <script src="../assets/plugins/notify/wnoty.js"></script>
-       
+       	<!--web ui content -->
+      	
+	<!--web ui content -->
         <?php include("../controller/js/website/registrationcall.php"); ?>
+        <?php include("../js/current_page.php"); ?>
         <!-- registration callback -->
-        <script src="../../js/current_page.php"></script>
+       
   </body>
 </html>

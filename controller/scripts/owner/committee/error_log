@@ -1,0 +1,448 @@
+[26-Apr-2024 18:40:06 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[26-Apr-2024 18:40:06 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[26-Apr-2024 18:40:06 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[26-Apr-2024 18:40:06 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[26-Apr-2024 18:41:16 UTC] PHP Notice:  Undefined index: abba_institution_id in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 7
+[26-Apr-2024 18:41:16 UTC] PHP Notice:  Undefined index: number in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 8
+[26-Apr-2024 18:41:16 UTC] PHP Notice:  Undefined index: msg in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 9
+[26-Apr-2024 18:41:16 UTC] PHP Notice:  Undefined index: file in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 10
+[26-Apr-2024 18:41:16 UTC] PHP Notice:  Undefined index: apikey in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 11
+[26-Apr-2024 18:41:16 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[26-Apr-2024 18:41:16 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[26-Apr-2024 18:41:16 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[26-Apr-2024 18:41:16 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[26-Apr-2024 18:41:20 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/emma_view_conclusion.php on line 40
+[26-Apr-2024 18:41:20 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/emma_view_conclusion.php on line 41
+[01-May-2024 08:36:29 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[01-May-2024 08:36:29 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[01-May-2024 08:36:29 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[01-May-2024 08:36:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[01-May-2024 08:39:59 UTC] PHP Notice:  Undefined index: abba_institution_id in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 7
+[01-May-2024 08:39:59 UTC] PHP Notice:  Undefined index: number in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 8
+[01-May-2024 08:39:59 UTC] PHP Notice:  Undefined index: msg in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 9
+[01-May-2024 08:39:59 UTC] PHP Notice:  Undefined index: file in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 10
+[01-May-2024 08:39:59 UTC] PHP Notice:  Undefined index: apikey in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 11
+[01-May-2024 08:39:59 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[01-May-2024 08:39:59 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[01-May-2024 08:39:59 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[01-May-2024 08:39:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[02-May-2024 09:08:22 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 09:08:22 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 09:08:22 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 09:08:22 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[02-May-2024 09:09:43 UTC] PHP Notice:  Undefined index: abba_institution_id in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 7
+[02-May-2024 09:09:43 UTC] PHP Notice:  Undefined index: number in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 8
+[02-May-2024 09:09:43 UTC] PHP Notice:  Undefined index: msg in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 9
+[02-May-2024 09:09:43 UTC] PHP Notice:  Undefined index: file in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 10
+[02-May-2024 09:09:43 UTC] PHP Notice:  Undefined index: apikey in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 11
+[02-May-2024 09:09:43 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 09:09:43 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 09:09:43 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 09:09:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[02-May-2024 14:42:59 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:42:59 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:42:59 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:42:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[02-May-2024 14:45:39 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:45:39 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:45:39 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:45:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[02-May-2024 14:47:56 UTC] PHP Notice:  Undefined index: abba_institution_id in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 7
+[02-May-2024 14:47:56 UTC] PHP Notice:  Undefined index: number in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 8
+[02-May-2024 14:47:56 UTC] PHP Notice:  Undefined index: msg in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 9
+[02-May-2024 14:47:56 UTC] PHP Notice:  Undefined index: file in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 10
+[02-May-2024 14:47:56 UTC] PHP Notice:  Undefined index: apikey in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 11
+[02-May-2024 14:47:56 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:47:56 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:47:56 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:47:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[02-May-2024 14:48:56 UTC] PHP Notice:  Undefined index: abba_institution_id in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 7
+[02-May-2024 14:48:56 UTC] PHP Notice:  Undefined index: number in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 8
+[02-May-2024 14:48:56 UTC] PHP Notice:  Undefined index: msg in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 9
+[02-May-2024 14:48:56 UTC] PHP Notice:  Undefined index: file in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 10
+[02-May-2024 14:48:56 UTC] PHP Notice:  Undefined index: apikey in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 11
+[02-May-2024 14:48:56 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:48:56 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:48:56 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php72/root/usr/share/pear') in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-May-2024 14:48:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[02-May-2024 14:49:24 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/emma_view_conclusion.php on line 40
+[02-May-2024 14:49:24 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/chovmxyy/edumess-v2.edumess.com/controller/scripts/owner/committee/emma_view_conclusion.php on line 41
+[18-Sep-2024 16:09:40 UTC] PHP Warning:  Undefined array key "User" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 5
+[18-Sep-2024 16:09:40 UTC] PHP Warning:  Undefined array key "committeeid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 6
+[18-Sep-2024 16:09:40 UTC] PHP Warning:  Undefined array key "campusid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 7
+[18-Sep-2024 16:09:40 UTC] PHP Warning:  Undefined array key "userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 17
+[18-Sep-2024 16:09:40 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 18
+[18-Sep-2024 16:09:40 UTC] PHP Warning:  Undefined array key "longitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 20
+[18-Sep-2024 16:09:40 UTC] PHP Warning:  Undefined array key "latitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 21
+[19-Sep-2024 11:41:22 UTC] PHP Warning:  Undefined array key "get_user_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/get_assigned_users.php on line 5
+[19-Sep-2024 11:41:22 UTC] PHP Warning:  Undefined array key "get_user_type" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/get_assigned_users.php on line 6
+[19-Sep-2024 11:41:22 UTC] PHP Warning:  Undefined array key "get_commitee_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/get_assigned_users.php on line 7
+[19-Sep-2024 12:30:08 UTC] PHP Warning:  Undefined array key "usertypes" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 7
+[19-Sep-2024 12:30:08 UTC] PHP Warning:  Undefined array key "instutition" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 8
+[19-Sep-2024 12:30:08 UTC] PHP Warning:  Undefined array key "campus" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 9
+[19-Sep-2024 12:30:08 UTC] PHP Warning:  Undefined array key "titlename" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 10
+[19-Sep-2024 12:30:08 UTC] PHP Warning:  Undefined array key "description" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 11
+[19-Sep-2024 12:30:08 UTC] PHP Warning:  Undefined array key "committee" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 12
+[19-Sep-2024 13:30:08 Africa/Lagos] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php:81
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php(81): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 81
+[19-Sep-2024 14:16:28 UTC] PHP Warning:  Undefined array key "get_task_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 8
+[19-Sep-2024 14:16:28 UTC] PHP Warning:  Undefined array key "get_task_title" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 9
+[19-Sep-2024 14:16:28 UTC] PHP Warning:  Undefined array key "get_task_description" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 10
+[19-Sep-2024 14:16:28 UTC] PHP Warning:  Undefined array key "campus" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 11
+[19-Sep-2024 14:16:28 UTC] PHP Warning:  Undefined array key "userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 22
+[19-Sep-2024 14:16:28 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 23
+[19-Sep-2024 14:16:28 UTC] PHP Warning:  Undefined array key "longitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 25
+[19-Sep-2024 14:16:28 UTC] PHP Warning:  Undefined array key "latitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 26
+[30-Sep-2024 20:15:59 UTC] PHP Warning:  Undefined array key "commitee_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_task_conclusion.php on line 5
+[30-Sep-2024 20:15:59 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_task_conclusion.php on line 6
+[30-Sep-2024 20:15:59 UTC] PHP Warning:  Undefined array key "userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_task_conclusion.php on line 7
+[30-Sep-2024 22:39:36 UTC] PHP Warning:  Undefined array key "instutition" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_select_campus.php on line 7
+[01-Oct-2024 03:59:48 UTC] PHP Warning:  Undefined array key "taskid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 7
+[01-Oct-2024 03:59:48 UTC] PHP Warning:  Undefined array key "committee" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 8
+[01-Oct-2024 03:59:48 UTC] PHP Warning:  Undefined array key "campus" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 9
+[01-Oct-2024 03:59:48 UTC] PHP Warning:  Undefined array key "userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 19
+[01-Oct-2024 03:59:48 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 20
+[01-Oct-2024 03:59:48 UTC] PHP Warning:  Undefined array key "longitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 22
+[01-Oct-2024 03:59:48 UTC] PHP Warning:  Undefined array key "latitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 23
+[01-Oct-2024 10:03:43 UTC] PHP Warning:  Undefined array key "offence_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_approve_conclusion.php on line 5
+[01-Oct-2024 10:03:43 UTC] PHP Warning:  Undefined array key "commitee_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_approve_conclusion.php on line 6
+[01-Oct-2024 10:03:43 UTC] PHP Warning:  Undefined array key "task_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_approve_conclusion.php on line 7
+[01-Oct-2024 10:03:43 UTC] PHP Warning:  Undefined array key "status_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_approve_conclusion.php on line 10
+[01-Oct-2024 22:13:35 UTC] PHP Warning:  Undefined array key "ekene_p" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 7
+[01-Oct-2024 22:13:35 UTC] PHP Warning:  Undefined array key "positionid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 8
+[01-Oct-2024 22:13:35 UTC] PHP Warning:  Undefined array key "useride" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 9
+[01-Oct-2024 22:13:35 UTC] PHP Warning:  Undefined array key "committeeid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 10
+[01-Oct-2024 22:13:35 UTC] PHP Warning:  Undefined array key "campus" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 11
+[01-Oct-2024 22:13:35 UTC] PHP Warning:  Undefined array key "positionname" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 13
+[01-Oct-2024 22:13:35 UTC] PHP Warning:  Undefined array key "userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 24
+[01-Oct-2024 22:13:35 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 25
+[01-Oct-2024 22:13:35 UTC] PHP Warning:  Undefined array key "longitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 27
+[01-Oct-2024 22:13:35 UTC] PHP Warning:  Undefined array key "latitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 28
+[02-Oct-2024 00:12:45 UTC] PHP Warning:  Undefined array key "abba_institution_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 7
+[02-Oct-2024 00:12:45 UTC] PHP Warning:  Undefined array key "number" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 8
+[02-Oct-2024 00:12:45 UTC] PHP Warning:  Undefined array key "msg" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 9
+[02-Oct-2024 00:12:45 UTC] PHP Warning:  Undefined array key "file" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 10
+[02-Oct-2024 00:12:45 UTC] PHP Warning:  Undefined array key "apikey" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 11
+[02-Oct-2024 00:12:45 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): Failed to open stream: No such file or directory in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-Oct-2024 00:12:45 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php80/root/usr/share/pear') in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[02-Oct-2024 00:12:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[02-Oct-2024 15:01:22 UTC] PHP Warning:  Undefined array key "campus" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_modal_image_for_member_delete.php on line 6
+[02-Oct-2024 16:43:08 UTC] PHP Warning:  Undefined array key "campus" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee_fortask.php on line 7
+[02-Oct-2024 16:43:08 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee_fortask.php:12
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee_fortask.php(12): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee_fortask.php on line 12
+[03-Oct-2024 01:40:30 UTC] PHP Warning:  Undefined array key "userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/display_penalty.php on line 5
+[03-Oct-2024 01:40:30 UTC] PHP Warning:  Undefined array key "commitee_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/display_penalty.php on line 6
+[03-Oct-2024 01:40:30 UTC] PHP Warning:  Undefined array key "task_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/display_penalty.php on line 7
+[03-Oct-2024 01:40:30 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/display_penalty.php:11
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/scripts/owner/committee/display_penalty.php(11): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/display_penalty.php on line 11
+[03-Oct-2024 07:22:43 UTC] PHP Warning:  Undefined array key "committeeid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_view_committee_member.php on line 7
+[03-Oct-2024 07:22:43 UTC] PHP Warning:  Undefined array key "campusid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_view_committee_member.php on line 8
+[03-Oct-2024 13:58:21 UTC] PHP Warning:  Undefined array key "institution" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_get_campus.php on line 5
+[03-Oct-2024 14:54:38 UTC] PHP Warning:  Undefined array key "committeeid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_committee.php on line 4
+[03-Oct-2024 14:54:38 UTC] PHP Warning:  Undefined array key "campus" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_committee.php on line 5
+[03-Oct-2024 15:54:38 Africa/Lagos] PHP Warning:  Undefined array key "userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_committee.php on line 23
+[03-Oct-2024 15:54:38 Africa/Lagos] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_committee.php on line 24
+[03-Oct-2024 15:54:38 Africa/Lagos] PHP Warning:  Undefined array key "longitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_committee.php on line 26
+[03-Oct-2024 15:54:38 Africa/Lagos] PHP Warning:  Undefined array key "latitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_committee.php on line 27
+[03-Oct-2024 16:34:49 UTC] PHP Warning:  Undefined array key "campus" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee.php on line 7
+[03-Oct-2024 16:34:49 UTC] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee.php:11
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee.php(11): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee.php on line 11
+[04-Oct-2024 03:31:27 UTC] PHP Warning:  Undefined array key "get_task_id" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 8
+[04-Oct-2024 03:31:27 UTC] PHP Warning:  Undefined array key "get_task_title" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 9
+[04-Oct-2024 03:31:27 UTC] PHP Warning:  Undefined array key "get_task_description" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 10
+[04-Oct-2024 03:31:27 UTC] PHP Warning:  Undefined array key "campus" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 11
+[04-Oct-2024 03:31:27 UTC] PHP Warning:  Undefined array key "userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 22
+[04-Oct-2024 03:31:27 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 23
+[04-Oct-2024 03:31:27 UTC] PHP Warning:  Undefined array key "longitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 25
+[04-Oct-2024 03:31:27 UTC] PHP Warning:  Undefined array key "latitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 26
+[04-Oct-2024 04:36:12 UTC] PHP Warning:  Undefined array key "User" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 5
+[04-Oct-2024 04:36:12 UTC] PHP Warning:  Undefined array key "committeeid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 6
+[04-Oct-2024 04:36:12 UTC] PHP Warning:  Undefined array key "campusid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 7
+[04-Oct-2024 04:36:12 UTC] PHP Warning:  Undefined array key "userid" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 17
+[04-Oct-2024 04:36:12 UTC] PHP Warning:  Undefined array key "usertype" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 18
+[04-Oct-2024 04:36:12 UTC] PHP Warning:  Undefined array key "longitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 20
+[04-Oct-2024 04:36:12 UTC] PHP Warning:  Undefined array key "latitude" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 21
+[04-Oct-2024 08:15:26 UTC] PHP Warning:  Undefined array key "usertypes" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 7
+[04-Oct-2024 08:15:26 UTC] PHP Warning:  Undefined array key "instutition" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 8
+[04-Oct-2024 08:15:26 UTC] PHP Warning:  Undefined array key "campus" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 9
+[04-Oct-2024 08:15:26 UTC] PHP Warning:  Undefined array key "titlename" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 10
+[04-Oct-2024 08:15:26 UTC] PHP Warning:  Undefined array key "description" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 11
+[04-Oct-2024 08:15:26 UTC] PHP Warning:  Undefined array key "committee" in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 12
+[04-Oct-2024 09:15:26 Africa/Lagos] PHP Fatal error:  Uncaught TypeError: mysqli_fetch_assoc(): Argument #1 ($result) must be of type mysqli_result, bool given in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php:81
+Stack trace:
+#0 /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php(81): mysqli_fetch_assoc(false)
+#1 {main}
+  thrown in /home/chovmxyy/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 81
+[31-Oct-2024 13:13:49 UTC] PHP Notice:  Undefined index: get_task_id in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 8
+[31-Oct-2024 13:13:49 UTC] PHP Notice:  Undefined index: get_task_title in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 9
+[31-Oct-2024 13:13:49 UTC] PHP Notice:  Undefined index: get_task_description in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 10
+[31-Oct-2024 13:13:49 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 11
+[31-Oct-2024 13:13:49 UTC] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 22
+[31-Oct-2024 13:13:49 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 23
+[31-Oct-2024 13:13:49 UTC] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 25
+[31-Oct-2024 13:13:49 UTC] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 26
+[31-Oct-2024 13:13:49 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 28 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php(28): insert_activity_log(NULL, NULL, NULL, 'Deleted Task', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[15-Nov-2024 04:53:54 UTC] PHP Notice:  Undefined index: committeeid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 7
+[15-Nov-2024 04:53:54 UTC] PHP Notice:  Undefined index: instutition in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 8
+[15-Nov-2024 04:53:54 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 9
+[15-Nov-2024 04:53:54 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 10
+[15-Nov-2024 04:53:54 UTC] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 11
+[15-Nov-2024 04:53:54 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 15
+[15-Nov-2024 04:53:54 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 16
+[18-Nov-2024 05:11:30 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee.php on line 7
+[18-Nov-2024 05:11:30 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee.php on line 11
+[18-Nov-2024 05:11:30 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee.php on line 12
+[23-Nov-2024 21:55:53 UTC] PHP Notice:  Undefined index: taskid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 7
+[23-Nov-2024 21:55:53 UTC] PHP Notice:  Undefined index: committee in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 8
+[23-Nov-2024 21:55:53 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 9
+[23-Nov-2024 21:55:53 UTC] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 19
+[23-Nov-2024 21:55:53 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 20
+[23-Nov-2024 21:55:53 UTC] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 22
+[23-Nov-2024 21:55:53 UTC] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 23
+[23-Nov-2024 21:55:53 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 25 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php(25): insert_activity_log(NULL, NULL, NULL, 'Deleted Task', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[25-Nov-2024 23:40:24 UTC] PHP Notice:  Undefined index: get_task_id in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 8
+[25-Nov-2024 23:40:24 UTC] PHP Notice:  Undefined index: get_task_title in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 9
+[25-Nov-2024 23:40:24 UTC] PHP Notice:  Undefined index: get_task_description in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 10
+[25-Nov-2024 23:40:24 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 11
+[25-Nov-2024 23:40:24 UTC] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 22
+[25-Nov-2024 23:40:24 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 23
+[25-Nov-2024 23:40:24 UTC] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 25
+[25-Nov-2024 23:40:24 UTC] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 26
+[25-Nov-2024 23:40:24 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php on line 28 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_edit_task.php(28): insert_activity_log(NULL, NULL, NULL, 'Deleted Task', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[30-Nov-2024 11:32:27 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee_fortask.php on line 7
+[30-Nov-2024 11:32:27 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee_fortask.php on line 12
+[30-Nov-2024 11:32:27 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee_fortask.php on line 13
+[01-Dec-2024 06:05:34 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_get_status_for_button.php on line 13
+[01-Dec-2024 06:05:34 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_get_status_for_button.php on line 14
+[06-Dec-2024 17:02:56 UTC] PHP Notice:  Undefined index: ekene_p in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 7
+[06-Dec-2024 17:02:56 UTC] PHP Notice:  Undefined index: positionid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 8
+[06-Dec-2024 17:02:56 UTC] PHP Notice:  Undefined index: useride in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 9
+[06-Dec-2024 17:02:56 UTC] PHP Notice:  Undefined index: committeeid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 10
+[06-Dec-2024 17:02:56 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 11
+[06-Dec-2024 17:02:56 UTC] PHP Notice:  Undefined index: positionname in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 13
+[06-Dec-2024 17:02:56 UTC] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 24
+[06-Dec-2024 17:02:56 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 25
+[06-Dec-2024 17:02:56 UTC] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 27
+[06-Dec-2024 17:02:56 UTC] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 28
+[06-Dec-2024 17:02:56 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 30 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php(30): insert_activity_log(NULL, NULL, NULL, 'Edited Member P...', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[13-Dec-2024 05:30:41 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_upload_penalty.php on line 14
+[13-Dec-2024 05:30:41 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_upload_penalty.php on line 15
+[15-Dec-2024 05:21:58 UTC] PHP Notice:  Undefined index: committeeid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_view_committee_member.php on line 7
+[15-Dec-2024 05:21:58 UTC] PHP Notice:  Undefined index: campusid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_view_committee_member.php on line 8
+[15-Dec-2024 09:10:17 UTC] PHP Notice:  Undefined index: committeeid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 7
+[15-Dec-2024 09:10:17 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 8
+[15-Dec-2024 09:10:17 UTC] PHP Notice:  Undefined index: committeename in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 10
+[15-Dec-2024 09:10:17 UTC] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 20
+[15-Dec-2024 09:10:17 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 21
+[15-Dec-2024 09:10:17 UTC] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 23
+[15-Dec-2024 09:10:17 UTC] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 24
+[15-Dec-2024 09:10:17 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 26 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php(26): insert_activity_log(NULL, NULL, NULL, 'Edited Commitee', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[25-Dec-2024 00:06:38 UTC] PHP Notice:  Undefined index: abba_institution_id in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 7
+[25-Dec-2024 00:06:38 UTC] PHP Notice:  Undefined index: number in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 8
+[25-Dec-2024 00:06:38 UTC] PHP Notice:  Undefined index: msg in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 9
+[25-Dec-2024 00:06:38 UTC] PHP Notice:  Undefined index: file in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 10
+[25-Dec-2024 00:06:38 UTC] PHP Notice:  Undefined index: apikey in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 11
+[25-Dec-2024 00:06:38 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[25-Dec-2024 00:06:38 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[25-Dec-2024 00:06:38 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[25-Dec-2024 00:06:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[01-Jan-2025 08:49:06 UTC] PHP Notice:  Undefined index: usertypes in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 7
+[01-Jan-2025 08:49:06 UTC] PHP Notice:  Undefined index: instutition in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 8
+[01-Jan-2025 08:49:06 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 9
+[01-Jan-2025 08:49:06 UTC] PHP Notice:  Undefined index: titlename in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 10
+[01-Jan-2025 08:49:06 UTC] PHP Notice:  Undefined index: description in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 11
+[01-Jan-2025 08:49:06 UTC] PHP Notice:  Undefined index: committee in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 12
+[01-Jan-2025 09:49:06 Africa/Lagos] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 81
+[01-Jan-2025 09:49:06 Africa/Lagos] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 82
+[01-Jan-2025 09:49:06 Africa/Lagos] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 495
+[01-Jan-2025 09:49:06 Africa/Lagos] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 496
+[01-Jan-2025 09:49:06 Africa/Lagos] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 498
+[01-Jan-2025 09:49:06 Africa/Lagos] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 499
+[01-Jan-2025 09:49:06 Africa/Lagos] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php on line 501 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_task.php(501): insert_activity_log(NULL, NULL, NULL, 'Create Task', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[04-Jan-2025 01:38:33 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php on line 23 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_member.php(23): insert_activity_log(NULL, NULL, NULL, 'Deleted Member', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[04-Jan-2025 03:18:42 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_stack.php on line 7
+[04-Jan-2025 03:18:42 UTC] PHP Notice:  Undefined index: instutition in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_stack.php on line 8
+[04-Jan-2025 03:18:42 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_stack.php on line 9
+[04-Jan-2025 03:19:04 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_create_committee.php on line 7
+[04-Jan-2025 03:19:04 UTC] PHP Notice:  Undefined index: committeename in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_create_committee.php on line 8
+[04-Jan-2025 04:19:04 Africa/Lagos] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_create_committee.php on line 36
+[04-Jan-2025 04:19:04 Africa/Lagos] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_create_committee.php on line 37
+[04-Jan-2025 04:19:04 Africa/Lagos] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_create_committee.php on line 39
+[04-Jan-2025 04:19:04 Africa/Lagos] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_create_committee.php on line 40
+[04-Jan-2025 04:19:04 Africa/Lagos] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_create_committee.php on line 42 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_create_committee.php(42): insert_activity_log(NULL, NULL, NULL, 'Created Commite...', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[06-Jan-2025 10:07:05 UTC] PHP Notice:  Undefined index: usertypes in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 7
+[06-Jan-2025 10:07:05 UTC] PHP Notice:  Undefined index: ekenecommitee in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 8
+[06-Jan-2025 10:07:05 UTC] PHP Notice:  Undefined index: ekeneuserid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 9
+[06-Jan-2025 10:07:05 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 10
+[06-Jan-2025 10:07:05 UTC] PHP Notice:  Undefined index: instutition in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 11
+[06-Jan-2025 11:07:05 Africa/Lagos] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 77
+[06-Jan-2025 11:07:05 Africa/Lagos] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 78
+[06-Jan-2025 11:07:05 Africa/Lagos] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 441
+[06-Jan-2025 11:07:05 Africa/Lagos] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 442
+[06-Jan-2025 11:07:05 Africa/Lagos] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 444
+[06-Jan-2025 11:07:05 Africa/Lagos] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 445
+[06-Jan-2025 11:07:05 Africa/Lagos] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php on line 447 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_insert_member.php(447): insert_activity_log(NULL, NULL, NULL, 'Deleted Member', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[21-Jan-2025 19:10:41 Africa/Lagos] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_committee.php on line 29 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_committee.php(29): insert_activity_log(NULL, NULL, NULL, 'Deleted Commite...', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[22-Jan-2025 09:09:08 UTC] PHP Notice:  Undefined index: instutition in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_campus.php on line 7
+[28-Jan-2025 10:45:16 UTC] PHP Notice:  Undefined index: committeeid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 7
+[28-Jan-2025 10:45:16 UTC] PHP Notice:  Undefined index: instutition in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 8
+[28-Jan-2025 10:45:16 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 9
+[28-Jan-2025 10:45:16 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 10
+[28-Jan-2025 10:45:16 UTC] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 11
+[28-Jan-2025 10:45:16 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 15
+[28-Jan-2025 10:45:16 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_task_one.php on line 16
+[13-Feb-2025 05:55:57 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_penalty.php on line 11
+[13-Feb-2025 05:55:57 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_penalty.php on line 12
+[21-Feb-2025 15:40:55 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_upload_penalty.php on line 14
+[21-Feb-2025 15:40:55 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/emma_upload_penalty.php on line 15
+[03-Mar-2025 06:26:21 UTC] PHP Notice:  Undefined index: taskid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 7
+[03-Mar-2025 06:26:21 UTC] PHP Notice:  Undefined index: committee in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 8
+[03-Mar-2025 06:26:21 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 9
+[03-Mar-2025 06:26:21 UTC] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 19
+[03-Mar-2025 06:26:21 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 20
+[03-Mar-2025 06:26:21 UTC] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 22
+[03-Mar-2025 06:26:21 UTC] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 23
+[03-Mar-2025 06:26:21 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php on line 25 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_task.php(25): insert_activity_log(NULL, NULL, NULL, 'Deleted Task', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[17-Mar-2025 05:56:50 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_penalty.php on line 11
+[17-Mar-2025 05:56:50 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/display_penalty.php on line 12
+[18-Mar-2025 02:50:56 UTC] PHP Notice:  Undefined index: ekene_p in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 7
+[18-Mar-2025 02:50:56 UTC] PHP Notice:  Undefined index: positionid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 8
+[18-Mar-2025 02:50:56 UTC] PHP Notice:  Undefined index: useride in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 9
+[18-Mar-2025 02:50:56 UTC] PHP Notice:  Undefined index: committeeid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 10
+[18-Mar-2025 02:50:56 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 11
+[18-Mar-2025 02:50:56 UTC] PHP Notice:  Undefined index: positionname in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 13
+[18-Mar-2025 02:50:56 UTC] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 24
+[18-Mar-2025 02:50:56 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 25
+[18-Mar-2025 02:50:56 UTC] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 27
+[18-Mar-2025 02:50:56 UTC] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 28
+[18-Mar-2025 02:50:56 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php on line 30 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_postiontwo.php(30): insert_activity_log(NULL, NULL, NULL, 'Edited Member P...', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[25-Mar-2025 18:40:42 Africa/Lagos] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_committee.php on line 29 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_delete_committee.php(29): insert_activity_log(NULL, NULL, NULL, 'Deleted Commite...', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[26-Mar-2025 23:07:01 UTC] PHP Notice:  Undefined index: committeeid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_view_committee_member.php on line 7
+[26-Mar-2025 23:07:01 UTC] PHP Notice:  Undefined index: campusid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_view_committee_member.php on line 8
+[26-Mar-2025 23:37:00 UTC] PHP Notice:  Undefined index: committeeid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 7
+[26-Mar-2025 23:37:00 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 8
+[26-Mar-2025 23:37:00 UTC] PHP Notice:  Undefined index: committeename in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 10
+[26-Mar-2025 23:37:00 UTC] PHP Notice:  Undefined index: userid in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 20
+[26-Mar-2025 23:37:00 UTC] PHP Notice:  Undefined index: usertype in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 21
+[26-Mar-2025 23:37:00 UTC] PHP Notice:  Undefined index: longitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 23
+[26-Mar-2025 23:37:00 UTC] PHP Notice:  Undefined index: latitude in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 24
+[26-Mar-2025 23:37:00 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function insert_activity_log(), 7 passed in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php on line 26 and exactly 8 expected in /home/triomind/public_html/edumess.com/controller/config/config.php:68
+Stack trace:
+#0 /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_edit_committee.php(26): insert_activity_log(NULL, NULL, NULL, 'Edited Commitee', NULL, NULL, Object(mysqli))
+#1 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/config/config.php on line 68
+[31-Mar-2025 23:43:21 UTC] PHP Notice:  Undefined index: abba_institution_id in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 7
+[31-Mar-2025 23:43:21 UTC] PHP Notice:  Undefined index: number in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 8
+[31-Mar-2025 23:43:21 UTC] PHP Notice:  Undefined index: msg in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 9
+[31-Mar-2025 23:43:21 UTC] PHP Notice:  Undefined index: file in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 10
+[31-Mar-2025 23:43:21 UTC] PHP Notice:  Undefined index: apikey in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 11
+[31-Mar-2025 23:43:21 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[31-Mar-2025 23:43:21 UTC] PHP Warning:  include(../../messaging/whatsapp/send_whatapp_msg.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[31-Mar-2025 23:43:21 UTC] PHP Warning:  include(): Failed opening '../../messaging/whatsapp/send_whatapp_msg.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 23
+[31-Mar-2025 23:43:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function send_whatsapp_msg() in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php:24
+Stack trace:
+#0 {main}
+  thrown in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_send_whatsmessage.php on line 24
+[03-Apr-2025 09:41:20 UTC] PHP Notice:  Undefined index: campus in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee.php on line 7
+[03-Apr-2025 09:41:20 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee.php on line 11
+[03-Apr-2025 09:41:20 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, bool given in /home/triomind/public_html/edumess.com/controller/scripts/owner/committee/ekene_select_all_committee.php on line 12

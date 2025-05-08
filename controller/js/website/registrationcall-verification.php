@@ -1,8 +1,12 @@
 <script>
+
+
+
                 // sign up verification
                 $('body').on('click','#verifymailbtn',function(){
                     $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>verifying');
                        var UserID = '<?php  echo $uid; ?>';
+                       var u_type = '<?php  echo  $u_type; ?>';
                        var valueone = $('#idone').val();
                        var valuetwo = $('#idtwo').val();
                        var valuethree = $('#idthree').val();
@@ -11,7 +15,7 @@
                        var totaltoken = valueone+valuetwo+valuethree+valuefour+valuefive;
                         var tagid = $(this).data('id');
                         
-                        // alert(UserID);
+                       
                         
                         var lang = 	localStorage.getItem("lang");
         				if(lang == '' ||lang === undefined || lang === null)
@@ -33,7 +37,7 @@
                                         });
                        }else
                        {
-                           ;
+                          
     
                       
                          $.ajax({
@@ -43,9 +47,11 @@
                                 totaltoken: totaltoken,
                                 UserID: UserID,
                                 tagid: tagid,
-                                defaultlang: defaultlang
+                                defaultlang: defaultlang,
+                                u_type:u_type
                               },
                               success: function(data) {
+                                //   alert(data);
                                     
                                 $('#verifymailbtn').html('Proceed');
                                          
@@ -58,7 +64,17 @@
                                   window.location.href = "../app/school/";
                                     
                                   
-                                } else if(userrole.trim() === 'tokenexpired')
+                                } else if(userrole.trim() === 'affiliate')
+                                {
+                                    
+                                    $('#verifymailbtn').html("Login");
+                                  $('#verifymailbtn').prop("disabled", false);
+                                  $('#verifymailbtn').html("<i class='fas fa-circle-notch fa-spin'></i>Redirecting...");
+                                  window.location.href = "../affiliate/home/";
+                                    
+                                }
+                                
+                                else if(userrole.trim() === 'tokenexpired')
                                 {
                                                          $.wnoty({
                                                               type: 'warning',
@@ -94,6 +110,9 @@
                    $('body').on('click','#resendbtn',function(){
                       $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>resending');
                        var UserID = '<?php  echo $uid; ?>';
+                       var u_type = '<?php  echo  $u_type; ?>';
+                       
+                       
                       var lang = 	localStorage.getItem("lang");
                       
         				if(lang == '' ||lang === undefined || lang === null)
@@ -107,7 +126,7 @@
                           $.ajax({
                               type : 'post',
                               url : '../controller/scripts/edumesweb/resendcode.php', //Here you will fetch records 
-                              data : {UserID:UserID,defaultlang:defaultlang}, //Pass $id
+                              data : {UserID:UserID,defaultlang:defaultlang,u_type:u_type}, //Pass $id
                               success : function(output)
                               {
                                  
@@ -132,7 +151,7 @@
                                                       $('#resendbtn').fadeOut('slow');
                                                        $(".pasteitems").prop("disabled", false);
                                                          $('#verifymailbtn').prop("disabled", false);
-                                                    var redirectUrl2 = "../signup-verification/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&marana=" + prosfeedback + "&kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6=UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&tak=&oionxx=" + UserID + "&lang=" + defaultlang;
+                                                    var redirectUrl2 = "../signup-verification/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&marana=" + prosfeedback + "&kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6=UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&tak=&oionxx=" + UserID + "&lang=" + defaultlang+"&utype=" + u_type;
 
                                                     window.location.href = redirectUrl2;
                                                   

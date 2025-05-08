@@ -1,0 +1,2 @@
+[28-Apr-2025 20:49:31 UTC] PHP Warning:  Undefined array key "bank_name" in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/profiles/update_prosbank_info.php on line 8
+[28-Apr-2025 20:49:31 UTC] PHP Deprecated:  mysqli_real_escape_string(): Passing null to parameter #2 ($string) of type string is deprecated in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/profiles/update_prosbank_info.php on line 8

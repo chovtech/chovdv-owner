@@ -1,0 +1,53 @@
+[29-Apr-2025 14:20:47 UTC] PHP Warning:  Undefined array key "status" in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 56
+[29-Apr-2025 14:20:47 UTC] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 77
+[29-Apr-2025 14:20:47 UTC] PHP Warning:  Undefined array key "status" in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 56
+[29-Apr-2025 14:20:47 UTC] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 77
+[29-Apr-2025 14:20:47 UTC] PHP Warning:  Undefined array key "status" in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 56
+[29-Apr-2025 14:20:47 UTC] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 77
+[29-Apr-2025 14:20:47 UTC] PHP Warning:  Undefined array key "status" in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 56
+[29-Apr-2025 14:20:47 UTC] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 77
+[29-Apr-2025 14:20:47 UTC] PHP Warning:  Undefined array key "status" in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 56
+[29-Apr-2025 14:20:47 UTC] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 77
+[29-Apr-2025 14:20:47 UTC] PHP Warning:  Undefined array key "status" in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 56
+[29-Apr-2025 14:20:47 UTC] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 77
+[29-Apr-2025 14:20:47 UTC] PHP Warning:  Undefined array key "status" in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 56
+[29-Apr-2025 14:20:47 UTC] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 77
+[29-Apr-2025 14:20:47 UTC] PHP Warning:  Undefined array key "status" in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 56
+[29-Apr-2025 14:20:47 UTC] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 77
+[29-Apr-2025 14:20:47 UTC] PHP Warning:  Undefined array key "status" in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 56
+[29-Apr-2025 14:20:47 UTC] PHP Deprecated:  strtoupper(): Passing null to parameter #1 ($string) of type string is deprecated in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 77
+[29-Apr-2025 14:20:47 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'status' in 'WHERE' in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php:179
+Stack trace:
+#0 /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php(179): mysqli_query(Object(mysqli), 'SELECT SUM(amou...')
+#1 {main}
+  thrown in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 179
+[29-Apr-2025 14:55:32 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`earning_level` = '1' AND `Session` = '2024/2025' AND `Term` = '2' ORDER BY `...' at line 1 in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php:41
+Stack trace:
+#0 /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php(41): mysqli_query(Object(mysqli), 'SELECT * FROM `...')
+#1 {main}
+  thrown in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 41
+[29-Apr-2025 14:55:41 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`earning_level` = '2' AND `Session` = '2024/2025' AND `Term` = '2' ORDER BY `...' at line 1 in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php:41
+Stack trace:
+#0 /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php(41): mysqli_query(Object(mysqli), 'SELECT * FROM `...')
+#1 {main}
+  thrown in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 41
+[29-Apr-2025 14:56:56 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`earning_level` = '1' AND `Session` = '2024/2025' AND `Term` = '2' ORDER BY `...' at line 1 in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php:41
+Stack trace:
+#0 /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php(41): mysqli_query(Object(mysqli), 'SELECT * FROM `...')
+#1 {main}
+  thrown in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 41
+[29-Apr-2025 14:59:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`earning_level` = '1' AND `Session` = '2024/2025' AND `Term` = '2' ORDER BY `...' at line 1 in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php:41
+Stack trace:
+#0 /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php(41): mysqli_query(Object(mysqli), 'SELECT * FROM `...')
+#1 {main}
+  thrown in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 41
+[29-Apr-2025 15:00:01 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`earning_level` = '1' AND `Session` = '2024/2025' AND `Term` = '2'' at line 1 in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php:38
+Stack trace:
+#0 /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php(38): mysqli_query(Object(mysqli), 'SELECT * FROM `...')
+#1 {main}
+  thrown in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 38
+[29-Apr-2025 15:00:42 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`earning_level` = '2' AND `Session` = '2024/2025' AND `Term` = '2' ORDER BY `...' at line 1 in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php:41
+Stack trace:
+#0 /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php(41): mysqli_query(Object(mysqli), 'SELECT * FROM `...')
+#1 {main}
+  thrown in /home/triomind/public_html/dev.edumess.com/controller/scripts/affiliate/transactions/transaction.php on line 41

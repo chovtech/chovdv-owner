@@ -18,21 +18,22 @@
     $narration = 'Affiliate Withdrawal';
 
     date_default_timezone_set("Africa/Lagos");
-    $date = str_replace('-','',date("Y-m-d"));
-    $time = str_replace(':','',date("h:i:s"));
+    $date = date("Y-m-d");
+    $time = date("h:i:s");
 
     $date_time = $date.' '.$time;
 
     function generateRefID() {
         $prefix = "DEBIT-";
-        $date = date("Ymd"); // Example: 20250425
+        $date = date("YmdHis"); // Adds time: YearMonthDayHourMinuteSecond (e.g., 20250425143255)
         $random = strtoupper(substr(md5(uniqid(rand(), true)), 0, 4));
         return $prefix . $date . '-' . $random;
+
     }
 
     $ref_id = generateRefID();
 
-    $select_affiliate = mysqli_query($link, "SELECT * FROM `affiliate` WHERE AffiliateID='$user_id' AND verification_code ='$ver_code_entered'");
+    $select_affiliate = mysqli_query($link, "SELECT * FROM `affiliate` WHERE AffiliateID='$user_id' AND TokenID ='$ver_code_entered'");
     $select_affiliate_rowsel = mysqli_fetch_assoc($select_affiliate);
     $select_affiliate_row = mysqli_num_rows($select_affiliate);
 
@@ -71,7 +72,7 @@
             $response = curl_exec($ch);
             curl_close($ch);
 
-            //var_dump($response);
+            var_dump($response);
             $object = json_decode($response, true);
             $responsemain = $object['requestSuccessful'];
             $responseMessage = $object['responseMessage'];
@@ -79,7 +80,7 @@
             if($responseMessage == 'success')
             {
 
-                $select_transactions = mysqli_query($link, "INSERT INTO `affiliate_earning`(`id`, `affiliate_id`, `sub_affiliate_id`, `earning_level`, `amount`, `Session`, `Term`, `status`, `ref_number`, `date`)
+                $select_transactions = mysqli_query($link, "INSERT INTO `affiliate_earning`(`id`, `affiliate_id`, `sub_affiliate_id`, `earning_level`, `amount`, `Session`, `Term`, `transaction_type`, `ref_number`, `date`)
                 VALUES (NULL,'$user_id','0','0','$withdraw_amt','$session','$term','debit','$ref_id','$date_time')");
 
                 $abba_Wallet_Balance = $WalletBalance - $withdraw_amt;

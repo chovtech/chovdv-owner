@@ -65,6 +65,8 @@ error_reporting(E_ALL);
 	
 	if($userPicturechecker === '' || $userPicturechecker === '0')
 	{
+	   
+	   
 	    $userPicture = '../../assets/images/adminImg/default-img.png';
 	}
 	else

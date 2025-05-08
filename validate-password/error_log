@@ -73,3 +73,78 @@
 [30-Sep-2024 04:18:54 UTC] PHP Warning:  Undefined variable $consultant_id in /home/chovmxyy/edumess.com/controller/js/website/registrationcall.php on line 199
 [03-Oct-2024 17:04:49 UTC] PHP Warning:  Undefined variable $consultant_id in /home/chovmxyy/edumess.com/controller/js/website/registrationcall.php on line 74
 [03-Oct-2024 17:04:49 UTC] PHP Warning:  Undefined variable $consultant_id in /home/chovmxyy/edumess.com/controller/js/website/registrationcall.php on line 199
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  include(../lang/nullutype=affiliate.php): Failed to open stream: No such file or directory in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 15
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  include(../lang/nullutype=affiliate.php): Failed to open stream: No such file or directory in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 15
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  include(): Failed opening '../lang/nullutype=affiliate.php' for inclusion (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 15
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  Undefined variable $website_validate_passwordpage_title in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 28
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  Undefined variable $website_validate_password_title in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 58
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  Undefined variable $website_validate_password_passwordtitle in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 64
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  Undefined variable $website_validate_password_confirmpasswordtitle in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 70
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  Undefined variable $website_validate_password_buttontitle in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 76
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  Undefined variable $website_validate_password_donthaveacc in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 79
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  Undefined variable $website_validate_password_signuplink in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 79
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  Undefined variable $consultant_id in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  Undefined variable $consultant_id in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[29-Apr-2025 10:13:03 UTC] PHP Warning:  Undefined variable $u_type in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 469
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  include(../lang/nullutype=affiliate.php): Failed to open stream: No such file or directory in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 15
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  include(../lang/nullutype=affiliate.php): Failed to open stream: No such file or directory in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 15
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  include(): Failed opening '../lang/nullutype=affiliate.php' for inclusion (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 15
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  Undefined variable $website_validate_passwordpage_title in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 28
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  Undefined variable $website_validate_password_title in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 58
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  Undefined variable $website_validate_password_passwordtitle in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 64
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  Undefined variable $website_validate_password_confirmpasswordtitle in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 70
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  Undefined variable $website_validate_password_buttontitle in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 76
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  Undefined variable $website_validate_password_donthaveacc in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 79
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  Undefined variable $website_validate_password_signuplink in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 79
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  Undefined variable $consultant_id in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  Undefined variable $consultant_id in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[29-Apr-2025 10:13:20 UTC] PHP Warning:  Undefined variable $u_type in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 469
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  include(../lang/nullutype=affiliate.php): Failed to open stream: No such file or directory in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 15
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  include(../lang/nullutype=affiliate.php): Failed to open stream: No such file or directory in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 15
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  include(): Failed opening '../lang/nullutype=affiliate.php' for inclusion (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 15
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  Undefined variable $website_validate_passwordpage_title in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 28
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  Undefined variable $website_validate_password_title in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 58
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  Undefined variable $website_validate_password_passwordtitle in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 64
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  Undefined variable $website_validate_password_confirmpasswordtitle in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 70
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  Undefined variable $website_validate_password_buttontitle in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 76
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  Undefined variable $website_validate_password_donthaveacc in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 79
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  Undefined variable $website_validate_password_signuplink in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 79
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  Undefined array key "utype" in /home/triomind/public_html/dev.edumess.com/validate-password/index.php on line 88
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  Undefined variable $consultant_id in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[29-Apr-2025 10:18:15 UTC] PHP Warning:  Undefined variable $consultant_id in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[29-Apr-2025 10:20:32 UTC] PHP Warning:  Undefined variable $consultant_id in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[29-Apr-2025 10:20:32 UTC] PHP Warning:  Undefined variable $consultant_id in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[29-Apr-2025 10:20:59 UTC] PHP Warning:  Undefined variable $consultant_id in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[29-Apr-2025 10:20:59 UTC] PHP Warning:  Undefined variable $consultant_id in /home/triomind/public_html/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 18:38:37 UTC] PHP Warning:  Undefined variable $uid in /home/edumplvx/dev.edumess.com/validate-password/index.php on line 76
+[06-May-2025 18:38:37 UTC] PHP Warning:  Undefined variable $u_type in /home/edumplvx/dev.edumess.com/validate-password/index.php on line 77
+[06-May-2025 18:38:37 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 18:38:37 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 18:39:40 UTC] PHP Warning:  Undefined variable $uid in /home/edumplvx/dev.edumess.com/validate-password/index.php on line 76
+[06-May-2025 18:39:40 UTC] PHP Warning:  Undefined variable $u_type in /home/edumplvx/dev.edumess.com/validate-password/index.php on line 77
+[06-May-2025 18:39:40 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 18:39:40 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 18:47:10 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 18:47:10 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 18:48:58 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 18:48:58 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 18:50:44 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 18:50:44 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 18:54:48 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 18:54:48 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 18:58:20 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 18:58:20 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 18:58:28 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 18:58:28 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 18:59:03 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 18:59:03 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 19:00:34 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 19:00:34 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 19:01:00 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 19:01:00 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 23:19:08 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 79
+[06-May-2025 23:19:08 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 233
+[06-May-2025 23:25:23 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 237
+[06-May-2025 23:29:12 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 237
+[06-May-2025 23:29:23 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 237
+[06-May-2025 23:30:37 UTC] PHP Warning:  Undefined variable $consultant_id in /home/edumplvx/dev.edumess.com/controller/js/website/registrationcall.php on line 237

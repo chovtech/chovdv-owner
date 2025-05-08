@@ -17,6 +17,9 @@
         require 'PHPMailer-master/SMTP.php';
       
          $userid  = $_POST['UserID'];
+         $u_type  = $_POST['u_type'];
+         
+         
          
          $selectserveretails = mysqli_query($link,"SELECT * FROM `serverpassword`");
           $selectserveretailscnt = mysqli_fetch_assoc($selectserveretails);
@@ -30,7 +33,16 @@
         $expire_stamp = date('Y-m-d H:i:sa', strtotime("+5 min"));
         
         
-          $verify_schoolownerdetails = mysqli_query($link,"SELECT * FROM `agencyorschoolowner` WHERE AgencyOrSchoolOwnerID='$userid'");
+        if($u_type == 'owner')
+        {
+             $verify_schoolownerdetails = mysqli_query($link,"SELECT * FROM `agencyorschoolowner` WHERE AgencyOrSchoolOwnerID='$userid'");
+        }else
+        {
+            $verify_schoolownerdetails = mysqli_query($link,"SELECT * FROM `affiliate` WHERE AffiliateID='$userid'"); 
+        }
+        
+        
+         
          $verify_schoolownerdetailcnt = mysqli_fetch_assoc($verify_schoolownerdetails);
          $verify_schoolownerdetailcntrows = mysqli_num_rows($verify_schoolownerdetails);
          
@@ -39,16 +51,26 @@
          if($verify_schoolownerdetailcntrows > 0)
          {
              
-         
-        
-                $FName =  $verify_schoolownerdetailcnt['AgencyOrSchoolOwnerName'];
-               $email =$verify_schoolownerdetailcnt['AgencyOrSchoolOwnerEmail'];
                  $FiveDigitRandomNumber = rand(10000,99999);
                 
-                $updtaetoken = mysqli_query($link,"UPDATE `agencyorschoolowner` SET TokenID='$FiveDigitRandomNumber',TokenDuration='$expire_stamp'  WHERE AgencyOrSchoolOwnerID='$userid'");  
+                 if($u_type == 'owner')
+                {
+                    
+                      $FName =  $verify_schoolownerdetailcnt['AgencyOrSchoolOwnerName'];
+                      $email =$verify_schoolownerdetailcnt['AgencyOrSchoolOwnerEmail'];
+                      $updtaetoken = mysqli_query($link,"UPDATE `agencyorschoolowner` SET TokenID='$FiveDigitRandomNumber',TokenDuration='$expire_stamp'  WHERE AgencyOrSchoolOwnerID='$userid'");  
+                }else
+                {
+                     
+                    
+                    
+                    $FName =  $verify_schoolownerdetailcnt['AffiliateFName'];
+                      $email =$verify_schoolownerdetailcnt['Email'];
+                      $updtaetoken = mysqli_query($link,"UPDATE `affiliate` SET TokenID='$FiveDigitRandomNumber',TokenDuration='$expire_stamp'  WHERE AffiliateID='$userid'"); 
+                }
+        
                 
-                
-                 $tokenurl = "https://edumess-v2.edumess.com/signup-verification/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=$userid&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&marana=$email&kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6=UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&tak=$FiveDigitRandomNumber";
+                 $tokenurl = "{$defaultUrl}signup-verification/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=$userid&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&marana=$email&kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6=UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&tak=$FiveDigitRandomNumber&utype={$u_type}";
                  echo $email;
                 
           $htmlcontent.='
@@ -406,8 +428,8 @@
                  </html>';
          
          
-                     $email_to =  'hello@edumess.com';
-                    $delivery = 'hello@edumess.com';
+                     $email_to =  'verify@edumess.com';
+                    $delivery = 'verify@edumess.com';
                      $altmess = 'alt';
                     // = 'emaildelivery@schoolportalgenerator.com';
                     $nameto = '';
@@ -424,11 +446,12 @@
                         $mail->isSMTP();                                            //Send using SMTP
                         $mail->Host       = 'edumess.com';                     //Set the SMTP server to send through
                         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                        $mail->Username   = 'noreply@edumess.com';                     //SMTP username
-                        $mail->Password   = 'Iw.0@S}&[zeU';                             //SMTP password
+                        $mail->Username = 'verify@edumess.com';
+                        $mail->Password = 'Year@2025$$';                         //SMTP password
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
                         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
                 
+                 
                         //Recipients
                         $mail->setFrom($delivery,$owner);
                         $mail->addAddress($email, $nameto);     //Add a recipient

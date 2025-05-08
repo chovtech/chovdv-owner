@@ -197,8 +197,7 @@
     });
     // load lga on state change
 
-<<<<<<< HEAD
-=======
+
 
 
      
@@ -692,20 +691,4 @@
     //pros submit affilite contact info here
 
 
-
-
-
-
-   
-
-
-  
-  
-  
-  
-     
-
-
-
->>>>>>> a4fd272ea131f98b38f85a842d73a7cfe8421b70
 </script>

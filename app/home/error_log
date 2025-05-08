@@ -13828,3 +13828,23 @@ Stack trace:
 [03-Apr-2025 10:08:28 UTC] PHP Warning:  include(../../lang/2.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/app/home/index.php on line 7
 [03-Apr-2025 10:08:28 UTC] PHP Warning:  include(../../lang/2.php): failed to open stream: No such file or directory in /home/triomind/public_html/edumess.com/app/home/index.php on line 7
 [03-Apr-2025 10:08:28 UTC] PHP Warning:  include(): Failed opening '../../lang/2.php' for inclusion (include_path='.:/opt/cpanel/ea-php73/root/usr/share/pear') in /home/triomind/public_html/edumess.com/app/home/index.php on line 7
+[07-May-2025 08:57:18 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/controller/session/session-checker-owner.php on line 56
+[07-May-2025 08:57:18 UTC] PHP Warning:  include(../../lang/English.php): Failed to open stream: No such file or directory in /home/edumplvx/dev.edumess.com/app/home/index.php on line 9
+[07-May-2025 08:57:18 UTC] PHP Warning:  include(): Failed opening '../../lang/English.php' for inclusion (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/edumplvx/dev.edumess.com/app/home/index.php on line 9
+[07-May-2025 08:57:18 UTC] PHP Warning:  Undefined variable $portalindex_title_owner in /home/edumplvx/dev.edumess.com/app/home/index.php on line 27
+[07-May-2025 08:57:18 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1031
+[07-May-2025 08:57:18 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1032
+[07-May-2025 08:57:18 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1034
+[07-May-2025 08:57:18 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1035
+[07-May-2025 08:57:18 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1106
+[07-May-2025 08:57:19 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1139
+[07-May-2025 08:57:19 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1140
+[07-May-2025 08:57:19 UTC] PHP Warning:  Undefined variable $getinstitutionid in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1174
+[07-May-2025 08:57:19 UTC] PHP Warning:  Undefined variable $getinstitutionid in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1174
+[07-May-2025 08:57:19 UTC] PHP Warning:  Undefined variable $getinstitutionid in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1175
+[07-May-2025 08:57:19 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1106
+[07-May-2025 08:57:19 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1139
+[07-May-2025 08:57:19 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1140
+[07-May-2025 08:57:19 UTC] PHP Warning:  Undefined variable $getinstitutionid in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1174
+[07-May-2025 08:57:19 UTC] PHP Warning:  Undefined variable $getinstitutionid in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1174
+[07-May-2025 08:57:19 UTC] PHP Warning:  Undefined variable $getinstitutionid in /home/edumplvx/dev.edumess.com/app/home/index.php on line 1175

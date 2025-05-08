@@ -1,10 +1,17 @@
 <?php
-	//==================DB Connection Parameters=============================================================
+    
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
 
+	//==================DB Connection Parameters=============================================================
+// edumplvx_edumessversiontwo_dev
 	$server = 'localhost';
 	$username = 'root';
 	$password = '';
-	$database = 'triomind_edumessversiontwo_dev';
+	$database = 'edumplvx_edumessversiontwo_dev';
+	
+// 	J1H)92v^Fd81
 
 	$link = mysqli_connect($server, $username, $password, $database);
 	// mysql_set_charset($link, "utf8");
@@ -14,7 +21,7 @@
 		printf("Connect failed: %s\n", mysqli_connect_error());
 		exit();
 	}
-	$connection = new PDO('mysql:host=localhost;dbname=triomind_edumessversiontwo_dev', $username, $password);
+	$connection = new PDO('mysql:host=localhost;dbname=edumplvx_edumessversiontwo_dev', $username, $password);
 
 	//==================set pin characters=============================================================
 	//note the number of pin entered here is multiplied by times 2 before pin is generated
@@ -38,6 +45,8 @@
 	$MonnifyTestContractCode = '6890822651';
 
 	$EduMESS_Wallet_Number = '8018133138';
+
+	$EduMESS_verify_email = 'verify@edumess.com	';
 
 	$sql_edumesspaymentcharges = ("SELECT * FROM `edumesspaymentcharges`");
     $result_edumesspaymentcharges = mysqli_query($link, $sql_edumesspaymentcharges);

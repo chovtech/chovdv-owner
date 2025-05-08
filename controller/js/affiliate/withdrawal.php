@@ -13,6 +13,8 @@
 
         var user_id = "<?php echo $UserID; ?>";
 
+        var Email = "<?php echo $Email; ?>";
+
         $('.verify_withdrawal').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
 
         if (withdraw_amt < 500 || withdraw_amt === '' || withdraw_amt === null || withdraw_amt === undefined || isNaN(withdraw_amt))
@@ -45,8 +47,10 @@
             $.ajax({
                 url:'../../controller/scripts/affiliate/withdrawal/verify_withdrawal.php',
                 type:'POST',
-                data:{"withdraw_amt":withdraw_amt, "wallet_bal":wallet_bal, "session":session, "term":term, "user_id":user_id},
+                data:{"withdraw_amt":withdraw_amt, "wallet_bal":wallet_bal, "session":session, "term":term, "user_id":user_id, "Email":Email},
                 success: function(data) {
+                    
+                    // console.log(data);
 
                     var verificationData = JSON.parse(data);
 
@@ -155,6 +159,16 @@
 
             $('.proceed_withdrawal').html('<i class="fas fa-money-bill-wave"></i> Withdraw');
         }
+        else if(ver_code_entered == '' || ver_code_entered == '0' || ver_code_entered == null)
+        {
+             $.wnoty({
+                type: 'error',
+                message: "Invalid Verification Code.",
+                autohideDelay: 5000
+            });
+
+            $('.proceed_withdrawal').html('<i class="fas fa-money-bill-wave"></i> Withdraw');
+        }
         else
         {
 
@@ -177,8 +191,9 @@
                    "ver_code_entered":ver_code_entered},
                 success:function(data){
 
-//                     alert(data);
-                    if(data == 1)
+                    console.log(data);
+
+                    if(data == '1')
                     {
                         $.wnoty({
                             type: 'success',
@@ -193,7 +208,7 @@
                         }, 3000); // 5000 milliseconds = 5 seconds
 
                     }
-                    else if(data == 2)
+                    else if(data == '2')
                     {
                         $.wnoty({
                             type: 'error',
@@ -208,7 +223,7 @@
                         }, 3000); // 5000 milliseconds = 5 seconds
 
                     }
-                    else if(data == 4)
+                    else if(data == '4')
                     {
                         $.wnoty({
                             type: 'error',
@@ -216,7 +231,7 @@
                             autohideDelay: 5000
                         });
                     }
-                    else
+                    else if(data == '3')
                     {
                         $.wnoty({
                             type: 'error',
@@ -226,10 +241,25 @@
 
                         $('#pros_withdrawModal2').modal('hide');
                     }
+                    else
+                    {
+                        $.wnoty({
+                            type: 'error',
+                            message: "An error occurred, Please reload your page and try again.",
+                            autohideDelay: 5000
+                        });
+
+                        $('#pros_withdrawModal2').modal('hide');
+
+                        setTimeout(function() {
+                            location.reload();
+                        }, 5000); // 5000 milliseconds = 5 seconds
+
+                    }
 
                     $('.proceed_withdrawal').html('<i class="fas fa-money-bill-wave"></i> Withdraw');
 
-                    $('.withdraw_amt').val(0);
+                    $('.withdraw_amt').val('');
                     $('.n1').val('');
                     $('.n2').val('');
                     $('.n3').val('');

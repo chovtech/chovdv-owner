@@ -76,15 +76,6 @@
             <!-- End Sidebar -->
 
 
-            <!--======Floating Button=========-->
-            <!-- Buttons -->
-            <?php# include('../../includes/floating-btn.php'); ?>
-            <!-- End - Buttons -->
-            <!--======Floating Button=========-->
-
-
-            <!---====Side Modal Start Here====-->
-            <?php #include('../../includes/setting-menu.php'); ?>
             <!---====Side Modal End Here====-->
 
             <!----Main----->

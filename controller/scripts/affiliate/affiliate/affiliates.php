@@ -60,7 +60,7 @@
                 $sql_affiliate_sub = mysqli_query($link, "SELECT * FROM `affiliate` WHERE `affiliate_l1` = '$affiliate_id'");
                 $sql_affiliate_sub_cnt = mysqli_num_rows($sql_affiliate_sub);
 
-                $sql_affiliate_earning_l1 = mysqli_query($link, "SELECT SUM(amount) as earning_amt FROM `affiliate_earning` WHERE `affiliate_id` = '$user_id' AND `sub_affiliate_id` = '$affiliate_id' AND `earning_level` = '1' AND `status` = 'credit'");
+                $sql_affiliate_earning_l1 = mysqli_query($link, "SELECT SUM(amount) as earning_amt FROM `affiliate_earning` WHERE `affiliate_id` = '$user_id' AND `sub_affiliate_id` = '$affiliate_id' AND `earning_level` = '1' AND `transaction_type` = 'credit'");
                 $sql_affiliate_earning_l1_row = mysqli_fetch_assoc($sql_affiliate_earning_l1);
                 $sql_affiliate_earning_l1_cnt = mysqli_num_rows($sql_affiliate_earning_l1);
 
@@ -79,7 +79,7 @@
                 $sql_affiliate_sub_cnt = 0;
 
 
-                $sql_affiliate_earning_l2 = mysqli_query($link, "SELECT SUM(amount) as earning_amt FROM `affiliate_earning` WHERE `affiliate_id` = '$user_id' AND `sub_affiliate_id` = '$affiliate_id' AND `earning_level` = '2' AND `status` = 'credit'");
+                $sql_affiliate_earning_l2 = mysqli_query($link, "SELECT SUM(amount) as earning_amt FROM `affiliate_earning` WHERE `affiliate_id` = '$user_id' AND `sub_affiliate_id` = '$affiliate_id' AND `earning_level` = '2' AND `transaction_type` = 'credit'");
                 $sql_affiliate_earning_l2_row = mysqli_fetch_assoc($sql_affiliate_earning_l2);
                 $sql_affiliate_earning_l2_cnt = mysqli_num_rows($sql_affiliate_earning_l2);
 
@@ -142,7 +142,7 @@
         $affiliate_id_db = $sql_affiliate_l1_db_row['AffiliateID'];
 
         // For earning level 1, build the query
-        $sql_affiliate_earning_l1_query = "SELECT SUM(amount) as earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND sub_affiliate_id = '$affiliate_id_db' AND earning_level = '1' AND `status` = 'credit'";
+        $sql_affiliate_earning_l1_query = "SELECT SUM(amount) as earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND sub_affiliate_id = '$affiliate_id_db' AND earning_level = '1' AND `transaction_type` = 'credit'";
 
         // Add session filter if needed
         if ($session != '0') {
@@ -193,7 +193,7 @@
         $affiliate_id_2_db = $sql_affiliate_l2_db_row['AffiliateID'];
 
         // For earning level 2, build the query
-        $sql_affiliate_earning_l2_query = "SELECT SUM(amount) as earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND sub_affiliate_id = '$affiliate_id_2_db' AND earning_level = '2' AND `status` = 'credit'";
+        $sql_affiliate_earning_l2_query = "SELECT SUM(amount) as earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND sub_affiliate_id = '$affiliate_id_2_db' AND earning_level = '2' AND `transaction_type` = 'credit'";
 
         // Add session filter if needed
         if ($session != '0') {
