@@ -143,7 +143,15 @@
                         window.location.href = "../app/home/";
                         
                         localStorage.setItem('current_username', uname);
-                    }else
+                    }else if (userrole == 'affnotapproved') {
+                        
+                        $('#signinbtn').html("Login");
+                        $('#signinbtn').prop("disabled", false);
+                        $('#affi_notapproved_modal').modal('show');
+                        
+                    }
+                    
+                    else
                     {
                        
                         $('#signinbtn').html('Login');

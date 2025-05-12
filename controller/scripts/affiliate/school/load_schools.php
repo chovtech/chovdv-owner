@@ -35,13 +35,30 @@ if ($pros_row_cnt_institution_cont > 0) {
         $InstitutionGeneralName = $pros_result_institution_cont_row['InstitutionGeneralName'];
 
         // Check payment status
-        $pros_get_paid_nonpayment = mysqli_query($link, "
+        $pros_get_paid_nonpayment_sql = "
             SELECT * FROM `plantransaction` 
             WHERE `InstitutionID` = '$InstitutionID'
-            AND `SessionName` = '$session' 
-            AND `TermOrSemesterName` = '$term'
-        ");
+            
+            
+        ";
 
+        if($session == '0' ||$session == 'NULL') {
+           
+        }else{
+            $pros_get_paid_nonpayment_sql .="
+            AND `SessionName` = '$session' 
+             ";
+        }
+
+
+        if($term == '0' ||$term == 'NULL') {
+           
+        }else{
+            $pros_get_paid_nonpayment_sql .= "
+           AND `TermOrSemesterName` = '$term'
+             ";
+        }
+        $pros_get_paid_nonpayment =  mysqli_query($link, $pros_get_paid_nonpayment_sql);
         $payment_status = (mysqli_num_rows($pros_get_paid_nonpayment) > 0) ? 'Paid' : 'Unpaid';
 
         // Get campuses
@@ -60,13 +77,23 @@ if ($pros_row_cnt_institution_cont > 0) {
             $campus_camp++;
 
             // Count students in each campus
-            $pros_load_student_forsch = mysqli_query($link, "
+            $pros_load_student_forsch_sql = "
                 SELECT * FROM `student` 
                 INNER JOIN `classordepartmentstudentallocation` 
                 ON `student`.`StudentID` = `classordepartmentstudentallocation`.`StudentID`
                 WHERE `student`.`CampusID` = '$CampusID' 
-                AND `classordepartmentstudentallocation`.`Session` = '$session' AND student.StudentTrashStatus='0'
-            ");
+                 AND student.StudentTrashStatus='0'
+            ";
+
+            if($session == '0' ||$session == 'NULL') {
+           
+            }else{
+                $pros_load_student_forsch_sql .= "
+                AND `classordepartmentstudentallocation`.`Session` = '$session'
+                 ";
+            }
+
+            $pros_load_student_forsch = mysqli_query($link,$pros_load_student_forsch_sql);
 
             $campus_student_count = 0;
             while (mysqli_fetch_assoc($pros_load_student_forsch)) {

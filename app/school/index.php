@@ -48,8 +48,12 @@
     <link rel="stylesheet" href="../../assets/plugins/Croppie/croppie.css"></link>
 
     <!--===numbercountry code==-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script>
+
+      <link href="../../assets/plugins/numberformat/intlTelInput.min.css"
+		rel="stylesheet" />
+	<script src="../../assets/plugins/numberformat/intlTelInput.min.js"></script>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/css/intlTelInput.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/intlTelInput.min.js"></script> -->
     <!--===numbercountry code==-->
 
 </head>

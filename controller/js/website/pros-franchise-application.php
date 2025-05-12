@@ -9,14 +9,30 @@
 
 
 
-                // get number with country code
-               var MainNumber = window.intlTelInput(document.querySelector("#phone"), {
-                    separateDialCode: true,
-                    preferredCountries:["ng"],
-                    hiddenInput: "full",
-                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                });
-                // get number with country code
+
+                
+                var MainNumber_new = document.querySelector("#phonef");
+
+                if (MainNumber_new) {
+
+                        
+
+                         // get number with country code
+                        var MainNumber = window.intlTelInput(MainNumber_new, {
+                                separateDialCode: true,
+                                preferredCountries:["ng"],
+                                hiddenInput: "full",
+                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                });
+                                // get number with country code
+
+                } else {
+
+                        // alert('hello');
+
+                }
+
+               
 
 
                 prosloadfranchisecountry();
@@ -69,6 +85,7 @@
              var  CountryID = $('.pros-franchise-country').val();
 
 
+
                 if(CountryID == 'NULL')
                 {
 
@@ -108,6 +125,7 @@
                var  firstName = $('.prosfirstname-franchise').val();
                var lastName = $('.proslastname-franchise').val();
                var email = $('.prosemail-franchise').val();
+               
                var pros_country = $('.pros-franchise-country').val();
                var pros_region = $('.pros-franchiseregion').val();
                var location = $('.pros-load-locationhere').val();
@@ -119,7 +137,7 @@
 
 
 
-               var phone = $('#phone').val();
+               var phone = $('#phonef').val();
 
                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
              

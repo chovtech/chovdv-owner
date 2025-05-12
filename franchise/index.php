@@ -796,14 +796,14 @@ include('../lang/' . $lang . '.php');
 						<div class="col-sm-6">
 							<div class="form-group abba_local-forms">
 								<label>Phone<span style="color:orangered;">*</span> </label>
-								<input type="number" id="phone" class="form-control prosnumber-franchise prosgroupof-formcontrol"
-									placeholder="xxxx-xxx-xxxx"name="phonenum[main]" />
+								<input type="number" id="phonef" class="form-control prosnumber-franchise prosgroupof-formcontrol"
+									placeholder="xxxx-xxx-xxxx" name="phonenum[main]" />
 							</div>
 						</div>
 
 
 
-					 <div class="col-sm-6">
+					    <div class="col-sm-6">
 							<div class="form-group abba_local-forms">
 								<label>Franchise Country<span style="color:orangered;">*</span> </label>
 								<select class="form-control pros-franchise-country prosgroupof-formcontrol">

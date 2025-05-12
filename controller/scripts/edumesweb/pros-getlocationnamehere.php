@@ -12,7 +12,9 @@
 
                 if($pros_get_region_cnt > 0)
                 {
-                    echo '<option value="NULL" >Select Region</option>';
+                    echo '
+                          <option value="" disabled selected>-- Select Your Region--</option>
+                       ';
 
                             do{
 

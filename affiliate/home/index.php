@@ -111,10 +111,10 @@
 
             <div class="main-cards" style="margin-top: 10px;">
 
-                    <div class="row">
+                     <div class="row">
                             <div class="col-12">
                                 <div class="topSecCards"
-                                    style="width: 100%; height: 100%; padding: 10px 10px 25px 10px; border-radius: 20px;">
+                                    style="width: 100%; height: 100%; padding: 10px 10px 25px 10px; border-radius: 20px; box-shadow: rgba(10, 10, 235, 0.2) 0px 7px 29px 0px;">
                                     <div class="row">
                                         
                                         <div class="col-sm-12 col-md-6 col-lg-4">
@@ -190,6 +190,9 @@
                                 </div>
                             </div>
                     </div>
+
+                    
+                    <div class="row g-2 mt-3 pros_load_newly_added"></div><!-- pros load newly added schools -->
                     
             </div>
 

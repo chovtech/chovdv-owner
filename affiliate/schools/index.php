@@ -108,13 +108,13 @@
                                 <div class="row">
                                      <div class="col-md-10 col-lg-10"> </div>
                                      <div class="col-md-2 col-lg-2">
-                                        <button type="button" style="float: right;font-size: 13px;border:none;font-weight:500;"
-                                            class="btn btn-sm btn-primary text-light" data-bs-toggle="modal"
+                                        <button type="button" style="float: right;font-size:10px;border:none;font-weight:500;"
+                                            class="btn btn-sm btn-primary text-light " data-bs-toggle="modal"
                                             data-bs-target="#pros_create_owner_Modal"> <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                 height="20" viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                     d="M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.91 2.91 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.91 2.91 0 0 0 18 11a3 3 0 0 0 0-6M8 10H5V7H3v3H0v2h3v3h2v-3h3Z" />
-                                            </svg> Create Owner</button>
+                                            </svg> Register School Owner</button>
                                            
                                       </div>
                                     </div>
@@ -259,7 +259,7 @@
                                     <div class="tab-content" id="ex1-content">
                                         
                                         <?php
-                                            $encodedRef = base64_encode($UserID);
+                                            $encodedRef = $UserID;
                                         
                                         ?>
         
@@ -267,8 +267,12 @@
                                             <input type="text" id="pros-text-to-copy" value="<?php echo $defaultUrl ?>signup?ref=<?php echo $encodedRef ?>" readonly style="border:none;width:100%;"><br><br>
         
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-file" id="copy-button"> Copy</i></button>
-        
-                                            <a href="whatsapp://send?text=<?php echo $defaultUrl ?>signup?ref=<?php echo $encodedRef ?>"  type="button" class="btn btn-success btn-sm" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"> Share via WhatsApp</i></a>
+                                            <!-- Open Link in New Tab Button -->
+                                                <a href="<?php echo $defaultUrl ?>signup?ref=<?php echo $encodedRef ?>" target="_blank" class="btn btn-info btn-sm">
+                                                    <i class="fas fa-external-link-alt"></i> Open 
+                                                </a>
+                                                    
+                                                <a href="whatsapp://send?text=<?php echo $defaultUrl ?>signup?ref=<?php echo $encodedRef ?>"  type="button" class="btn btn-success btn-sm" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"> Share via WhatsApp</i></a>
                                             
                                         </div>
                                         

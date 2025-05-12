@@ -92,8 +92,8 @@
             }
 
           // get ref here
-          
-           var signup_as =  $(".pros_usertype_signup_google:checked").val();
+        //   $(".pros_usertype_signup_google:checked").val()
+           var signup_as =  'owner';
           
         
           var tagstateid = $("#googlegrid").data('id');
@@ -215,7 +215,9 @@
         $("input[name='WhatsappNumber[full]'").val(phonenumfull);
     
         var password = $('#password').val();
-        var signup_as = $('#signup_usertype_main option:selected').val();
+        var signup_as = 'owner';
+        
+        // $('#signup_usertype_main option:selected').val();
         
       
     

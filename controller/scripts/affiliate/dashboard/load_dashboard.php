@@ -14,6 +14,7 @@ $crnt_term = mysqli_real_escape_string($link, $_POST['crnt_term']);
 $total_active_campus = 0;
 $total_inactive_campus= 0;
 
+$newadded_campus = array();
 
 
 // get owner
@@ -62,16 +63,83 @@ if ($institution_result && mysqli_num_rows($institution_result) > 0) {
                 }
             }
         }
+
+       
     }
 }
 
 
+     
+        // SELECT NEWLY ADDDED SCHOOLS AND CAMPUSES
+          $new_campus_sql = "SELECT `institution`.`InstitutionID`,
+          `institution`.`InstitutionGeneralName`, 
+          `campus`.`CampusID`,`campus`.`CampusName` 
+          FROM `campus` INNER JOIN
+          `institution` ON 
+          `campus`.`InstitutionID` = `institution`.`InstitutionID` INNER JOIN agencyorschoolowner 
+           ON institution.AgencyOrSchoolOwnerID = agencyorschoolowner.AgencyOrSchoolOwnerID
+            WHERE agencyorschoolowner.AffiliateID = '$user_id' AND 
+          `campus`.`CampusActiveStatus`='1' 
+          AND `campus`.`CampusTrashStatus`='0'
+          ORDER BY `campus`.`CampusID` DESC LIMIT 3";
+        $new_campus_result = mysqli_query($link, $new_campus_sql);
+        $new_campus_count = mysqli_num_rows($new_campus_result);
+
+        if ($new_campus_result && $new_campus_count > 0) {
+            while ($new_campus = mysqli_fetch_assoc($new_campus_result)) {
+
+
+             if($new_campus_count > 3)
+             {
+
+             }else{
+
+              $new_campus_id = $new_campus['CampusID'];
+              $new_campus_name = $new_campus['CampusName'];
+              $new_institution_id = $new_campus['InstitutionID'];
+              $new_institution_name = $new_campus['InstitutionGeneralName'];
+
+
+              $newadded_campus[] = array(
+                'institute_id' => $new_institution_id,
+                'institute_name' => $new_institution_name,
+                'campus_name' => $new_campus_name,
+                'campus_id' =>  $new_campus_id
+              );
+
+             }
+               
+                // Process each new campus
+                // echo $new_campus['CampusName'];
+            }
+        }
+        // SELECT NEWLY ADDDED SCHOOLS AND CAMPUSES
+
 
 
 // GET TERMLY EARNING HERE
+    $pros_count_amount_sql = '';
+    $pros_count_amount_sql.="SELECT SUM(amount) AS TotalAmount FROM 
+    `affiliate_earning` WHERE  `affiliate_id`='$user_id' AND 
+    `transaction_type`='credit'";
 
-$pros_count_amount = mysqli_query($link, "SELECT SUM(amount) AS TotalAmount FROM 
-`affiliate_earning` WHERE `Session`='$crnt_session' AND `Term`='$crnt_term' AND `affiliate_id`='$user_id' AND `transaction_type`='credit'");
+    //pros check if term is selected
+    if($crnt_term == '0')
+    {
+    }else{
+      $pros_count_amount_sql.="AND `Term`='$crnt_term'";
+    }//pros check if term is selected
+
+    //pros check if session is selected
+    if($crnt_session == '0')
+    {
+      echo 'session zero';
+    }else{
+      $pros_count_amount_sql.="AND `Session`='$crnt_session'";
+    }//pros check if session is selected
+
+    // print_r($pros_count_amount_sql);
+    $pros_count_amount = mysqli_query($link, $pros_count_amount_sql);
 //  $pros_count_amount_rows = mysqli_num_rows($pros_count_amount);
 
 // collect total affilect here
@@ -137,7 +205,8 @@ $response =  [
     'termly_amount' => number_format($termly_amount),
     'total_affiliate' => number_format($total_affilite),
     'total_affiliate_one' => number_format($total_affilite_one),
-    'total_affiliate_two' => number_format($total_affilite_two)
+    'total_affiliate_two' => number_format($total_affilite_two),
+    'newadded_campus' => $newadded_campus
 ];
 
 

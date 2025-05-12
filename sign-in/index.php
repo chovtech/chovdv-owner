@@ -100,6 +100,47 @@
                       </div>
                  </div>
           </section>
+
+
+
+                <!--==== Affiliate Non Approve modal==== -->
+                   <div class="modal fade" id="affi_notapproved_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="bin_nin_modalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="border-radius: 20px;">
+                                <div class="modal-body">
+                                    <div align="center">
+                                    <h4 class="mt-3"><i class="fa fa-info"></i> Account Pending Approval</h4>
+                                    </div>
+                                    <div class="row" style="padding-top: 20px; margin: 0 5px 0 5px;">
+                                        <div class="col-3">
+                                        <img width="70" height="70" src="https://img.icons8.com/stencil/32/data-pending.png" alt="data-pending"/>
+
+                                        </div>
+                                        <div class="col-9">
+                                            <small>Your affiliate account is currently under review. Please wait for the approval. You will be notified once your account is activated. Thank you for your patience!
+
+                                              </small>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                    <div class="row">
+                                        <div class="col-12" style="padding: 30px;">
+                                            <button class="btn btn-primary " class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="width: 100%;" type="button">
+                                            <i class="fa fa-times"></i> Close
+                                            </button>
+                                            <div align="center" style="color: #afafaf; font-size: 11px; font-weight: 500;">Powered
+                                                by EduMESS
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 <!--==== Affiliate Non Approve modal==== -->
+
+
         <!--======================== HTML CONTENT===================== -->	
          <!-- EXTERNAL SCRIPTS============================================= -->	
         <script src="../assets/plugins/jquery/jquery.min.js"></script>

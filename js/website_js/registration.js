@@ -71,3 +71,11 @@ var MainNumber = window.intlTelInput(document.querySelector("#Phone"), {
     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
 });
 // get number with country code
+
+
+// pause animation on button click
+const button = document.getElementById('pros_signupaff_btn');
+
+button.addEventListener('click', () => {
+    button.classList.toggle('stopped');
+});

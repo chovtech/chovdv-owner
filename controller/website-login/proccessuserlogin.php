@@ -69,15 +69,35 @@
             // $upatelogininfo = mysqli_query($link, "UPDATE `userlogin` SET `LastLoginDate`='$lastlogin_Date' WHERE UserID='$userid'");
 
             if ($usertype == 'affiliate') {
-                session_start();
-                $_SESSION['spgaffiliate'] = $username;
-                $_SESSION['spgUserType'] = $usertype;
 
-                $sql_insert_activity_log = ("INSERT INTO `activitylog`(`ActitvityLogID`, `InstitutionIDOrCampusID`, `UserID`, `UserType`, `IpAddress`, `Location`, `Longitude`, `Latitude`, `Description`, `Date/Time`)
-                VALUES (NULL,0,'$userid','$usertype','$ipAddress','$locationName','$longitude','$latitude','Logged In','$lastlogin_Date')");
-                $result_insert_activity_log = mysqli_query($link, $sql_insert_activity_log);
+                $verify_aff_status = mysqli_query($link, "SELECT * FROM `affiliate`
+                 WHERE `AffiliateID`='$userid' AND `ApproveStatus`='0'");
 
-                echo $usertype = $row['UserType'];
+                $verify_aff_status_cnt = mysqli_num_rows($verify_aff_status);
+
+                // check if affiliate is approved
+                if($verify_aff_status_cnt > 0)
+                {
+
+                    echo 'affnotapproved';
+
+                }else
+                {
+
+
+                    session_start();
+                    $_SESSION['spgaffiliate'] = $username;
+                    $_SESSION['spgUserType'] = $usertype;
+    
+                    $sql_insert_activity_log = ("INSERT INTO `activitylog`(`ActitvityLogID`, `InstitutionIDOrCampusID`, `UserID`, `UserType`, `IpAddress`, `Location`, `Longitude`, `Latitude`, `Description`, `Date/Time`)
+                    VALUES (NULL,0,'$userid','$usertype','$ipAddress','$locationName','$longitude','$latitude','Logged In','$lastlogin_Date')");
+                    $result_insert_activity_log = mysqli_query($link, $sql_insert_activity_log);
+    
+                    echo $usertype = $row['UserType'];
+
+                }
+
+               
             } elseif ($usertype == 'owner') {
                 session_start();
                 $_SESSION['spgowner'] = $username;

@@ -49,7 +49,17 @@ if ($institution_result && mysqli_num_rows($institution_result) > 0) {
                     FROM student
                     INNER JOIN classordepartmentstudentallocation 
                     ON student.StudentID = classordepartmentstudentallocation.StudentID
-                    WHERE student.CampusID = '$campus_id' AND `classordepartmentstudentallocation`.`Session` = '$session' ";
+                    WHERE student.CampusID = '$campus_id'
+                    ";
+
+
+                     if($session == '0' || $session == 'NULL') {
+           
+                     }else{
+                        $student_sql .= "
+                          AND `classordepartmentstudentallocation`.`Session` = '$session' 
+                          ";
+                     }
                
                 $student_result = mysqli_query($link, $student_sql);
                 $student_data = mysqli_fetch_assoc($student_result);
