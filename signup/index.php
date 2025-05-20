@@ -1,45 +1,62 @@
 <?php
-include('../controller/config/config.php');
-
-
-@$langold = $_GET['lang'];
-
-if($langold == '' || $langold == NULL || $langold == 'undefined' || $langold == 'null')
-{
-	$lang = 'english';
-	
-}
-else{
-	$lang = $_GET['lang'];
-	
-}
-
-include ('../lang/'.$lang.'.php'); 
-
-
-
-@$consultant_uname = $_GET['ref'];
-
-if ($consultant_uname == '') {
-
-$select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='edumessoftware@gmail.com'";
-$select_company_result = mysqli_query($link, $select_comany);
-$select_company_result_cnt = mysqli_num_rows($select_company_result);
-$select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
-
-
-if($select_company_result_cnt > 0)
-{
-	$consultant_id = $select_company_result_cnt_row['UserID'];
-}else{
-	$consultant_id = '';
-}
+        include('../controller/config/config.php');
+        
+        
+        @$langold = $_GET['lang'];
+        
+        if($langold == '' || $langold == NULL || $langold == 'undefined' || $langold == 'null')
+        {
+        	$lang = 'english';
+        	
+        }
+        else{
+        	$lang = $_GET['lang'];
+        	
+        }
+        
+        include ('../lang/'.$lang.'.php'); 
 
 
 
-} else {
-	$consultant_id = $consultant_uname ;
-}
+ 
+         @$consultant_uname = $_GET['ref'];
+        
+        if ($consultant_uname == '') {
+        
+                $select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='edumessinc@gmail.com'";
+                $select_company_result = mysqli_query($link, $select_comany);
+                $select_company_result_cnt = mysqli_num_rows($select_company_result);
+                $select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
+                
+                
+                if($select_company_result_cnt > 0)
+                {
+                	$consultant_id = $select_company_result_cnt_row['UserID'];
+                }else{
+                	$consultant_id = '';
+                }
+        
+        
+        
+        } else {
+            
+            
+                $select_aff = "SELECT * FROM `affiliate` WHERE referral_code='$consultant_uname'";
+                $select_aff_result = mysqli_query($link, $select_aff);
+                $select_aff_result_cnt = mysqli_num_rows($select_aff_result);
+                $select_aff_result_cnt_row = mysqli_fetch_assoc($select_aff_result);
+                
+                
+                if($select_aff_result_cnt > 0)
+                {
+                	$consultant_id = $select_aff_result_cnt_row['AffiliateID'];
+                }else{
+                	$consultant_id = '';
+                }
+            
+        	
+        }
+
 
 ?>
 <!DOCTYPE html>

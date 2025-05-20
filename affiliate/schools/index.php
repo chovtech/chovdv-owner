@@ -158,7 +158,7 @@
                                                             <th>School</th>
                                                             <th>Campuses</th>
                                                             <th>Students</th>
-                                                            <th>Paid</th>
+                                                            <th>Login URL</th>
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
@@ -218,7 +218,7 @@
                                 viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.91 2.91 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.91 2.91 0 0 0 18 11a3 3 0 0 0 0-6M8 10H5V7H3v3H0v2h3v3h2v-3h3Z" />
-                            </svg> Register School Owner
+                            </svg> Invite School Owner
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -240,7 +240,7 @@
                                             href="#abba_ex1-tabs-10"
                                             role="tab"
                                             aria-controls="abba_ex1-tabs-10"
-                                            aria-selected="true">Invite Via Whatsapp</a>
+                                            aria-selected="true">Register School Owner</a>
                                         </li>
                                         <!-- <li class="nav-item" role="presentation">
                                             <a
@@ -258,21 +258,18 @@
                                     
                                     <div class="tab-content" id="ex1-content">
                                         
-                                        <?php
-                                            $encodedRef = $UserID;
-                                        
-                                        ?>
+                                      
         
                                         <div class="tab-pane fade show active" id="abba_ex1-tabs-10" role="tabpanel" aria-labelledby="abba_ex1-tab-10">
-                                            <input type="text" id="pros-text-to-copy" value="<?php echo $defaultUrl ?>signup?ref=<?php echo $encodedRef ?>" readonly style="border:none;width:100%;"><br><br>
+                                            <input type="text" id="pros-text-to-copy" value="<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>" readonly style="border:none;width:100%;"><br><br>
         
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-file" id="copy-button"> Copy</i></button>
                                             <!-- Open Link in New Tab Button -->
-                                                <a href="<?php echo $defaultUrl ?>signup?ref=<?php echo $encodedRef ?>" target="_blank" class="btn btn-info btn-sm">
+                                                <a href="<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>" target="_blank" class="btn btn-info btn-sm">
                                                     <i class="fas fa-external-link-alt"></i> Open 
                                                 </a>
                                                     
-                                                <a href="whatsapp://send?text=<?php echo $defaultUrl ?>signup?ref=<?php echo $encodedRef ?>"  type="button" class="btn btn-success btn-sm" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"> Share via WhatsApp</i></a>
+                                                <a href="whatsapp://send?text=<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>"  type="button" class="btn btn-success btn-sm" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"> Share via WhatsApp</i></a>
                                             
                                         </div>
                                         

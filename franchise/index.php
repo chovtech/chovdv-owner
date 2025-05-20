@@ -247,7 +247,7 @@ include('../lang/' . $lang . '.php');
 					</span>
 				</div>
 				<div class="franchise-btn" align="left">
-					<a  class="btn franchisejoinbtn fw-bold" data-bs-toggle="modal" data-bs-target="#profranchiseapplication-modal"
+					<a  class="btn franchisejoinbtn fw-bold" href="../affiliate/"
 						style="background: #fff;color:#007bff;">
 						<span>
 							<?php echo $franchise_page_banner_register_btn; ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -361,7 +361,7 @@ include('../lang/' . $lang . '.php');
 						</span><br>
 						<span class="mt-3">
 							<small class="fs-sm fw-normal">
-								<a href="#">
+								<a href="../affiliate/">
 									<?php echo $franchise_page_register_link; ?>
 								</a>
 								<?php echo $franchise_page_complete_list_descr; ?>
@@ -404,8 +404,8 @@ include('../lang/' . $lang . '.php');
 
 				<div class="row" style="margin-top:50px;">
 					<div class="col-12">
-						<a  class="btn" data-bs-toggle="modal" data-bs-target="#profranchiseapplication-modal"
-							style="border: 2px solid #007bff;color:white;border-radius: 10px;padding: 2%;font-weight: 500;font-size:14px;background: linear-gradient(90deg, rgba(0,123,255,1) 35%, rgba(2,107,219,1) 100%, rgba(0,212,255,1) 100%);">
+						<a   href="../affiliate/"
+							style="text-decoration:none;border: 2px solid #007bff;color:white;border-radius: 10px;padding: 2%;font-weight: 500;font-size:14px;background: linear-gradient(90deg, rgba(0,123,255,1) 35%, rgba(2,107,219,1) 100%, rgba(0,212,255,1) 100%);">
 							<span>
 								<?php echo $franchise_page_register_link; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<svg width="19" height="16" viewBox="0 0 19 16" fill="none"
@@ -705,8 +705,8 @@ include('../lang/' . $lang . '.php');
 							<?php echo $franchise_page_join_edumess_description; ?>
 						</div><br>
 						<div class="mt-3">
-							<a  class="btn" data-bs-toggle="modal" data-bs-target="#profranchiseapplication-modal"
-								style="border: 2px solid #007bff;color:white;border-radius: 10px;padding: 2%;font-weight: 500;font-size:14px;background: linear-gradient(90deg, rgba(0,123,255,1) 35%, rgba(2,107,219,1) 100%, rgba(0,212,255,1) 100%);">
+							<a  href="../affiliate/"
+								style="text-decoration:none;border: 2px solid #007bff;color:white;border-radius: 10px;padding: 2%;font-weight: 500;font-size:14px;background: linear-gradient(90deg, rgba(0,123,255,1) 35%, rgba(2,107,219,1) 100%, rgba(0,212,255,1) 100%);">
 								<span>
 									<?php echo $franchise_page_register_link; ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<svg width="19" height="16" viewBox="0 0 19 16" fill="none"
@@ -796,14 +796,14 @@ include('../lang/' . $lang . '.php');
 						<div class="col-sm-6">
 							<div class="form-group abba_local-forms">
 								<label>Phone<span style="color:orangered;">*</span> </label>
-								<input type="number" id="phonef" class="form-control prosnumber-franchise prosgroupof-formcontrol"
-									placeholder="xxxx-xxx-xxxx" name="phonenum[main]" />
+								<input type="number" id="phone" class="form-control prosnumber-franchise prosgroupof-formcontrol"
+									placeholder="xxxx-xxx-xxxx"name="phonenum[main]" />
 							</div>
 						</div>
 
 
 
-					    <div class="col-sm-6">
+					 <div class="col-sm-6">
 							<div class="form-group abba_local-forms">
 								<label>Franchise Country<span style="color:orangered;">*</span> </label>
 								<select class="form-control pros-franchise-country prosgroupof-formcontrol">

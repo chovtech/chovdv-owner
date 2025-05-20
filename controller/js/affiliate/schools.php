@@ -268,10 +268,11 @@
 
                                 $.each(filteredSchools, function (i, school) {
                                     
+                                    
 
-                                    let payment_status = (school.payent_status === 'Paid') 
-                                        ? `<span class="badge bg-success">${school.payent_status}</span>`
-                                        : `<span class="badge bg-danger">${school.payent_status}</span>`;
+
+                                    let payment_status = `<a href="https://${school.shool_login}" class="badge bg-primary" target="_blank"><i class="fas fa-globe"> School login</a>`
+                                       ;
 
                                     let pros_campuscontent = school.campuscontent || [];
 
@@ -292,9 +293,16 @@
 
                                     for (let s = 0; s < pros_campuscontent.length; s++) {
                                         let item = pros_campuscontent[s];
+                                        
+                                         let pay_campus_statusval = (item.pay_campus_status === 'Paid') 
+                                        ? `<span class="badge bg-success">${item.pay_campus_status}</span>`
+                                        : `<span class="badge bg-danger">${item.pay_campus_status}</span>`;
+                                        
+                                        
                                         row += `<li class="list-group-item d-flex justify-content-between">
                                                     <span><i class="fas fa-building me-1"></i> ${item.campus_name}</span>
                                                     <span>${item.student_campus_count} Students</span>
+                                                    <span>${pay_campus_statusval} </span>
                                                 </li>`;
                                     }
 

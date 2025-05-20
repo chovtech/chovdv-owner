@@ -13,7 +13,7 @@
                 if($pros_get_location_cnt > 0)
                 {
 
-                           echo ' <option value="" disabled selected>--  Select Your Location -- </option>';
+                           echo '<option value="NULL" >Select Location</option>';
 
                             do{
 

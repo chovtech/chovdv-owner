@@ -5,7 +5,7 @@ $website_about = 'About';
 $website_product = 'Products';
 $website_k_12 = 'K-12';
 $website_tertiary = 'Tertiary';
-$website_franchise = 'Franchise';
+$website_franchise = 'Affiliate';
 $website_pricing = 'Pricing';
 $website_insight = 'Insight';
 $website_blogs = 'Blogs';
@@ -453,7 +453,7 @@ $website_feature_tertiary_LPr = '12,000+ people already joined the EduMESS.<br> 
 //=====website signup======//
 $website_signupbannetxtx = 'Start your';
 $website_signupbannetxtx1 = 'journey with us';
-$website_signuptitle = 'Sign Up As School Owner';
+$website_signuptitle = 'Sign up';
 $website_signupwelcome = 'Welcome back please enter your details';
 $website_signup_firstname = 'First name';
 $website_signup_lastname = 'Last name';

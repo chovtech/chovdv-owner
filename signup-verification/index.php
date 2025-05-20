@@ -40,9 +40,9 @@
     <link rel="icon" href="../assets/images/website_images/favicon.png" type="image/x-icon">
 
   <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
- 	<!--css notify--->
+ 	<!-css notify--->
 	<link href="../assets/plugins/notify/wnoty.css" rel="stylesheet">
-	<!--css notify--->
+	<!-css notify--->
 
 
 

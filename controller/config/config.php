@@ -5,9 +5,9 @@
     ini_set('display_startup_errors', 1);
 
 	//==================DB Connection Parameters=============================================================
-// edumplvx_edumessversiontwo_dev
+
 	$server = 'localhost';
-	$username = 'root';
+	$username = 'edumplvx_edumessversiontwo_dev';
 	$password = '';
 	$database = 'edumplvx_edumessversiontwo_dev';
 	

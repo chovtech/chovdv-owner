@@ -49,6 +49,7 @@
     function loadAffiliates(){
 
         var aff_level = $('#aff_level option:selected').val();
+       
 
         var session = $('.abba-change-session option:selected').val();
 
@@ -58,10 +59,11 @@
 
         $('#display_affiliates').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
 
-        $('#f_l_aff_no').html('<i class="fas fa-spinner fa-spin" style="color:#007ffb;"></i>');
-        $('#s_l_aff_no').html('<i class="fas fa-spinner fa-spin" style="color:#007ffb;"></i>');
-        $('#f_l_aff_earn').html('<i class="fas fa-spinner fa-spin" style="color:#007ffb;"></i>');
-        $('#s_l_aff_earn').html('<i class="fas fa-spinner fa-spin" style="color:#007ffb;"></i>');
+        $('#f_l_aff_no').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
+        $('#s_l_aff_no').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
+        $('#f_l_aff_earn').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
+        $('#s_l_aff_earn').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
+        $('#total_aff_no').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
 
         $.ajax({
             url:'../../controller/scripts/affiliate/affiliate/affiliates.php',
@@ -70,7 +72,8 @@
             success:function(data){
 
                 $("#display_affiliates").html(data);
-
+                
+               
                 var f_l_aff_no_input = $('#aff_db_amt').val();
                 var s_l_aff_no_input = $('#sub_db_amt').val();
                 var f_l_aff_earn_input = $('#aff_db_earn').val();
@@ -78,6 +81,7 @@
 
                 $('#f_l_aff_no').html(f_l_aff_no_input);
                 $('#s_l_aff_no').html(s_l_aff_no_input);
+                $('#total_aff_no').html(parseInt(f_l_aff_no_input) + parseInt(s_l_aff_no_input));
                 $('#f_l_aff_earn').html(f_l_aff_earn_input);
                 $('#s_l_aff_earn').html(s_l_aff_earn_input);
 
@@ -85,5 +89,21 @@
         });
 
     }
+    
+    document.getElementById("copy-button").addEventListener("click", function () {
+        const textField = document.getElementById("ref_link_text");
+        textField.select();
+        textField.setSelectionRange(0, 99999); // For mobile devices
+    
+        try {
+            document.execCommand("copy");
+            alert("Copied to clipboard!");
+        } catch (err) {
+            alert("Failed to copy text.");
+        }
+    
+        // Optional: Remove selection
+        window.getSelection().removeAllRanges();
+    });
 
 </script>

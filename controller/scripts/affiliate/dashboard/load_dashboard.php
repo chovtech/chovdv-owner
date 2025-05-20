@@ -119,7 +119,7 @@ if ($institution_result && mysqli_num_rows($institution_result) > 0) {
 
 // GET TERMLY EARNING HERE
     $pros_count_amount_sql = '';
-    $pros_count_amount_sql.="SELECT SUM(amount) AS TotalAmount FROM 
+    $pros_count_amount_sql.="SELECT * FROM 
     `affiliate_earning` WHERE  `affiliate_id`='$user_id' AND 
     `transaction_type`='credit'";
 
@@ -133,20 +133,54 @@ if ($institution_result && mysqli_num_rows($institution_result) > 0) {
     //pros check if session is selected
     if($crnt_session == '0')
     {
-      echo 'session zero';
+    //   echo 'session zero';
     }else{
       $pros_count_amount_sql.="AND `Session`='$crnt_session'";
     }//pros check if session is selected
 
     // print_r($pros_count_amount_sql);
     $pros_count_amount = mysqli_query($link, $pros_count_amount_sql);
-//  $pros_count_amount_rows = mysqli_num_rows($pros_count_amount);
-
-// collect total affilect here
-
     
-$pros_count_amount_row = mysqli_fetch_assoc($pros_count_amount);
-$termly_amount = (int)$pros_count_amount_row['TotalAmount'];
+    $pros_count_amount_row = mysqli_fetch_assoc($pros_count_amount);
+     $pros_count_amount_rows = mysqli_num_rows($pros_count_amount);
+    
+     $termly_amount = 0;
+    
+    
+    if($pros_count_amount_rows > 0)
+    {
+        
+        
+         do{
+
+            $id = $pros_count_amount_row['id'];
+            $sub_affiliate_id = $pros_count_amount_row['sub_affiliate_id'];
+            $amount = $pros_count_amount_row['amount'];
+            $earning_level = $pros_count_amount_row['earning_level'];
+            $Session_new = $pros_count_amount_row['Session'];
+            $Term_new = $pros_count_amount_row['Term'];
+            $status = $pros_count_amount_row['transaction_type'];
+            $InstitutionID = $pros_count_amount_row['InstitutionID'];
+            $affiliate_percentage = $pros_count_amount_row['affiliate_percentage'];
+            
+            
+             $final_amt = (intVal($affiliate_percentage) / 100) * $amount;
+             
+             $termly_amount+=$final_amt;
+            
+           }while($pros_count_amount_row = mysqli_fetch_assoc($pros_count_amount));
+        
+    }
+    
+    //  $pros_count_amount_rows = mysqli_num_rows($pros_count_amount);
+    
+    // collect total affilect here
+    
+    // $final_amt = (intVal($affiliate_percentage) / 100) * $amount;
+    
+        
+    
+    // $termly_amount = (int)$pros_count_amount_row['TotalAmount'];
 
 
 // pros get all afiliate here

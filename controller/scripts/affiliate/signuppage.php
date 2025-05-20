@@ -616,8 +616,28 @@
                         $FiveDigitRandomNumber = rand(10000,99999);
                           
                         // school owner insert sqli
-                       
                         
+                        // PROS GENERATE REFERER CODE HERE
+                        
+                        function generateReferralCode($length = 6) {
+                            return strtoupper(substr(bin2hex(random_bytes($length)), 0, $length));
+                        }
+                        
+                        function generateUniqueReferralCode($link, $length = 6) {
+                            do {
+                                $code = generateReferralCode($length);
+                                $checkSql = "SELECT COUNT(*) as count FROM affiliate WHERE referral_code = '$code'";
+                                $checkResult = mysqli_query($link, $checkSql);
+                                $checkRow = mysqli_fetch_assoc($checkResult);
+                                $exists = $checkRow['count'] > 0;
+                            } while ($exists);
+                        
+                            return $code;
+                        }
+
+                       
+                        $code = generateUniqueReferralCode($link, 6);
+                        // PROS GENERATE REFERER CODE END HERE
                       
                        
                             // COLLECT referencenumber BASE ON USER TRYING TO SIGN UP HERE AND INSERT
@@ -646,13 +666,13 @@
                                        `Affiliate_Targeted_Location`,`About_Affiliate_Des`,`How_To_Sell_Edumess`,
                                          `affiliate_l1`, `affiliate_l2`, 
                                        `TokenID`, `DateJoined`, `TagState`,
-                                   `Session`, `Term`,  `TokenDuration`)
+                                   `Session`, `Term`,  `TokenDuration`,`referral_code`)
                                         VALUES ('affiliate','$FName', '','$lastName','',
                                         '$email','$num','$pros_country','$pros_region',
                                         '$location','$tellusaboutyou_self','$tellusaboutyou_want_market',
                                     '$consultantid','$level_two','$FiveDigitRandomNumber',
                                     '$currentdate','$tagid','$session_startcount',
-                                        '$TermOrSemesterID','$expire_stamp')");
+                                        '$TermOrSemesterID','$expire_stamp','$code')");
 
 
                             // COLLECT referencenumber BASE ON USER TRYING TO SIGN UP HERE

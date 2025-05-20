@@ -5,6 +5,7 @@
 
 // Initialize the phone input when the document is ready
 $(document).ready(function() {
+    
     // Initialize intlTelInput with your specific configuration
     var MainNumber = window.intlTelInput(document.querySelector("#Phone"), {
         separateDialCode: true,
@@ -15,6 +16,9 @@ $(document).ready(function() {
 
     // Store the instance for later use
     window.phoneInput = MainNumber;
+    
+    
+         
 
     // Password visibility toggle
     $('.viewpassresestsignup').on('click', function() {
@@ -104,13 +108,28 @@ const validators = {
                 fullNumber: phone
             };
         }
-
+    
+        // Custom validation for Nigerian numbers
+        const isValidNigerianNumber = (number) => {
+            const nigeriaPattern = /^(?:0|\+234)?(70|80|81|90|91|91)\d{8}$/;
+            return nigeriaPattern.test(number);
+        };
+    
+        // Check if the number is valid using intl-tel-input
+        let isValid = MainNumber.isValidNumber();
+    
+        // If intl-tel-input validation fails, perform custom Nigerian validation
+        if (!isValid && isValidNigerianNumber(phone)) {
+            isValid = true;
+        }
+    
         return {
-            isValid: MainNumber.isValidNumber(),
-            message: "Please enter a valid phone number with country code",
+            isValid: isValid,
+            message: "Please enter a valid phone number",
             fullNumber: MainNumber.getNumber()
         };
     },
+
 
     // Name validation
     name: (name) => {
@@ -167,6 +186,7 @@ const validateForm = (formData) => {
     // Validate phone
     const phoneValidation = validators.phone(formData.phone);
     validatedFields.Phone = phoneValidation.isValid;
+    // alert(validatedFields.Phone);
     if (!phoneValidation.isValid) {
         errors.push({ field: 'Phone', message: phoneValidation.message });
     }
@@ -289,6 +309,10 @@ $('body').on('click', '#pros_signupaff_btn', function() {
     {
         var defaultlang = lang;
     }
+    
+    var signup_as = 'affiliate';
+    var  email = $('#email').val();
+    
     // Get form values
     const formData = {
         firstname: $('#firstname').val(),
@@ -309,6 +333,7 @@ $('body').on('click', '#pros_signupaff_btn', function() {
     
     // Get phone number in E164 format
     const phoneValidation = validators.phone(formData.phone);
+    // alert(phoneValidation.fullNumber);
     
     // Update the hidden input with the full phone number
     $("input[name='WhatsappNumber[full]'").val(phoneValidation.fullNumber);
@@ -395,13 +420,14 @@ $('body').on('click', '#pros_signupaff_btn', function() {
                                                 
                 }else
                 {
+                                 
                                             
                     var redirectUrl2 = "../signup-verification/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&marana=" + email + "&kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6=UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&tak=&oionxx=" + prosfeedback + "&lang=" + defaultlang +"&utype=" + signup_as;
 
                     var ref_id = localStorage.getItem('ref');
                     var my_name = firstname+' '+lastname;
                     var my_email = email;
-                    var number_new = phonenumfull;
+                    var number_new = phoneValidation.fullNumber;
                     var amount = '';
                     var paymentRef = '';
 

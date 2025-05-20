@@ -9,6 +9,18 @@ $session = mysqli_real_escape_string($link, $_POST['session']);
 $term = mysqli_real_escape_string($link, $_POST['term']);
 $ownerId = mysqli_real_escape_string($link, $_POST['ownerId']);
 
+
+
+ $pros_get_current_term = mysqli_query($link,"SELECT * FROM session INNER JOIN termorsemester WHERE session.sessionStatus='1' AND termorsemester.status=1");//PROS GET CURRENT TERM AND SESSION HERE
+
+ $pros_get_current_term_fetch = mysqli_fetch_assoc($pros_get_current_term);
+ 
+  $crrrntsession = $pros_get_current_term_fetch['sessionName']; 
+ $crrrntterm =  $pros_get_current_term_fetch['TermOrSemesterID']; 
+ 
+
+
+
 if ($ownerId == 'all') {
     
     $pros_sql_institution = "
@@ -33,33 +45,10 @@ if ($pros_row_cnt_institution_cont > 0) {
     while ($pros_result_institution_cont_row = mysqli_fetch_assoc($pros_result_institution_sql)) {
         $InstitutionID = $pros_result_institution_cont_row['InstitutionID'];
         $InstitutionGeneralName = $pros_result_institution_cont_row['InstitutionGeneralName'];
-
-        // Check payment status
-        $pros_get_paid_nonpayment_sql = "
-            SELECT * FROM `plantransaction` 
-            WHERE `InstitutionID` = '$InstitutionID'
-            
-            
-        ";
-
-        if($session == '0' ||$session == 'NULL') {
-           
-        }else{
-            $pros_get_paid_nonpayment_sql .="
-            AND `SessionName` = '$session' 
-             ";
-        }
+        $CustomUrl = $pros_result_institution_cont_row['CustomUrl'];
 
 
-        if($term == '0' ||$term == 'NULL') {
-           
-        }else{
-            $pros_get_paid_nonpayment_sql .= "
-           AND `TermOrSemesterName` = '$term'
-             ";
-        }
-        $pros_get_paid_nonpayment =  mysqli_query($link, $pros_get_paid_nonpayment_sql);
-        $payment_status = (mysqli_num_rows($pros_get_paid_nonpayment) > 0) ? 'Paid' : 'Unpaid';
+       
 
         // Get campuses
         $select_campus_count_sql = mysqli_query($link, "
@@ -69,12 +58,55 @@ if ($pros_row_cnt_institution_cont > 0) {
         
         $campus_camp = 0;
         $student_count_general = 0;
+       $payment_status = 'Unpaid'; // Default value
         $usercontent_campus = [];
 
         while ($campus_row = mysqli_fetch_assoc($select_campus_count_sql)) {
             $CampusID = $campus_row['CampusID'];
             $Campus_name = $campus_row['CampusName'];
             $campus_camp++;
+            
+            
+            
+            
+            
+             // Check payment status
+        $pros_get_paid_nonpayment_sql = "
+            SELECT * FROM `plantransaction` 
+            WHERE `InstitutionID` = '$CampusID'
+            
+            
+        ";
+
+        if($session == '0' ||$session == 'NULL') {
+            
+             $pros_get_paid_nonpayment_sql .="
+            AND `SessionName` = '$crrrntsession' 
+             ";
+           
+        }else{
+            $pros_get_paid_nonpayment_sql .="
+            AND `SessionName` = '$session' 
+             ";
+        }
+        
+        
+        
+
+
+
+        if($term == '0' ||$term == 'NULL') {
+            
+            $pros_get_paid_nonpayment_sql .= "
+           AND `TermOrSemesterName` = '$crrrntterm'
+             ";
+        }else{
+            $pros_get_paid_nonpayment_sql .= "
+           AND `TermOrSemesterName` = '$term'
+             ";
+        }
+        $pros_get_paid_nonpayment =  mysqli_query($link, $pros_get_paid_nonpayment_sql);
+         $payment_status_campus = (mysqli_num_rows($pros_get_paid_nonpayment) > 0) ? 'Paid' : 'Unpaid';
 
             // Count students in each campus
             $pros_load_student_forsch_sql = "
@@ -104,14 +136,15 @@ if ($pros_row_cnt_institution_cont > 0) {
             $usercontent_campus[] = [
                 'campusId' => $CampusID,
                 'campus_name' => $Campus_name,
-                'student_campus_count' => $campus_student_count
+                'student_campus_count' => $campus_student_count,
+                'pay_campus_status' => $payment_status_campus
             ];
         }
 
         $usercontent[] = [
             'school_id' => $InstitutionID,
             'school_name' => $InstitutionGeneralName,
-            'payent_status' => $payment_status,
+            'shool_login' => $CustomUrl,
             'campus_sch_count' => $campus_camp,
             'student_sch_count' => $student_count_general,
             'campuscontent' => $usercontent_campus

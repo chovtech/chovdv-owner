@@ -7,8 +7,11 @@
 
     $user_id  = $_POST['user_id'];
     $aff_level  = $_POST['aff_level'];
-    $session  = $_POST['session'];
-    $term  = $_POST['term'];
+    // $session  = $_POST['session'];
+    // $term  = $_POST['term'];
+    
+    $session  = 0;
+    $term  = 0;
 
     $query = "SELECT * FROM `affiliate` WHERE ";
 
@@ -38,7 +41,7 @@
     }
 
     // Order by name
-    $query .= " ORDER BY `AffiliateFName` ASC";
+    $query .= " ORDER BY `AffiliateID` DESC";
 
     // Now run the query
     $sql_affiliate = mysqli_query($link, $query);
@@ -53,7 +56,7 @@
             $level_1 = $sql_affiliate_row['affiliate_l1'];
             $level_2 = $sql_affiliate_row['affiliate_l2'];
 
-            if($level_1 == 1)
+            if($level_1 == $user_id)
             {
                 $aff_level = 'Level 1';
 
@@ -66,14 +69,14 @@
 
                 if($sql_affiliate_earning_l1_cnt > 0)
                 {
-                    $earning = $sql_affiliate_earning_l1_row['earning_amt'];
+                    $earning = $sql_affiliate_earning_l1_row['earning_amt'] ?? 0;
                 }
                 else{
                     $earning = 0;
                 }
 
             }
-            elseif($level_2 == 1)
+            elseif($level_2 == $user_id)
             {
                 $aff_level = 'Level 2';
                 $sql_affiliate_sub_cnt = 0;
@@ -85,38 +88,95 @@
 
                 if($sql_affiliate_earning_l2_cnt > 0)
                 {
-                    $earning = $sql_affiliate_earning_l2_row['earning_amt'];
+                    $earning = $sql_affiliate_earning_l2_row['earning_amt'] ?? 0;
                 }
                 else{
                     $earning = 0;
                 }
 
             }
+            else
+            {
+                $earning = 0;
+            }
+            
+            if($aff_level == 'Level 1')
+            {
+                $aff_level_new = 'Direct Affiliate';
+                $aff_level_color = 'chiActive';
+            }
+            else
+            {
+                $aff_level_new = $aff_level;
+                $aff_level_color = 'chiInActive';
+            }
+            
+            if($sql_affiliate_row['Photo'] == '' || $sql_affiliate_row['Photo'] == '0' || $sql_affiliate_row['Photo'] == NULL)
+            {
+                $aff_img = '../../assets/images/adminImg/default-img.png';
+            }
+            else
+            {
+                $aff_img = $sql_affiliate_row['Photo'];
+            }
 
-            echo '<div class="col-lg-3 col-md-4 col-sm-6 affiliate-card mt-3">
-                  <div class="panel panel-default userlist shadow">
-                      <div class="panel-body text-center">
-                          <div class="userprofile">
-                              <div class="userpic"> <img src="'.$sql_affiliate_row['Photo'].'" alt="" class="userpicimg"> </div>
-                              <h3 class="username">'.$sql_affiliate_row['AffiliateFName'].' '.$sql_affiliate_row['AffiliateMName'].' '.$sql_affiliate_row['AffiliateLName'].'</h3>
-                              <span>'.$aff_level.'</span>
-                              <h6>Earned: ₦'.number_format($earning).'</h6>
-                              <h6>Affiliates: '.$sql_affiliate_sub_cnt.'</h6>
-                          </div>
-                      </div>
-                      <div class="p-3" style="font-weight:medium;">
-                          <p>Email: <a href="mailto:'.$sql_affiliate_row['Email'].'">'.$sql_affiliate_row['Email'].'</a></p>
-                          <p>Phone No.: <a href="tel:'.$sql_affiliate_row['Phone'].'">'.$sql_affiliate_row['Phone'].'</a></p>
-                          <p>Date Added: '.$sql_affiliate_row['DateJoined'].'</p>
-                      </div>
-                  </div>
+            echo '
+            <div class="col-sm-3 col-md-6 col-lg-3 carditems affiliate-card">
+                <div class="topSecCards" style="width: 100%; ">
+                    <span style="float: right;margin-top:20px;" id="abba_stud_stat_span">
+                        <div class="dropdown dropdown-sm">
+                            <button type="button" class="btn '.$aff_level_color.'" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="width:100%;"> 
+                                '.$aff_level_new.'
+                            </button>
+                            
+                        </div>
+                    
+                    </span>
+
+                    <div align="center" style="margin-top: 30px;">
+                        <label for="abba_insert_student_image" style="cursor:pointer;">
+                            <img src="'.$aff_img.'" style="width: 30%; border-radius: 50%;" alt=""><br>
+                            <input type="file" style="display:none;" class="abba_update_student_image" accept="image/*">
+                        </label>
+                        
+                        <h6 class="abba_tooltip" style="font-weight: 600; margin-top: 5px;font-size:14px;"> '.$sql_affiliate_row['AffiliateFName'].' '.$sql_affiliate_row['AffiliateLName'].'<span class="abba_tooltiptext student_full_name">'.$sql_affiliate_row['AffiliateFName'].' '.$sql_affiliate_row['AffiliateMName'].' '.$sql_affiliate_row['AffiliateLName'].'</span></h6>
+                        
+                    </div>
+                    <div style="padding: 7px;">
+                        <div style="width: 100%; border-radius: 5px; background-color: #e8ebf1;">
+                            <div class="row">
+                                <div align="center" class="col-6">
+                                    <div style=" padding-top: 10px;">
+                                        <Small style="color: #8d8d8d; font-size: 11px;">Affiliates</Small><br>
+                                        <p class="abba_tooltip" style="color: #464545; font-size: 12px; font-weight: 600;">'.$sql_affiliate_sub_cnt.'</p>
+                                    </div>
+                                </div>
+                                <div align="center" class="col-6">
+                                    <div style=" padding-top: 10px;">
+                                        <Small style="color: #8d8d8d; font-size: 11px;">Amount Generated </Small><br>
+                                        <p class="abba_tooltip" style="color: #464545; font-size: 12px; font-weight: 600;">₦'.number_format($earning).'</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="padding: 5px; margin-left: 10px;">
+                                <Small class="abba_tooltip" style="color: #666666; font-size: 12px;">
+                                <i class="bx bx-envelope"></i> <a href="mailto:'.$sql_affiliate_row['Email'].'">'.$sql_affiliate_row['Email'].'</a><br>
+                                <i class="bx bx-phone"></i> <a href="tel:'.$sql_affiliate_row['Phone'].'">'.$sql_affiliate_row['Phone'].'</a><br>
+                                Date Added: '.$sql_affiliate_row['DateJoined'].'</Small>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>';
 
         }while($sql_affiliate_row = mysqli_fetch_assoc($sql_affiliate));
     }
     else
     {
-        echo '<div align="center"> No Records Found</div>';
+        echo '<div align="center" class="mt-2"><img src="../../assets/images/adminImg/err.png" style="width:15%;"/><p class="pt-2 fs-6 text-secondary">We couldn\'t find any record.</p></div>';
     }
 
 

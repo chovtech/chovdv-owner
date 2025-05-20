@@ -1,3 +1,36 @@
+<style>
+    
+    #verification-input > input {
+        width: 40px;
+        height: 60px;
+        font-size: 36px;
+        text-align: center;
+        border: 2px solid #666;
+        border-radius: 8px;
+        color:#666;
+    }
+    
+    .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    /* Firefox */
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+    
+</style>
+
 <input type="hidden" value="<?php #echo $UserID;?>" id="user_id">
 <input type="hidden" value="<?php #echo $UType;?>" id="user_type">
 
@@ -35,9 +68,9 @@
             
         </li>
         <li class="sidebar-list-item">
-            <a href="../transactions/">
+            <a href="../earnings/">
                 <i class='bx bx-transfer' style="margin-right: 10px;"></i>
-                <span class="links_name">Transactions</span>
+                <span class="links_name">Earnings</span>
             </a>
 
         </li>
@@ -56,7 +89,7 @@
 </aside>
 
 <!--==== Transfer Modal==== -->
-<div class="modal fade" id="pros_withdrawModal" aria-hidden="true" aria-labelledby="pros_withdrawModalLabel" tabindex="-1">
+<div class="modal fade" id="pros_withdrawModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="pros_withdrawModalLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="border-radius: 20px;">
             <div class="modal-body">
@@ -75,24 +108,24 @@
                             <div class="col-12 mb-4">
                                 <div class="row">
                                     <div class="col-md-12 ps-0">
-                                    <p class="ps-3 textmuted fw-bold h6 mb-0">Wallet Balance</p>
-                                    <span class="h4 fw-bold d-flex ps-3">₦ <span class="textmuted prosloadamountcontent" ><?php echo number_format($WalletBal); ?></span></span>
+                                    <p class="ps-3 textmuted fw-medium h6 mb-0">Wallet Balance</p>
+                                    <span class="h4 fw-medium d-flex ps-3">₦ <span class="textmuted prosloadamountcontent" ><?php echo number_format($WalletBal); ?></span></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- </div>
                         </div> -->
-                        <div class="mb-2" style="font-weight:800;">
+                        <div class="mb-2" style="font-weight:600;">
                             Withdrawal Account Details
                         </div>
-                        <div class="mb-2" style="font-weight:600;">
+                        <div class="mb-2" style="font-weight:500;">
                             <span class="">Bank: <?php echo $Bank; ?></span>
                         </div>
-                        <div class="mb-2" style="font-weight:600;">
+                        <div class="mb-2" style="font-weight:500;">
                             <span class="">Acc. No.: <?php echo $BankAccNo; ?></span>
                         </div>
-                        <div class="mb-2" style="font-weight:600;">
+                        <div class="mb-2" style="font-weight:500;">
                             <span class="account_holder_name">Acc. Name: <?php echo $BankAccName; ?></span>
                         </div>
                     </div>
@@ -121,7 +154,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="pros_withdrawModal2" aria-hidden="true" aria-labelledby="pros_withdrawModalLabel2" tabindex="-1">
+<div class="modal fade" id="pros_withdrawModal2" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="pros_withdrawModalLabel2" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="border-radius: 20px;">
             <div class="modal-body">
@@ -136,12 +169,18 @@
                         <!-- <div class="row">
                             <div class="col-md-7 col-12"> -->
                         <div class="row">
-                            <input type="hidden" class="prosloadsalaybulkamount_inititated">
+                            <div class="col-12 mb-4">
+                                <div class="row justify-content-center">
+                                    A verification code has been sent to your registered email address
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-12 mb-4">
                                 <div class="row">
                                     <div class="col-md-12 ps-0">
-                                    <p class="ps-3 textmuted fw-bold h6 mb-0">Withdrawal Amount</p>
-                                    <span class="h4 fw-bold d-flex ps-3">₦ <span class="textmuted withdrawal_md_amt"></span></span>
+                                    <p class="ps-3 textmuted fw-medium h6 mb-0">Withdrawal Amount</p>
+                                    <span class="h4 fw-medium d-flex ps-3">₦ <span class="textmuted withdrawal_md_amt"></span></span>
                                     </div>
                                 </div>
                             </div>

@@ -1,47 +1,67 @@
 <?php
-include('../controller/config/config.php');
-
-
-@$langold = $_GET['lang'];
-
-if($langold == '' || $langold == NULL || $langold == 'undefined' || $langold == 'null')
-{
-	$lang = 'english';
-	
-}
-else{
-	$lang = $_GET['lang'];
-	
-}
-
-include ('../lang/'.$lang.'.php'); 
-
-
-
- @$consultant_uname = $_GET['ref'];
-
-if ($consultant_uname == '') {
-
-$select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='edumessoftware@gmail.com'";
-$select_company_result = mysqli_query($link, $select_comany);
-$select_company_result_cnt = mysqli_num_rows($select_company_result);
-$select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
-
-
-if($select_company_result_cnt > 0)
-{
-	$consultant_id = $select_company_result_cnt_row['UserID'];
-}else{
-	$consultant_id = '';
-}
+        include('../controller/config/config.php');
+        
+        
+        @$langold = $_GET['lang'];
+        
+        if($langold == '' || $langold == NULL || $langold == 'undefined' || $langold == 'null')
+        {
+        	$lang = 'english';
+        	
+        }
+        else{
+        	$lang = $_GET['lang'];
+        	
+        }
+        
+        include ('../lang/'.$lang.'.php'); 
 
 
 
-} else {
-	$consultant_id = $consultant_uname ;
-}
+         
+         @$consultant_uname = $_GET['ref'];
+        
+        if ($consultant_uname == '') {
+        
+                $select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='edumessinc@gmail.com'";
+                $select_company_result = mysqli_query($link, $select_comany);
+                $select_company_result_cnt = mysqli_num_rows($select_company_result);
+                $select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
+                
+                
+                if($select_company_result_cnt > 0)
+                {
+                	$consultant_id = $select_company_result_cnt_row['UserID'];
+                }else{
+                	$consultant_id = '';
+                }
+        
+        
+        
+        } else {
+            
+            
+                $select_aff = "SELECT * FROM `affiliate` WHERE referral_code='$consultant_uname'";
+                $select_aff_result = mysqli_query($link, $select_aff);
+                $select_aff_result_cnt = mysqli_num_rows($select_aff_result);
+                $select_aff_result_cnt_row = mysqli_fetch_assoc($select_aff_result);
+                
+                
+                if($select_aff_result_cnt > 0)
+                {
+                	$consultant_id = $select_aff_result_cnt_row['AffiliateID'];
+                }else{
+                	$consultant_id = '';
+                }
+            
+        	
+        }
+
+
 
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -675,27 +695,31 @@ if($select_company_result_cnt > 0)
             const role = document.querySelector(".larole");
 
             const testimonials = [
+                
+                
+                
           
-				// {
-				// 	name: "Mr. Abang Emmanuel",
-				// 	position: "Affiliate, EduMESS",
-				// 	photo: "../assets/images/affiliates/emmanuel.jpeg",
-				// 	text: 
-				// 	"EduMESS has made affiliate marketing easy and rewarding. I’m glad to be part of it.",
-				// },
+				
 				{
 					name: "Pst. Godwin Umeh",
 					position: "Affiliate, EduMESS",
-					photo: "../assets/images/affiliates/godwin.jpeg",
+					photo: "../assets/images/website_images/godwin.jpeg",
 					text:
 					"Being an EduMESS affiliate has been a great experience. The platform is truly impactful.",
 				},
 				{
 					name: "Mr. Daniel Mbah",
 					position: "Affiliate, EduMESS",
-					photo: "../assets/images/affiliates/daniel.jpeg",
+					photo: "../assets/images/website_images/daniel.jpeg",
 					text:
 					"EduMESS makes school management simpler. Proud to be an affiliate.",
+				},
+				{
+					name: "Mr. Abang Emmanuel",
+					position: "Affiliate, EduMESS",
+					photo: "../assets/images/website_images/team-cmo.png",
+					text: 
+					"EduMESS has made affiliate marketing easy and rewarding. I’m glad to be part of it.",
 				},
 
          
@@ -720,6 +744,16 @@ if($select_company_result_cnt > 0)
             }
 
             setInterval(updateTestimonial, 10000);
+            
+            
+            
+            
+            // pause animation on button click
+            const button = document.getElementById('pros_signupaff_btn');
+            
+            button.addEventListener('click', () => {
+                button.classList.toggle('stopped');
+            });
 
     </script>
    

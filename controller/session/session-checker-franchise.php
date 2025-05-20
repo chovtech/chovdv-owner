@@ -51,8 +51,13 @@ error_reporting(E_ALL);
     $BankAccNo = $rowGetUserDetails['BankAccNo'];
     $Bank = $rowGetUserDetails['Bank'];
     $BankCode = $rowGetUserDetails['BankCode'];
+    $referral_code = $rowGetUserDetails['referral_code'];
+    
+    
+    
+    $referral_link = $defaultUrl.'affiliate?ref='.$referral_code;
 
-
+    $ApproveStatus = $rowGetUserDetails['ApproveStatus'];
 
 // 	$tagstate = $rowGetUserDetails['TagState'];
 // 	$DefaultLanguage = $rowGetUserDetails['DefaultLanguage'];

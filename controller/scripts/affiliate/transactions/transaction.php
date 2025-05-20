@@ -9,6 +9,7 @@
     $aff_level  = $_POST['aff_level'];
     $session  = $_POST['session'];
     $term  = $_POST['term'];
+    $trans_type  = $_POST['trans_type'];
 
 
     $query = "SELECT * FROM `affiliate_earning` WHERE affiliate_id = '$user_id'";
@@ -34,8 +35,14 @@
         $query .= " AND `Term` = '$term'";
     }
 
+    // Add trans_type filter if needed
+    if($trans_type != '0')
+    {
+        $query .= " AND `transaction_type` = '$trans_type'";
+    }
+
     // Order by name
-    $query .= " ORDER BY `date` ASC";
+    $query .= " ORDER BY `date` DESC";
 
     // Now run the query
     $sql_affiliate = mysqli_query($link, $query);
@@ -45,6 +52,11 @@
     if($sql_affiliate_cnt > 0)
     {
         $cnt = 1;
+        
+        echo '<tr id="noRecordsRow" style="display: none;">
+            <td colspan="6" class="text-center text-muted">No records found</td>
+        </tr>';
+        
         do{
 
             $id = $sql_affiliate_row['id'];
@@ -54,126 +66,106 @@
             $Session_new = $sql_affiliate_row['Session'];
             $Term_new = $sql_affiliate_row['Term'];
             $status = $sql_affiliate_row['transaction_type'];
+            $InstitutionID = $sql_affiliate_row['InstitutionID'];
+            $affiliate_percentage = $sql_affiliate_row['affiliate_percentage'];
+            
+            $final_amt = (intVal($affiliate_percentage) / 100) * $amount;
+            
+            if($sub_affiliate_id == '0')
+            {
+                
+                $affiliate = 'Direct Earning';
+
+                $affiliate_lvl = '';
+            }
+            else{
+
+                $abba_sql_affiliate_dis = ("SELECT * FROM `affiliate` WHERE `AffiliateID` = $sub_affiliate_id");
+                $abba_result_affiliate_dis = mysqli_query($link, $abba_sql_affiliate_dis);
+                $abba_row_affiliate_dis = mysqli_fetch_assoc($abba_result_affiliate_dis);
+                $abba_row_cnt_affiliate_dis = mysqli_num_rows($abba_result_affiliate_dis);
+
+                 if ($abba_row_cnt_affiliate_dis > 0)
+                {
+
+                    $affiliate = $abba_row_affiliate_dis['AffiliateFName'].' '.$abba_row_affiliate_dis['AffiliateMName'].' '.$abba_row_affiliate_dis['AffiliateLName'];
+
+                    $affiliate_lvl = $earning_level;
+                    
+                }
+                else{
+
+                    $affiliate = '';
+
+                    $affiliate_lvl = '';
+                    
+                }
+
+            }
+
+            if($Term_new == '1')
+            {
+                $Term_name = 'First Term';
+            }
+            elseif($Term_new == '2')
+            {
+                $Term_name = 'Second Term';
+            }
+            else{
+                $Term_name = 'Third Term';
+            }
             
             if($status == 'credit')
             {
-                $color = 'green';
+                $color = 'success';
             }
             else
             {
-                $color = 'red';
+                $color = 'danger';
             }
+            
+            $abba_sql_institution = ("SELECT * FROM `institution` WHERE `InstitutionID` = $InstitutionID");
+            $abba_result_institution = mysqli_query($link, $abba_sql_institution);
+            $abba_row_institution = mysqli_fetch_assoc($abba_result_institution);
+            $abba_row_cnt_institution = mysqli_num_rows($abba_result_institution);
+
+             if ($abba_row_cnt_institution > 0)
+            {
+
+                $inst_name = $abba_row_institution['InstitutionGeneralName'];
+
+            }
+            else{
+
+                $inst_name = '';
+
+            }
+            
             $ref_number = $sql_affiliate_row['ref_number'];
             $date = $sql_affiliate_row['date'];
 
-            echo '<div class="col-lg-6 col-md-6 col-sm-6 affiliate-card mt-3">
-
-                <div class="card p-1">
-                    <div class="row">
-
-                        <div class="col-lg-1">
-                            <small>SN</small><br>
-                            <span style="font-weight:600;">'.$cnt++.'.</span>
-                        </div>
-
-                        <div class="col-lg-5">
-                            <small>Ref. Number</small><br>
-                            <span style="font-weight:600;">'.$ref_number.'</span>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <small>Type</small><br>
-                            <span style="color:'.$color.';font-weight:600;">'.strtoupper($status).'</span>
-                        </div>
-
-                        <div class="col-lg-3">
-                            <small>Amount</small><br>
-                            <span style="font-weight:600;">₦'.number_format($amount).'</span>
-                        </div>
-                    </div>
-                    <p>
-                        <span style="color:#007ffb;cursor:pointer;" data-bs-toggle="collapse" data-bs-target="#collapseExample'.$id.'" aria-expanded="false" aria-controls="collapseExample'.$id.'">
-                            View Details
-                        </span>
-                    </p>
-                    <div class="collapse card card-body" id="collapseExample'.$id.'">
-                         <div class="row">';
-
-                             if($sub_affiliate_id == '0')
-                             {
-                                echo '<div class="col-lg-4">
-                                      <span style="font-weight:600;">Direct Earning</span>
-                                  </div>';
-                             }
-                             else{
-
-                                 $abba_sql_affiliate_dis = ("SELECT * FROM `affiliate` WHERE `AffiliateID` = $sub_affiliate_id");
-                                 $abba_result_affiliate_dis = mysqli_query($link, $abba_sql_affiliate_dis);
-                                 $abba_row_affiliate_dis = mysqli_fetch_assoc($abba_result_affiliate_dis);
-                                 $abba_row_cnt_affiliate_dis = mysqli_num_rows($abba_result_affiliate_dis);
-
-                                 if ($abba_row_cnt_affiliate_dis > 0)
-                                 {
-
-                                    echo '<div class="col-lg-4">
-                                          <small>Affiliate</small><br>
-                                          <span style="font-weight:600;">'.$abba_row_affiliate_dis['AffiliateFName'].' '.$abba_row_affiliate_dis['AffiliateMName'].' '.$abba_row_affiliate_dis['AffiliateLName'].'</span>
-                                      </div>
-
-                                      <div class="col-lg-4">
-                                          <small>Affiliate Lvl</small><br>
-                                          <span style="font-weight:600;">Lvl '.$earning_level.'.</span>
-                                      </div>';
-                                 }
-                                 else{
-
-                                 }
-
-                             }
-
-                             if($Term_new == '1')
-                             {
-                                $Term_name = 'First Term';
-                             }
-                             elseif($Term_new == '2')
-                             {
-                                $Term_name = 'Second Term';
-                             }
-                             else{
-                                $Term_name = 'Third Term';
-                             }
-
-
-
-                            echo '<div class="col-lg-4">
-                                <small>Session</small><br>
-                                <span style="font-weight:600;">'.$Session_new.'</span>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <small>Term</small><br>
-                                <span style="font-weight:600;">'.$Term_name.'</span>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <small>Date</small><br>
-                                <span style="font-weight:600;">'.$date.'</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>';
+            echo '<tr>
+                <th scope="row">'.$cnt++.'</th>
+                <td>'.$ref_number.'</td>
+                <td>'.$inst_name .'</td>
+                <td>₦'.number_format($final_amt).'</td>
+                <td class="text-'.$color.'">'.strtoupper($status).'</td>
+                <td>'.$date.'</td>
+                <td><i class="fas fa-eye text-primary view_details_btn" data-bs-toggle="modal" data-bs-target="#trans_det_Modal" style="cursor:pointer;" data-affname = "'.$abba_row_affiliate_dis['AffiliateFName'].' '.$abba_row_affiliate_dis['AffiliateMName'].' '.$abba_row_affiliate_dis['AffiliateLName'].'" data-lvl = "'.$earning_level.'" data-term = "'.$Term_name.'" data-session = "'.$Session_new.'" data-ref = "'.$ref_number.'" data-inst = "'.$inst_name.'"  data-amt = "₦'.number_format($amount).'" data-status = "'.strtoupper($status).'" data-date = "'.$date.'"></i></td>
+                
+            </tr>';
 
         }while($sql_affiliate_row = mysqli_fetch_assoc($sql_affiliate));
     }
     else
     {
-        echo '<div align="center"> No Records Found</div>';
+        echo '<tr>
+            <td colspan="6" class="text-center text-muted">No records found</td>
+        </tr>';
     }
 
     // For DB Credit
-    $sql_affiliate_earning_l1_query = "SELECT SUM(amount) as earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `transaction_type` = 'credit'";
+    $sql_affiliate_earning_l1_query = "SELECT SUM((affiliate_percentage / 100) * amount) AS earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `transaction_type` = 'credit'";
 
     // Add session filter if needed
     if ($session != '0') {
@@ -223,5 +215,99 @@
     }
 
     echo '<input type="hidden" id="debit" value="₦'.$earning_2_db.'">';
+    
+    
+    // For Earn
+    $query_aff_earn_l1 = "SELECT SUM((affiliate_percentage / 100) * amount) AS earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `transaction_type` = 'credit' AND `earning_level` = '1'";
+
+    // Add session filter if needed
+    if ($session != '0') {
+        $query_aff_earn_l1 .= " AND `Session` = '$session'";
+    }
+
+    // Add term filter if needed
+    if ($term != '0') {
+        $query_aff_earn_l1 .= " AND `Term` = '$term'";
+    }
+
+    // Execute the query
+    $query_aff_earn_l1_db = mysqli_query($link, $query_aff_earn_l1);
+    $query_aff_earn_l1_db_row = mysqli_fetch_assoc($query_aff_earn_l1_db);
+    $query_aff_earn_l1_db_cnt = mysqli_num_rows($query_aff_earn_l1_db);
+
+    if ($query_aff_earn_l1_db_cnt > 0) {
+        $aff_earn_l1 = number_format($query_aff_earn_l1_db_row['earning_amt_db'] ?? 0);
+    } else {
+        $aff_earn_l1 = 0;
+    }
+
+    echo '<input type="hidden" id="aff_earn_l1" value="₦'.$aff_earn_l1.'">';
+    
+    
+    
+    
+    
+    
+    // For DB Debit
+    $query_aff_earn_l2 = "SELECT SUM((affiliate_percentage / 100) * amount) AS earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `transaction_type` = 'credit' AND `earning_level` = '2'";
+
+    // Add session filter if needed
+    if ($session != '0') {
+        $query_aff_earn_l2 .= " AND `Session` = '$session'";
+    }
+
+    // Add term filter if needed
+    if ($term != '0') {
+        $query_aff_earn_l2 .= " AND `Term` = '$term'";
+    }
+
+    // Execute the query
+    $query_aff_earn_l2_db = mysqli_query($link, $query_aff_earn_l2);
+    $query_aff_earn_l2_db_row = mysqli_fetch_assoc($query_aff_earn_l2_db);
+    $query_aff_earn_l2_db_cnt = mysqli_num_rows($query_aff_earn_l2_db);
+
+    if ($query_aff_earn_l2_db_cnt > 0) {
+        $aff_earn_l2 = number_format($query_aff_earn_l2_db_row['earning_amt_db'] ?? 0);
+    } else {
+        $aff_earn_l2 = 0;
+    }
+
+    echo '<input type="hidden" id="aff_earn_l2" value="₦'.$aff_earn_l2.'">';
+    
+    
+    
+    
+    
+    
+    // For DB Debit
+    $query_aff_earn_l0 = "SELECT SUM((affiliate_percentage / 100) * amount) AS earning_amt_db
+                        FROM `affiliate_earning`
+                        WHERE affiliate_id = '$user_id'
+                          AND `transaction_type` = 'credit'
+                          AND `earning_level` = '0'";
+
+    // Add session filter if needed
+    if ($session != '0') {
+        $query_aff_earn_l0 .= " AND `Session` = '$session'";
+    }
+
+    // Add term filter if needed
+    if ($term != '0') {
+        $query_aff_earn_l0 .= " AND `Term` = '$term'";
+    }
+
+    // Execute the query
+    $query_aff_earn_l0_db = mysqli_query($link, $query_aff_earn_l0);
+    $query_aff_earn_l0_db_row = mysqli_fetch_assoc($query_aff_earn_l0_db);
+    $query_aff_earn_l0_db_cnt = mysqli_num_rows($query_aff_earn_l0_db);
+
+    if ($query_aff_earn_l0_db_cnt > 0) {
+        $aff_earn_l0 = number_format($query_aff_earn_l0_db_row['earning_amt_db'] ?? 0);
+    } else {
+        $aff_earn_l0 = 0;
+    }
+
+    echo '<input type="hidden" id="aff_earn_l0" value="₦'.$aff_earn_l0.'">';
+
 
 ?>

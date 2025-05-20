@@ -105,6 +105,9 @@
                         var termly_amount = response.termly_amount;
 
                         var newly_school_content = response.newadded_campus;
+                        
+                        
+                        // alert(newly_school_content);
 
 
                         
@@ -159,65 +162,95 @@
                                                         <h2 class="section-title mb-4" style="font-weight:600;font-size: 1rem;color:black;">Newly Registered Schools
                                                         </h2>
                                                     </div>`;
-                                    for (var i = 0; i < newly_school_content.length; i++) {
-
-
-                                        var item = newly_school_content[i];
-
-                                        // 'institute_id' => $new_institution_id,
-                                        // 'institute_name' => $new_institution_name,
-                                        // 'campus_name' => $new_campus_name,
-                                        // 'campus_id' =>  $new_campus_id
- 
-
-
-                                        if(i == 0){
-                                            pros_load_full_content+=` <div class="col-sm-4 mb-4">
-                                                <div class="card  " style="background-image: linear-gradient(180deg,#007bff,#00008B);height:180px;border:1px solid #DFE0EB;border-radius:15px;">
-                                                    <div class="card-header" style="background-image: linear-gradient(180deg,#007bff,#00008B);border-top-right-radius:15px;border-top-left-radius:15px;">
-                                                        <!-- <div class="dropdown " style="margin-right:10rem;position:absolute;top:0.5rem;right:-8.5rem;">
-                                                            <span class="fa fa-ellipsis-v  text-light" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;font-size:14px;"></span> 
-                                                            <div class="dropdown-menu" style="width:30px !important;height:140px;background-color:white;border-radius:10px;">
-                                                                <a class="dropdown-item" data-bs-toggle="modal" href="#pros-editcampus-modal" id="editcampusbtn" data-camp="81" data-sch="8" style="cursor:pointer;font-size:12px;">   <i class="fa fa-edit text-warning" aria-hidden="true"> </i> Edit</a>
-                                                                <a class="dropdown-item" data-bs-toggle="modal" href="#pros-deletecampus-modal" id="prosdeletecampusbtnload" data-campname="Learning Field International Schools (Campus 1, Housing Estate)" data-camp="81" data-sch="8" style="cursor:pointer;font-size:12px;"> <i class="fa fa-trash text-danger" aria-hidden="true"></i>   Delete </a>
-                                                            </div>
-                                                        </div> -->
-                                                        <h3 class="card-title text-light" style="font-weight:600;text-transform: uppercase;font-size: 0.87rem;">${item.institute_name}</h3>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <h5 class="section-title text-light prosdisplaycampusnameedit81" style="font-weight:600;font-size: 0.77rem;">${item.campus_name}</h5>
-                                                        <!-- <a data-bs-toggle="modal" data-bs-target="#prosloadset-configurationhere" data-id="81" class="prosloadinstitutionbtn" style="color:white;float:right;font-size:13px;text-decoration:underline;cursor:pointer;margin-top:4rem;">Make Changes</a> -->
-                                                    </div>
-                                                </div>
-                                            </div>`;
-                                        }else
-                                        {
-
-                                            pros_load_full_content+=`<div class="col-sm-4 mb-4">
-                                                <div class="card  " style="background:#FCFCFC;border:1px solid #DFE0EB;height:180px;border-radius:15px;">
-                                                    <div class="card-header" style="background:#FCFCFC;border-top-right-radius:15px;border-top-left-radius:15px;">
-                                                        <!-- <div class="dropdown" style="margin-right:10rem;position:absolute;top:0.5rem;right:-8.5rem;">
-                                                            <span class="fa fa-ellipsis-v" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;font-size:14px;"></span> 
-                                                            <div class="dropdown-menu" style="width:30px !important;height:140px;background-color:white;border-radius:10px;">
-                                                            <a class="dropdown-item" data-bs-toggle="modal" href="#pros-editcampus-modal" id="editcampusbtn" data-camp="130" data-sch="8" style="cursor:pointer;font-size:12px;">  <i class="fa fa-edit text-warning" aria-hidden="true"></i> Edit </a>
-                                                            <a class="dropdown-item" data-bs-toggle="modal" href="#pros-deletecampus-modal" id="prosdeletecampusbtnload" data-campname="Learning Field International Schools (Campus 4, Trans Nkisi)" data-camp="130" data-sch="8" style="cursor:pointer;font-size:12px;">  <i class="fa fa-trash text-danger" aria-hidden="true"></i>  Delete </a>
-                                                            </div>
-                                                        </div> -->
-                                                        <h3 class="card-title" style="font-weight:600;text-transform: uppercase;font-size: 0.87rem;">${item.institute_name}</h3>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <h5 class="section-title prosdisplaycampusnameedit130" style="font-weight:600;font-size:14px;">${item.campus_name}</h5>
-                                                        <!-- <a data-bs-toggle="modal" data-bs-target="#prosloadset-configurationhere" data-id="130" class="prosloadinstitutionbtn" style="color:blue;float:right;font-size:13px;text-decoration:underline;cursor:pointer;margin-top:4rem;">Make Changes</a> -->
-                                                    </div>
-                                                </div>
-                                            </div>`;
-
-                                        }
-                                     }  
-                      
-                                     $('.pros_load_newly_added').html(pros_load_full_content);
+                                                    
+                                                    
+                                    if(newly_school_content == '')
+                                    {
                                         
-                                
+                                        
+                                        
+                                         
+                                        
+                                         pros_load_full_content+=`<div class="col-12"> 
+                                         
+                                         <div class="card  " style="background:#FCFCFC;border:1px solid #DFE0EB;height:180px;border-radius:15px;">
+                       
+                                                <div class="card-body">
+                                                    <center>
+                                            <img width="48" height="48" src="https://img.icons8.com/external-topaz-kerismaker/48/external-Not-Found-empty-state-topaz-kerismaker.png" alt="external-Not-Found-empty-state-topaz-kerismaker"/>
+                                             <p>No School Found</p>
+                                             </center>
+                                                </div>
+                                            </div>
+                                         </div>
+                                         
+                                         </div>`;
+                                                
+                                       
+                                        
+                                    }else
+                                    {
+                                        
+                                    
+                                        for (var i = 0; i < newly_school_content.length; i++) {
+    
+    
+                                            var item = newly_school_content[i];
+    
+                                            // 'institute_id' => $new_institution_id,
+                                            // 'institute_name' => $new_institution_name,
+                                            // 'campus_name' => $new_campus_name,
+                                            // 'campus_id' =>  $new_campus_id
+     
+    
+    
+                                            if(i == 0){
+                                                pros_load_full_content+=` <div class="col-sm-4 mb-4">
+                                                    <div class="card  " style="background-image: linear-gradient(180deg,#007bff,#00008B);height:180px;border:1px solid #DFE0EB;border-radius:15px;">
+                                                        <div class="card-header" style="background-image: linear-gradient(180deg,#007bff,#00008B);border-top-right-radius:15px;border-top-left-radius:15px;">
+                                                            <!-- <div class="dropdown " style="margin-right:10rem;position:absolute;top:0.5rem;right:-8.5rem;">
+                                                                <span class="fa fa-ellipsis-v  text-light" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;font-size:14px;"></span> 
+                                                                <div class="dropdown-menu" style="width:30px !important;height:140px;background-color:white;border-radius:10px;">
+                                                                    <a class="dropdown-item" data-bs-toggle="modal" href="#pros-editcampus-modal" id="editcampusbtn" data-camp="81" data-sch="8" style="cursor:pointer;font-size:12px;">   <i class="fa fa-edit text-warning" aria-hidden="true"> </i> Edit</a>
+                                                                    <a class="dropdown-item" data-bs-toggle="modal" href="#pros-deletecampus-modal" id="prosdeletecampusbtnload" data-campname="Learning Field International Schools (Campus 1, Housing Estate)" data-camp="81" data-sch="8" style="cursor:pointer;font-size:12px;"> <i class="fa fa-trash text-danger" aria-hidden="true"></i>   Delete </a>
+                                                                </div>
+                                                            </div> -->
+                                                            <h3 class="card-title text-light" style="font-weight:600;text-transform: uppercase;font-size: 0.87rem;">${item.institute_name}</h3>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <h5 class="section-title text-light prosdisplaycampusnameedit81" style="font-weight:600;font-size: 0.77rem;">${item.campus_name}</h5>
+                                                            <!-- <a data-bs-toggle="modal" data-bs-target="#prosloadset-configurationhere" data-id="81" class="prosloadinstitutionbtn" style="color:white;float:right;font-size:13px;text-decoration:underline;cursor:pointer;margin-top:4rem;">Make Changes</a> -->
+                                                        </div>
+                                                    </div>
+                                                </div>`;
+                                            }else
+                                            {
+    
+                                                pros_load_full_content+=`<div class="col-sm-4 mb-4">
+                                                    <div class="card  " style="background:#FCFCFC;border:1px solid #DFE0EB;height:180px;border-radius:15px;">
+                                                        <div class="card-header" style="background:#FCFCFC;border-top-right-radius:15px;border-top-left-radius:15px;">
+                                                            <!-- <div class="dropdown" style="margin-right:10rem;position:absolute;top:0.5rem;right:-8.5rem;">
+                                                                <span class="fa fa-ellipsis-v" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;font-size:14px;"></span> 
+                                                                <div class="dropdown-menu" style="width:30px !important;height:140px;background-color:white;border-radius:10px;">
+                                                                <a class="dropdown-item" data-bs-toggle="modal" href="#pros-editcampus-modal" id="editcampusbtn" data-camp="130" data-sch="8" style="cursor:pointer;font-size:12px;">  <i class="fa fa-edit text-warning" aria-hidden="true"></i> Edit </a>
+                                                                <a class="dropdown-item" data-bs-toggle="modal" href="#pros-deletecampus-modal" id="prosdeletecampusbtnload" data-campname="Learning Field International Schools (Campus 4, Trans Nkisi)" data-camp="130" data-sch="8" style="cursor:pointer;font-size:12px;">  <i class="fa fa-trash text-danger" aria-hidden="true"></i>  Delete </a>
+                                                                </div>
+                                                            </div> -->
+                                                            <h3 class="card-title" style="font-weight:600;text-transform: uppercase;font-size: 0.87rem;">${item.institute_name}</h3>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <h5 class="section-title prosdisplaycampusnameedit130" style="font-weight:600;font-size:14px;">${item.campus_name}</h5>
+                                                            <!-- <a data-bs-toggle="modal" data-bs-target="#prosloadset-configurationhere" data-id="130" class="prosloadinstitutionbtn" style="color:blue;float:right;font-size:13px;text-decoration:underline;cursor:pointer;margin-top:4rem;">Make Changes</a> -->
+                                                        </div>
+                                                    </div>
+                                                </div>`;
+    
+                                            }
+                                         }  
+                          
+                                        
+                                    }    
+                                 $('.pros_load_newly_added').html(pros_load_full_content);
 
                     } catch (error) {
                         console.error("Failed to parse JSON:", error);
