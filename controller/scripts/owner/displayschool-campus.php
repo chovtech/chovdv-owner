@@ -379,7 +379,7 @@
                                                                     $row_cntGetSchool_class  = mysqli_num_rows($resultGetSchool_class);
 
 
-                                                                    $sqlGetSchool_subject = ("SELECT * FROM `subjectorcourse` WHERE CampusID='$campusID_new'");
+                                                                    $sqlGetSchool_subject = ("SELECT * FROM `courseorsubjectallocation` WHERE CampusID='$campusID_new'");
                                                                     $resultGetSchool_subject  = mysqli_query($link, $sqlGetSchool_subject);
                                                                     $rowGetSchool_subject = mysqli_fetch_assoc($resultGetSchool_subject);
                                                                     $row_cntGetSchool_subject  = mysqli_num_rows($resultGetSchool_subject);

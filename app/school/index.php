@@ -24,7 +24,7 @@
 
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/users/favicon.png">
     <title>
-        <?php echo $portal_onboarding_title; ?> |
+        <?php echo 'Set Up'; ?> |
         <?php echo $fullname; ?>
     </title>
 
@@ -34,7 +34,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="../../assets/plugins/notify/wnoty.css" rel="stylesheet">
 
@@ -108,7 +108,7 @@
 
                         
 
-                        <!-- create school new initial-->
+                        <!-- pros set up modal-->
                         <div class="modal fade" id="setupmodal" data-bs-backdrop="static" data-bs-keyboard="false"
                             tabindex="-1" aria-labelledby="setupmodallabel" aria-hidden="true">
                             <div class="modal-dialog modal-xl">
@@ -162,12 +162,12 @@
                 
                                                     <div class="col-sm-4">
                 
-                                                        <div class="centerlangues">
-                                                            <input type="radio" class="defaultlang french with-gap frenchclick"
+                                                        <div class="centerlangues bg-light">
+                                                            <input type="radio" disabled class="defaultlang french with-gap frenchclick"
                                                                 value="french" id="radio-btnone" name="radio-btn"
                                                                 style="cursor:pointer;">
                                                             <label style="margin-left:15px;font-size:13px;"
-                                                                for="radio-btnone">français</label>
+                                                                for="radio-btnone">français <small style="color: #888;">(coming soon. Stay tuned!)</small></label>
                 
                                                             <!-- <span style="float:right;margin-right:5%;"><i
                                                                         class="flag-icon flag-icon-fr"></i></span> -->
@@ -177,12 +177,12 @@
                 
                                                     <div class="col-sm-4">
                 
-                                                        <div class="centerlangues">
+                                                        <div class="centerlangues bg-light">
                 
-                                                            <input type="radio" class="defaultlang spanish with-gap spanishclick"
+                                                            <input type="radio" disabled class="defaultlang spanish with-gap spanishclick"
                                                                 value="spanish" id="spanish" name="radio-btn" style="cursor:pointer;">
                                                             <label style="margin-left:15px;font-size:13px;"
-                                                                for="spanish">español</label>
+                                                                for="spanish">español <small style="color: #888;">(coming soon. Stay tuned!)</small></label>
                 
                                                             <!-- <span style="float:right;margin-right:5%;"><i
                                                                         class="flag-icon flag-icon-es"></i></span> -->
@@ -191,11 +191,11 @@
                 
                                                     <div class="col-sm-4">
                 
-                                                        <div class="centerlangues">
+                                                        <div class="centerlangues bg-light">
                 
-                                                            <input type="radio" class="defaultlang chinese with-gap chineseclick"
+                                                            <input type="radio" disabled  class="defaultlang chinese with-gap chineseclick"
                                                                 value="chinese" id="chinese" name="radio-btn" style="cursor:pointer;">
-                                                            <label style="margin-left:15px;font-size:13px;" for="chinese">中文</label>
+                                                            <label style="margin-left:15px;font-size:13px;" for="chinese">中文 <small style="color: #888;"> (coming soon. Stay tuned!)</small></label>
                                                             <!-- <span style="float:right;margin-right:5%;"><i
                                                                         class="flag-icon flag-icon-ch"></i></span> -->
                                                         </div>
@@ -204,11 +204,11 @@
                 
                                                     <div class="col-sm-4">
                 
-                                                        <div class="centerlangues">
+                                                        <div class="centerlangues bg-light">
                 
-                                                            <input type="radio" class="defaultlang arabic with-gap arabicclick"
+                                                            <input type="radio" disabled class="defaultlang arabic with-gap arabicclick"
                                                                 value="arabic" id="arabic" name="radio-btn" style="cursor:pointer;">
-                                                            <label style="margin-left:15px;font-size:13px;" for="arabic">العربية</label>
+                                                            <label style="margin-left:15px;font-size:13px;" for="arabic">العربية <small style="color: #888;"> (coming soon. Stay tuned!)</small></label>
                                                             <!-- <span style="float:right;margin-right:5%;"><i
                                                                         class="flag-icon flag-icon-eh"></i></span> -->
                                                         </div>
@@ -216,11 +216,11 @@
                 
                                                     <div class="col-lg-4">
                 
-                                                        <div class="centerlangues">
+                                                        <div class="centerlangues bg-light">
                 
-                                                            <input type="radio" class="defaultlang hindi with-gap hindicclick"
+                                                            <input type="radio" disabled class="defaultlang hindi with-gap hindicclick"
                                                                 value="hindi" id="hindi" name="radio-btn" style="cursor:pointer;">
-                                                            <label style="margin-left:15px;font-size:13px;" for="hindi">हिंदी</label>
+                                                            <label style="margin-left:15px;font-size:13px;" for="hindi">हिंदी <small style="color: #888;"> (coming soon. Stay tuned!)</small></label>
                                                             <!-- <span style="float:right;margin-right:5%;"><i
                                                                         class="flag-icon flag-icon-ci"></i></span> -->
                                                         </div>
@@ -244,7 +244,7 @@
                                         <div id="displayaiwelcome"
                                             style="background-color:white;padding:8px;padding-bottom:15px;margin-top:5%;border-radius:10px;display:none;">
                 
-                                            <u style="cursor:pointer;float:right;margin-right:3%;" class="" id="previoutAI">
+                                            <u style="cursor:pointer;float:right;margin-right:3%;" data-id="9" class="" id="previoutAI">
                                                 <i class="fa fa-long-arrow-left" style="font-size:11px;"></i>
                                                 <?php echo $portal_back; ?>
                                             </u>
@@ -298,9 +298,9 @@
                 
                                                     <div class="col-sm-12">
                 
-                                                        <div class="square-box" id="k-container">
+                                                        <div class="square-box" id="k-container" style="outline: 3px solid #007bff;">
                 
-                                                            <input type="radio" class="typeofscho with-gap" value="1" id="k12value"
+                                                            <input type="radio" checked class="typeofscho with-gap" value="1" id="k12value"
                                                                 name="schooltype" style="margin-left:2%;margin-top:2%;">
                 
                                                             <label style="font-size:13px;float:right;margin-right:3%;margin-top:2%;"
@@ -311,7 +311,7 @@
                 
                                                                 <div class="col-sm-6">
                 
-                                                                    <img src="../../assets/images/users/k-12.png" width="70%">
+                                                                    <img class="img-fluid" src="../../assets/images/users/k-12.png" width="70%">
                 
                                                                 </div>
                 
@@ -335,19 +335,19 @@
                 
                                                     <div class="col-sm-12">
                 
-                                                        <div class="square-box divlms" id="tertiarycontainer">
+                                                        <div class="square-box divlms bg-light pros-disabled-menu" id="tertiarycontainer">
                 
-                                                            <input type="radio" class="typeofscho with-gap" value="2" id="tertiary"
+                                                            <input type="radio" disabled class="typeofscho with-gap" value="2" id="tertiary"
                                                                 name="schooltype" style="margin-left:2%;margin-top:2%;">
                 
                                                             <label style="font-size:13px;float:right;margin-right:3%;margin-top:2%;"
-                                                                for="tertiary"></label>
+                                                                for="tertiary"><small style="color: #888;">coming soon. Stay tuned!</small></label>
                 
                                                             <br>
                                                             <div class="row">
                 
                                                                 <div class="col-sm-6">
-                                                                    <img src="../../assets/images/users/k-12.png" width="70%">
+                                                                    <img class="img-fluid" src="../../assets/images/users/k-12.png" width="70%">
                                                                 </div>
                 
                                                                 <div class="col-sm-6">
@@ -368,22 +368,22 @@
                                                         </div>
                                                     </div>
                 
-                                                    <div class="col-sm-12">
+                                                    <div class="col-sm-12 pros-disabled-menu">
                 
-                                                        <div class="square-box divlms" id="lmscontainer">
+                                                        <div class="square-box divlms bg-light " id="lmscontainer">
                 
-                                                            <input type="radio" class="typeofscho with-gap" value="3"
+                                                            <input type="radio" disabled class="typeofscho with-gap" value="3"
                                                                 id="contentcreator" name="schooltype"
                                                                 style="margin-left:2%;margin-top:2%;">
                 
                                                             <label style="font-size:13px;float:right;margin-right:3%;margin-top:2%;"
-                                                                for="contentcreator"></label>
+                                                                for="contentcreator"><small style="color: #888;">coming soon. Stay tuned!</small></label>
                                                             <br>
                 
                                                             <div class="row">
                 
                                                                 <div class="col-sm-6">
-                                                                    <img src="../../assets/images/users/k-12.png" width="70%">
+                                                                    <img class="img-fluid" src="../../assets/images/users/k-12.png" width="70%">
                                                                 </div>
                 
                                                                 <div class="col-sm-6">
@@ -403,16 +403,17 @@
                 
                                                     </div>
                 
-                                                    <br></br>
-                                                    <button type="button" style="margin-top:6%;" id="typeofschoolback"
+                                                    <p></p>
+                                                    <p></p>
+                                                    <button type="button" style="margin-top:6%;" data-id="10" id="typeofschoolback"
                                                         class="btn  text-dark" class="">
-                                                        <i class="fa fa-long-arrow-left" style="font-size:11px;">
+                                                        <i class="fas fa-long-arrow-left" style="font-size:11px;">
                                                         </i>
                                                         <?php echo $portal_back; ?>
                                                     </button>
                                                     <button type="button" data-id="13" style="margin-top:6%;" id="proceedtosettingsch"
                                                         class="btn  text-light"><?php echo $portal_proceed; ?> <i
-                                                            class="fa fa-long-arrow-right" style="font-size: 13px;"></i>
+                                                            class="fas fa-long-arrow-right" style="font-size: 13px;"></i>
                                                     </button>
                                                 </div>
                 
@@ -424,7 +425,7 @@
                                         <!-- =======school page after choice of school start here====== -->
                                         <div id="displaysetinstitution" style='margin-bottom:30%;display:none;' align="center">
                 
-                                            <u style="cursor:pointer;float:right;margin-right:3%;" id="backbtntoai" class="">
+                                            <u style="cursor:pointer;float:right;margin-right:3%;" data-id="11" id="backbtntoai" class="">
                                                 <i class="fa fa-long-arrow-left" style="font-size:11px;"></i>
                                                 <?php echo $portal_back; ?>
                                             </u>
@@ -481,7 +482,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- create school new initial-->
+                        <!-- pros set up modal-->
                         
                         
                         
@@ -619,7 +620,7 @@
 
 
 
-                        <!-- =======onboarding school setting====== -->
+                        <!-- =======pros full school list====== -->
 
                         <div id="schoolsettings" style="display: none">
 
@@ -639,7 +640,7 @@
                         </div>
 
 
-                        <!-- =======onboarding school setting end here ====== -->
+                        <!-- =======pros full school list ====== -->
                     </div>
                     <div class="col-sm-1"></div>
 
@@ -888,8 +889,8 @@
                                     value="" style="width: 100%;">
                             </div>
 
-
-                            &nbsp;&nbsp;&nbsp;
+                           
+                            &nbsp;&nbsp;&nbsp; 
                             <div class="pros-flexi-label-wrapper"><label for="schoolName">School Link<span
                                         style="color:red;">*</span></label>
 
@@ -913,7 +914,7 @@
                                 style="margin-top:-2px;margin-left:52px;font-family:poppins,sans-serif;color: #363949;font-size:11px;display:block;">
                                 This will be the url link to your portal
                             </span>
-
+                            <input type="hidden" value="okay" class="pros_verifyurl_exist_input_here">
 
 
                             &nbsp;&nbsp;<br></br>
@@ -943,6 +944,7 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="border:none;">
+
                 </div>
             </div>
         </div>
@@ -1500,85 +1502,85 @@
 
 
 
-<div class="modal fade modalshow modalfade" id="prosloadset-configurationhere" tabindex="-1" aria-labelledby="prosloadset-configurationhereModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog dialogcontent" style="border-top-left-radius: 20px; width: 300px;">
-        <div class="modal-content modalcontent" style="background-color:#ffffff; ">
+    <div class="modal fade modalshow modalfade" id="prosloadset-configurationhere" tabindex="-1" aria-labelledby="prosloadset-configurationhereModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog dialogcontent" style="border-top-left-radius: 20px; width: 300px;">
+            <div class="modal-content modalcontent" style="background-color:#ffffff; ">
 
-            <div class="modal-body modalbodycontent">
+                <div class="modal-body modalbodycontent">
 
-                <div style="position: fixed; margin-left: 0.9rem; padding-top: 20px; display: flex;">
-                    <img src="../assets/images/favicon.png" style="width: 80%" data-dismiss="modal" aria-label="Close">
-                </div>
-
-
-                <div width="300px" height="30vh" class="sc-UpCWa ezuGy flexi-sheet-body" open="">
-                    <button type="button" data-bs-dismiss="modal" aria-label="Close"
-                        style="float: right; margin-right: 20px; background: #ffffff; border: none;">
-                        <span style="color: #525252; font-size: 30px; cursor: pointer;">×</span>
-                    </button>
-
-                   
-                    <p style="margin-left: 0.9rem; padding-top: 60px; margin-left: 40px; font-weight: 700; color: #525252;">School Settings</p>
-                        
-
-                    <div width="100%" height="100%" style="margin-top: 50px;" class="sc-pyfCe gtGxgb">
-
-                        <ul class="rightModalItems">
-
-                           
-
-                            <li class="chiTag">SETTINGS</li>
-                            <li class="chiTagLine"> </li>
-
-                            <li>
-                                <a  class="prosgeneralcliklinkhere" data-step="section" style="cursor:pointer;">
-                                    <i class="fa fa-calendar menuicons"></i> Section
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="prosgeneralcliklinkhere" data-step="class">
-                                    <i class="fa fa-clock-o menuicons"></i>Class</a>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a  class="prosgeneralcliklinkhere" data-step="subject">
-                                    <i class="fa fa-address-book menuicons"></i> Subject
-                                </a>
-                            </li>
-
-                            <li>
-                                <a class="prosgeneralcliklinkhere" data-step="term" style="cursor:pointer;">
-                                    <i class="fa fa-cogs menuicons"></i> Term
-                                </a>
-                            </li>
-
-
-                            <li>
-                                <a class="prosgeneralcliklinkhere" data-step="logo" style="cursor:pointer;">
-                                    <i class="fas fa-image menuicons"></i> School Logo
-                                </a>
-                            </li>
-
-
-                            <li>
-                                <a class="prosgeneralcliklinkhere" data-step="loginbg" style="cursor:pointer;">
-                                    <i class="fas fa-camera menuicons"></i> Login Images
-                                </a>
-                            </li>
-
-                           
-
-                        </ul>
+                    <div style="position: fixed; margin-left: 0.9rem; padding-top: 20px; display: flex;">
+                        <img src="../assets/images/favicon.png" style="width: 80%" data-dismiss="modal" aria-label="Close">
                     </div>
-                </div>
 
+
+                    <div width="300px" height="30vh" class="sc-UpCWa ezuGy flexi-sheet-body" open="">
+                        <button type="button" data-bs-dismiss="modal" aria-label="Close"
+                            style="float: right; margin-right: 20px; background: #ffffff; border: none;">
+                            <span style="color: #525252; font-size: 30px; cursor: pointer;">×</span>
+                        </button>
+
+                    
+                        <p style="margin-left: 0.9rem; padding-top: 60px; margin-left: 40px; font-weight: 700; color: #525252;">School Settings</p>
+                            
+
+                        <div width="100%" height="100%" style="margin-top: 50px;" class="sc-pyfCe gtGxgb">
+
+                            <ul class="rightModalItems">
+
+                            
+
+                                <li class="chiTag">SETTINGS</li>
+                                <li class="chiTagLine"> </li>
+
+                                <li>
+                                    <a  class="prosgeneralcliklinkhere" data-step="section" style="cursor:pointer;">
+                                        <i class="fa fa-calendar menuicons"></i> Section
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="prosgeneralcliklinkhere" data-step="class">
+                                        <i class="fa fa-clock-o menuicons"></i>Class</a>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a  class="prosgeneralcliklinkhere" data-step="subject">
+                                        <i class="fa fa-address-book menuicons"></i> Subject
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="prosgeneralcliklinkhere" data-step="term" style="cursor:pointer;">
+                                        <i class="fa fa-cogs menuicons"></i> Term
+                                    </a>
+                                </li>
+
+
+                                <li>
+                                    <a class="prosgeneralcliklinkhere" data-step="logo" style="cursor:pointer;">
+                                        <i class="fas fa-image menuicons"></i> School Logo
+                                    </a>
+                                </li>
+
+
+                                <li>
+                                    <a class="prosgeneralcliklinkhere" data-step="loginbg" style="cursor:pointer;">
+                                        <i class="fas fa-camera menuicons"></i> Login Images
+                                    </a>
+                                </li>
+
+                            
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
       <input type="hidden" id="prosloadquestionsettingcampusid">

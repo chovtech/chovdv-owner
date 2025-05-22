@@ -5,6 +5,8 @@
         $UserID  = $_POST['UserID'];
         $SchoolID  = $_POST['SchoolID'];
 
+        $schoolink.='.edumess.com';
+
         if($SchoolID == '')
         {
               $verifyschool =  mysqli_query($link,"SELECT * FROM `institution` WHERE CustomUrl='$schoolink'");

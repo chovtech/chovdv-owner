@@ -2,10 +2,6 @@
 
      //pros load logo content here for upload
     $(document).ready(function() {
-
-
-
-
         $image_crop = $('#pros-load-image').croppie({
                 enableExif: false,
                 viewport: {
@@ -41,10 +37,6 @@
             
         });
 
-
-
-
-
     });
      //pros load logo content here for upload
 
@@ -53,123 +45,182 @@
 
   
    
-$(document).ready(function() {
+    $(document).ready(function() {
 
 
 
-     
-    var country = $('.generalcountry').val();
-    var dataString = '&country=' + country;
+        // PROS GET STATE BASE ON COUNTRY SELECTED
+            var country = $('.generalcountry').val();
+            var dataString = '&country=' + country;
 
-    $('#state').html('<option value="0">Loading...</option>');
-
-    $.ajax({
-        type: "POST",
-        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-state-onboarding.php",
-        data: dataString,
-        success: function(result) {
-            $('#state').html(result);
-        }
-    });
-
-
-    $('body').on('change','#proscampuscountryedit',function(){
-        $('#proscampusstateedit').html('<option value="0">Loading...</option>');
-        var countryID = $(this).val();
-        var dataString = '&country=' + countryID;
-
+            $('#state').html('<option value="0">Loading...</option>');
 
             $.ajax({
                 type: "POST",
                 url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-state-onboarding.php",
                 data: dataString,
                 success: function(result) {
-                    $('#proscampusstateedit').html(result);
+                    $('#state').html(result);
                 }
             });
+            // PROS GET STATE BASE ON COUNTRY SELECTED
 
+            $('body').on('change','#proscampuscountryedit',function(){
+                $('#proscampusstateedit').html('<option value="0">Loading...</option>');
+                var countryID = $(this).val();
+                var dataString = '&country=' + countryID;
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-state-onboarding.php",
+                        data: dataString,
+                        success: function(result) {
+                            $('#proscampusstateedit').html(result);
+                        }
+                    });
+
+            });
+
+
+        
+        var tagstatus = '<?php echo $tagstate; ?>';//PROS CURRENT USER TAG STATUS
+
+
+        // PROS HIDDEN WIZARD CONTENT
+            $('#displayaiwelcome').hide();
+            $('#changelang').hide();
+            $('#institutiontype').hide();
+            $('#displayschoolinput').hide();
+            $('#displaycontentcreator').hide();
+            $('#displaytertiary').hide();
+            $('#displayk12').hide();
+            $('#displaysetinstitution').hide();
+            // PROS HIDDEN WIZARD CONTENT
+
+            // PROS WIZZARD CONTENT CONDITIONAL STAMENTS
+            if (tagstatus == '9') {
+
+                $('#setupmodal').modal('show');
+                $('#changelang').fadeIn('slow');
+
+            } else if (tagstatus == '11') {
+                $('#setupmodal').modal('show');
+                $('#displayaiwelcome').fadeIn('slow');
+
+            } else if (tagstatus == '10') {
+
+                $('#setupmodal').modal('show');
+                $('#displaysetinstitution').fadeIn('slow');
+
+            } else if (tagstatus == '12') {
+                $('#setupmodal').modal('show');
+                $('#institutiontype').fadeIn('slow');
+            } else if (tagstatus == '13') {
+            $('#setupmodal').modal('hide');
+                $('#pros-createschoolmodal-first').modal('show');
+
+            } else if (tagstatus == '15') {
+
+                $('#schoolsettings').fadeIn('slow');
+
+                $('#setupmodal').modal('hide'); 
+                $('.pros-schoolkindofmodal').on('shown.bs.modal', function() {
+                    $(this).addClass('show');
+                });
+
+                $('.pros-schoolkindofmodal').on('hide.bs.modal', function() {
+                    $(this).removeClass('show');
+                });
+
+
+                $('#pros-createnewcampus').on('hidden.bs.modal', function() {
+                    $('#groupschoolnewcampusid').val('');
+                });
+            }
+            // PROS WIZZARD CONTENT CONDITIONAL STAMENTS
+
+
+    
+        var defaultlang = '<?php echo $DefaultLanguage; ?>';//PROS DEFAULT LANGUAGE
+
+        if (defaultlang == 'french') {
+            $(".french").prop("checked", true);
+        } else if (defaultlang == 'chinese') {
+
+            $(".chinese").prop("checked", true);
+        } else if (defaultlang == 'arabic') {
+            $(".arabic").prop("checked", true);
+        } else if (defaultlang == 'spanish') {
+            $(".spanish").prop("checked", true);
+        } else {
+            $(".english").prop("checked", true);
+        }
+
+    // PROS DEFAULT LANGUAGE
+
+        // PROS CHECK IF DEFAULT LANGUAGE IS SET
+            if (defaultlang == '') {
+
+                var defaultlang = localStorage.getItem("lang");
+                var UserID = "<?php echo $UserID; ?>";
+                var tagstate = '';
+
+                if (defaultlang != undefined || defaultlang != null || defaultlang != '') {
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatedefaultlang.php",
+                        data: {
+                            defaultlang: defaultlang,
+                            UserID: UserID,
+                            tagstate: tagstate
+                        },
+                        cache: false,
+                        success: function(result) {
+                            // location.reload();
+                        }
+                    });
+                }
+
+            }
+        // PROS CHECK IF DEFAULT LANGUAGE IS SET AND UPDATE
     });
 
 
-    
-    var tagstatus = '<?php echo $tagstate; ?>';
-
-
-    
-    $('#displayaiwelcome').hide();
-    $('#changelang').hide();
-    $('#institutiontype').hide();
-    $('#displayschoolinput').hide();
-    $('#displaycontentcreator').hide();
-    $('#displaytertiary').hide();
-    $('#displayk12').hide();
-    $('#displaysetinstitution').hide();
-
-    if (tagstatus == '9') {
-
-        $('#setupmodal').modal('show');
-        $('#changelang').fadeIn('slow');
-
-    } else if (tagstatus == '11') {
-        $('#setupmodal').modal('show');
-        $('#displayaiwelcome').fadeIn('slow');
-
-    } else if (tagstatus == '10') {
-
-        $('#setupmodal').modal('show');
-        $('#displaysetinstitution').fadeIn('slow');
-
-    } else if (tagstatus == '12') {
-        $('#setupmodal').modal('show');
-        $('#institutiontype').fadeIn('slow');
-    } else if (tagstatus == '13') {
-       $('#setupmodal').modal('hide');
-        $('#pros-createschoolmodal-first').modal('show');
-
-    } else if (tagstatus == '15') {
-
-        $('#schoolsettings').fadeIn('slow');
-
-        $('#setupmodal').modal('hide'); 
-        $('.pros-schoolkindofmodal').on('shown.bs.modal', function() {
-            $(this).addClass('show');
-        });
-
-        $('.pros-schoolkindofmodal').on('hide.bs.modal', function() {
-            $(this).removeClass('show');
-        });
-
-
-        $('#pros-createnewcampus').on('hidden.bs.modal', function() {
-            $('#groupschoolnewcampusid').val('');
-        });
-    }
+// getschool id when adding new campus to list
+$('body').on('click', '#proscreatescampusgetid', function() {
+    var schoolid = $(this).data('school');
+    $('#groupschoolnewcampusid').val(schoolid);
+});
+// getschool id when adding new campus to list
 
 
 
-  
-    var defaultlang = '<?php echo $DefaultLanguage; ?>';
+    $('body').on('click', '#defaultlangbtn', function() {
+        var defaullang = $("input[type='radio'].defaultlang:checked").val();
 
-    if (defaultlang == 'french') {
-        $(".french").prop("checked", true);
-    } else if (defaultlang == 'chinese') {
+        if (defaullang === undefined) {
 
-        $(".chinese").prop("checked", true);
-    } else if (defaultlang == 'arabic') {
-        $(".arabic").prop("checked", true);
-    } else if (defaultlang == 'spanish') {
-        $(".spanish").prop("checked", true);
-    } else {
-        $(".english").prop("checked", true);
-    }
+            $.wnoty({
+                type: 'warning',
+                message: "Hey!! language not selected.",
+                autohideDelay: 5000
+            });
 
-    if (defaultlang == '') {
+        } else {
+            localStorage.setItem("lang", defaullang);
 
-        var defaultlang = localStorage.getItem("lang");
-        var UserID = "<?php echo $UserID; ?>";
-        var tagstate = '';
+            $('#changelang').animate({
+                opacity: 0.5,
+                left: '+=50',
+                height: 'toggle'
+            }, 400);
+            $('#displayaiwelcome').fadeIn('slow');
 
-        if (defaultlang != undefined || defaultlang != null || defaultlang != '') {
+            var defaultlang = localStorage.getItem("lang");
+            var UserID = "<?php echo $UserID; ?>";
+            var tagstate = $(this).data('id');
+            // alert(tagid);
             $.ajax({
                 type: "POST",
                 url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatedefaultlang.php",
@@ -183,226 +234,171 @@ $(document).ready(function() {
                     // location.reload();
                 }
             });
+
         }
-
-    }
-});
-
-
-// getschool id when adding new campus to list
-$('body').on('click', '#proscreatescampusgetid', function() {
-    var schoolid = $(this).data('school');
-    $('#groupschoolnewcampusid').val(schoolid);
-});
-// getschool id when adding new campus to list
+    });//DEFAULT LANGUAGE
+    // click to get to sch type
 
 
+    $('body').on('click', '#previoutAI', function() {
 
-$('body').on('click', '#defaultlangbtn', function() {
-    var defaullang = $("input[type='radio'].defaultlang:checked").val();
+        var UserID = "<?php echo $UserID; ?>";
+        var tagid = $(this).data('id');
 
-    if (defaullang === undefined) {
+        pros_updabackwards_steps(UserID,tagid);
 
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! language not selected.",
-            autohideDelay: 5000
-        });
-
-    } else {
-        localStorage.setItem("lang", defaullang);
-
-        $('#changelang').animate({
-            opacity: 0.5,
+        $('#displayaiwelcome').animate({
             left: '+=50',
             height: 'toggle'
-        }, 1000);
-        $('#displayaiwelcome').fadeIn('slow');
+        }, 500);
 
-        var defaultlang = localStorage.getItem("lang");
+        $('#changelang').fadeIn('slow');
+    });//PREVIOUS BUTTON
+
+
+
+    // click to get to sch type
+    $('body').on('click', '#previoutAI-btn', function() {
+
+        // $('#displayaiwelcome').fadeOut();
+        $('#displayaiwelcome').animate({
+            left: '+=50',
+            height: 'toggle'
+        }, 500);
+
+        $('#displaysetinstitution').fadeIn('slow');
         var UserID = "<?php echo $UserID; ?>";
-        var tagstate = $(this).data('id');
-        // alert(tagid);
+        var tagid = $(this).data('id');
+
+        pros_updabackwards_steps(UserID,tagid);
+
+    });
+
+    $('body').on('click', '#k-container', function() {
+
+        $("#k12value").prop("checked", true);
+
+        $(this).css('outline', '3px solid #007bff');
+        $('#lmscontainer').css('outline', 'none');
+        $('#tertiarycontainer').css('outline', 'none');
+
+        $('#k-container').addClass('pulse' + ' animated').one(
+            'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function() {
+                $(this).removeClass('pulse');
+            });
+
+    });
+
+
+
+
+
+    function pros_updabackwards_steps(UserID,tagid)//pros update backwards steps tags
+    {
         $.ajax({
             type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatedefaultlang.php",
+            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updateaimessage.php",
             data: {
-                defaultlang: defaultlang,
                 UserID: UserID,
-                tagstate: tagstate
+                tagid: tagid
             },
             cache: false,
             success: function(result) {
-                location.reload();
+                // location.reload();
             }
         });
+    }//pros update backwards steps tags
 
-    }
-});
-
-
-$('body').on('click', '#previoutAI', function() {
-    $('#displayaiwelcome').animate({
-        left: '+=50',
-        height: 'toggle'
-    }, 1000);
-
-    $('#changelang').fadeIn('slow');
-});
-
-
-
-// click to get to sch type
-$('body').on('click', '#previoutAI-btn', function() {
-
-    // $('#displayaiwelcome').fadeOut();
-    $('#displayaiwelcome').animate({
-        left: '+=50',
-        height: 'toggle'
-    }, 1000);
-
-    $('#displaysetinstitution').fadeIn('slow');
-
-    var UserID = "<?php echo $UserID; ?>";
-    var tagid = $(this).data('id');
-
-    $.ajax({
-        type: "POST",
-        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updateaimessage.php",
-        data: {
-            UserID: UserID,
-            tagid: tagid
-        },
-        cache: false,
-        success: function(result) {
-            // location.reload();
-        }
-    });
-
-
-
-});
-
-$('body').on('click', '#k-container', function() {
-
-    $("#k12value").prop("checked", true);
-
-    $(this).css('outline', '3px solid #007bff');
-    $('#lmscontainer').css('outline', 'none');
-    $('#tertiarycontainer').css('outline', 'none');
-
-    $('#k-container').addClass('pulse' + ' animated').one(
-        'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-        function() {
-            $(this).removeClass('pulse');
-        });
-
-});
-
-
-$('body').on('click', '#tertiarycontainer', function() {
-    $("#tertiary").prop("checked", true);
-
-    $(this).css('outline', '3px solid #007bff');
-    $('#k-container').css('outline', 'none');
-    $('#lmscontainer').css('outline', 'none');
-
-
-    $('#tertiarycontainer').addClass('pulse' + ' animated').one(
-        'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-        function() {
-            $(this).removeClass('pulse');
-        });
-});
-
-$('body').on('click', '#lmscontainer', function() {
-    $("#contentcreator").prop("checked", true);
-
-    $(this).css('outline', '3px solid #007bff');
-    $('#k-container').css('outline', 'none');
-    $('#tertiarycontainer').css('outline', 'none');
-    $('#lmscontainer').addClass('pulse' + ' animated').one(
-        'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-        function() {
-            $(this).removeClass('pulse');
-        });
-});
-
-
-$('body').on('click', '#typeofschoolback', function() {
-
-    $('#institutiontype').animate({
-        // opacity: 0.5,
-        left: '+=50',
-        height: 'toggle'
-    }, 1000);
-
-    $('#displaysetinstitution').fadeIn('slow');
-
-
-});
-
-$('body').on('click', '#backbtntoai', function() {
-   
-    $('#displaysetinstitution').animate({
-        
-        left: '+=50',
-        height: 'toggle'
-    }, 1000);
-
-    $('#displayaiwelcome').fadeIn('slow');
-});
-
-$('body').on('click', '#onboardingbtndisplay', function() {
-    $('#displaysetinstitution').animate({
        
-        left: '+=50',
-        height: 'toggle'
-    }, 1000);
-    $('#institutiontype').fadeIn('slow');
 
-    var UserID = "<?php echo $UserID; ?>";
-    var tagID = $(this).data('id');
+       
 
-    $.ajax({
-        type: "POST",
-        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatelandpagetoschtype.php",
-        data: {
-            UserID: UserID,
-            tagID: tagID
-        },
-        cache: false,
-        success: function(result) {
 
-        }
+   
+
+
+    $('body').on('click', '#tertiarycontainer', function() {
+        $("#tertiary").prop("checked", true);
+
+        $(this).css('outline', '3px solid #007bff');
+        $('#k-container').css('outline', 'none');
+        $('#lmscontainer').css('outline', 'none');
+
+
+        $('#tertiarycontainer').addClass('pulse' + ' animated').one(
+            'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function() {
+                $(this).removeClass('pulse');
+            });
     });
 
-});
+    $('body').on('click', '#lmscontainer', function() {
+        $("#contentcreator").prop("checked", true);
+
+        $(this).css('outline', '3px solid #007bff');
+        $('#k-container').css('outline', 'none');
+        $('#tertiarycontainer').css('outline', 'none');
+        $('#lmscontainer').addClass('pulse' + ' animated').one(
+            'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function() {
+                $(this).removeClass('pulse');
+            });
+    });
 
 
+    $('body').on('click', '#typeofschoolback', function() {
+
+        $('#institutiontype').animate({
+            // opacity: 0.5,
+            left: '+=50',
+            height: 'toggle'
+        }, 500);
+
+        $('#displaysetinstitution').fadeIn('slow');
+
+        var UserID = "<?php echo $UserID; ?>";
+        var tagid = $(this).data('id');
+
+        pros_updabackwards_steps(UserID,tagid);
 
 
-$('body').on('click', '#proceedtosettingsch', function() {
-    var schooltype = $("input[type='radio'].typeofscho:checked").val();
-    var UserID = "<?php echo $UserID; ?>";
-    var tagID = $(this).data('id');
+    });
 
+    $('body').on('click', '#backbtntoai', function() {
 
-    if (schooltype == '' || schooltype === undefined) {
+        var UserID = "<?php echo $UserID; ?>";
+        var tagid = $(this).data('id');
+        pros_updabackwards_steps(UserID,tagid);
+        $('#displaysetinstitution').animate({
+            
+            left: '+=50',
+            height: 'toggle'
+        }, 500);
 
-        $.wnoty({
-            type: 'warning',
-            message: "Select a School Type.",
-            autohideDelay: 5000
-        });
+        $('#displayaiwelcome').fadeIn('slow');
 
-    } else {
+       
+
+       
+    });
+
+    $('body').on('click', '#onboardingbtndisplay', function() {
+        $('#displaysetinstitution').animate({
+        
+            left: '+=50',
+            height: 'toggle'
+        }, 1000);
+        $('#institutiontype').fadeIn('slow');
+
+        var UserID = "<?php echo $UserID; ?>";
+        var tagID = $(this).data('id');
+
         $.ajax({
             type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updateschooltype.php",
+            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatelandpagetoschtype.php",
             data: {
                 UserID: UserID,
-                schooltype: schooltype,
                 tagID: tagID
             },
             cache: false,
@@ -411,157 +407,173 @@ $('body').on('click', '#proceedtosettingsch', function() {
             }
         });
 
-        $('#institutiontype').animate({
-            // opacity: 0.5,
-            left: '+=50',
-            height: 'toggle'
-        }, 1000);
-        $('#pros-createschoolmodal-first').modal('show');
-        
-
-    }
-
-});
-
-
-
-// select state base on country selected
-$("body").on('change', ".generalcountry", function() {
-    var country = $(this).val();
-    var countdataid = $(this).data('id');
-    var dataString = '&country=' + country;
-
-    $('#' + countdataid).html('<option value="0">Loading...</option>');
-
-    $.ajax({
-        type: "POST",
-        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-state-onboarding.php",
-        data: dataString,
-
-        success: function(result) {
-            $('#' + countdataid).html(result);
-        }
     });
-});
 
 
+    $('body').on('click', '#proceedtosettingsch', function() {
+        var schooltype = $("input[type='radio'].typeofscho:checked").val();
+        var UserID = "<?php echo $UserID; ?>";
+        var tagID = $(this).data('id');
 
 
+        if (schooltype == '' || schooltype === undefined) {
 
-// select state base on country selected end here 
+            $.wnoty({
+                type: 'warning',
+                message: "Select a School Type.",
+                autohideDelay: 5000
+            });
 
-// select LGA base on state selected 
-$("body").on("change", ".generalstate", function() {
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updateschooltype.php",
+                data: {
+                    UserID: UserID,
+                    schooltype: schooltype,
+                    tagID: tagID
+                },
+                cache: false,
+                success: function(result) {
 
-    var state = $(this).val();
-    var stateid = $(this).data('id');
-    var dataString = '&state=' + state;
+                }
+            });
 
-    $('#' + stateid).html('<option value="0">Loading...</option>');
+            $('#institutiontype').animate({
+                // opacity: 0.5,
+                left: '+=50',
+                height: 'toggle'
+            }, 1000);
+            $('#setupmodal').modal('hide');
 
-    $.ajax({
-        type: "POST",
-        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-local-govenrment-onboarding.php",
-        data: dataString,
-        success: function(result) {
-            $('#' + stateid).html(result);
+            
+            $('#pros-createschoolmodal-first').modal('show');
+            $('#pros-createschoolmodal-first').modal('show');
+            
+
         }
-    });
-});
 
-//edit campus change state here
-$("body").on("change", "#proscampusstateedit", function() {
-    var stateid = $(this).val();
-    var dataString = '&state=' + stateid;
-
-    $('#proscampuslgaedit').html('<option value="0">Loading...</option>');
-
-
-    $.ajax({
-        type: "POST",
-        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-local-govenrment-onboarding.php",
-        data: dataString,
-        success: function(result) {
-            $('#proscampuslgaedit').html(result);
-        }
     });
 
 
 
+    // select state base on country selected
+    $("body").on('change', ".generalcountry", function() {
+        var country = $(this).val();
+        var countdataid = $(this).data('id');
+        var dataString = '&country=' + country;
 
-});
+        $('#' + countdataid).html('<option value="0">Loading...</option>');
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-state-onboarding.php",
+            data: dataString,
+
+            success: function(result) {
+                $('#' + countdataid).html(result);
+            }
+        });
+    });
+    // select state base on country selected end here 
+
+    // select LGA base on state selected 
+    $("body").on("change", ".generalstate", function() {
+
+        var state = $(this).val();
+        var stateid = $(this).data('id');
+        var dataString = '&state=' + state;
+
+        $('#' + stateid).html('<option value="0">Loading...</option>');
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-local-govenrment-onboarding.php",
+            data: dataString,
+            success: function(result) {
+                $('#' + stateid).html(result);
+            }
+        });
+    });
+
+    //edit campus change state here
+    $("body").on("change", "#proscampusstateedit", function() {
+        var stateid = $(this).val();
+        var dataString = '&state=' + stateid;
+
+        $('#proscampuslgaedit').html('<option value="0">Loading...</option>');
+
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-local-govenrment-onboarding.php",
+            data: dataString,
+            success: function(result) {
+                $('#proscampuslgaedit').html(result);
+            }
+        });
+
+
+    });
 
 
 // select LGA base on state selected end here
 
 
 
-$("body").on("click", "#createschoolbtnfirstbtn", function() { //create for the first time
-    $(this).html(
-        '<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>creating...'
-    );
+    $("body").on("click", "#createschoolbtnfirstbtn", function() { //create for the first time
+        $(this).html(
+            '<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>creating...'
+        );
 
-    var UserID = "<?php echo $UserID; ?>";
-    var schoolname = $('#schoolnameinitial').val();
-    var schoolmotto = $('#schoolmottoinitial').val();
-    var schoolurl = $('#prosschoollink-initial').val();
-    var tag = $(this).data('id');
-    var schoolurllength = schoolurl.length;
+        var UserID = "<?php echo $UserID; ?>";
+        var schoolname = $('#schoolnameinitial').val();
+        var schoolmotto = $('#schoolmottoinitial').val();
+        var schoolurl = $('#prosschoollink-initial').val();
+        var tag = $(this).data('id');
+        var schoolurllength = schoolurl.length;
 
-
-    if (schoolname == '') {
-        $('.prosschoolnamecover').css('outline', '1px solid red');
-
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! input your school name",
-            autohideDelay: 6000
-        });
-        $('#createschoolbtnfirstbtn').html('Create school');
+        var url_exist = $('.pros_verifyurl_exist_input_here').val();//if url exist input
 
 
-    } else if (schoolmotto == '') {
-        $('.prosschoolnamecover').css('outline', '1px solid green');
-        $('.prosschoolmottocover').css('outline', '1px solid red');
+        if (schoolname == '') {
+            $('.prosschoolnamecover').css('outline', '1px solid red');
 
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! input your school motto",
-            autohideDelay: 6000
-        });
-        $('#createschoolbtnfirstbtn').html('Create school');
-
-
-    } else if (schoolurl == '') {
-        $('.schollnameerr-new').css('outline', '1px solid green');
-        $('.prosschoolmottocover').css('outline', '1px solid green');
-        $('.prosschoollinkcover').css('outline', '1px solid red');
+            $.wnoty({
+                type: 'warning',
+                message: "Hey!! input your school name",
+                autohideDelay: 6000
+            });
+            $('#createschoolbtnfirstbtn').html('Create school');
 
 
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! URL should not be left empty",
-            autohideDelay: 6000
-        });
-        $('#createschoolbtnfirstbtn').html('Create school');
+        } else if (schoolmotto == '') {
+            $('.prosschoolnamecover').css('outline', '1px solid green');
+            $('.prosschoolmottocover').css('outline', '1px solid red');
+
+            $.wnoty({
+                type: 'warning',
+                message: "Hey!! input your school motto",
+                autohideDelay: 6000
+            });
+            $('#createschoolbtnfirstbtn').html('Create school');
 
 
-    } else if (schoolurllength > 20) {
+        } else if (schoolurl == '') {
+            $('.schollnameerr-new').css('outline', '1px solid green');
+            $('.prosschoolmottocover').css('outline', '1px solid green');
+            $('.prosschoollinkcover').css('outline', '1px solid red');
 
-        $('.schollnameerr-new').css('outline', '1px solid green');
-        $('.prosschoolmottocover').css('outline', '1px solid green');
-        $('.prosschoollinkcover').css('outline', '1px solid red');
+
+            $.wnoty({
+                type: 'warning',
+                message: "Hey!! URL should not be left empty",
+                autohideDelay: 6000
+            });
+            $('#createschoolbtnfirstbtn').html('Create school');
 
 
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! URL should not be greater than 20 characters.",
-            autohideDelay: 6000
-        });
-        $('#createschoolbtnfirstbtn').html('Create school');
-
-    }else if (/[A-Z]/.test(schoolurl) || /\d/.test(schoolurl)) {
-
+        } else if (schoolurllength > 20) {
 
             $('.schollnameerr-new').css('outline', '1px solid green');
             $('.prosschoolmottocover').css('outline', '1px solid green');
@@ -570,316 +582,181 @@ $("body").on("click", "#createschoolbtnfirstbtn", function() { //create for the 
 
             $.wnoty({
                 type: 'warning',
-                message: "Hey!! URL should not contain uppercase or number",
+                message: "Hey!! URL should not be greater than 20 characters.",
                 autohideDelay: 6000
             });
             $('#createschoolbtnfirstbtn').html('Create school');
 
-    }else if(schoolurl.indexOf(' ') !== -1)
-    {
+        }else if (/[A-Z]/.test(schoolurl) || /\d/.test(schoolurl)) {
 
 
-            $('.schollnameerr-new').css('outline', '1px solid green');
-            $('.prosschoolmottocover').css('outline', '1px solid green');
-            $('.prosschoollinkcover').css('outline', '1px solid red');
+                $('.schollnameerr-new').css('outline', '1px solid green');
+                $('.prosschoolmottocover').css('outline', '1px solid green');
+                $('.prosschoollinkcover').css('outline', '1px solid red');
 
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! URL should not contain uppercase or number",
+                    autohideDelay: 6000
+                });
+                $('#createschoolbtnfirstbtn').html('Create school');
+
+        }else if(schoolurl.indexOf(' ') !== -1)
+        {
+
+
+                $('.schollnameerr-new').css('outline', '1px solid green');
+                $('.prosschoolmottocover').css('outline', '1px solid green');
+                $('.prosschoollinkcover').css('outline', '1px solid red');
+
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! URL should not contain space between",
+                    autohideDelay: 6000
+                });
+                $('#createschoolbtnfirstbtn').html('Create school');
+        }
+        else {
+            $('#createschoolbtnfirstbtn').html('Create school');
+
+
+
+           
+             //PROS IF URL EXTIST STATEMENT
+             if(url_exist.trim() == 'found')
+            {
+
+                  $.wnoty({
+                        type: 'warning',
+                        message: "Hey!!" +schoolurl+".edumess.com is already taken, try another one",
+                        autohideDelay: 6000
+                    });
+
+                    $('.schollnameerr-new').css('outline', '1px solid green');
+                    $('.prosschoolmottocover').css('outline', '1px solid green');
+                    $('.prosschoollinkcover').css('outline', '1px solid red');
+
+
+                
+            }else{
+
+
+                    $('.schollnameerr-new').css('outline', '1px solid green');
+                    $('.prosschoolmottocover').css('outline', '1px solid green');
+                    $('.prosschoollinkcover').css('outline', '1px solid green');
+
+                    localStorage.setItem("schoolname", schoolname);
+                    localStorage.setItem("schoolmotto", schoolmotto);
+                    localStorage.setItem("schoolurl", schoolurl);
+                    localStorage.setItem("tag", tag);
+
+                    $.wnoty({
+                        type: 'success',
+                        message: "Greate!! school created successfully kindly Proceed to create campus for your school",
+                        autohideDelay: 6000
+                    });
+
+                    $('#pros-createschoolmodal-first').modal('hide');
+
+                    setTimeout(function() {
+
+                        $('#pros-createnewcampus').modal('show');
+
+                    }, 700);
+
+            }
+
+           
+
+        }
+    }); //create school initial
+
+
+
+    $("body").on("click", "#editschoolbtn-full", function() { //edit school
+
+        $(this).html(
+            '<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>upating...'
+        );
+
+        var UserID = "<?php echo $UserID; ?>";
+        var InstitutionID = $(this).data('id');
+        var schoolname = $('#pros-eitschoolname').val();
+        var schoolmotto = $('#pros-eitschoolmotto').val();
+        var schoolurl = $('#pros-editschoolurl').val();
+
+        var schoolurllength = schoolurl.length;
+
+        var proslinknew =  schoolurl + '.edumess.com';
+
+
+
+        var url_exist = $('.pros_verifyurl_exist_input_here').val();//if url exist input
+
+
+          
+
+
+
+
+        if (schoolname == '') {
+            $('.schollnameerr-newedit').css('outline', '1px solid red');
 
             $.wnoty({
                 type: 'warning',
-                message: "Hey!! URL should not contain space between",
+                message: "Hey!! input your school name",
                 autohideDelay: 6000
             });
-            $('#createschoolbtnfirstbtn').html('Create school');
-    }
-    else {
-        $('#createschoolbtnfirstbtn').html('Create school');
-
-        $('.schollnameerr-new').css('outline', '1px solid green');
-        $('.prosschoolmottocover').css('outline', '1px solid green');
-        $('.prosschoollinkcover').css('outline', '1px solid green');
-
-        localStorage.setItem("schoolname", schoolname);
-        localStorage.setItem("schoolmotto", schoolmotto);
-        localStorage.setItem("schoolurl", schoolurl);
-        localStorage.setItem("tag", tag);
-
-        $.wnoty({
-            type: 'success',
-            message: "Greate!! school created successfully kindly Proceed to create campus for your school",
-            autohideDelay: 6000
-        });
-
-        $('#pros-createschoolmodal-first').modal('hide');
-
-        setTimeout(function() {
-
-            $('#pros-createnewcampus').modal('show');
-
-        }, 700);
-
-    }
-}); //create school initial
+            $('#editschoolbtn-full').html('Upda te school');
 
 
+        } else if (schoolmotto == '') {
+            $('schollnameerr-newedit').css('outline', '1px solid green');
+            $('.schollmottoerr-newedit').css('outline', '1px solid red');
 
-$("body").on("click", "#editschoolbtn-full", function() { //edit school
+            $.wnoty({
+                type: 'warning',
+                message: "Hey!! input your school motto",
+                autohideDelay: 6000
+            });
+            $('#editschoolbtn-full').html('Update school');
 
-    $(this).html(
-        '<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>upating...'
-    );
-
-    var UserID = "<?php echo $UserID; ?>";
-    var InstitutionID = $(this).data('id');
-    var schoolname = $('#pros-eitschoolname').val();
-    var schoolmotto = $('#pros-eitschoolmotto').val();
-    var schoolurl = $('#pros-editschoolurl').val();
-
-    var schoolurllength = schoolurl.length;
-
-       var proslinknew =  schoolurl + '.edumess.com';
- 
-
-
-
-
-    if (schoolname == '') {
-        $('.schollnameerr-newedit').css('outline', '1px solid red');
-
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! input your school name",
-            autohideDelay: 6000
-        });
-        $('#editschoolbtn-full').html('Update school');
-
-
-    } else if (schoolmotto == '') {
-        $('schollnameerr-newedit').css('outline', '1px solid green');
-        $('.schollmottoerr-newedit').css('outline', '1px solid red');
-
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! input your school motto",
-            autohideDelay: 6000
-        });
-        $('#editschoolbtn-full').html('Update school');
-
-    } else if (schoolurl == '') {
-        $('schollnameerr-newedit').css('outline', '1px solid green');
-        $('.schollmottoerr-newedit').css('outline', '1px solid green');
-        $('.schollurlerr-newedit').css('outline', '1px solid red');
-
-
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! URL should not be left empty",
-            autohideDelay: 6000
-        });
-        $('#editschoolbtn-full').html('Update school');
-
-
-    } else if (schoolurllength > 20) {
-
-        $('schollnameerr-newedit').css('outline', '1px solid green');
-        $('.schollmottoerr-newedit').css('outline', '1px solid green');
-        $('.schollurlerr-newedit').css('outline', '1px solid red');
-
-
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! URL should not be greater than 20 characters.",
-            autohideDelay: 6000
-        });
-        $('#editschoolbtn-full').html('Update school');
-
-    } else if (/[A-Z]/.test(schoolurl) || /\d/.test(schoolurl)) {
-
-
-        $('schollnameerr-newedit').css('outline', '1px solid green');
-        $('.schollmottoerr-newedit').css('outline', '1px solid green');
-        $('.schollurlerr-newedit').css('outline', '1px solid red');
-
-
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! URL should not contain uppercase or number",
-            autohideDelay: 6000
-        });
-        $('#editschoolbtn-full').html('Update school');
-
-    } 
-    
-    else if(schoolurl.indexOf(' ') !== -1)
-    {
-
-
-            $('.schollnameerr-newedit').css('outline', '1px solid green');
+        } else if (schoolurl == '') {
+            $('schollnameerr-newedit').css('outline', '1px solid green');
             $('.schollmottoerr-newedit').css('outline', '1px solid green');
             $('.schollurlerr-newedit').css('outline', '1px solid red');
 
 
             $.wnoty({
                 type: 'warning',
-                message: "Hey!! URL should not contain space between",
+                message: "Hey!! URL should not be left empty",
                 autohideDelay: 6000
             });
             $('#editschoolbtn-full').html('Update school');
-    }else {
-        $('schollnameerr-newedit').css('outline', '1px solid green');
-        $('.schollmottoerr-newedit').css('outline', '1px solid green');
-        $('.schollurlerr-newedit').css('outline', '1px solid green');
-        $('#editschoolbtn-full').html('Update school');
 
 
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updateschool.php",
-            data: {
-                schoolurl: proslinknew,
-                schoolname: schoolname,
-                schoolmotto: schoolmotto,
-                UserID: UserID,
-                InstitutionID: InstitutionID
+        } else if (schoolurllength > 20) {
 
-            },
-
-            success: function(output) {
-
-                var prosperdata = (output);
+            $('schollnameerr-newedit').css('outline', '1px solid green');
+            $('.schollmottoerr-newedit').css('outline', '1px solid green');
+            $('.schollurlerr-newedit').css('outline', '1px solid red');
 
 
-                if (prosperdata == 'success') {
+            $.wnoty({
+                type: 'warning',
+                message: "Hey!! URL should not be greater than 20 characters.",
+                autohideDelay: 6000
+            });
+            $('#editschoolbtn-full').html('Update school');
+
+        } else if (/[A-Z]/.test(schoolurl) || /\d/.test(schoolurl)) {
 
 
-                    $('#pros-editschool-modal').modal('hide');
-                    $.wnoty({
-                        type: 'success',
-                        message: "Great!! School edited successfully.",
-                        autohideDelay: 6000
-                    });
-
-
-                    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-                    var tagstate = "<?php echo $tagstate; ?>";
-
-                    $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
-
-                    $.ajax({
-
-                        type: "POST",
-                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
-                        data: {
-                            UserID: UserID,
-                            ownerfirst_Name: ownerfirst_Name,
-                            tagstate: tagstate
-                        },
-
-                        success: function(result) {
-                            $('#displaycampus-created').html(result);
-                            var userrole = (result);
-
-                        }
-                    });
-
-
-
-
-
-
-                } else {
-
-                    $.wnoty({
-                        type: 'warning',
-                        message: "Update failed try again.",
-                        autohideDelay: 6000
-                    });
-                }
-
-            }
-
-        });
-
-
-    }
-
-
-
-
-}); //edit school
-
-
-
-
-$("body").on("click", "#addschoolinitialbtn-new", function() {
-    $(this).html(
-        '<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>creating...'
-    );
-
-    var UserID = "<?php echo $UserID; ?>";
-    var schoolname = $('#pros-schoolnameID-new').val();
-    var schoolmotto = $('#pros-schoolmotto-new').val();
-    var schoolurl = $('#pros-schoolurlnew').val();
-    var schoolurllength = schoolurl.length;
-
-
-    if (schoolname == '') {
-        $('.schollnameerr-new').css('outline', '1px solid red');
-
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! input your school name",
-            autohideDelay: 6000
-        });
-        $('#addschoolinitialbtn-new').html('Create school');
-
-
-    } else if (schoolmotto == '') {
-        $('.schollnameerr-new').css('outline', '1px solid green');
-        $('.schollmottoerr-new').css('outline', '1px solid red');
-
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! input your school motto",
-            autohideDelay: 6000
-        });
-        $('#addschoolinitialbtn-new').html('Create school');
-
-
-    } else if (schoolurl == '') {
-        $('.schollnameerr-new').css('outline', '1px solid green');
-        $('.schollmottoerr-new').css('outline', '1px solid green');
-        $('.schollurlerr-new').css('outline', '1px solid red');
-
-
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! URL should not be left empty",
-            autohideDelay: 6000
-        });
-
-        $('#addschoolinitialbtn-new').html('Create school');
-
-
-    } else if (schoolurllength > 20) {
-
-        $('.schollnameerr-new').css('outline', '1px solid green');
-        $('.schollmottoerr-new').css('outline', '1px solid green');
-        $('.schollurlerr-new').css('outline', '1px solid red');
-
-
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!! URL should not be greater than 20 characters.",
-            autohideDelay: 6000
-        });
-        $('#addschoolinitialbtn-new').html('Create school');
-
-    }else if (/[A-Z]/.test(schoolurl) || /\d/.test(schoolurl)) {
-
-
-            $('schollnameerr-new').css('outline', '1px solid green');
-            $('.schollmottoerr-new').css('outline', '1px solid green');
-            $('.schollurlerr-new').css('outline', '1px solid red');
+            $('schollnameerr-newedit').css('outline', '1px solid green');
+            $('.schollmottoerr-newedit').css('outline', '1px solid green');
+            $('.schollurlerr-newedit').css('outline', '1px solid red');
 
 
             $.wnoty({
@@ -887,369 +764,94 @@ $("body").on("click", "#addschoolinitialbtn-new", function() {
                 message: "Hey!! URL should not contain uppercase or number",
                 autohideDelay: 6000
             });
-            $('#addschoolinitialbtn-new').html('Create school');
+            $('#editschoolbtn-full').html('Update school');
 
-    
-    }else if(schoolurl.indexOf(' ') !== -1)
-    {
-
-
-            $('.schollnameerr-new').css('outline', '1px solid green');
-            $('.schollmottoerr-new').css('outline', '1px solid green');
-            $('.schollurlerr-new').css('outline', '1px solid red');
-
-
-            $.wnoty({
-                type: 'warning',
-                message: "Hey!! URL should not contain space between",
-                autohideDelay: 6000
-            });
-
-            $('#addschoolinitialbtn-new').html('Create school');
-    }
-    else {
-        $('#addschoolinitialbtn-new').html('Create school');
-
-        $('.schollnameerr-new').css('outline', '1px solid green');
-        $('.schollmottoerr-new').css('outline', '1px solid green');
-        $('.schollurlerr-new').css('outline', '1px solid green');
-
-        localStorage.setItem("schoolname", schoolname);
-        localStorage.setItem("schoolmotto", schoolmotto);
-        localStorage.setItem("schoolurl", schoolurl);
-        localStorage.setItem("tag", '');
-
-        $.wnoty({
-            type: 'success',
-            message: "Greate!! school created successfully kindly Proceed to create campus for your school",
-            autohideDelay: 6000
-        });
-
-        $('#pros-createschoolmodal').modal('hide');
-
-        setTimeout(function() {
-
-            $('#pros-createnewcampus').modal('show');
-
-        }, 1000);
-
-    }
-});
-
-
-// create new campus here
-
-$("body").on("click", "#pros-createnewcampus-btn", function() {
-    $('#pros-createnewcampus-btn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="visually-hidden">Loading...</span>creating..');
-
-
-
-  
-    var schoolName = localStorage.getItem("schoolname");
-    var mottoid = localStorage.getItem("schoolmotto");
-    var schooldomain = localStorage.getItem("schoolurl");
-    var tagID = localStorage.getItem("tag");
-
-    var UserID = "<?php echo $UserID; ?>";
-
-    var checktoverify = $('#checkfirstvilation').val();
-
-    var schoolIDnew = $('#groupschoolnewcampusid').val();
-
-
-    var campuslocation = [];
-    var verifycampuslocation = [];
-    $.each($('.campuslocation'), function() {
-        campuslocation.push($(this).val());
-        var locationverify = $(this).data('id');
-        var campvaluefinal = $('#campuslocation' + locationverify).val();
-
-
-        if (campuslocation == '' || campuslocation == ',') {
-            $('.campuslocationcover' + locationverify).css('outline', '1px solid red');
-            $('#pros-createnewcampus-btn').html('Create campus');
-
-            $.wnoty({
-                type: 'warning',
-                message: "Hey!! Input your campus name or location.",
-                autohideDelay: 6000
-            });
-        } else {
-            $('.campuslocationcover' + locationverify).css('outline', '1px solid green');
-            $('#pros-createnewcampus-btn').html('Create campus');
-        }
-
-    });
-
-
-
-
-
-
-    var campusemail = [];
-    $.each($('.campusemail'), function() {
-        campusemail.push($(this).val());
-        var emailverify = $(this).data('id');
-        var emailverifyfinal = $('#campusemail' + emailverify).val();
-
-
-        if (emailverifyfinal == '' || emailverifyfinal == ',') {
-            $('.campusemailcover' + emailverify).css('outline', '1px solid red');
-            $('#pros-createnewcampus-btn').html('Create campus');
-
-            $.wnoty({
-                type: 'warning',
-                message: "Hey!! Input your campus email address.",
-                autohideDelay: 6000
-            });
-        } else {
-
-            $('.campusemailcover' + emailverify).css('outline', '1px solid green');
-            $('#pros-createnewcampus-btn').html('Create campus');
-
-        }
-
-    });
-
-
-
-
-    $.each($('.campusphone'), function() {
-        var phoneverify = $(this).data('id');
-        var phonelverifyfinal = $('#phonenumber' + phoneverify).val();
-
-        if (phonelverifyfinal == '' || phonelverifyfinal == ',') {
-            $('.campusnumbercover' + phoneverify).css('outline', '1px solid red');
-            $('#checkfirstvilation').val('validatedfinal');
-            $('#pros-createnewcampus-btn').html('Create campus');
-
-
-            $.wnoty({
-                type: 'warning',
-                message: "Hey!! Input your campus phone number.",
-                autohideDelay: 6000
-            });
-        } else {
-            $('.campusnumbercover' + phoneverify).css('outline', '1px solid green');
-            $('#checkfirstvilation').val('vilidatedsuccess');
-            $('#pros-createnewcampus-btn').html('Create campus');
-        }
-    });
-
-
-
-
-
-
-    var formattedinput = [];
-    document.querySelectorAll('.campusphone').forEach(function(input) {
-        // Get the `intlTelInput` plugin instance for the input field
-        var iti = window.intlTelInputGlobals.getInstance(input);
-        // Get the raw phone number value from the input field
-        var numberformat = input.value;
-        // Use the `intlTelInputUtils` library to format the phone number with its country code
-        formattedinput.push(intlTelInputUtils.formatNumber(numberformat, iti.getSelectedCountryData()
-            .iso2));
-        // Display the formatted phone number in an alert message
-    });
-
-
-
-    var country_ID = [];
-    $.each($('.generalcountry'), function() {
-        country_ID.push($(this).val());
-
-        var countryverify = $(this).data('count');
-        var countrylverifyfinal = $('#countryid' + countryverify).val();
-
-
-        if (countrylverifyfinal == '0' || countrylverifyfinal == ',') {
-            $('.campuscountrycover' + countryverify).css('outline', '1px solid red');
-
-            $('#pros-createnewcampus-btn').html('Create campus');
-
-            $.wnoty({
-                type: 'warning',
-                message: "Hey!! select your country.",
-                autohideDelay: 6000
-            });
-
-        } else {
-            $('.campuscountrycover' + countryverify).css('outline', '1px solid green');
-            $('#pros-createnewcampus-btn').html('Create campus');
-        }
-    });
-
-
-
-
-
-    var state_ID = [];
-    $.each($('.generalstate'), function() {
-        state_ID.push($(this).val());
-
-
-        var stateverify = $(this).data('state');
-        var statelverifyfinal = $('#state' + stateverify).val();
-
-
-        if (statelverifyfinal == '0' || statelverifyfinal == ',') {
-            $('.campusstatecover' + stateverify).css('outline', '1px solid red');
-            $('#checkfirstvilation').val('validatedfinal');
-            $('#pros-createnewcampus-btn').html('Create campus');
-
-            $.wnoty({
-                type: 'warning',
-                message: "Hey!! select your state.",
-                autohideDelay: 6000
-            });
-
-        } else {
-            $('.campusstatecover' + stateverify).css('outline', '1px solid green');
-            $('#pros-createnewcampus-btn').html('Create campus');
-        }
-
-    });
-
-    var local_Gov = [];
-    $.each($('.generallga'), function() {
-        local_Gov.push($(this).val());
-
-        var lgaverify = $(this).data('lga');
-        var lgalverifyfinal = $('#lgacity' + lgaverify).val();
-
-
-        if (lgalverifyfinal == '0' || lgalverifyfinal == ',') {
-            $('.campuslgacover' + lgaverify).css('outline', '1px solid red');
-
-            $('#pros-createnewcampus-btn').html('Create campus');
-
-            $.wnoty({
-                type: 'warning',
-                message: "Hey!! select your local government.",
-                autohideDelay: 6000
-            });
-
-        } else {
-            $('.campuslgacover' + lgaverify).css('outline', '1px solid green');
-
-            $('#pros-createnewcampus-btn').html('Create campus');
-        }
-
-
-    });
-
-    // create new campus here
-
-
-
-
-    var hasEmptyValueloc = campuslocation.some(function(value) {
-        return value.trim() === '';
-    });
-
-
-    var hasEmptyValueemail = campusemail.some(function(value) {
-        return value.trim() === '';
-    });
-
-
-
-    var hasEmptyValuephone = formattedinput.some(function(value) {
-        return value.trim() === '';
-    });
-
-
-
-    var hasEmptyValuecountry = country_ID.some(function(value) {
-        return value.trim() === '0';
-    });
-
-    var hasEmptyValuestate = state_ID.some(function(value) {
-        return value.trim() === '0';
-    });
-
-    var hasEmptyValueslga = local_Gov.some(function(value) {
-        return value.trim() === '0';
-    });
-
-
-
-
-    if (hasEmptyValueloc || hasEmptyValueemail || hasEmptyValuephone || hasEmptyValuecountry ||
-        hasEmptyValuestate || hasEmptyValueslga) {
-
-        $('#pros-createnewcampus-btn').html('Create campus');
-
+        } 
         
-
-    } else {
-
-
-        campuslocation = campuslocation.toString();
-        campusemail = campusemail.toString();
-        formattedinput = formattedinput.toString();
-        country_ID = country_ID.toString();
-        state_ID = state_ID.toString();
-        local_Gov = local_Gov.toString();
+        else if(schoolurl.indexOf(' ') !== -1)
+        {
 
 
-        if (schoolIDnew == '') {
-
-            $('#pros-createnewcampus-btn').prop('disabled', true);
-            //if creating new campus and new school 
-            $.ajax({
-                type: "POST",
-                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/create-schoolonboarding.php",
-                data: {
-                    schoolName: schoolName,
-                    mottoid: mottoid,
-                    schooldomain: schooldomain,
-                    campuslocation: campuslocation,
-                    campusemail: campusemail,
-                    formattedinput: formattedinput,
-                    country_ID: country_ID,
-                    state_ID: state_ID,
-                    local_Gov: local_Gov,
-                    UserID: UserID,
-                    tagID: tagID
-                },
-
-                success: function(output) {
-                    
-                    $('#pros-createnewcampus-btn').prop('disabled', false);
-
-                    $('#pros-createnewcampus-btn').html('Create campus');
-
-                    localStorage.removeItem("schoolname");
-                    localStorage.removeItem("schoolmotto");
-                    localStorage.removeItem("schoolurl");
-                    localStorage.removeItem("tag");
-
-                    $('#pros-createnewcampus').modal('hide'); //hide create modal
-                    $('#schoolsettings').fadeIn('slow'); //show next tag     
-                    $('#groupschoolnewcampusid').val('');
+                $('.schollnameerr-newedit').css('outline', '1px solid green');
+                $('.schollmottoerr-newedit').css('outline', '1px solid green');
+                $('.schollurlerr-newedit').css('outline', '1px solid red');
 
 
-                    var feedback = (output);
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! URL should not contain space between",
+                    autohideDelay: 6000
+                });
+                $('#editschoolbtn-full').html('Update school');
+        }else {
 
-                    if (feedback == 'success') {
 
+
+              //PROS IF URL EXTIST STATEMENT
+              if(url_exist.trim() == 'found')
+            {
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! " +proslinknew+" is already taken, try another one",
+                    autohideDelay: 6000
+                });
+
+                   $('schollnameerr-newedit').css('outline', '1px solid green');
+                    $('.schollmottoerr-newedit').css('outline', '1px solid green');
+                    $('.schollurlerr-newedit').css('outline', '1px solid red');
+                    $('#editschoolbtn-full').html('Update school');
+
+
+            
+            }else{
+
+
+
+
+                   $('schollnameerr-newedit').css('outline', '1px solid green');
+                    $('.schollmottoerr-newedit').css('outline', '1px solid green');
+                    $('.schollurlerr-newedit').css('outline', '1px solid green');
+                    $('#editschoolbtn-full').html('Update school');
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updateschool.php",
+                        data: {
+                            schoolurl: proslinknew,
+                            schoolname: schoolname,
+                            schoolmotto: schoolmotto,
+                            UserID: UserID,
+                            InstitutionID: InstitutionID
+
+                        },
+
+                        success: function(output) {
+
+                            var prosperdata = (output);
+
+
+                            // alert(prosperdata);
+
+                            if (prosperdata.trim() == 'success') {
+
+
+                                $('#pros-editschool-modal').modal('hide');
                                 $.wnoty({
                                     type: 'success',
-                                    message: "Great!! School created successfully.",
+                                    message: "Great!! School edited successfully.",
                                     autohideDelay: 6000
                                 });
-                                
-                                 location.reload();
-                                  $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+
+
                                 var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
                                 var tagstate = "<?php echo $tagstate; ?>";
-            
 
+                                $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
 
                                 $.ajax({
-            
+
                                     type: "POST",
                                     url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
                                     data: {
@@ -1257,260 +859,1004 @@ $("body").on("click", "#pros-createnewcampus-btn", function() {
                                         ownerfirst_Name: ownerfirst_Name,
                                         tagstate: tagstate
                                     },
-            
+
                                     success: function(result) {
                                         $('#displaycampus-created').html(result);
                                         var userrole = (result);
-            
+
                                     }
                                 });
-                                    
-                        
-                        
-                        
-
-                    } else if(feedback.trim() == 'schoolexist')
-                    {
-                    
-                        $.wnoty({
-                            type: 'success',
-                            message: "Hey!! It seems the school '" + schoolName + "' already exists",
-                            autohideDelay: 6000
-                        });
-                        
-
-                    }
-
-
-
-
-                  
 
 
 
 
 
-                }
-            });
-            //if creating new campus and new school 
 
+                            } else {
 
-
-        } else {
-            
-             $('#pros-createnewcampus-btn').prop('disabled', true);
-            // creating just campus or adding more campus to list
-            $.ajax({
-                type: "POST",
-                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/create-campusnew.php",
-                data: {
-                    schoolIDnew: schoolIDnew,
-                    campuslocation: campuslocation,
-                    campusemail: campusemail,
-                    formattedinput: formattedinput,
-                    country_ID: country_ID,
-                    state_ID: state_ID,
-                    local_Gov: local_Gov,
-                    UserID: UserID,
-                    tagID: tagID
-                },
-
-                success: function(output) {
-
-                   $('#pros-createnewcampus-btn').prop('disabled', false);
-                    $('#pros-createnewcampus-btn').html('Create campus');
-                    $('#groupschoolnewcampusid').val('');
-
-
-                    $('#pros-createnewcampus').modal('hide'); //hide create modal
-                    $('#schoolsettings').fadeIn('slow'); //show next tag     
-
-
-                    var feedback = (output);
-
-                    if (feedback == 'success') {
-
-                        $.wnoty({
-                            type: 'success',
-                            message: "Great!! Campus added successfully.",
-                            autohideDelay: 6000
-                        });
-
-
-                    } else {
-
-                    }
-
-                     $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
- 
-                   
-                     var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-                     var tagstate = "<?php echo $tagstate; ?>";
-
-
-
-                    $.ajax({
-
-                        type: "POST",
-                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
-                        data: {
-                            UserID: UserID,
-                            ownerfirst_Name: ownerfirst_Name,
-                            tagstate: tagstate
-                        },
-
-                        success: function(result) {
-                            $('#displaycampus-created').html(result);
-                            var userrole = (result);
+                                $.wnoty({
+                                    type: 'warning',
+                                    message: "Update failed try again.",
+                                    autohideDelay: 6000
+                                });
+                            }
 
                         }
+
                     });
 
 
-
-
-
-                }
-            });
-
-            // creating just campus or adding more campus to list
-
+            }
+    
+           
 
         }
 
 
 
 
-
-
-    }
-
+    }); //edit school
 
 
 
 
-});
+    $("body").on("click", "#addschoolinitialbtn-new", function() {
+        $(this).html(
+            '<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>creating...'
+        );
+
+        var UserID = "<?php echo $UserID; ?>";
+        var schoolname = $('#pros-schoolnameID-new').val();
+        var schoolmotto = $('#pros-schoolmotto-new').val();
+        var schoolurl = $('#pros-schoolurlnew').val();
+        var schoolurllength = schoolurl.length;
+
+        
 
 
+           var url_exist = $('.pros_verifyurl_exist_input_here').val();//if url exist input
+           
+        if (schoolname == '') {
+            $('.schollnameerr-new').css('outline', '1px solid red');
+
+            $.wnoty({
+                type: 'warning',
+                message: "Hey!! input your school name",
+                autohideDelay: 6000
+            });
+            $('#addschoolinitialbtn-new').html('Create school');
 
 
+        } else if (schoolmotto == '') {
+            $('.schollnameerr-new').css('outline', '1px solid green');
+            $('.schollmottoerr-new').css('outline', '1px solid red');
+
+            $.wnoty({
+                type: 'warning',
+                message: "Hey!! input your school motto",
+                autohideDelay: 6000
+            });
+            $('#addschoolinitialbtn-new').html('Create school');
 
 
+        } else if (schoolurl == '') {
+            $('.schollnameerr-new').css('outline', '1px solid green');
+            $('.schollmottoerr-new').css('outline', '1px solid green');
+            $('.schollurlerr-new').css('outline', '1px solid red');
 
 
+            $.wnoty({
+                type: 'warning',
+                message: "Hey!! URL should not be left empty",
+                autohideDelay: 6000
+            });
 
-// menubtn
-$('body').on('click', '.menubtn', function(e) {
-    var planid = $(this).data('id');
-    var tagid = $(this).data('tag');
-    var UserID = "<?php echo $UserID; ?>";
+            $('#addschoolinitialbtn-new').html('Create school');
 
-    $.ajax({
-        type: "POST",
-        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/onboardingplan-setting.php",
-        data: {
-            planid: planid,
-            tagid: tagid,
-            UserID: UserID
-        },
-        success: function(result) {
-            location.reload();
-            // $('.generalstate').html(result);                           
+
+        } else if (schoolurllength > 20) {
+
+            $('.schollnameerr-new').css('outline', '1px solid green');
+            $('.schollmottoerr-new').css('outline', '1px solid green');
+            $('.schollurlerr-new').css('outline', '1px solid red');
+
+
+            $.wnoty({
+                type: 'warning',
+                message: "Hey!! URL should not be greater than 20 characters.",
+                autohideDelay: 6000
+            });
+            $('#addschoolinitialbtn-new').html('Create school');
+
+        }else if (/[A-Z]/.test(schoolurl) || /\d/.test(schoolurl)) {
+
+
+                $('schollnameerr-new').css('outline', '1px solid green');
+                $('.schollmottoerr-new').css('outline', '1px solid green');
+                $('.schollurlerr-new').css('outline', '1px solid red');
+
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! URL should not contain uppercase or number",
+                    autohideDelay: 6000
+                });
+                $('#addschoolinitialbtn-new').html('Create school');
+
+        
+        }else if(schoolurl.indexOf(' ') !== -1)
+        {
+
+
+                $('.schollnameerr-new').css('outline', '1px solid green');
+                $('.schollmottoerr-new').css('outline', '1px solid green');
+                $('.schollurlerr-new').css('outline', '1px solid red');
+
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! URL should not contain space between",
+                    autohideDelay: 6000
+                });
+
+                $('#addschoolinitialbtn-new').html('Create school');
+        }
+        else {
+            $('#addschoolinitialbtn-new').html('Create school');
+
+            // alert(url_exist);
+
+           //PROS IF URL EXTIST STATEMENT
+            if(url_exist.trim() == 'found')
+            {
+
+                  $.wnoty({
+                        type: 'warning',
+                        message: "Hey!!" +schoolurl+".edumess.com is already taken, try another one",
+                        autohideDelay: 6000
+                    });
+
+
+                    $('.schollnameerr-new').css('outline', '1px solid green');
+                    $('.schollmottoerr-new').css('outline', '1px solid green');
+                    $('.schollurlerr-new').css('outline', '1px solid red');
+
+
+                
+            }else{
+
+
+                        $('.schollnameerr-new').css('outline', '1px solid green');
+                        $('.schollmottoerr-new').css('outline', '1px solid green');
+                        $('.schollurlerr-new').css('outline', '1px solid green');
+
+                    localStorage.setItem("schoolname", schoolname);
+                    localStorage.setItem("schoolmotto", schoolmotto);
+                    localStorage.setItem("schoolurl", schoolurl);
+                    localStorage.setItem("tag", '');
+
+                    $.wnoty({
+                        type: 'success',
+                        message: "Great!! school added successfully, kindly Proceed to create campus for your school",
+                        autohideDelay: 6000
+                    });
+
+                     $('#pros-createschoolmodal').modal('hide');
+
+                    setTimeout(function() {
+
+                        $('#pros-createnewcampus').modal('show');
+
+                    }, 1000);
+
+            }
+            //PROS IF URL EXTIST STATEMENT
+           
+
         }
     });
 
 
+    // create new campus here
 
-});
-
-
-//SCHOOL SETTING
-
-// get country country code in number
-var campusphone = window.intlTelInput(document.querySelector(".campusnumber"), {
-    separateDialCode: true,
-    preferredCountries: ["ng"],
-    hiddenInput: "full",
-    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-});
+    $("body").on("click", "#pros-createnewcampus-btn", function() {
+        $('#pros-createnewcampus-btn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="visually-hidden">Loading...</span>creating..');
 
 
 
-var staff_phone = window.intlTelInput(document.querySelector("#staffnumber"), {
-    separateDialCode: true,
-    preferredCountries: ["ng"],
-    hiddenInput: "full",
-    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-});
+    
+        var schoolName = localStorage.getItem("schoolname");
+        var mottoid = localStorage.getItem("schoolmotto");
+        var schooldomain = localStorage.getItem("schoolurl");
+        var tagID = localStorage.getItem("tag");
+
+        var UserID = "<?php echo $UserID; ?>";
+
+        var checktoverify = $('#checkfirstvilation').val();
+
+        var schoolIDnew = $('#groupschoolnewcampusid').val();
+
+
+        var campuslocation = [];
+        var verifycampuslocation = [];
+        $.each($('.campuslocation'), function() {
+            campuslocation.push($(this).val());
+            var locationverify = $(this).data('id');
+            var campvaluefinal = $('#campuslocation' + locationverify).val();
+
+
+            if (campuslocation == '' || campuslocation == ',') {
+                $('.campuslocationcover' + locationverify).css('outline', '1px solid red');
+                $('#pros-createnewcampus-btn').html('Create campus');
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! Input your campus name or location.",
+                    autohideDelay: 6000
+                });
+            } else {
+                $('.campuslocationcover' + locationverify).css('outline', '1px solid green');
+                $('#pros-createnewcampus-btn').html('Create campus');
+            }
+
+        });
 
 
 
-//load school on document ready here
-$(document).ready(function() {
-
-    $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
 
 
-    var UserID = "<?php echo $UserID; ?>";
-    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-    var tagstate = "<?php echo $tagstate; ?>";
+
+        var campusemail = [];
+        $.each($('.campusemail'), function() {
+            campusemail.push($(this).val());
+            var emailverify = $(this).data('id');
+            var emailverifyfinal = $('#campusemail' + emailverify).val();
 
 
-   
+            if (emailverifyfinal == '' || emailverifyfinal == ',') {
+                $('.campusemailcover' + emailverify).css('outline', '1px solid red');
+                $('#pros-createnewcampus-btn').html('Create campus');
 
-    $.ajax({
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! Input your campus email address.",
+                    autohideDelay: 6000
+                });
+            } else {
 
-        type: "POST",
-        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
-        data: {
-            UserID: UserID,
-            ownerfirst_Name: ownerfirst_Name,
-            tagstate: tagstate
-        },
+                $('.campusemailcover' + emailverify).css('outline', '1px solid green');
+                $('#pros-createnewcampus-btn').html('Create campus');
 
-        success: function(result) {
-            $('#displaycampus-created').html(result);
-            var userrole = (result);
+            }
 
-            var confirmationame = $('#confirmschoolfor-owner').val();
+        });
 
-            if (tagstate == '15') {
-                $('#pros-displaystepmsg-modal').modal('show');
+
+
+
+        $.each($('.campusphone'), function() {
+            var phoneverify = $(this).data('id');
+            var phonelverifyfinal = $('#phonenumber' + phoneverify).val();
+
+            if (phonelverifyfinal == '' || phonelverifyfinal == ',') {
+                $('.campusnumbercover' + phoneverify).css('outline', '1px solid red');
+                $('#checkfirstvilation').val('validatedfinal');
+                $('#pros-createnewcampus-btn').html('Create campus');
+
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! Input your campus phone number.",
+                    autohideDelay: 6000
+                });
+            } else {
+                $('.campusnumbercover' + phoneverify).css('outline', '1px solid green');
+                $('#checkfirstvilation').val('vilidatedsuccess');
+                $('#pros-createnewcampus-btn').html('Create campus');
+            }
+        });
+
+
+
+
+
+
+        var formattedinput = [];
+        document.querySelectorAll('.campusphone').forEach(function(input) {
+            // Get the `intlTelInput` plugin instance for the input field
+            var iti = window.intlTelInputGlobals.getInstance(input);
+            // Get the raw phone number value from the input field
+            var numberformat = input.value;
+            // Use the `intlTelInputUtils` library to format the phone number with its country code
+            formattedinput.push(intlTelInputUtils.formatNumber(numberformat, iti.getSelectedCountryData()
+                .iso2));
+            // Display the formatted phone number in an alert message
+        });
+
+
+
+        var country_ID = [];
+        $.each($('.generalcountry'), function() {
+            country_ID.push($(this).val());
+
+            var countryverify = $(this).data('count');
+            var countrylverifyfinal = $('#countryid' + countryverify).val();
+
+
+            if (countrylverifyfinal == '0' || countrylverifyfinal == ',') {
+                $('.campuscountrycover' + countryverify).css('outline', '1px solid red');
+
+                $('#pros-createnewcampus-btn').html('Create campus');
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! select your country.",
+                    autohideDelay: 6000
+                });
+
+            } else {
+                $('.campuscountrycover' + countryverify).css('outline', '1px solid green');
+                $('#pros-createnewcampus-btn').html('Create campus');
+            }
+        });
+
+
+
+
+
+        var state_ID = [];
+        $.each($('.generalstate'), function() {
+            state_ID.push($(this).val());
+
+
+            var stateverify = $(this).data('state');
+            var statelverifyfinal = $('#state' + stateverify).val();
+
+
+            if (statelverifyfinal == '0' || statelverifyfinal == ',') {
+                $('.campusstatecover' + stateverify).css('outline', '1px solid red');
+                $('#checkfirstvilation').val('validatedfinal');
+                $('#pros-createnewcampus-btn').html('Create campus');
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! select your state.",
+                    autohideDelay: 6000
+                });
+
+            } else {
+                $('.campusstatecover' + stateverify).css('outline', '1px solid green');
+                $('#pros-createnewcampus-btn').html('Create campus');
+            }
+
+        });
+
+        var local_Gov = [];
+        $.each($('.generallga'), function() {
+            local_Gov.push($(this).val());
+
+            var lgaverify = $(this).data('lga');
+            var lgalverifyfinal = $('#lgacity' + lgaverify).val();
+
+
+            if (lgalverifyfinal == '0' || lgalverifyfinal == ',') {
+                $('.campuslgacover' + lgaverify).css('outline', '1px solid red');
+
+                $('#pros-createnewcampus-btn').html('Create campus');
+
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey!! select your local government.",
+                    autohideDelay: 6000
+                });
+
+            } else {
+                $('.campuslgacover' + lgaverify).css('outline', '1px solid green');
+
+                $('#pros-createnewcampus-btn').html('Create campus');
+            }
+
+
+        });
+
+        // create new campus here
+
+
+
+
+        var hasEmptyValueloc = campuslocation.some(function(value) {
+            return value.trim() === '';
+        });
+
+
+        var hasEmptyValueemail = campusemail.some(function(value) {
+            return value.trim() === '';
+        });
+
+
+
+        var hasEmptyValuephone = formattedinput.some(function(value) {
+            return value.trim() === '';
+        });
+
+
+
+        var hasEmptyValuecountry = country_ID.some(function(value) {
+            return value.trim() === '0';
+        });
+
+        var hasEmptyValuestate = state_ID.some(function(value) {
+            return value.trim() === '0';
+        });
+
+        var hasEmptyValueslga = local_Gov.some(function(value) {
+            return value.trim() === '0';
+        });
+
+
+
+
+        if (hasEmptyValueloc || hasEmptyValueemail || hasEmptyValuephone || hasEmptyValuecountry ||
+            hasEmptyValuestate || hasEmptyValueslga) {
+
+            $('#pros-createnewcampus-btn').html('Create campus');
+
+            
+
+        } else {
+
+
+            campuslocation = campuslocation.toString();
+            campusemail = campusemail.toString();
+            formattedinput = formattedinput.toString();
+            country_ID = country_ID.toString();
+            state_ID = state_ID.toString();
+            local_Gov = local_Gov.toString();
+
+
+            if (schoolIDnew == '') {
+
+                $('#pros-createnewcampus-btn').prop('disabled', true);
+                //if creating new campus and new school 
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/create-schoolonboarding.php",
+                    data: {
+                        schoolName: schoolName,
+                        mottoid: mottoid,
+                        schooldomain: schooldomain,
+                        campuslocation: campuslocation,
+                        campusemail: campusemail,
+                        formattedinput: formattedinput,
+                        country_ID: country_ID,
+                        state_ID: state_ID,
+                        local_Gov: local_Gov,
+                        UserID: UserID,
+                        tagID: tagID
+                    },
+
+                    success: function(output) {
+                        
+                        $('#pros-createnewcampus-btn').prop('disabled', false);
+
+                        $('#pros-createnewcampus-btn').html('Create campus');
+
+                        localStorage.removeItem("schoolname");
+                        localStorage.removeItem("schoolmotto");
+                        localStorage.removeItem("schoolurl");
+                        localStorage.removeItem("tag");
+
+                        $('#pros-createnewcampus').modal('hide'); //hide create modal
+                        $('#schoolsettings').fadeIn('slow'); //show next tag     
+                        $('#groupschoolnewcampusid').val('');
+
+
+                        var feedback = (output);
+
+                        if (feedback == 'success') {
+
+                                    $.wnoty({
+                                        type: 'success',
+                                        message: "Great!! School created successfully.",
+                                        autohideDelay: 6000
+                                    });
+                                    
+                                    location.reload();
+                                    $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+                                    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+                                    var tagstate = "<?php echo $tagstate; ?>";
+                
+
+
+                                    $.ajax({
+                
+                                        type: "POST",
+                                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
+                                        data: {
+                                            UserID: UserID,
+                                            ownerfirst_Name: ownerfirst_Name,
+                                            tagstate: tagstate
+                                        },
+                
+                                        success: function(result) {
+                                            $('#displaycampus-created').html(result);
+                                            var userrole = (result);
+                
+                                        }
+                                    });
+                                        
+                            
+                            
+                            
+
+                        } else if(feedback.trim() == 'schoolexist')
+                        {
+                        
+                            $.wnoty({
+                                type: 'success',
+                                message: "Hey!! It seems the school '" + schoolName + "' already exists",
+                                autohideDelay: 6000
+                            });
+                            
+
+                        }
+
+
+
+
+                    
+
+
+
+
+
+                    }
+                });
+                //if creating new campus and new school 
+
+
+
+            } else {
+                
+                $('#pros-createnewcampus-btn').prop('disabled', true);
+                // creating just campus or adding more campus to list
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/create-campusnew.php",
+                    data: {
+                        schoolIDnew: schoolIDnew,
+                        campuslocation: campuslocation,
+                        campusemail: campusemail,
+                        formattedinput: formattedinput,
+                        country_ID: country_ID,
+                        state_ID: state_ID,
+                        local_Gov: local_Gov,
+                        UserID: UserID,
+                        tagID: tagID
+                    },
+
+                    success: function(output) {
+
+                    $('#pros-createnewcampus-btn').prop('disabled', false);
+                        $('#pros-createnewcampus-btn').html('Create campus');
+                        $('#groupschoolnewcampusid').val('');
+
+
+                        $('#pros-createnewcampus').modal('hide'); //hide create modal
+                        $('#schoolsettings').fadeIn('slow'); //show next tag     
+
+
+                        var feedback = (output);
+
+                        if (feedback == 'success') {
+
+                            $.wnoty({
+                                type: 'success',
+                                message: "Great!! Campus added successfully.",
+                                autohideDelay: 6000
+                            });
+
+
+                        } else {
+
+                        }
+
+                        $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+    
+                    
+                        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+                        var tagstate = "<?php echo $tagstate; ?>";
+
+
+
+                        $.ajax({
+
+                            type: "POST",
+                            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
+                            data: {
+                                UserID: UserID,
+                                ownerfirst_Name: ownerfirst_Name,
+                                tagstate: tagstate
+                            },
+
+                            success: function(result) {
+                                $('#displaycampus-created').html(result);
+                                var userrole = (result);
+
+                            }
+                        });
+
+
+
+
+
+                    }
+                });
+
+                // creating just campus or adding more campus to list
+
+
             }
 
 
 
 
+
+
         }
+
+
+
+
+
     });
 
 
 
-}); //load school on document ready here
-
-
-//load setup modal when click on school 
-$('body').on('click', '.opensetupmodalforschool', function() {
-
-    var CampusID = $(this).data('campus');
-    var groupSchoolID = $(this).data('id');
-    var access = $(this).data('access');
-    var UserID = "<?php echo $UserID; ?>";
-    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-    var tagstate = $(this).data('tag');
-    var maintagstate = $(this).data('maintag');
 
 
 
+    // menubtn
+    $('body').on('click', '.menubtn', function(e) {
+        var planid = $(this).data('id');
+        var tagid = $(this).data('tag');
+        var UserID = "<?php echo $UserID; ?>";
 
-    if (access == 'granted') {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/onboardingplan-setting.php",
+            data: {
+                planid: planid,
+                tagid: tagid,
+                UserID: UserID
+            },
+            success: function(result) {
+                location.reload();
+                // $('.generalstate').html(result);                           
+            }
+        });
 
-        $('#pros-createstaff-modal').modal('show'); //load setup modal
 
-        $('#pros-displaysetup-content').html(
-            '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
 
-          
+    });//CHOOSE PLAN HERE
+
+
+//SCHOOL SETTING
+
+    // get country country code in number
+    var campusphone = window.intlTelInput(document.querySelector(".campusnumber"), {
+        separateDialCode: true,
+        preferredCountries: ["ng"],
+        hiddenInput: "full",
+        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+    });
+
+
+
+    var staff_phone = window.intlTelInput(document.querySelector("#staffnumber"), {
+        separateDialCode: true,
+        preferredCountries: ["ng"],
+        hiddenInput: "full",
+        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+    });
+
+
+
+    //load school on document ready here
+    $(document).ready(function() {
+
+        $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+
+
+        var UserID = "<?php echo $UserID; ?>";
+        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+        var tagstate = "<?php echo $tagstate; ?>";
+
+
+    
+
+        $.ajax({
+
+            type: "POST",
+            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
+            data: {
+                UserID: UserID,
+                ownerfirst_Name: ownerfirst_Name,
+                tagstate: tagstate
+            },
+
+            success: function(result) {
+                $('#displaycampus-created').html(result);
+                var userrole = (result);
+
+                var confirmationame = $('#confirmschoolfor-owner').val();
+
+                if (tagstate == '15') {
+                    $('#pros-displaystepmsg-modal').modal('show');
+                }
+
+
+
+
+            }
+        });
+
+
+
+    }); //load school on document ready here
+
+
+    //load setup modal when click on school 
+    $('body').on('click', '.opensetupmodalforschool', function() {
+
+        var CampusID = $(this).data('campus');
+        var groupSchoolID = $(this).data('id');
+        var access = $(this).data('access');
+        var UserID = "<?php echo $UserID; ?>";
+        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+        var tagstate = $(this).data('tag');
+        var maintagstate = $(this).data('maintag');
+
+
+
+
+        if (access == 'granted') {
+
+            $('#pros-createstaff-modal').modal('show'); //load setup modal
+
+            $('#pros-displaysetup-content').html(
+                '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+
+            
+            $.ajax({
+
+                type: "POST",
+                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
+                data: {
+                    UserID: UserID,
+                    ownerfirst_Name: ownerfirst_Name,
+                    tagstate: tagstate,
+                    groupSchoolID: groupSchoolID,
+                    CampusID: CampusID
+                },
+                success: function(result) {
+
+                    $('#pros-displaysetup-content').html(result);
+
+
+                    var head_phone = window.intlTelInput(document.querySelector("#pros-headnumset"), {
+                        separateDialCode: true,
+                        preferredCountries: ["ng"],
+                        hiddenInput: "full",
+                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                    });
+
+
+
+                    var head_phone = window.intlTelInput(document.querySelector(
+                        "#pros-teachernumset"), {
+                        separateDialCode: true,
+                        preferredCountries: ["ng"],
+                        hiddenInput: "full",
+                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                    });
+
+                    var head_phone = window.intlTelInput(document.querySelector("#pros-adminnumset"), {
+                        separateDialCode: true,
+                        preferredCountries: ["ng"],
+                        hiddenInput: "full",
+                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                    });
+
+
+                    var tagstatusnew = tagstate;
+
+                    $('#prosloadschoolid-forbackward').val(CampusID);
+                
+
+
+                    if (maintagstate == '29' && tagstatusnew == '') {
+
+                        $('#pros-reducemodalclasstypesetup').css('width', '700px');
+                        //if campus havent't started setiing up it should start from the begginning
+                        $('#pros-loadimportoption').fadeIn('slow');
+
+                    } else {
+
+
+
+                        if (tagstatusnew == '' || tagstatusnew == '15') {
+                            $('#displaysection-content').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+
+                        } else if (tagstatusnew == '16') {
+
+                            $('#pros-displayhead-setup').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(15);
+
+
+
+                        } else if (tagstatusnew == '17') {
+
+                            $('#assignschoolheadfaculty  ').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(16);
+
+                        } else if (tagstatusnew == '18') {
+                            $('#proscreateschool-teacher').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(17);
+
+                        } else if (tagstatusnew == '19') {
+                            $('#createotherschooltype-setup').fadeIn('slow');
+
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(18);
+
+                        } else if (tagstatusnew == '20') {
+
+                            $('#pros-reducemodalclasstypesetup').css('width', '700px');
+
+                            $('#createwelcomemsg-setup').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(19);
+
+
+                        } else if (tagstatusnew == '21') {
+
+                            $('#createclasses-setup ').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(20);
+
+                            // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
+
+                        } else if (tagstatusnew == '22') {
+
+                            $('#createsubject-setup').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(21);
+
+                        } else if (tagstatusnew == '23') {
+
+                            $('#mergesubjectcontent').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(22);
+
+
+                        } else if (tagstatusnew == '24') {
+
+                            $('#pros-assign-formteachercontent').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(23);
+
+                        } else if (tagstatusnew == '25') {
+
+                            $('#assignsubject-teachercontainer').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(24);
+
+                        } else if (tagstatusnew == '26') {
+
+                            $('#pros-loadsession-termcontent').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(25);
+
+                        } else if (tagstatusnew == '27') {
+
+                            $('#pros-schlogo-content').fadeIn('slow');
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(26);
+
+                        }else if(tagstatusnew == '28')
+                        {
+
+                        
+                            $('#prosschool-bgimage-content').fadeIn('slow');
+                        
+                            $('#movebackbtn-setup').fadeIn('slow');
+                            $('#pros-displaybackvalue-tag').val(27);
+
+
+                        }else if(tagstatusnew == '29')
+                        {
+
+                                        //setup completed
+                        
+                        }
+
+                    }
+
+
+
+                    const selectBtnnewsubject = document.querySelector(
+                            ".getsubjectopenondocument-ready1"),
+                        itemssubject = document.querySelectorAll(".subjectlistmeslist");
+                    selectBtnnewsubject.classList.toggle("open");
+
+
+
+
+
+                    $('body').on('click', '.createsubjectgeneral', function() {
+                        var facultyid = $(this).data('faculty');
+
+                        const selectBtn = document.querySelector(".pros-opensubjectwhenclick" +
+                                facultyid),
+                            items = document.querySelectorAll(".subjectlistmeslist");
+
+                        // Toggle the "open" subject when the selectBtn is clicked
+                        selectBtn.classList.toggle("open");
+                    });
+
+                }
+            });
+
+        } else {
+            $.wnoty({
+                type: 'warning',
+                message: "Oops!! you are only required to  set up with the main campus colored blue.",
+                autohideDelay: 6000
+            });
+        }
+
+
+    });
+    //load setup modal when click on school 
+
+
+    //open create class dropdown
+    $('body').on('click', '.createclassgeneral', function() {
+        var facultyid = $(this).data('faculty');
+
+
+        const selectBtn = document.querySelector(".pros-openclasswhenclick" +
+                facultyid),
+            items = document.querySelectorAll(".listmeslist");
+
+        // Toggle the "open" class when the selectBtn is clicked
+        selectBtn.classList.toggle("open");
+    });
+    //open create class dropdown
+
+
+
+    // load setup modal
+    $('body').on('click', '.pros-loadsetupmodal', function() {
+        var CampusID = $(this).data('campus');
+
+        var groupSchoolID = $(this).data('id');
+        var UserID = "<?php echo $UserID; ?>";
+        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+        var tagstate = $(this).data('tag');
+
+        $('#pros-displaysetup-content').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+            
+
+
+
+
+
         $.ajax({
 
             type: "POST",
@@ -1527,6 +1873,7 @@ $('body').on('click', '.opensetupmodalforschool', function() {
                 $('#pros-displaysetup-content').html(result);
 
 
+
                 var head_phone = window.intlTelInput(document.querySelector("#pros-headnumset"), {
                     separateDialCode: true,
                     preferredCountries: ["ng"],
@@ -1534,10 +1881,7 @@ $('body').on('click', '.opensetupmodalforschool', function() {
                     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
                 });
 
-
-
-                var head_phone = window.intlTelInput(document.querySelector(
-                    "#pros-teachernumset"), {
+                var head_phone = window.intlTelInput(document.querySelector("#pros-teachernumset"), {
                     separateDialCode: true,
                     preferredCountries: ["ng"],
                     hiddenInput: "full",
@@ -1554,128 +1898,114 @@ $('body').on('click', '.opensetupmodalforschool', function() {
 
                 var tagstatusnew = tagstate;
 
+
                 $('#prosloadschoolid-forbackward').val(CampusID);
-               
+
+                
+                if (tagstatusnew == '' || tagstatusnew == '15') {
+                    $('#displaysection-content').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+
+                } else if (tagstatusnew == '16') {
+
+                    $('#pros-displayhead-setup').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(15);
 
 
-                if (maintagstate == '29' && tagstatusnew == '') {
+
+                } else if (tagstatusnew == '17') {
+
+                    $('#assignschoolheadfaculty  ').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(16);
+
+                } else if (tagstatusnew == '18') {
+                    $('#proscreateschool-teacher').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(17);
+
+                } else if (tagstatusnew == '19') {
+                    $('#createotherschooltype-setup').fadeIn('slow');
+
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(18);
+
+                } else if (tagstatusnew == '20') {
 
                     $('#pros-reducemodalclasstypesetup').css('width', '700px');
-                    //if campus havent't started setiing up it should start from the begginning
-                    $('#pros-loadimportoption').fadeIn('slow');
 
-                } else {
-
-
-
-                    if (tagstatusnew == '' || tagstatusnew == '15') {
-                        $('#displaysection-content').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-
-                    } else if (tagstatusnew == '16') {
-
-                        $('#pros-displayhead-setup').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(15);
+                    $('#createwelcomemsg-setup').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(19);
 
 
+                } else if (tagstatusnew == '21') {
 
-                    } else if (tagstatusnew == '17') {
+                    $('#createclasses-setup ').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(20);
 
-                        $('#assignschoolheadfaculty  ').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(16);
+                    // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
 
-                    } else if (tagstatusnew == '18') {
-                        $('#proscreateschool-teacher').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(17);
+                } else if (tagstatusnew == '22') {
 
-                    } else if (tagstatusnew == '19') {
-                        $('#createotherschooltype-setup').fadeIn('slow');
+                    $('#createsubject-setup').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(21);
 
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(18);
+                } else if (tagstatusnew == '23') {
 
-                    } else if (tagstatusnew == '20') {
-
-                        $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                        $('#createwelcomemsg-setup').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(19);
+                    $('#mergesubjectcontent').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(22);
 
 
-                    } else if (tagstatusnew == '21') {
+                } else if (tagstatusnew == '24') {
 
-                        $('#createclasses-setup ').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(20);
+                    $('#pros-assign-formteachercontent').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(23);
 
-                        // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
+                } else if (tagstatusnew == '25') {
 
-                    } else if (tagstatusnew == '22') {
+                    $('#assignsubject-teachercontainer').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(24);
 
-                        $('#createsubject-setup').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(21);
+                } else if (tagstatusnew == '26') {
 
-                    } else if (tagstatusnew == '23') {
+                    $('#pros-loadsession-termcontent').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(25);
 
-                        $('#mergesubjectcontent').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(22);
+                } else if (tagstatusnew == '27') {
 
+                    $('#pros-schlogo-content').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(26);
 
-                    } else if (tagstatusnew == '24') {
-
-                        $('#pros-assign-formteachercontent').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(23);
-
-                    } else if (tagstatusnew == '25') {
-
-                        $('#assignsubject-teachercontainer').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(24);
-
-                    } else if (tagstatusnew == '26') {
-
-                        $('#pros-loadsession-termcontent').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(25);
-
-                    } else if (tagstatusnew == '27') {
-
-                        $('#pros-schlogo-content').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(26);
-
-                    }else if(tagstatusnew == '28')
-                    {
-
-                       
-                        $('#prosschool-bgimage-content').fadeIn('slow');
-                       
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(27);
+                }else if(tagstatusnew == '28')
+                {
+                    $('#prosschool-bgimage-content').fadeIn('slow');
+                    $('#movebackbtn-setup').fadeIn('slow');
+                    $('#pros-displaybackvalue-tag').val(27);
 
 
-                    }else if(tagstatusnew == '29')
-                    {
+                }else if(tagstatusnew == '29')
+                {
 
-                                    //setup completed
-                      
-                    }
-
+                                //setup completed
+                    
                 }
 
 
 
-                const selectBtnnewsubject = document.querySelector(
-                        ".getsubjectopenondocument-ready1"),
+
+                const selectBtnnewsubject = document.querySelector(".getsubjectopenondocument-ready1"),
                     itemssubject = document.querySelectorAll(".subjectlistmeslist");
                 selectBtnnewsubject.classList.toggle("open");
+
 
 
 
@@ -1695,2636 +2025,2680 @@ $('body').on('click', '.opensetupmodalforschool', function() {
             }
         });
 
-    } else {
-        $.wnoty({
-            type: 'warning',
-            message: "Oops!! you are only required to  set up with the main campus colored blue.",
-            autohideDelay: 6000
-        });
-    }
-
-
-});
-//load setup modal when click on school 
-
-
-//open create class dropdown
-$('body').on('click', '.createclassgeneral', function() {
-    var facultyid = $(this).data('faculty');
-
-
-    const selectBtn = document.querySelector(".pros-openclasswhenclick" +
-            facultyid),
-        items = document.querySelectorAll(".listmeslist");
-
-    // Toggle the "open" class when the selectBtn is clicked
-    selectBtn.classList.toggle("open");
-});
-//open create class dropdown
+    });
+    // load setup modal
 
 
 
-// load setup modal
-$('body').on('click', '.pros-loadsetupmodal', function() {
-    var CampusID = $(this).data('campus');
 
-    var groupSchoolID = $(this).data('id');
-    var UserID = "<?php echo $UserID; ?>";
-    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-    var tagstate = $(this).data('tag');
+    // checked subject merge when click on label title
+    $('body').on('click', '.pros-subjectmergelabel', function() {
+        var margerID = $(this).data('id');
 
-    $('#pros-displaysetup-content').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+
+        var verycheckedmerge = $('.generchecksubjectmerge' + margerID).prop("checked");
+
+
+        if (verycheckedmerge) {
+            $('.generchecksubjectmerge' + margerID).prop("checked", false);
+        } else {
+            $('.generchecksubjectmerge' + margerID).prop("checked", true);
+        }
+
+    });
+    // checked subject merge when click on label title
+
+
+
+
+
+
+    $('body').on('keyup', '.schoollinkclass', function() {
+
+        var schoolink = $(this).val();
+        var UserID = "<?php echo $UserID; ?>";
+        var SchoolID = '';
+
+
+        if (schoolink == '') {
+            $('#fullschoollinkcon').fadeOut();
+            $('#schoollinkdis').html(schoolink);
+
+            $('#fullschoollinkcon-new').fadeOut();
+            $('#schoollinkdis-new').html(schoolink);
+        } else {
+            $('#fullschoollinkcon').fadeIn();
+            $('#schoollinkdis').html(schoolink);
+
+            $('#fullschoollinkcon-new').fadeIn();
+            $('#schoollinkdis-new').html(schoolink);
+
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/verify-schoollink.php",
+                data: {
+                    schoolink: schoolink,
+                    UserID: UserID,
+                    SchoolID: SchoolID
+                },
+                success: function(result) {
+                    var userrole = (result);
+
+
+                    if (userrole.trim() == 'found') {
+                        // alert(userrole);
+                            $('.pros_verifyurl_exist_input_here').val('');//empty input
+                           $('.pros_verifyurl_exist_input_here').val('found'); //    pros append value to input if Url found
+                        $.wnoty({
+                            type: 'warning',
+                            message: "This Url already exist for another school",
+                            autohideDelay: 6000
+                        });
+                    } else {
+
+                        $('.pros_verifyurl_exist_input_here').val('');//empty input
+                        $('.pros_verifyurl_exist_input_here').val('okay'); //    pros append value to input if Url not found
+
+                    }
+
+                }
+            });
+        }
+
+
+    });//CHECK SCHOOL LINK HERE
+
+
+    $('body').on('keyup', '.schoollinkclassedit', function() {
+
+        var schoolink = $('.schoollinkclassedit').val();
+        var UserID = "<?php echo $UserID; ?>";
+        var SchoolID = $(this).data('school');
         
 
+        if (schoolink == '') {
+            $('#fullschoollinkconedit').fadeOut();
+            $('#schoollinkdisedit').html(schoolink);
+        } else {
+            $('#fullschoollinkconedit').fadeIn();
+            $('#schoollinkdisedit').html(schoolink);
 
 
 
+            $.ajax({
+                type: "POST",
+                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/verify-schoollink.php",
+                data: {
+                    schoolink: schoolink,
+                    UserID: UserID,
+                    SchoolID: SchoolID
+                },
+                success: function(result) {
+                    var userrole = (result);
+                    // alert(result);
 
-    $.ajax({
-
-        type: "POST",
-        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
-        data: {
-            UserID: UserID,
-            ownerfirst_Name: ownerfirst_Name,
-            tagstate: tagstate,
-            groupSchoolID: groupSchoolID,
-            CampusID: CampusID
-        },
-        success: function(result) {
-
-            $('#pros-displaysetup-content').html(result);
+                    if (userrole.trim() == 'found') {
 
 
+                        $('.pros_verifyurl_exist_input_here').val('');//empty input
+                        $('.pros_verifyurl_exist_input_here').val('found'); 
+                        $.wnoty({
+                            type: 'warning',
+                            message: "this Url already exist for another school",
+                            autohideDelay: 6000
+                        });
+                    } else {
 
-            var head_phone = window.intlTelInput(document.querySelector("#pros-headnumset"), {
-                separateDialCode: true,
-                preferredCountries: ["ng"],
-                hiddenInput: "full",
-                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                        $('.pros_verifyurl_exist_input_here').val('');//empty input
+                        $('.pros_verifyurl_exist_input_here').val('okay'); 
+
+                    }
+
+                }
             });
 
 
-
-            var head_phone = window.intlTelInput(document.querySelector("#pros-teachernumset"), {
-                separateDialCode: true,
-                preferredCountries: ["ng"],
-                hiddenInput: "full",
-                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-            });
-
-            var head_phone = window.intlTelInput(document.querySelector("#pros-adminnumset"), {
-                separateDialCode: true,
-                preferredCountries: ["ng"],
-                hiddenInput: "full",
-                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-            });
-
-
-            var tagstatusnew = tagstate;
-
-
-            $('#prosloadschoolid-forbackward').val(CampusID);
-
-              
-            if (tagstatusnew == '' || tagstatusnew == '15') {
-                        $('#displaysection-content').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-
-                    } else if (tagstatusnew == '16') {
-
-                        $('#pros-displayhead-setup').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(15);
+        }
 
 
 
-                    } else if (tagstatusnew == '17') {
+    });//CHECK SCHOOL LINK HERE ON EDIT
 
-                        $('#assignschoolheadfaculty  ').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(16);
+    // invite staff content here
 
-                    } else if (tagstatusnew == '18') {
-                        $('#proscreateschool-teacher').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(17);
-
-                    } else if (tagstatusnew == '19') {
-                        $('#createotherschooltype-setup').fadeIn('slow');
-
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(18);
-
-                    } else if (tagstatusnew == '20') {
-
-                        $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                        $('#createwelcomemsg-setup').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(19);
+    $(document).ready(function() {
 
 
-                    } else if (tagstatusnew == '21') {
+        $('#displaystaffemail').hide();
+        $('#staff-form').hide();
+        $('#selectuser-typecontainer').fadeIn();
 
-                        $('#createclasses-setup ').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(20);
+        $('#getschoolusertypebtn').click(function() {
+            var usertype_check = $("input[type='radio'].usertypecheck:checked").val();
 
-                        // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
+            if (usertype_check === undefined) {
 
-                    } else if (tagstatusnew == '22') {
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey! kindly choose a user to be invited.",
+                    autohideDelay: 5000
+                });
 
-                        $('#createsubject-setup').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(21);
+            } else {
 
-                    } else if (tagstatusnew == '23') {
-
-                        $('#mergesubjectcontent').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(22);
+                // getstaff-forinsert-container  
+                $('#getusertypeinvite').val(usertype_check);
 
 
-                    } else if (tagstatusnew == '24') {
+                if (usertype_check == 'admin') {
 
-                        $('#pros-assign-formteachercontent').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(23);
+                    $('#selectuser-typecontainer').animate({
+                        left: '+=50',
+                        height: 'toggle'
+                    }, 1000);
 
-                    } else if (tagstatusnew == '25') {
+                    $('#pros-displayadminmenuset').fadeIn('slow');
+                    $('#invitestaff-backbtn').fadeIn('slow');
+                    $('#getstaff-forinsert-container').fadeOut('slow');
 
-                        $('#assignsubject-teachercontainer').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(24);
+                    $('.pros-invitestaff-usertype-dialog').removeClass('modal-lg');
+                    $('.pros-invitestaff-usertype-dialog').addClass('modal-xl');
 
-                    } else if (tagstatusnew == '26') {
 
-                        $('#pros-loadsession-termcontent').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(25);
 
-                    } else if (tagstatusnew == '27') {
 
-                        $('#pros-schlogo-content').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(26);
+                } else {
 
-                    }else if(tagstatusnew == '28')
+
+
+                    $('.pros-invitestaff-usertype-dialog').removeClass('modal-lg');
+                    $('.pros-invitestaff-usertype-dialog').removeClass('modal-xl');
+
+                    $('.pros-invitestaff-usertype-dialog').addClass('modal-lg');
+
+                    $('#selectuser-typecontainer').animate({
+                        left: '+=50',
+                        height: 'toggle'
+                    }, 1000);
+
+
+                    $('#getstaff-forinsert-container').fadeIn('slow');
+                    $('#invitestaff-backbtn').fadeIn('slow');
+                    $('#pros-displayadminmenuset').fadeOut('slow');
+
+
+
+                    if (usertype_check == 'teacher') {
+
+                        $('#pros-createtitle').html('Create teacher');
+                        $('#pros-invitetitle').html('Invite teacher');
+
+                    } else if (usertype_check == 'schoolhead') {
+                        $('#pros-createtitle').html('Create school head');
+                        $('#pros-invitetitle').html('Invite school head');
+
+                    } else if (usertype_check == 'nonteaching') {
+
+                        $('#pros-createtitle').html('Create Non-teaching staff');
+                        $('#pros-invitetitle').html('Invite Non-teaching staff');
+
+                    } else if (usertype_check == 'Senior executive/Board member')
+
                     {
-                        $('#prosschool-bgimage-content').fadeIn('slow');
-                        $('#movebackbtn-setup').fadeIn('slow');
-                        $('#pros-displaybackvalue-tag').val(27);
-
-
-                    }else if(tagstatusnew == '29')
-                    {
-
-                                    //setup completed
-                      
+                        $('#pros-createtitle').html('Create Senior executive');
+                        $('#pros-invitetitle').html('Invite Senior executive');
                     }
 
 
 
 
-            const selectBtnnewsubject = document.querySelector(".getsubjectopenondocument-ready1"),
-                itemssubject = document.querySelectorAll(".subjectlistmeslist");
-            selectBtnnewsubject.classList.toggle("open");
-
-
-
-
-
-
-            $('body').on('click', '.createsubjectgeneral', function() {
-                var facultyid = $(this).data('faculty');
-
-                const selectBtn = document.querySelector(".pros-opensubjectwhenclick" +
-                        facultyid),
-                    items = document.querySelectorAll(".subjectlistmeslist");
-
-                // Toggle the "open" subject when the selectBtn is clicked
-                selectBtn.classList.toggle("open");
-            });
-
-        }
-    });
-
-});
-// load setup modal
-
-
-
-
-// checked subject merge when click on label title
-$('body').on('click', '.pros-subjectmergelabel', function() {
-    var margerID = $(this).data('id');
-
-
-    var verycheckedmerge = $('.generchecksubjectmerge' + margerID).prop("checked");
-
-
-    if (verycheckedmerge) {
-        $('.generchecksubjectmerge' + margerID).prop("checked", false);
-    } else {
-        $('.generchecksubjectmerge' + margerID).prop("checked", true);
-    }
-
-});
-// checked subject merge when click on label title
-
-
-
-
-
-
-$('body').on('keyup', '.schoollinkclass', function() {
-
-    var schoolink = $(this).val();
-    var UserID = "<?php echo $UserID; ?>";
-    var SchoolID = '';
-
-
-    if (schoolink == '') {
-        $('#fullschoollinkcon').fadeOut();
-        $('#schoollinkdis').html(schoolink);
-
-        $('#fullschoollinkcon-new').fadeOut();
-        $('#schoollinkdis-new').html(schoolink);
-    } else {
-        $('#fullschoollinkcon').fadeIn();
-        $('#schoollinkdis').html(schoolink);
-
-        $('#fullschoollinkcon-new').fadeIn();
-        $('#schoollinkdis-new').html(schoolink);
-
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/verify-schoollink.php",
-            data: {
-                schoolink: schoolink,
-                UserID: UserID,
-                SchoolID: SchoolID
-            },
-            success: function(result) {
-                var userrole = (result);
-
-                if (userrole == 'found') {
-                    $.wnoty({
-                        type: 'warning',
-                        message: "this Url already exist for another school",
-                        autohideDelay: 6000
-                    });
-                } else {
-
                 }
 
-            }
-        });
-    }
-
-
-});
-
-
-$('body').on('keyup', '.schoollinkclassedit', function() {
-
-    var schoolink = $('.schoollinkclassedit').val();
-    var UserID = "<?php echo $UserID; ?>";
-    var SchoolID = $(this).data('school');
-
-    if (schoolink == '') {
-        $('#fullschoollinkconedit').fadeOut();
-        $('#schoollinkdisedit').html(schoolink);
-    } else {
-        $('#fullschoollinkconedit').fadeIn();
-        $('#schoollinkdisedit').html(schoolink);
-
-
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/verify-schoollink.php",
-            data: {
-                schoolink: schoolink,
-                UserID: UserID,
-                SchoolID: SchoolID
-            },
-            success: function(result) {
-                var userrole = (result);
-
-                if (userrole == 'found') {
-                    $.wnoty({
-                        type: 'warning',
-                        message: "this Url already exist for another school",
-                        autohideDelay: 6000
-                    });
-                } else {
-
-                }
 
             }
+
+
         });
 
 
-    }
+
+        $('body').on('click', '.bringformlinkinvite', function() {
+            var usertype_invitelink = $("input[type='radio'].inviteuser-create:checked").val();
+
+            $('#displaystaffemail').fadeIn();
+            $('#staff-form').fadeOut();
+
+        });
+
+        $('body').on('click', '.bringformlinkcreate', function() {
+            var usertype_invitelink = $("input[type='radio'].inviteuser-create:checked").val();
+            $('#displaystaffemail').fadeOut();
+            $('#staff-form').fadeIn();
+            // staff-form 
+
+            var staffnumber = window.intlTelInput(document.querySelector("#staffnumber"), {
+                separateDialCode: true,
+                preferredCountries: ["ng"],
+                hiddenInput: "full",
+                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+            });
+        });
 
 
 
-});
-
-// invite staff content here
-
-$(document).ready(function() {
+        $('body').on('click', '#invitestaff-backbtn', function() {
 
 
-    $('#displaystaffemail').hide();
-    $('#staff-form').hide();
-    $('#selectuser-typecontainer').fadeIn();
+            $('#getstaff-forinsert-container').animate({
+                right: '+=50',
+                height: 'toggle'
+            }, 1);
+            $('#invitestaff-backbtn').fadeOut('fast');
+            $('#pros-displayadminmenuset').fadeOut('fast');
+            $('#getstaff-forinsert-container').fadeOut('fast');
+            $('#selectuser-typecontainer').fadeIn('slow');
 
-    $('#getschoolusertypebtn').click(function() {
-        var usertype_check = $("input[type='radio'].usertypecheck:checked").val();
 
-        if (usertype_check === undefined) {
+            $('.pros-invitestaff-usertype-dialog').removeClass('modal-lg');
 
-            $.wnoty({
-                type: 'warning',
-                message: "Hey! kindly choose a user to be invited.",
-                autohideDelay: 5000
+            $('.pros-invitestaff-usertype-dialog').removeClass('modal-xl');
+
+            $('.pros-invitestaff-usertype-dialog').addClass('modal-lg');
+
+        });
+        // collect group of school ID
+
+        $('body').on('click', '#invitestaffclick', function() {
+
+            $('#pros-displayadminmenuset').html('<div class="d-flex justify-content-center">' +
+                '<div class="spinner-border" role="status">' +
+                '<span class="visually-hidden">Loading...</span>' +
+                '</div>' +
+                '</div>');
+
+            var groupSchoolID = $(this).data('id');
+            var UserID = "<?php echo $UserID; ?>";
+            $('#staffgroupschoolID').val(groupSchoolID);
+            $('#pros-display-schoolid').val(groupSchoolID);
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadmenu-onboarding.php",
+                data: {
+                    groupSchoolID: groupSchoolID,
+                    UserID: UserID
+                },
+                success: function(result) {
+
+                    $('#pros-displayadminmenuset').html(result);
+                }
             });
 
-        } else {
-
-            // getstaff-forinsert-container  
-            $('#getusertypeinvite').val(usertype_check);
-
-
-            if (usertype_check == 'admin') {
-
-                $('#selectuser-typecontainer').animate({
-                    left: '+=50',
-                    height: 'toggle'
-                }, 1000);
-
-                $('#pros-displayadminmenuset').fadeIn('slow');
-                $('#invitestaff-backbtn').fadeIn('slow');
-                $('#getstaff-forinsert-container').fadeOut('slow');
-
-                $('.pros-invitestaff-usertype-dialog').removeClass('modal-lg');
-                $('.pros-invitestaff-usertype-dialog').addClass('modal-xl');
 
 
 
+        });
+
+
+
+
+        // check admin menu prosper
+        $('body').on('click', '.pros-mainmenugeneralclass', function(e) {
+            var mainmenu = $(this).data('id');
+            var checkbox = $('.prossubmenuclass' + mainmenu);
+            checkbox.prop('checked', !checkbox.prop('checked'));
+            var mainlength = checkbox.length;
+
+
+            if (mainlength == 0) {} else {
+                if ($(".prossubmenuclass" + mainmenu + ":checked").length === mainlength) {
+                    $('.prosgeneralmenuchecked' + mainmenu).prop('checked', true);
+                } else {
+                    $('.prosgeneralmenuchecked' + mainmenu).prop('checked', false);
+                }
+            }
+
+        });
+        // check admin menu prosper
+
+
+
+        $('body').on('click', '#pros-checkmenu-foradmin', function() { //collect assign to admin and proceed
+
+            var pros_verify_menucheck_box = $(".pros-checkchildren:checked").val();
+
+
+            if (pros_verify_menucheck_box == undefined) {
+                $.wnoty({
+                    type: 'warning',
+                    message: "Please select at least one menu option before proceeding!",
+                    autohideDelay: 5000
+                });
 
             } else {
 
 
+                var main_menuarr = [];
 
-                $('.pros-invitestaff-usertype-dialog').removeClass('modal-lg');
-                $('.pros-invitestaff-usertype-dialog').removeClass('modal-xl');
+                // collect menu as array format prosper
+                var mainmenuID = [];
+                $.each($(".pros-mainmenugeneralclass:checked"), function() {
 
-                $('.pros-invitestaff-usertype-dialog').addClass('modal-lg');
+                    main_menuarr.push($(this).data('id'));
+                    var miancampus = $(this).data('id');
 
-                $('#selectuser-typecontainer').animate({
+                    var submenuarr = [];
+                    //loop through submenu here
+                    $.each($(".prossubmenuclass" + miancampus + ":checked"), function() {
+                        submenuarr.push($(this).val());
+                        submenuarr.push($(this).data('pros-menuper-status'));
+
+
+                    });
+                    //loop through submenu 
+                    main_menuarr.push(submenuarr);
+
+                });
+
+                var jsonArray = JSON.stringify(main_menuarr);
+
+                //  var jsonObject = JSON.parse(jsonArray);
+
+                $('#prosmenucontent').val(jsonArray); //passing value to an input field
+
+                $('#pros-displayadminmenuset').animate({
                     left: '+=50',
                     height: 'toggle'
                 }, 1000);
+
+
 
 
                 $('#getstaff-forinsert-container').fadeIn('slow');
                 $('#invitestaff-backbtn').fadeIn('slow');
                 $('#pros-displayadminmenuset').fadeOut('slow');
 
+                $('.pros-invitestaff-usertype-dialog').removeClass('modal-lg');
+                $('.pros-invitestaff-usertype-dialog').removeClass('modal-xl');
+
+                $('.pros-invitestaff-usertype-dialog').addClass('modal-lg');
 
 
-                if (usertype_check == 'teacher') {
+                $('#pros-createtitle').html('Create admin');
+                $('#pros-invitetitle').html('Invite admin');
+            }
 
-                    $('#pros-createtitle').html('Create teacher');
-                    $('#pros-invitetitle').html('Invite teacher');
 
-                } else if (usertype_check == 'schoolhead') {
-                    $('#pros-createtitle').html('Create school head');
-                    $('#pros-invitetitle').html('Invite school head');
+        }); //collect assign to admin and proceed
 
-                } else if (usertype_check == 'nonteaching') {
 
-                    $('#pros-createtitle').html('Create Non-teaching staff');
-                    $('#pros-invitetitle').html('Invite Non-teaching staff');
+        // invite staff content here
 
-                } else if (usertype_check == 'Senior executive/Board member')
+        $('body').on('click', '#editcampusbtn', function() {
+            $('#displayschforedit').html(
+                '<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>'
+            );
+            var campusID = $(this).data('camp');
+            var SchoolID = $(this).data('sch');
 
-                {
-                    $('#pros-createtitle').html('Create Senior executive');
-                    $('#pros-invitetitle').html('Invite Senior executive');
+            $.ajax({
+                type: "POST",
+                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadonbordedcampus-edit.php",
+                data: {
+                    campusID: campusID,
+                    SchoolID: SchoolID
+                },
+                success: function(result) {
+                    $('#displayschforedit').html(result);
+
+                    var campusphoneedit = window.intlTelInput(document.querySelector(
+                        ".campusnumberedit"), {
+                        separateDialCode: true,
+                        preferredCountries: ["ng"],
+                        hiddenInput: "full",
+                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                    });
                 }
+            });
+        });
 
 
 
+
+
+        //pros proceed to edit campus here
+        
+
+        $('body').on('click', '#pros-updtaecampusbtn', function() {
+
+            $(this).html('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>saving..');
+
+
+            var campusID = $('#proscampusifforeditfinal').val();
+            var campusloceditt = $('#proscampuslocationedit').val();
+            var campusemailedit = $('#proscampusemailhere').val();
+            var campusenumedit = $('#proscampusnumberedit').val();
+            var proscampuscountryedit = $('#proscampuscountryedit').val();
+            var proscampusstateedit = $('#proscampusstateedit').val();
+            var proscampuslgaedit = $('#proscampuslgaedit').val();
+
+            
+
+
+
+
+            const emailPatternedit = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            if(campusloceditt == '')
+            {
+
+            
+                        $.wnoty({
+                            type: 'warning',
+                            message: "campus location or name should not be left empty.",
+                            autohideDelay: 5000
+                        });
+
+                        $('#pros-updtaecampusbtn').html('Update campus');
+
+
+            }else if(campusemailedit == '')
+            {
+
+
+                    $.wnoty({
+                            type: 'warning',
+                            message: "campus email should not be left empty.",
+                            autohideDelay: 5000
+                        });
+
+                        $('#pros-updtaecampusbtn').html('Update campus');
+            }else if(!emailPatternedit.test(campusemailedit))
+            {
+
+
+
+                        $.wnoty({
+                            type: 'warning',
+                            message: "Input a valid mail to proceed.",
+                            autohideDelay: 5000
+                        });
+
+                        $('#pros-updtaecampusbtn').html('Update campus');
+
+            }else if(campusenumedit  == '')
+            {
+
+                        $.wnoty({
+                            type: 'warning',
+                            message: "Phone number should not be left empty.",
+                            autohideDelay: 5000
+                        });
+
+                        $('#pros-updtaecampusbtn').html('Update campus');
+
+            }else if(proscampuscountryedit == '' || proscampuscountryedit == '0')
+            {
+
+                
+                        $.wnoty({
+                            type: 'warning',
+                            message: "Country should not be left empty.",
+                            autohideDelay: 5000
+                        });
+
+                        $('#pros-updtaecampusbtn').html('Update campus');
+
+            }else if(proscampusstateedit == '' || proscampusstateedit == '0')
+            {
+
+
+                        $.wnoty({
+                            type: 'warning',
+                            message: "select state to proceed.",
+                            autohideDelay: 5000
+                        });
+
+                        $('#pros-updtaecampusbtn').html('Update campus');
+
+            }else if(proscampuslgaedit == '' || proscampuslgaedit == '0')
+            {
+
+
+                        $.wnoty({
+                            type: 'warning',
+                            message: "select LGA or city to proceed.",
+                            autohideDelay: 5000
+                        });
+
+                        $('#pros-updtaecampusbtn').html('Update campus');
+
+            }else
+            {
+                        var formattedinput = [];
+                        document.querySelectorAll('.campusnumberedit').forEach(function(input) {
+                            // Get the `intlTelInput` plugin instance for the input field
+                            var iti = window.intlTelInputGlobals.getInstance(input);
+                            // Get the raw phone number value from the input field
+                            var numberformat = input.value;
+                            // Use the `intlTelInputUtils` library to format the phone number with its country code
+                            formattedinput.push(intlTelInputUtils.formatNumber(numberformat, iti.getSelectedCountryData()
+                                .iso2));
+                            // Display the formatted phone number in an alert message
+                        });
+
+                        formattedinput = formattedinput.toString();
+
+
+                    
+
+
+                        $('#pros-updtaecampusbtn').prop('disbled', true);
+
+
+                        
+
+
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/proseditcampusall-here.php",
+                                    data: {
+                                            campusID:campusID,
+                                            campusloceditt:campusloceditt,
+                                            campusemailedit:campusemailedit,
+                                            proscampuscountryedit:proscampuscountryedit,
+                                            proscampusstateedit:proscampusstateedit,
+                                            proscampuslgaedit:proscampuslgaedit,
+                                            number:formattedinput
+
+                                    },
+                                    success: function(result) {
+
+                                    
+                                        // alert(result)
+                                    
+
+                                        
+                                    
+                                        $('#pros-updtaecampusbtn').prop('disbled', false);
+
+
+                                    
+
+
+                                                                
+
+                                                        if(result.trim() == 'success')
+                                                        {
+                                                            
+
+                                                                
+                                                            const maxLength = 30; // Maximum length of the shortened string
+                
+                                                            // Check if the original string exceeds the maximum length
+                                                            if (campusloceditt.length > maxLength) {
+                                                                var shortenedString = campusloceditt.slice(0, maxLength);
+                                                            
+                                                            } else {
+                                                                var shortenedString = campusloceditt;
+                                                            }
+                                                                                
+                                                        
+
+                                                            $('.prosdisplaycampusnameedit'+campusID).html(shortenedString);
+
+                                                            $('#pros-editcampus-modal').modal('hide');
+
+                                                            
+                                                            $.wnoty({
+                                                                type: 'success',
+                                                                message: "campus records saved successfully.",
+                                                                autohideDelay: 5000
+                                                            });
+
+
+
+                                                        }else
+
+                                                        {
+
+                                                        }
+
+
+
+                                    }
+
+                                });
+
+
+                    
+                
 
             }
 
 
+
+
+            
+            
+
+        
+
+            
+            
+
+        });
+
+
+
+        $('body').on('click', '#editschoolbtn', function() {
+            $('#displayschoolforedit').html(
+                '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>'
+            );
+            var SchoolID = $(this).data('id');
+            var UserID = "<?php echo $UserID; ?>";
+
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadonbordedschool-edit.php",
+                data: {
+                    UserID: UserID,
+                    SchoolID: SchoolID
+                },
+                success: function(result) {
+                    $('#displayschoolforedit').html(result);
+                }
+
+            });
+
+
+
+        });
+
+        $('body').on('click', '#deleteschoolbtn', function() {
+            var SchoolID = $(this).data('school');
+            var schoolname = $(this).data('schoolname');
+            var UserID = "<?php echo $UserID; ?>";
+            $('#displayschoolname-del').html(schoolname);
+
+            $('#prosget-schoolidfordelete').val(SchoolID);
+        
+
+
+        });
+
+
+        //pros load campus delete content here
+        $('body').on('click', '#prosdeletecampusbtnload', function() {
+
+            var SchoolID = $(this).data('sch');
+            var campusID = $(this).data('camp');
+            var campusname = $(this).data('campname');
+        
+            $('#prosloadcontentdelte').html(campusname);
+            $('#prosloadcampusdeleteschool').val(SchoolID);
+            $('#prosloadcampusdeletecampus').val(campusID);
+
+
+        });
+
+        //delete campus final btn here  
+        $('body').on('click', '.pros-deletecampusbtnfinal', function() {
+
+
+
+
+            $(this).html('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>deleting..');
+
+            var UserID = "<?php echo $UserID; ?>";
+            var SchoolID = $('#prosloadcampusdeleteschool').val();
+            var campusID = $('#prosloadcampusdeletecampus').val();
+
+
+            $('.pros-deletecampusbtnfinal').prop('disabled', true);
+
+
+
+            $.ajax({
+                    type: "POST",
+                    url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/proseletecampus-here.php",
+                    data: {
+                        UserID:UserID,
+                        SchoolID:SchoolID,
+                        campusID:campusID
+                    },
+                    success: function(result){
+
+                        
+
+                            $('.pros-deletecampusbtnfinal').html('Delete');
+                            $('.pros-deletecampusbtnfinal').prop('disabled', false);
+
+
+
+                            if(result.trim() == 'success')
+                            {
+
+
+
+                                        $('#pros-deletecampus-modal').modal('hide');
+                                                        
+                                        $.wnoty({
+                                            type: 'success',
+                                            message: "campus removed successfully.",
+                                            autohideDelay: 5000
+                                        });
+
+                                        $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+
+                                        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+                                        var tagstate = "<?php echo $tagstate; ?>";
+
+
+
+                                        $.ajax({
+
+                                            type: "POST",
+                                            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
+                                            data: {
+                                                UserID: UserID,
+                                                ownerfirst_Name: ownerfirst_Name,
+                                                tagstate: tagstate
+                                            },
+
+                                            success: function(result) {
+                                                $('#displaycampus-created').html(result);
+                                                var userrole = (result);
+
+                                            }
+                                        });
+
+
+
+
+                            }else
+                            {
+
+
+                                    $.wnoty({
+                                            type: 'error',
+                                            message: "Delete failed pls try again.",
+                                            autohideDelay: 5000
+                                        });
+
+                            }
+
+
+
+                    }
+
+            });
+            
+
+
+
+
+
+
+        });
+
+        // delete SCHOOL final btn here
+        $('body').on('click', '#pros-deleteschoolherebtn', function() {
+
+            $(this).html('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>deleting..');
+
+            var UserID = "<?php echo $UserID; ?>";
+            var SchoolID =  $('#prosget-schoolidfordelete').val();
+            $('#pros-deleteschoolherebtn').prop('disabled', true);
+        
+
+
+
+
+            $.ajax({
+                    type: "POST",
+                    url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadonbordedschool-delete.php",
+                    data: {
+                        UserID:UserID,
+                        SchoolID:SchoolID
+                    },
+                    success: function(result){
+
+                            $('#pros-deleteschoolherebtn').html('Delete');
+                            $('#pros-deleteschoolherebtn').prop('disabled', false);
+                            
+
+                            if(result.trim() == 'success')
+                            {
+
+
+
+                                        $('#pros-deleteschool-modal').modal('hide');
+                                                        
+                                        $.wnoty({
+                                            type: 'success',
+                                            message: "school removed successfully.",
+                                            autohideDelay: 5000
+                                        });
+
+                                        $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+
+                                        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+                                        var tagstate = "<?php echo $tagstate; ?>";
+
+
+
+                                        $.ajax({
+
+                                            type: "POST",
+                                            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
+                                            data: {
+                                                UserID: UserID,
+                                                ownerfirst_Name: ownerfirst_Name,
+                                                tagstate: tagstate
+                                            },
+
+                                            success: function(result) {
+                                                $('#displaycampus-created').html(result);
+                                                var userrole = (result);
+
+                                            }
+                                        });
+
+
+
+
+                            }else
+                            {
+
+
+                                    $.wnoty({
+                                            type: 'error',
+                                            message: "Delete failed pls try again.",
+                                            autohideDelay: 5000
+                                        });
+
+                            }
+
+
+                    }    
+
+            });
+
+
+
+
+            
+                        
+        });
+
+        // undo delete campus here
+
+        $('body').on('click', '.pros-undoncampusdeletebtn', function() {
+
+                var prosdeletecampusID = $(this).data('id');
+                var InstitutionID = $(this).data('school');
+                var UserID = "<?php echo $UserID; ?>";
+
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/pros-undoschooldelete.php",
+                    data: {
+                        UserID:UserID,
+                        prosdeletecampusID:prosdeletecampusID,
+                        InstitutionID:InstitutionID
+                    },
+                    success: function(result){
+
+                            $('#pros-deleteschoolherebtn').html('Delete');
+                            $('#pros-deleteschoolherebtn').prop('disabled', false);
+                            
+
+                            if(result.trim() == 'success')
+                            {
+
+
+
+                                        $('#pros-deleteschool-modal').modal('hide');
+                                                        
+                                        $.wnoty({
+                                            type: 'success',
+                                            message: "Delete undone successfully.",
+                                            autohideDelay: 5000
+                                        });
+
+                                        $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+
+                                        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+                                        var tagstate = "<?php echo $tagstate; ?>";
+
+
+
+                                        $.ajax({
+
+                                            type: "POST",
+                                            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
+                                            data: {
+                                                UserID: UserID,
+                                                ownerfirst_Name: ownerfirst_Name,
+                                                tagstate: tagstate
+                                            },
+
+                                            success: function(result) {
+                                                $('#displaycampus-created').html(result);
+                                                var userrole = (result);
+
+                                            }
+                                        });
+
+
+
+
+                            }else
+                            {
+
+
+                                    $.wnoty({
+                                            type: 'error',
+                                            message: "Delete undo failed etry again later",
+                                            autohideDelay: 5000
+                                        });
+
+                            }
+
+
+                    }    
+
+            });
+
+
+                
+                
+
+
+
+        });
+
+        
+
+
+        // hide on document modal for setup prompt
+
+        $('body').on('click', '#pros-nextschool-createstaff', function() {
+
+            $('#pros-displaystepmsg-modal').modal('hide');
+            $('#pros-createstaff-modal').modal('show');
+        });
+
+
+
+    });
+
+
+
+
+
+
+    // insert staff
+    $('body').on('click', '#getschoolinvitebtn', function() {
+
+    
+            $(this).html(
+                '<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>creating...'
+            );
+            var typeof_invitation = $("input[type='radio'].inviteuser-create:checked").val();
+            var groupSchoolID = $('#staffgroupschoolID').val();
+            var userType = $('#getusertypeinvite').val();
+
+            var staffnumber = window.intlTelInput(document.querySelector("#staffnumber"), {
+                separateDialCode: true,
+                preferredCountries: ["ng"],
+                hiddenInput: "full",
+                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+            });
+
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (typeof_invitation == 'Create staff') {
+                
+
+                var staff_firstname = $('#staff-fname').val();
+
+                var staff_lastname = $('#staff-lname').val();
+
+                var staff_email = $('#staff-email').val();
+
+                var staff_number = $('#staffnumber').val();
+                var staff_date = $('#pros-staff-dob').val();
+
+                var stafff_gender = $('#prosstaffgender').val();
+            
+                    if(userType == 'admin')
+                    {
+                        var adminmenu = JSON.parse($('#prosmenucontent').val());
+                        var adminmenufinal = JSON.stringify(adminmenu);
+                    }else
+                    {
+                        var adminmenufinal = '';
+                    }
+                
+                
+
+
+
+                var regexnumber = /^\+\d{1,3}\s?\(\d{1,4}\)\s?\d{1,4}-?\d{1,9}$/;
+
+                var phonenumfull = staffnumber.getNumber(intlTelInputUtils.numberFormat.E164);
+                $("input[name='staffphone[full]'").val(phonenumfull);
+
+
+                
+
+
+                if (staff_firstname == '') {
+
+                    $('.stafffnamecont').css('outline', '1px solid red');
+                    $.wnoty({
+                        type: 'warning',
+                        message: "Staff's name shouldn't be left blank.",
+                        autohideDelay: 5000
+                    });
+                    $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+
+                } else if (staff_lastname == '') {
+
+
+                    $('.stafff-lastnamecont').css('outline', '1px solid red');
+                    $('.stafffnamecont').css('outline', '1px solid green');
+
+                    $.wnoty({
+                        type: 'warning',
+                        message: "Staff's last name shouldn't be left blank.",
+                        autohideDelay: 5000
+                    });
+
+                    $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+
+                } else if (staff_email == '') {
+
+                    $('.stafff-emailcont').css('outline', '1px solid red');
+                    $('.stafff-lastnamecont').css('outline', '1px solid green');
+                    $('.stafffnamecont').css('outline', '1px solid green');
+
+                    $.wnoty({
+                        type: 'warning',
+                        message: "Staff's email shouldn't be left blank.",
+                        autohideDelay: 5000
+                    });
+
+                    $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+
+                } else if (!emailPattern.test(staff_email)) {
+
+                    $('.stafff-emailcont').css('outline', '1px solid red');
+                    $('.stafff-lastnamecont').css('outline', '1px solid green');
+                    $('.stafffnamecont').css('outline', '1px solid green');
+
+                    $.wnoty({
+                        type: 'warning',
+                        message: "Invalid email. please provide a valid one",
+                        autohideDelay: 5000
+                    });
+                    $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+
+
+                } else if (staff_number == '') {
+
+                    $('.staffnumbercont').css('outline', '1px solid red');
+                    $('.stafff-emailcont').css('outline', '1px solid green');
+                    $('.stafff-lastnamecont').css('outline', '1px solid green');
+                    $('.stafffnamecont').css('outline', '1px solid green');
+
+                    $.wnoty({
+                        type: 'warning',
+                        message: "please provide " + staff_firstname + "\'s " + "phone number",
+                        autohideDelay: 5000
+                    });
+                    $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+
+                }else if(staff_date == '' || staff_date == '0') 
+                {
+
+                    $('.staffnumbercont').css('outline', '1px solid green');
+                    $('.stafff-emailcont').css('outline', '1px solid green');
+                    $('.stafff-lastnamecont').css('outline', '1px solid green');
+                    $('.stafffnamecont').css('outline', '1px solid green');
+                    $('.stafffnamecont').css('outline', '1px solid green');
+                    $('.stafff-dobcont').css('outline', '1px solid red');
+
+                    $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+
+                    $.wnoty({
+                        type: 'warning',
+                        message: "Staff date of birth required.",
+                        autohideDelay: 5000
+                    });
+
+                    
+
+
+                }else if(stafff_gender == '' || stafff_gender == '0') 
+                {
+
+                    
+                    $('.staffnumbercont').css('outline', '1px solid green');
+                    $('.stafff-emailcont').css('outline', '1px solid green');
+                    $('.stafff-lastnamecont').css('outline', '1px solid green');
+                    $('.stafffnamecont').css('outline', '1px solid green');
+                    $('.stafffnamecont').css('outline', '1px solid green');
+                    $('.stafff-dobcont').css('outline', '1px solid green');
+                    $('.stafff-gendercont').css('outline', '1px solid red');
+
+                    $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+
+                    $.wnoty({
+                        type: 'warning',
+                        message: "input staff gender.",
+                        autohideDelay: 5000
+                    });
+                    
+                }
+                else {
+
+                    $('.staffnumbercont').css('outline', '1px solid green');
+                    $('.stafff-emailcont').css('outline', '1px solid green');
+                    $('.stafff-lastnamecont').css('outline', '1px solid green');
+                    $('.stafffnamecont').css('outline', '1px solid green');
+                    $('.stafff-dobcont').css('outline', '1px solid green');
+                    $('.stafff-gendercont').css('outline', '1px solid green');
+                    
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../../controller/scripts/owner/createstaff-onboarding.php",
+                        data: {
+                            groupSchoolID: groupSchoolID,
+                            userType: userType,
+                            staff_firstname: staff_firstname,
+                            staff_lastname: staff_lastname,
+                            staff_email: staff_email,
+                            phonenumfull: phonenumfull,
+                            staff_date:staff_date,
+                            stafff_gender:stafff_gender,
+                            adminmenufinal: adminmenufinal
+
+                        },
+                        success: function(output) {
+                            // $('#displaycampus-created').html(result);
+                            $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+                            var prosdata = (output);
+                            
+
+                            if (prosdata == 'success') {
+                                $.wnoty({
+                                    type: 'success',
+                                    message: "Great!! staff created Successfully.",
+                                    autohideDelay: 5000
+                                });
+                                $('#pros-invitestaff-usertype').modal('hide');
+                            
+
+                            } else if (prosdata == 'exist') {
+                                $.wnoty({
+                                    type: 'warning',
+                                    message: "email already exist",
+                                    autohideDelay: 5000
+                                });
+                            }
+
+                        }
+                    });
+                }
+
+
+            }
+            else if (typeof_invitation == 'Invite Staff') {
+                var staffemailinvite = $('#staffemail-invite').val();
+                
+                var pros_staffemailinvite = [];
+
+                $('.prosgeneralinvitemail').each(function() {
+                    
+                        pros_staffemailinvite.push($(this).val());
+                        
+                        var staffemaildata = $(this).data('id');
+                        
+                        var staffselectid = $('.prossingleinvitemail'+staffemaildata).val();
+                        
+                        if(staffselectid == '')
+                        {
+                            $('.pros-inviteemailcover'+staffemaildata).css('outline', '1px solid red');
+                            
+                            $.wnoty({
+                                type: 'warning',
+                                message: "enter your staff's email",
+                                autohideDelay: 5000
+                            });
+                            $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+                            
+                        }else if(!emailPattern.test(staffselectid))
+                        {
+                            $('.pros-inviteemailcover'+staffemaildata).css('outline', '1px solid red');
+                            
+                            $.wnoty({
+                                type: 'warning',
+                                message: "enter a valid email",
+                                autohideDelay: 5000
+                            });
+                            $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+                        }else
+                        {
+                        $('.pros-inviteemailcover'+staffemaildata).css('outline', '1px solid green');  
+                        }
+                        
+                        
+
+                        
+                        
+                        
+                    
+                });
+            
+                
+                
+                
+                
+                    var pros_staffinviteemailvalidate = pros_staffemailinvite.some(function(value) {
+                            return value.trim() === '';
+                        });
+                        
+                        if(pros_staffinviteemailvalidate)
+                        {
+                            
+                        }else
+                        {
+                            
+                            pros_staffemailinvite = pros_staffemailinvite.toString();
+
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "../../controller/scripts/owner/pros-staffinvite.php",
+                                        data: {
+                                            groupSchoolID: groupSchoolID,
+                                            userType: userType,
+                                            pros_staffemailinvite: pros_staffemailinvite
+                                            
+                            
+                                        },
+                                        success: function(output) {
+                                            // $('#displaycampus-created').html(result);
+                                            $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+                                            var prosdata = (output);
+                                        
+                                            
+                            
+                                            if (prosdata.trim() == 'success') {
+                                                $.wnoty({
+                                                    type: 'success',
+                                                    message: "Great!! staff created Successfully.",
+                                                    autohideDelay: 5000
+                                                });
+                                                $('#pros-invitestaff-usertype').modal('hide');
+                                            
+                            
+                                            } else if (prosdata == 'found') {
+                                                $.wnoty({
+                                                    type: 'warning',
+                                                    message: "email already exist",
+                                                    autohideDelay: 5000
+                                                });
+                                            }
+                            
+                                        }
+                                    });    
+                            
+                                
+                        }
+                
+                
+
+
+
+
+            } else {
+                $.wnoty({
+                    type: 'warning',
+                    message: "Hey! select either invite staff or create staff before proceeding.",
+                    autohideDelay: 5000
+                });
+                $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
+            }
+
+
+    });
+    // insert staff   
+
+
+
+    $('body').on('click', '.generalclass-usertype', function() { //when click on staff invite or create link
+
+        var datausertype = $(this).data('id');
+
+        if (datausertype == '1') {
+            $("#seniorexecutive").prop("checked", true);
+
+        } else if (datausertype == '2') {
+
+            $("#personalassist").prop("checked", true);
+
+        } else if (datausertype == '3') {
+
+            $("#admin").prop("checked", true);
+
+        } else if (datausertype == '4') {
+
+            $("#teacher").prop("checked", true);
+
+        } else if (datausertype == '5') {
+
+            $("#nonteaching").prop("checked", true);
         }
 
+    }); //when click on staff invite or create link
+
+    // check usertype create
+    $('body').on('click', '.generalcreateotheeusertypecover', function() {
+
+        var datausertype = $(this).data('id');
+    
+        if (datausertype == '1') {
+            $("#proschecksetupboard").prop("checked", true);
+            $("#pros-checksetupdamin").prop("checked", false);
+
+        } else if (datausertype == '2') {
+
+            $("#pros-checksetupdamin").prop("checked", true);
+        
+        }
+    });
+
+
+
+    // check usertype create
+
+    $('body').on('click', '.stafflink-card', function() {
+        var dataucard_id = $(this).data('id');
+
+        if (dataucard_id == '1') {
+            $("#invitelink").prop("checked", true);
+        } else if (dataucard_id == '2') {
+            $("#createstaff").prop("checked", true);
+        }
 
     });
 
 
 
-    $('body').on('click', '.bringformlinkinvite', function() {
-        var usertype_invitelink = $("input[type='radio'].inviteuser-create:checked").val();
 
-        $('#displaystaffemail').fadeIn();
-        $('#staff-form').fadeOut();
+    $('body').on('click', '#addcampusbtn', function() {
 
-    });
+        var numappended = $("#appendinput").val();
+        numappended++;
+        var numofcampus = numappended + 1;
 
-    $('body').on('click', '.bringformlinkcreate', function() {
-        var usertype_invitelink = $("input[type='radio'].inviteuser-create:checked").val();
-        $('#displaystaffemail').fadeOut();
-        $('#staff-form').fadeIn();
-        // staff-form 
 
-        var staffnumber = window.intlTelInput(document.querySelector("#staffnumber"), {
+        var appendinputnew = '<div  id="pros-campuscontainer' + numappended +
+            '"><br><br>  <span  class="schoolheading  campuscntnum" style="margin-left:11%;">Campus ' +
+            numofcampus +
+
+            '</span><span class="fa fa-close removecampusbtn" style="color:red;float:right;margin-right:10%;margin-bottom:2rem;cursor:pointer;"  data-id="pros-campuscontainer' +
+
+            numappended + '"  data-camcnt="' + numofcampus +
+
+            '">Remove</span><p></p><div class="pros-geneclass-label" style="margin-left:4%;font-family:poppins, sans-serif;"><label for="schoolName">Campus title/location<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus campuslocationcover' + numappended + '">' +
+
+            '<input name="campusname" class="pros-flexi-input  campuslocation"  data-id="' + numappended +
+            '" placeholder=" campus location here" id="campuslocation" type="text" spacebottom="10px" required="" value="" style="width: 100%;">' +
+
+            '</div>&nbsp;&nbsp;' +
+
+            '<div class="pros-geneclass-label" style=" margin-left:4%;font-family: poppins, sans-serif;"><label for="schoolName">Email<span style="color:red;">*</span></label></div>' +
+
+            '<div class="pros-flexi-input-affix-wrapper-campus campusemailcover' + numappended + '">' +
+
+            '<input name="schoolName" class="pros-flexi-input campusemail" data-id="' + numappended +
+            '" placeholder="e.g example@gmail.com" id="campusemail' + numappended +
+            '" type="text" spacebottom="10px" required="" value="" style="width: 100%;">' +
+
+            '</div>&nbsp;&nbsp;' +
+
+            '<div class="pros-geneclass-label" style=" margin-left:4%;font-family: poppins, sans-serif;"><label for="schoolName">Phone<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus campusnumbercover' + numappended + '">' +
+            '<input name="phonenumber' + numappended + '[main]" class="pros-flexi-input  campusphone phonenumber' +
+            numappended + '" data-id="' + numappended + '"  id="phonenumber' + numappended +
+            '" placeholder="e.g XXXX-XXX-XXXX" id="campusnumber" type="text" spacebottom="10px" required="" value="" style="width: 90%;margin-left:4%;">' +
+            '</div>&nbsp;&nbsp;' +
+
+            '<div class="pros-geneclass-label" style=" margin-left:4%;"><label for="schoolName">Country<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus campuscountrycover' + numappended + '">' +
+            '<select class="generalcountry pros-generalselect   ml-3" id="countryid' + numappended +
+            '" data-count="' + numappended + '"  data-id="state' + numappended +
+            '" style="width: 85%;margin-left:2rem;">' +
+            '<option value="0">Select Country</option>' +
+
+            <?php
+                    $sqltogetcountries_forinput = mysqli_query($link, "SELECT * FROM `countries`");
+                    $rowtogetcountries_data = mysqli_fetch_assoc($sqltogetcountries_forinput);
+                    $cnttogetcountries_data = mysqli_num_rows($sqltogetcountries_forinput);
+
+                    if ($cnttogetcountries_data > 0) {
+                        ?>
+
+
+
+                <?php
+                        do {
+
+                            $getcountryname = $rowtogetcountries_data['CountryName'];
+                            $countryID = $rowtogetcountries_data['countryID'];
+                            $escapedStrcountry = htmlspecialchars($getcountryname, ENT_QUOTES, 'UTF-8');
+
+                            if ($countryID == '161') {
+                                $selected = "selected";
+                            } else {
+                                $selected = "";
+                            }
+                    ?>
+                        '<option value="<?php echo $countryID; ?>" <?php echo $selected; ?>><?php echo $escapedStrcountry; ?></option>' +
+                    <?php
+                        } while ($rowtogetcountries_data = mysqli_fetch_assoc($sqltogetcountries_forinput));
+                    ?>
+                <?php
+                    }
+                ?>
+
+            '</select>' +
+            '</div>&nbsp;&nbsp;' +
+            '<div class="row">' +
+            '<div class="col-sm-6">' +
+            '<div class="pros-flexi-label-wrapper ml-5"><label for="schoolName">State<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus campusstatecover' + numappended + ' ml-5">' +
+            '<select class="generalstate pros-generalselect  ml-3" data-state="' + numappended + '" id="state' +
+            numappended + '" data-id="lgacity' + numappended + '"  style="width:85%;margin-left:1rem;">' +
+            '<option value="0">Select State</option>' +
+            '</select>' +
+
+            '</div>' +
+            '</div>' +
+            '<div class="col-sm-6">' +
+
+            '<div class="pros-flexi-label-wrapper"><label for="schoolName">LGA<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus campuslgacover' + numappended + ' mr-5">' +
+            '<select class="generallga pros-generalselect  ml-3"  data-lga="' + numappended + '" id="lgacity' +
+            numappended + '" style="width: 85%;margin-left:1rem;">' +
+            '<option value="0">Select LGA</option>' +
+
+            '</select>' +
+
+            '</div>' +
+            '</div>' +
+
+            '</div><br></div>';
+
+        $(document.createElement('div')).append(appendinputnew).appendTo('#displaycampus');
+
+        var country = $('.generalcountry').val();
+        var countryid_doc = $('.generalcountry').data('id');
+        var dataString = '&country=' + country;
+
+        $('.generalstate').html('<option value="0">Loading...</option>');
+
+        $.ajax({
+            type: "POST",
+            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-state-onboarding.php",
+            data: dataString,
+
+            success: function(result) {
+                $('.generalstate').html(result);
+            }
+        });
+        var dynamicvar = 'phonenumber' + numappended;
+
+        window[dynamicvar] = window.intlTelInput(document.querySelector("#phonenumber" + numappended), {
             separateDialCode: true,
             preferredCountries: ["ng"],
             hiddenInput: "full",
             utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
         });
-    });
-
-
-
-    $('body').on('click', '#invitestaff-backbtn', function() {
-
-
-        $('#getstaff-forinsert-container').animate({
-            right: '+=50',
-            height: 'toggle'
-        }, 1);
-        $('#invitestaff-backbtn').fadeOut('fast');
-        $('#pros-displayadminmenuset').fadeOut('fast');
-        $('#getstaff-forinsert-container').fadeOut('fast');
-        $('#selectuser-typecontainer').fadeIn('slow');
-
-
-        $('.pros-invitestaff-usertype-dialog').removeClass('modal-lg');
-
-        $('.pros-invitestaff-usertype-dialog').removeClass('modal-xl');
-
-        $('.pros-invitestaff-usertype-dialog').addClass('modal-lg');
+        $("#appendinput").val(numappended);
 
     });
-    // collect group of school ID
 
-    $('body').on('click', '#invitestaffclick', function() {
 
-        $('#pros-displayadminmenuset').html('<div class="d-flex justify-content-center">' +
-            '<div class="spinner-border" role="status">' +
-            '<span class="visually-hidden">Loading...</span>' +
-            '</div>' +
-            '</div>');
 
-        var groupSchoolID = $(this).data('id');
+
+    //remove appended input here
+    $('body').on('click', '.removecampusbtn', function(e) {
+
+        e.preventDefault();
+        var dividd = $(this).data('id');
+
+        var camcnt = 1;
+        $('#' + dividd).remove();
+        var numappended = $("#appendinput").val();
+
+        // $('#' + camcnt).html(numappended);
+        numappended--;
+        $("#appendinput").val(numappended);
+
+
+
+    });
+    //remove appended input 
+
+
+
+    // append staff email here
+
+    $('body').on('click', '#pros-addstaff-email-invite', function() {
+
+        var numappended = $("#pros-appendinput-ivite-email").val();
+
+        numappended++;
+
+        var appendinputnew = '<div id="pros-staffemail-remove' + numappended + ' " ><br><br><span  data-id="' +
+            numappended +
+            '" style="color:red;float:right;cursor:pointer;" id="pros-removeappended-email">Remove <i class="fa fa-times"></i></span>' +
+            '<div class="" style="margin-right:11rem;margin-left:2%;text-transform: uppercase;font-weight: 700;display: block;font-size: 0.9em;"><label for="schoolName">Staff email<span style="color:red;margin-right:2.5rem;">*</span></label></div>'
+
+            +
+            '<div class="pros-flexi-input-affix-wrapper-invitemail staffemail-invitelink pros-inviteemailcover'+ numappended +'" id="pros-staffemail' +
+            numappended + '">'
+    
+
+            +
+            '<input type="email" class="pros-flexi-input prosgeneralinvitemail prossingleinvitemail'+ numappended +'" id="staffemail-invite" data-id="' +
+            numappended +'" placeholder="Enter your staff\'s email" style="width:70%;">' +
+            '</div></div>';
+
+
+        $(document.createElement('div')).append(appendinputnew).appendTo('#pros-display-appendstaff-email');
+        $("#pros-appendinput-ivite-email").val(numappended);
+    });
+
+    // append staff email end here
+
+
+    // remove appende staff email  here
+
+    $('body').on('click', '#pros-removeappended-email', function() {
+
+        var pros_removeinput = $(this).data('id');
+        var numappended = $("#pros-appendinput-ivite-email").val();
+
+        $('#pros-staffemail-remove' + pros_removeinput).remove();
+
+        numappended--;
+
+        $("#pros-appendinput-ivite-email").val(numappended);
+    });
+
+    // remove appende staff email  end here
+
+
+
+    // check input usertype
+    $('body').on('click', '.generalclass-checksection', function (e) {
+    let checkboxId = $(this).data('id');
+    let $checkbox = $('#' + checkboxId);
+    let sectionID = checkboxId.replace('prosfacultyid', '');
+
+    // Toggle checkbox state manually
+    $checkbox.prop('checked', !$checkbox.prop('checked'));
+
+    // Update outline based on new state
+    if ($checkbox.prop('checked')) {
+        $(this).css('outline', '1px solid #007bff');
+        $('.sectionalianameherechecked' + sectionID).css('outline', '1px solid #007bff');
+    } else {
+        $(this).css('outline', 'none');
+        $('.sectionalianameherechecked' + sectionID).css('outline', 'none');
+    }
+
+    // Animation
+    $(this).animate({ top: '-=20px' }, 'fast', 'swing')
+           .delay(200)
+           .animate({ top: '+=20px' }, 'fast', 'swing');
+});
+
+// Prevent checkbox click from bubbling up and double-toggling
+$('body').on('click', '.sectioncheckbox', function (e) {
+    e.stopPropagation(); // stop checkbox from bubbling to card
+    let sectionID = $(this).attr('id').replace('prosfacultyid', '');
+    let $card = $(this).closest('.generalclass-checksection');
+
+    if ($(this).prop('checked')) {
+        $card.css('outline', '1px solid #007bff');
+        $('.sectionalianameherechecked' + sectionID).css('outline', '1px solid #007bff');
+    } else {
+        $card.css('outline', 'none');
+        $('.sectionalianameherechecked' + sectionID).css('outline', 'none');
+    }
+});
+
+
+
+
+
+
+
+        // $('body').on('change', '.sectioncheckbox', function() {
+        //     var checkverysection = $(this).data('checkverify');
+
+        // });
+
+
+
+    // add new section page
+    // $('body').on('click', '#addnew-section', function() {
+    //     $('#pros-displaysection-new').fadeIn('slow');
+
+    //     var verifyhidesection_check = $('#pros-upsetioncreatenew-hide').val();
+
+    //     if (verifyhidesection_check == '0') {
+    //         $('#pros-displaysection-new').fadeIn('slow');
+    //         $(this).html('Close');
+    //         $('#pros-upsetioncreatenew-hide').val(1)
+    //     } else {
+    //         $('#pros-displaysection-new').fadeOut('slow');
+    //         $(this).html('Create new');
+    //         $('#pros-upsetioncreatenew-hide').val(0)
+    //     }
+
+    // });
+
+
+    //create section setup start here
+    $('body').on('click', '#pros-create-sectionbtn', function() {
+
+
+        $('#pros-create-sectionbtn').html('<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span class="visually-hidden" role="status">Loading...</span>');
+    
+        
+        var selSchoolFaculty_check_validate = $(".sectioncheckbox:checked").val();
+        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+        var tagstate = $(this).data('tag');
         var UserID = "<?php echo $UserID; ?>";
-        $('#staffgroupschoolID').val(groupSchoolID);
-        $('#pros-display-schoolid').val(groupSchoolID);
+        var campusID = $(this).data('campus');
+        var groupSchoolID = $(this).data('school');
+        var maintag = $(this).data('main');
 
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadmenu-onboarding.php",
-            data: {
-                groupSchoolID: groupSchoolID,
-                UserID: UserID
-            },
-            success: function(result) {
 
-                $('#pros-displayadminmenuset').html(result);
+        var selSchoolFaculty_check = [];
+        var pros_section_alias_name = [];
+        var pros_load_sectionID_alias = [];
+
+
+        $('.sectioncheckbox').each(function() {
+            if ($(this).is(':checked')) {
+
+                selSchoolFaculty_check.push($(this).val());
+
+
+            var prosget_sectionID_Attach =  $(this).data('checkverify');
+
+            var pros_filter_toge_section = prosget_sectionID_Attach.replace('checksectiongeneral','');
+
+            
+                //load alias name
+            $('.sectionalianameherechecked'+ pros_filter_toge_section).each(function() {
+                pros_section_alias_name.push($(this).val());
+                pros_load_sectionID_alias.push($(this).data('id'));
+                
+            });
+            //load alias name
+            
             }
         });
 
 
+            var proshasemptyvalue_alias = pros_section_alias_name.some(function(value) {
+                            return value.trim() === '';
+            });
 
+        if (proshasemptyvalue_alias || pros_section_alias_name == '') //section valiadtion
+        {
 
-    });
-
-
-
-
-    // check admin menu prosper
-    $('body').on('click', '.pros-mainmenugeneralclass', function(e) {
-        var mainmenu = $(this).data('id');
-        var checkbox = $('.prossubmenuclass' + mainmenu);
-        checkbox.prop('checked', !checkbox.prop('checked'));
-        var mainlength = checkbox.length;
-
-
-        if (mainlength == 0) {} else {
-            if ($(".prossubmenuclass" + mainmenu + ":checked").length === mainlength) {
-                $('.prosgeneralmenuchecked' + mainmenu).prop('checked', true);
-            } else {
-                $('.prosgeneralmenuchecked' + mainmenu).prop('checked', false);
-            }
-        }
-
-    });
-    // check admin menu prosper
-
-
-
-    $('body').on('click', '#pros-checkmenu-foradmin', function() { //collect assign to admin and proceed
-
-        var pros_verify_menucheck_box = $(".pros-checkchildren:checked").val();
-
-
-        if (pros_verify_menucheck_box == undefined) {
+            
             $.wnoty({
                 type: 'warning',
-                message: "Please select at least one menu option before proceeding!",
+                message: "Hey!!  select the sections you want to create and input an alias for it.",
                 autohideDelay: 5000
             });
 
-        } else {
-
-
-            var main_menuarr = [];
-
-            // collect menu as array format prosper
-            var mainmenuID = [];
-            $.each($(".pros-mainmenugeneralclass:checked"), function() {
-
-                main_menuarr.push($(this).data('id'));
-                var miancampus = $(this).data('id');
-
-                var submenuarr = [];
-                //loop through submenu here
-                $.each($(".prossubmenuclass" + miancampus + ":checked"), function() {
-                    submenuarr.push($(this).val());
-                    submenuarr.push($(this).data('pros-menuper-status'));
-
-
-                });
-                //loop through submenu 
-                main_menuarr.push(submenuarr);
-
-            });
-
-            var jsonArray = JSON.stringify(main_menuarr);
-
-            //  var jsonObject = JSON.parse(jsonArray);
-
-            $('#prosmenucontent').val(jsonArray); //passing value to an input field
-
-            $('#pros-displayadminmenuset').animate({
-                left: '+=50',
-                height: 'toggle'
-            }, 1000);
-
-
-
-
-            $('#getstaff-forinsert-container').fadeIn('slow');
-            $('#invitestaff-backbtn').fadeIn('slow');
-            $('#pros-displayadminmenuset').fadeOut('slow');
-
-            $('.pros-invitestaff-usertype-dialog').removeClass('modal-lg');
-            $('.pros-invitestaff-usertype-dialog').removeClass('modal-xl');
-
-            $('.pros-invitestaff-usertype-dialog').addClass('modal-lg');
-
-
-            $('#pros-createtitle').html('Create admin');
-            $('#pros-invitetitle').html('Invite admin');
-        }
-
-
-    }); //collect assign to admin and proceed
-
-
-    // invite staff content here
-
-    $('body').on('click', '#editcampusbtn', function() {
-        $('#displayschforedit').html(
-            '<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>'
-        );
-        var campusID = $(this).data('camp');
-        var SchoolID = $(this).data('sch');
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadonbordedcampus-edit.php",
-            data: {
-                campusID: campusID,
-                SchoolID: SchoolID
-            },
-            success: function(result) {
-                $('#displayschforedit').html(result);
-
-                var campusphoneedit = window.intlTelInput(document.querySelector(
-                    ".campusnumberedit"), {
-                    separateDialCode: true,
-                    preferredCountries: ["ng"],
-                    hiddenInput: "full",
-                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                });
-            }
-        });
-    });
-
-
-
-
-
-    //pros proceed to edit campus here
-    
-
-    $('body').on('click', '#pros-updtaecampusbtn', function() {
-
-          $(this).html('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>saving..');
-
-
-          var campusID = $('#proscampusifforeditfinal').val();
-          var campusloceditt = $('#proscampuslocationedit').val();
-          var campusemailedit = $('#proscampusemailhere').val();
-          var campusenumedit = $('#proscampusnumberedit').val();
-          var proscampuscountryedit = $('#proscampuscountryedit').val();
-          var proscampusstateedit = $('#proscampusstateedit').val();
-          var proscampuslgaedit = $('#proscampuslgaedit').val();
-
-         
-
-
-
-
-          const emailPatternedit = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-          if(campusloceditt == '')
-          {
-
-           
-                      $.wnoty({
-                        type: 'warning',
-                        message: "campus location or name should not be left empty.",
-                        autohideDelay: 5000
-                    });
-
-                     $('#pros-updtaecampusbtn').html('Update campus');
-
-
-          }else if(campusemailedit == '')
-          {
-
-
-                   $.wnoty({
-                        type: 'warning',
-                        message: "campus email should not be left empty.",
-                        autohideDelay: 5000
-                    });
-
-                     $('#pros-updtaecampusbtn').html('Update campus');
-          }else if(!emailPatternedit.test(campusemailedit))
-          {
-
-
-
-                    $.wnoty({
-                        type: 'warning',
-                        message: "Input a valid mail to proceed.",
-                        autohideDelay: 5000
-                    });
-
-                     $('#pros-updtaecampusbtn').html('Update campus');
-
-          }else if(campusenumedit  == '')
-          {
-
-                    $.wnoty({
-                        type: 'warning',
-                        message: "Phone number should not be left empty.",
-                        autohideDelay: 5000
-                    });
-
-                     $('#pros-updtaecampusbtn').html('Update campus');
-
-          }else if(proscampuscountryedit == '' || proscampuscountryedit == '0')
-          {
-
-            
-                     $.wnoty({
-                        type: 'warning',
-                        message: "Country should not be left empty.",
-                        autohideDelay: 5000
-                    });
-
-                     $('#pros-updtaecampusbtn').html('Update campus');
-
-          }else if(proscampusstateedit == '' || proscampusstateedit == '0')
-          {
-
-
-                    $.wnoty({
-                        type: 'warning',
-                        message: "select state to proceed.",
-                        autohideDelay: 5000
-                    });
-
-                     $('#pros-updtaecampusbtn').html('Update campus');
-
-          }else if(proscampuslgaedit == '' || proscampuslgaedit == '0')
-          {
-
-
-                    $.wnoty({
-                        type: 'warning',
-                        message: "select LGA or city to proceed.",
-                        autohideDelay: 5000
-                    });
-
-                     $('#pros-updtaecampusbtn').html('Update campus');
-
-          }else
-          {
-                      var formattedinput = [];
-                    document.querySelectorAll('.campusnumberedit').forEach(function(input) {
-                        // Get the `intlTelInput` plugin instance for the input field
-                        var iti = window.intlTelInputGlobals.getInstance(input);
-                        // Get the raw phone number value from the input field
-                        var numberformat = input.value;
-                        // Use the `intlTelInputUtils` library to format the phone number with its country code
-                        formattedinput.push(intlTelInputUtils.formatNumber(numberformat, iti.getSelectedCountryData()
-                            .iso2));
-                        // Display the formatted phone number in an alert message
-                    });
-
-                    formattedinput = formattedinput.toString();
-
-
-                  
-
-
-                    $('#pros-updtaecampusbtn').prop('disbled', true);
-
-
-                    
-
-
-
-                            $.ajax({
-                                type: "POST",
-                                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/proseditcampusall-here.php",
-                                data: {
-                                        campusID:campusID,
-                                        campusloceditt:campusloceditt,
-                                        campusemailedit:campusemailedit,
-                                        proscampuscountryedit:proscampuscountryedit,
-                                        proscampusstateedit:proscampusstateedit,
-                                        proscampuslgaedit:proscampuslgaedit,
-                                        number:formattedinput
-
-                                },
-                                success: function(result) {
-
-                                  
-                                    // alert(result)
-                                  
-
-                                    
-                                   
-                                    $('#pros-updtaecampusbtn').prop('disbled', false);
-
-
-                                 
-
-
-                                                            
-
-                                                    if(result.trim() == 'success')
-                                                    {
-                                                        
-
-                                                               
-                                                        const maxLength = 30; // Maximum length of the shortened string
-            
-                                                        // Check if the original string exceeds the maximum length
-                                                        if (campusloceditt.length > maxLength) {
-                                                            var shortenedString = campusloceditt.slice(0, maxLength);
-                                                        
-                                                        } else {
-                                                            var shortenedString = campusloceditt;
-                                                        }
-                                                                              
-                                                      
-
-                                                        $('.prosdisplaycampusnameedit'+campusID).html(shortenedString);
-
-                                                        $('#pros-editcampus-modal').modal('hide');
-
-                                                        
-                                                        $.wnoty({
-                                                            type: 'success',
-                                                            message: "campus records saved successfully.",
-                                                            autohideDelay: 5000
-                                                        });
-
-
-
-                                                    }else
-
-                                                    {
-
-                                                    }
-
-
-
-                                }
-
-                            });
-
-
-                   
-            
-
-          }
-
-
-
-
         
-         
-
-      
-
-          
-          
-
-    });
-
-
-
-    $('body').on('click', '#editschoolbtn', function() {
-        $('#displayschoolforedit').html(
-            '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>'
-        );
-        var SchoolID = $(this).data('id');
-        var UserID = "<?php echo $UserID; ?>";
-
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadonbordedschool-edit.php",
-            data: {
-                UserID: UserID,
-                SchoolID: SchoolID
-            },
-            success: function(result) {
-                $('#displayschoolforedit').html(result);
-            }
-
-        });
-
-
-
-    });
-
-    $('body').on('click', '#deleteschoolbtn', function() {
-        var SchoolID = $(this).data('school');
-        var schoolname = $(this).data('schoolname');
-        var UserID = "<?php echo $UserID; ?>";
-        $('#displayschoolname-del').html(schoolname);
-
-        $('#prosget-schoolidfordelete').val(SchoolID);
-       
-
-
-    });
-
-
-    //pros load campus delete content here
-    $('body').on('click', '#prosdeletecampusbtnload', function() {
-
-        var SchoolID = $(this).data('sch');
-        var campusID = $(this).data('camp');
-        var campusname = $(this).data('campname');
-       
-        $('#prosloadcontentdelte').html(campusname);
-        $('#prosloadcampusdeleteschool').val(SchoolID);
-        $('#prosloadcampusdeletecampus').val(campusID);
-
-
-    });
-
-        //delete campus final btn here  
-    $('body').on('click', '.pros-deletecampusbtnfinal', function() {
-
-
-
-
-        $(this).html('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>deleting..');
-
-         var UserID = "<?php echo $UserID; ?>";
-         var SchoolID = $('#prosloadcampusdeleteschool').val();
-         var campusID = $('#prosloadcampusdeletecampus').val();
-
-
-         $('.pros-deletecampusbtnfinal').prop('disabled', true);
-
-
-
-         $.ajax({
-                type: "POST",
-                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/proseletecampus-here.php",
-                data: {
-                    UserID:UserID,
-                    SchoolID:SchoolID,
-                    campusID:campusID
-                },
-                success: function(result){
-
-                    
-
-                         $('.pros-deletecampusbtnfinal').html('Delete');
-                         $('.pros-deletecampusbtnfinal').prop('disabled', false);
-
-
-
-                         if(result.trim() == 'success')
-                         {
-
-
-
-                                    $('#pros-deletecampus-modal').modal('hide');
-                                                    
-                                    $.wnoty({
-                                        type: 'success',
-                                        message: "campus removed successfully.",
-                                        autohideDelay: 5000
-                                    });
-
-                                    $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
-
-                                    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-                                    var tagstate = "<?php echo $tagstate; ?>";
-
-
-
-                                    $.ajax({
-
-                                        type: "POST",
-                                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
-                                        data: {
-                                            UserID: UserID,
-                                            ownerfirst_Name: ownerfirst_Name,
-                                            tagstate: tagstate
-                                        },
-
-                                        success: function(result) {
-                                            $('#displaycampus-created').html(result);
-                                            var userrole = (result);
-
-                                        }
-                                    });
-
-
-
-
-                         }else
-                         {
-
-
-                                 $.wnoty({
-                                        type: 'error',
-                                        message: "Delete failed pls try again.",
-                                        autohideDelay: 5000
-                                    });
-
-                         }
-
-
-
-                }
-
-        });
-         
-
-
-
-
-
-
-    });
-
-
-
-   
-    
-
-
-    $('body').on('click', '#pros-deleteschoolherebtn', function() {
-
-        $(this).html('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>deleting..');
-
-        var UserID = "<?php echo $UserID; ?>";
-        var SchoolID =  $('#prosget-schoolidfordelete').val();
-        $('#pros-deleteschoolherebtn').prop('disabled', true);
-       
-
-
-
-
-        $.ajax({
-                type: "POST",
-                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadonbordedschool-delete.php",
-                data: {
-                    UserID:UserID,
-                    SchoolID:SchoolID
-                },
-                success: function(result){
-
-                         $('#pros-deleteschoolherebtn').html('Delete');
-                         $('#pros-deleteschoolherebtn').prop('disabled', false);
-                         
-
-                         if(result.trim() == 'success')
-                         {
-
-
-
-                                    $('#pros-deleteschool-modal').modal('hide');
-                                                    
-                                    $.wnoty({
-                                        type: 'success',
-                                        message: "school removed successfully.",
-                                        autohideDelay: 5000
-                                    });
-
-                                    $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
-
-                                    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-                                    var tagstate = "<?php echo $tagstate; ?>";
-
-
-
-                                    $.ajax({
-
-                                        type: "POST",
-                                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
-                                        data: {
-                                            UserID: UserID,
-                                            ownerfirst_Name: ownerfirst_Name,
-                                            tagstate: tagstate
-                                        },
-
-                                        success: function(result) {
-                                            $('#displaycampus-created').html(result);
-                                            var userrole = (result);
-
-                                        }
-                                    });
-
-
-
-
-                         }else
-                         {
-
-
-                                 $.wnoty({
-                                        type: 'error',
-                                        message: "Delete failed pls try again.",
-                                        autohideDelay: 5000
-                                    });
-
-                         }
-
-
-                }    
-
-        });
-
-
-
-
-        
-                    
-    });
-
-
-    
-
-    $('body').on('click', '.pros-undoncampusdeletebtn', function() {
-
-             var prosdeletecampusID = $(this).data('id');
-             var InstitutionID = $(this).data('school');
-             var UserID = "<?php echo $UserID; ?>";
-
-
-
-             $.ajax({
-                type: "POST",
-                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/pros-undoschooldelete.php",
-                data: {
-                    UserID:UserID,
-                    prosdeletecampusID:prosdeletecampusID,
-                    InstitutionID:InstitutionID
-                },
-                success: function(result){
-
-                         $('#pros-deleteschoolherebtn').html('Delete');
-                         $('#pros-deleteschoolherebtn').prop('disabled', false);
-                         
-
-                         if(result.trim() == 'success')
-                         {
-
-
-
-                                    $('#pros-deleteschool-modal').modal('hide');
-                                                    
-                                    $.wnoty({
-                                        type: 'success',
-                                        message: "Delete undone successfully.",
-                                        autohideDelay: 5000
-                                    });
-
-                                    $('#displaycampus-created').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
-
-                                    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-                                    var tagstate = "<?php echo $tagstate; ?>";
-
-
-
-                                    $.ajax({
-
-                                        type: "POST",
-                                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/displayschool-campus.php",
-                                        data: {
-                                            UserID: UserID,
-                                            ownerfirst_Name: ownerfirst_Name,
-                                            tagstate: tagstate
-                                        },
-
-                                        success: function(result) {
-                                            $('#displaycampus-created').html(result);
-                                            var userrole = (result);
-
-                                        }
-                                    });
-
-
-
-
-                         }else
-                         {
-
-
-                                 $.wnoty({
-                                        type: 'error',
-                                        message: "Delete undo failed etry again later",
-                                        autohideDelay: 5000
-                                    });
-
-                         }
-
-
-                }    
-
-        });
-
-
-            
-             
-
-
-
-    });
-
-    
-
-
-    // hide on document modal for setup prompt
-
-    $('body').on('click', '#pros-nextschool-createstaff', function() {
-
-        $('#pros-displaystepmsg-modal').modal('hide');
-        $('#pros-createstaff-modal').modal('show');
-    });
-
-
-
-});
-
-
-
-
-
-
-// insert staff
-$('body').on('click', '#getschoolinvitebtn', function() {
-
-   
-$(this).html(
-    '<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>creating...'
-);
-var typeof_invitation = $("input[type='radio'].inviteuser-create:checked").val();
-var groupSchoolID = $('#staffgroupschoolID').val();
-var userType = $('#getusertypeinvite').val();
-
-var staffnumber = window.intlTelInput(document.querySelector("#staffnumber"), {
-    separateDialCode: true,
-    preferredCountries: ["ng"],
-    hiddenInput: "full",
-    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-});
-
-var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-if (typeof_invitation == 'Create staff') {
-    
-
-    var staff_firstname = $('#staff-fname').val();
-
-    var staff_lastname = $('#staff-lname').val();
-
-    var staff_email = $('#staff-email').val();
-
-    var staff_number = $('#staffnumber').val();
-    var staff_date = $('#pros-staff-dob').val();
-
-     var stafff_gender = $('#prosstaffgender').val();
-   
-        if(userType == 'admin')
-        {
-            var adminmenu = JSON.parse($('#prosmenucontent').val());
-            var adminmenufinal = JSON.stringify(adminmenu);
-        }else
-        {
-            var adminmenufinal = '';
-        }
-      
-    
-
-
-
-    var regexnumber = /^\+\d{1,3}\s?\(\d{1,4}\)\s?\d{1,4}-?\d{1,9}$/;
-
-    var phonenumfull = staffnumber.getNumber(intlTelInputUtils.numberFormat.E164);
-    $("input[name='staffphone[full]'").val(phonenumfull);
-
-
-    
-
-
-    if (staff_firstname == '') {
-
-        $('.stafffnamecont').css('outline', '1px solid red');
-        $.wnoty({
-            type: 'warning',
-            message: "Staff's name shouldn't be left blank.",
-            autohideDelay: 5000
-        });
-        $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-
-    } else if (staff_lastname == '') {
-
-
-        $('.stafff-lastnamecont').css('outline', '1px solid red');
-        $('.stafffnamecont').css('outline', '1px solid green');
-
-        $.wnoty({
-            type: 'warning',
-            message: "Staff's last name shouldn't be left blank.",
-            autohideDelay: 5000
-        });
-
-        $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-
-    } else if (staff_email == '') {
-
-        $('.stafff-emailcont').css('outline', '1px solid red');
-        $('.stafff-lastnamecont').css('outline', '1px solid green');
-        $('.stafffnamecont').css('outline', '1px solid green');
-
-        $.wnoty({
-            type: 'warning',
-            message: "Staff's email shouldn't be left blank.",
-            autohideDelay: 5000
-        });
-
-        $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-
-    } else if (!emailPattern.test(staff_email)) {
-
-        $('.stafff-emailcont').css('outline', '1px solid red');
-        $('.stafff-lastnamecont').css('outline', '1px solid green');
-        $('.stafffnamecont').css('outline', '1px solid green');
-
-        $.wnoty({
-            type: 'warning',
-            message: "Invalid email. please provide a valid one",
-            autohideDelay: 5000
-        });
-        $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-
-
-    } else if (staff_number == '') {
-
-        $('.staffnumbercont').css('outline', '1px solid red');
-        $('.stafff-emailcont').css('outline', '1px solid green');
-        $('.stafff-lastnamecont').css('outline', '1px solid green');
-        $('.stafffnamecont').css('outline', '1px solid green');
-
-        $.wnoty({
-            type: 'warning',
-            message: "please provide " + staff_firstname + "\'s " + "phone number",
-            autohideDelay: 5000
-        });
-        $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-
-    }else if(staff_date == '' || staff_date == '0') 
-    {
-
-        $('.staffnumbercont').css('outline', '1px solid green');
-        $('.stafff-emailcont').css('outline', '1px solid green');
-        $('.stafff-lastnamecont').css('outline', '1px solid green');
-        $('.stafffnamecont').css('outline', '1px solid green');
-        $('.stafffnamecont').css('outline', '1px solid green');
-        $('.stafff-dobcont').css('outline', '1px solid red');
-
-        $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-
-        $.wnoty({
-            type: 'warning',
-            message: "Staff date of birth required.",
-            autohideDelay: 5000
-        });
-
-        
-
-
-    }else if(stafff_gender == '' || stafff_gender == '0') 
-    {
-
-        
-        $('.staffnumbercont').css('outline', '1px solid green');
-        $('.stafff-emailcont').css('outline', '1px solid green');
-        $('.stafff-lastnamecont').css('outline', '1px solid green');
-        $('.stafffnamecont').css('outline', '1px solid green');
-        $('.stafffnamecont').css('outline', '1px solid green');
-        $('.stafff-dobcont').css('outline', '1px solid green');
-        $('.stafff-gendercont').css('outline', '1px solid red');
-
-        $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-
-        $.wnoty({
-            type: 'warning',
-            message: "input staff gender.",
-            autohideDelay: 5000
-        });
-        
-    }
-    else {
-
-        $('.staffnumbercont').css('outline', '1px solid green');
-        $('.stafff-emailcont').css('outline', '1px solid green');
-        $('.stafff-lastnamecont').css('outline', '1px solid green');
-        $('.stafffnamecont').css('outline', '1px solid green');
-        $('.stafff-dobcont').css('outline', '1px solid green');
-        $('.stafff-gendercont').css('outline', '1px solid green');
-        
-
-        $.ajax({
-            type: "POST",
-            url: "../../controller/scripts/owner/createstaff-onboarding.php",
-            data: {
-                groupSchoolID: groupSchoolID,
-                userType: userType,
-                staff_firstname: staff_firstname,
-                staff_lastname: staff_lastname,
-                staff_email: staff_email,
-                phonenumfull: phonenumfull,
-                staff_date:staff_date,
-                stafff_gender:stafff_gender,
-                adminmenufinal: adminmenufinal
-
-            },
-            success: function(output) {
-                // $('#displaycampus-created').html(result);
-                $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-                var prosdata = (output);
-                   
-
-                if (prosdata == 'success') {
-                    $.wnoty({
-                        type: 'success',
-                        message: "Great!! staff created Successfully.",
-                        autohideDelay: 5000
-                    });
-                    $('#pros-invitestaff-usertype').modal('hide');
-                   
-
-                } else if (prosdata == 'exist') {
-                    $.wnoty({
-                        type: 'warning',
-                        message: "email already exist",
-                        autohideDelay: 5000
-                    });
-                }
-
-            }
-        });
-    }
-
-
-}
- else if (typeof_invitation == 'Invite Staff') {
-    var staffemailinvite = $('#staffemail-invite').val();
-    
-    var pros_staffemailinvite = [];
-
-    $('.prosgeneralinvitemail').each(function() {
-        
-            pros_staffemailinvite.push($(this).val());
-            
-            var staffemaildata = $(this).data('id');
-            
-            var staffselectid = $('.prossingleinvitemail'+staffemaildata).val();
-            
-            if(staffselectid == '')
-            {
-                $('.pros-inviteemailcover'+staffemaildata).css('outline', '1px solid red');
-                
-                $.wnoty({
-                    type: 'warning',
-                    message: "enter your staff's email",
-                    autohideDelay: 5000
-                });
-                $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-                
-            }else if(!emailPattern.test(staffselectid))
-            {
-                 $('.pros-inviteemailcover'+staffemaildata).css('outline', '1px solid red');
-                
-                $.wnoty({
-                    type: 'warning',
-                    message: "enter a valid email",
-                    autohideDelay: 5000
-                });
-                $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-            }else
-            {
-              $('.pros-inviteemailcover'+staffemaildata).css('outline', '1px solid green');  
-            }
-            
-            
-
-            
-            
-            
-        
-    });
-   
-    
-    
-    
-    
-         var pros_staffinviteemailvalidate = pros_staffemailinvite.some(function(value) {
-                return value.trim() === '';
-            });
-            
-            if(pros_staffinviteemailvalidate)
-            {
-                
-            }else
-            {
-                
-                pros_staffemailinvite = pros_staffemailinvite.toString();
-
-                         $.ajax({
-                            type: "POST",
-                            url: "../../controller/scripts/owner/pros-staffinvite.php",
-                            data: {
-                                groupSchoolID: groupSchoolID,
-                                userType: userType,
-                                pros_staffemailinvite: pros_staffemailinvite
-                                
-                
-                            },
-                            success: function(output) {
-                                // $('#displaycampus-created').html(result);
-                                $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-                                var prosdata = (output);
-                            
-                                 
-                
-                                if (prosdata.trim() == 'success') {
-                                    $.wnoty({
-                                        type: 'success',
-                                        message: "Great!! staff created Successfully.",
-                                        autohideDelay: 5000
-                                    });
-                                    $('#pros-invitestaff-usertype').modal('hide');
-                                   
-                
-                                } else if (prosdata == 'found') {
-                                    $.wnoty({
-                                        type: 'warning',
-                                        message: "email already exist",
-                                        autohideDelay: 5000
-                                    });
-                                }
-                
-                            }
-                        });    
-                
-                     
-            }
-    
-    
-
-
-
-
-} else {
-    $.wnoty({
-        type: 'warning',
-        message: "Hey! select either invite staff or create staff before proceeding.",
-        autohideDelay: 5000
-    });
-    $('#getschoolinvitebtn').html('Submit <i class="fa fa-long-arrow-right"></i>');
-}
-
-
-});
-// insert staff   
-
-
-
-$('body').on('click', '.generalclass-usertype', function() { //when click on staff invite or create link
-
-    var datausertype = $(this).data('id');
-
-    if (datausertype == '1') {
-        $("#seniorexecutive").prop("checked", true);
-
-    } else if (datausertype == '2') {
-
-        $("#personalassist").prop("checked", true);
-
-    } else if (datausertype == '3') {
-
-        $("#admin").prop("checked", true);
-
-    } else if (datausertype == '4') {
-
-        $("#teacher").prop("checked", true);
-
-    } else if (datausertype == '5') {
-
-        $("#nonteaching").prop("checked", true);
-    }
-
-}); //when click on staff invite or create link
-
-// check usertype create
-$('body').on('click', '.generalcreateotheeusertypecover', function() {
-
-    var datausertype = $(this).data('id');
-   
-    if (datausertype == '1') {
-        $("#proschecksetupboard").prop("checked", true);
-        $("#pros-checksetupdamin").prop("checked", false);
-
-    } else if (datausertype == '2') {
-
-        $("#pros-checksetupdamin").prop("checked", true);
-       
-    }
-});
-
-
-
-// check usertype create
-
-$('body').on('click', '.stafflink-card', function() {
-    var dataucard_id = $(this).data('id');
-
-    if (dataucard_id == '1') {
-        $("#invitelink").prop("checked", true);
-    } else if (dataucard_id == '2') {
-        $("#createstaff").prop("checked", true);
-    }
-
-});
-
-
-
-
-
-
-
-$('body').on('click', '#addcampusbtn', function() {
-
-    var numappended = $("#appendinput").val();
-    numappended++;
-    var numofcampus = numappended + 1;
-
-
-    var appendinputnew = '<div  id="pros-campuscontainer' + numappended +
-        '"><br><br>  <span  class="schoolheading  campuscntnum" style="margin-left:11%;">Campus ' +
-        numofcampus +
-
-        '</span><span class="fa fa-close removecampusbtn" style="color:red;float:right;margin-right:10%;margin-bottom:2rem;cursor:pointer;"  data-id="pros-campuscontainer' +
-
-        numappended + '"  data-camcnt="' + numofcampus +
-
-        '">Remove</span><p></p><div class="pros-geneclass-label" style="margin-left:4%;font-family:poppins, sans-serif;"><label for="schoolName">Campus title/location<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus campuslocationcover' + numappended + '">' +
-
-        '<input name="campusname" class="pros-flexi-input  campuslocation"  data-id="' + numappended +
-        '" placeholder=" campus location here" id="campuslocation" type="text" spacebottom="10px" required="" value="" style="width: 100%;">' +
-
-        '</div>&nbsp;&nbsp;' +
-
-        '<div class="pros-geneclass-label" style=" margin-left:4%;font-family: poppins, sans-serif;"><label for="schoolName">Email<span style="color:red;">*</span></label></div>' +
-
-        '<div class="pros-flexi-input-affix-wrapper-campus campusemailcover' + numappended + '">' +
-
-        '<input name="schoolName" class="pros-flexi-input campusemail" data-id="' + numappended +
-        '" placeholder="e.g example@gmail.com" id="campusemail' + numappended +
-        '" type="text" spacebottom="10px" required="" value="" style="width: 100%;">' +
-
-        '</div>&nbsp;&nbsp;' +
-
-        '<div class="pros-geneclass-label" style=" margin-left:4%;font-family: poppins, sans-serif;"><label for="schoolName">Phone<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus campusnumbercover' + numappended + '">' +
-        '<input name="phonenumber' + numappended + '[main]" class="pros-flexi-input  campusphone phonenumber' +
-        numappended + '" data-id="' + numappended + '"  id="phonenumber' + numappended +
-        '" placeholder="e.g XXXX-XXX-XXXX" id="campusnumber" type="text" spacebottom="10px" required="" value="" style="width: 90%;margin-left:4%;">' +
-        '</div>&nbsp;&nbsp;' +
-
-        '<div class="pros-geneclass-label" style=" margin-left:4%;"><label for="schoolName">Country<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus campuscountrycover' + numappended + '">' +
-        '<select class="generalcountry pros-generalselect   ml-3" id="countryid' + numappended +
-        '" data-count="' + numappended + '"  data-id="state' + numappended +
-        '" style="width: 85%;margin-left:2rem;">' +
-        '<option value="0">Select Country</option>' +
-
-        <?php
-                $sqltogetcountries_forinput = mysqli_query($link, "SELECT * FROM `countries`");
-                $rowtogetcountries_data = mysqli_fetch_assoc($sqltogetcountries_forinput);
-                $cnttogetcountries_data = mysqli_num_rows($sqltogetcountries_forinput);
-
-                if ($cnttogetcountries_data > 0) {
-                    ?>
-
-
-
-    <?php
-                    do {
-
-                        $getcountryname = $rowtogetcountries_data['CountryName'];
-                        $countryID = $rowtogetcountries_data['countryID'];
-                        $escapedStrcountry = htmlspecialchars($getcountryname, ENT_QUOTES, 'UTF-8');
-
-                        if ($countryID == '161') {
-                            $selected = "selected";
-                        } else {
-                            $selected = "";
-                        }
-                ?>
-        '<option value="<?php echo $countryID; ?>" <?php echo $selected; ?>><?php echo $escapedStrcountry; ?></option>' +
-        <?php
-                    } while ($rowtogetcountries_data = mysqli_fetch_assoc($sqltogetcountries_forinput));
-                    ?>
-    <?php
-                }
-                ?>
-
-        '</select>' +
-        '</div>&nbsp;&nbsp;' +
-        '<div class="row">' +
-        '<div class="col-sm-6">' +
-        '<div class="pros-flexi-label-wrapper ml-5"><label for="schoolName">State<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus campusstatecover' + numappended + ' ml-5">' +
-        '<select class="generalstate pros-generalselect  ml-3" data-state="' + numappended + '" id="state' +
-        numappended + '" data-id="lgacity' + numappended + '"  style="width:85%;margin-left:1rem;">' +
-        '<option value="0">Select State</option>' +
-        '</select>' +
-
-        '</div>' +
-        '</div>' +
-        '<div class="col-sm-6">' +
-
-        '<div class="pros-flexi-label-wrapper"><label for="schoolName">LGA<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus campuslgacover' + numappended + ' mr-5">' +
-        '<select class="generallga pros-generalselect  ml-3"  data-lga="' + numappended + '" id="lgacity' +
-        numappended + '" style="width: 85%;margin-left:1rem;">' +
-        '<option value="0">Select LGA</option>' +
-
-        '</select>' +
-
-        '</div>' +
-        '</div>' +
-
-        '</div><br></div>';
-
-    $(document.createElement('div')).append(appendinputnew).appendTo('#displaycampus');
-
-    var country = $('.generalcountry').val();
-    var countryid_doc = $('.generalcountry').data('id');
-    var dataString = '&country=' + country;
-
-    $('.generalstate').html('<option value="0">Loading...</option>');
-
-    $.ajax({
-        type: "POST",
-        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/get-state-onboarding.php",
-        data: dataString,
-
-        success: function(result) {
-            $('.generalstate').html(result);
-        }
-    });
-    var dynamicvar = 'phonenumber' + numappended;
-
-    window[dynamicvar] = window.intlTelInput(document.querySelector("#phonenumber" + numappended), {
-        separateDialCode: true,
-        preferredCountries: ["ng"],
-        hiddenInput: "full",
-        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-    });
-    $("#appendinput").val(numappended);
-
-});
-
-
-
-
-//remove appended input here
-$('body').on('click', '.removecampusbtn', function(e) {
-
-    e.preventDefault();
-    var dividd = $(this).data('id');
-
-    var camcnt = 1;
-    $('#' + dividd).remove();
-    var numappended = $("#appendinput").val();
-
-    // $('#' + camcnt).html(numappended);
-    numappended--;
-    $("#appendinput").val(numappended);
-
-
-
-});
-//remove appended input 
-
-
-
-// append staff email here
-
-$('body').on('click', '#pros-addstaff-email-invite', function() {
-
-    var numappended = $("#pros-appendinput-ivite-email").val();
-
-    numappended++;
-
-    var appendinputnew = '<div id="pros-staffemail-remove' + numappended + ' " ><br><br><span  data-id="' +
-        numappended +
-        '" style="color:red;float:right;cursor:pointer;" id="pros-removeappended-email">Remove <i class="fa fa-times"></i></span>' +
-        '<div class="" style="margin-right:11rem;margin-left:2%;text-transform: uppercase;font-weight: 700;display: block;font-size: 0.9em;"><label for="schoolName">Staff email<span style="color:red;margin-right:2.5rem;">*</span></label></div>'
-
-        +
-        '<div class="pros-flexi-input-affix-wrapper-invitemail staffemail-invitelink pros-inviteemailcover'+ numappended +'" id="pros-staffemail' +
-        numappended + '">'
- 
-
-        +
-        '<input type="email" class="pros-flexi-input prosgeneralinvitemail prossingleinvitemail'+ numappended +'" id="staffemail-invite" data-id="' +
-        numappended +'" placeholder="Enter your staff\'s email" style="width:70%;">' +
-        '</div></div>';
-
-
-    $(document.createElement('div')).append(appendinputnew).appendTo('#pros-display-appendstaff-email');
-    $("#pros-appendinput-ivite-email").val(numappended);
-});
-
-// append staff email end here
-
-
-// remove appende staff email  here
-
-$('body').on('click', '#pros-removeappended-email', function() {
-
-    var pros_removeinput = $(this).data('id');
-    var numappended = $("#pros-appendinput-ivite-email").val();
-
-    $('#pros-staffemail-remove' + pros_removeinput).remove();
-
-    numappended--;
-
-    $("#pros-appendinput-ivite-email").val(numappended);
-});
-
-// remove appende staff email  end here
-
-
-
-// check input usertype
-$('body').on('click', '.generalclass-checksection', function() {
-    var getsection_checked = $(this).data('id');
-    var pros_verify_section_box = $('#' + getsection_checked + ":checked").val();
-           
-
-         var sectionIDgotten = getsection_checked.replace('prosfacultyid', '');
-        
-    if (pros_verify_section_box == undefined) {
-
-        $(this).css('outline', '1px solid #007bff');
-        $('.sectionalianameherechecked' + sectionIDgotten).css('outline', '1px solid #007bff');
-
-        $("#" + getsection_checked).prop("checked", true);
-
-        $(this).animate({
-                top: '-=20px',
-
-            }, 'fast', 'swing')
-            .delay(200)
-            .animate({
-                top: '+=20px',
-
-            }, 'fast', 'swing', function() {
-                // pulsate();
-            });
-
-    } else {
-
-        $(this).css('outline', 'none');
-        $('.sectionalianameherechecked' + sectionIDgotten).css('outline', 'none');
-        $("#" + getsection_checked).prop("checked", false);
-
-        $(this).animate({
-                top: '-=20px',
-
-            }, 'fast', 'swing')
-            .delay(200)
-            .animate({
-                top: '+=20px',
-
-            }, 'fast', 'swing', function() {
-                // pulsate();
-            });
-
-    }
-
-
-
-});
-
-
-
-
-
-
-
-$('body').on('change', '.sectioncheckbox', function() {
-    var checkverysection = $(this).data('checkverify');
-
-});
-
-
-
-// add new section page
-// $('body').on('click', '#addnew-section', function() {
-//     $('#pros-displaysection-new').fadeIn('slow');
-
-//     var verifyhidesection_check = $('#pros-upsetioncreatenew-hide').val();
-
-//     if (verifyhidesection_check == '0') {
-//         $('#pros-displaysection-new').fadeIn('slow');
-//         $(this).html('Close');
-//         $('#pros-upsetioncreatenew-hide').val(1)
-//     } else {
-//         $('#pros-displaysection-new').fadeOut('slow');
-//         $(this).html('Create new');
-//         $('#pros-upsetioncreatenew-hide').val(0)
-//     }
-
-// });
-
-
-//create section setup start here
-$('body').on('click', '#pros-create-sectionbtn', function() {
-
-
-    $('#pros-create-sectionbtn').html('<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span class="visually-hidden" role="status">Loading...</span>');
-  
-       
-    var selSchoolFaculty_check_validate = $(".sectioncheckbox:checked").val();
-    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-    var tagstate = $(this).data('tag');
-    var UserID = "<?php echo $UserID; ?>";
-    var campusID = $(this).data('campus');
-    var groupSchoolID = $(this).data('school');
-    var maintag = $(this).data('main');
-
-
-    var selSchoolFaculty_check = [];
-    var pros_section_alias_name = [];
-    var pros_load_sectionID_alias = [];
-
-
-    $('.sectioncheckbox').each(function() {
-        if ($(this).is(':checked')) {
-
-            selSchoolFaculty_check.push($(this).val());
-
-
-           var prosget_sectionID_Attach =  $(this).data('checkverify');
-
-           var pros_filter_toge_section = prosget_sectionID_Attach.replace('checksectiongeneral','');
-
-          
-            //load alias name
-           $('.sectionalianameherechecked'+ pros_filter_toge_section).each(function() {
-              pros_section_alias_name.push($(this).val());
-              pros_load_sectionID_alias.push($(this).data('id'));
-              
-           });
-           //load alias name
-           
-        }
-    });
-
-
-        var proshasemptyvalue_alias = pros_section_alias_name.some(function(value) {
-                        return value.trim() === '';
-        });
-
-    if (proshasemptyvalue_alias || pros_section_alias_name == '') //section valiadtion
-    {
-
-        
-        $.wnoty({
-            type: 'warning',
-            message: "Hey!!  select the sections you want to create and input an alias for it.",
-            autohideDelay: 5000
-        });
-
-    
-            $('#pros-create-sectionbtn').html('Create section');
-
-
-    } else {
-
-
-        selSchoolFaculty_check = selSchoolFaculty_check.toString();
-        pros_section_alias_name = pros_section_alias_name.toString();
-        pros_load_sectionID_alias = pros_load_sectionID_alias.toString();
-
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/onboarding-create-section.php",
-            data: {
-                selSchoolFaculty_check: selSchoolFaculty_check,
-                pros_section_alias_name: pros_section_alias_name,
-                pros_load_sectionID_alias:pros_load_sectionID_alias,
-                campusID: campusID,
-                tagstate: tagstate,
-                UserID: UserID
-            },
-            success: function(feeback) {
                 $('#pros-create-sectionbtn').html('Create section');
 
-                var pros_output = (feeback);
-             
 
-                if (pros_output.trim() == 'success')
-                {
-
-                    $.wnoty({
-                        type: 'success',
-                        message: "Great!! school head created successfully.",
-                        autohideDelay: 5000
-                    });
+        } else {
 
 
-                    $('#displaysection-content').animate({
-                        left: '+=50',
-                        height: 'toggle'
-                    }, 1000);
-
-                    $('#pros-displayhead-setup').fadeIn('slow');
-
-                             // load seetup content here//
-                                    $('#pros-displaysetup-content').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
-                                $.ajax({
-
-                                        type: "POST",
-                                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
-                                        data: {
-                                            UserID: UserID,
-                                            ownerfirst_Name: ownerfirst_Name,
-                                            tagstate: tagstate,
-                                            groupSchoolID: groupSchoolID,
-                                            CampusID: campusID
-                                        },
-                                        success: function(result) {
-
-                                            $('#pros-displaysetup-content').html(result);
+            selSchoolFaculty_check = selSchoolFaculty_check.toString();
+            pros_section_alias_name = pros_section_alias_name.toString();
+            pros_load_sectionID_alias = pros_load_sectionID_alias.toString();
 
 
-                                            var head_phone = window.intlTelInput(document.querySelector(
-                                                "#pros-headnumset"), {
-                                                separateDialCode: true,
-                                                preferredCountries: ["ng"],
-                                                hiddenInput: "full",
-                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                            });
+            $.ajax({
+                type: "POST",
+                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/onboarding-create-section.php",
+                data: {
+                    selSchoolFaculty_check: selSchoolFaculty_check,
+                    pros_section_alias_name: pros_section_alias_name,
+                    pros_load_sectionID_alias:pros_load_sectionID_alias,
+                    campusID: campusID,
+                    tagstate: tagstate,
+                    UserID: UserID
+                },
+                success: function(feeback) {
+                    $('#pros-create-sectionbtn').html('Create section');
+
+                    var pros_output = (feeback);
+                
+
+                    if (pros_output.trim() == 'success')
+                    {
+
+                        $.wnoty({
+                            type: 'success',
+                            message: "Great!! school head created successfully.",
+                            autohideDelay: 5000
+                        });
 
 
+                        $('#displaysection-content').animate({
+                            left: '+=50',
+                            height: 'toggle'
+                        }, 1000);
 
-                                            var head_phone = window.intlTelInput(document.querySelector(
-                                                "#pros-teachernumset"), {
-                                                separateDialCode: true,
-                                                preferredCountries: ["ng"],
-                                                hiddenInput: "full",
-                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                            });
+                        $('#pros-displayhead-setup').fadeIn('slow');
 
-                                            var head_phone = window.intlTelInput(document.querySelector(
-                                                "#pros-adminnumset"), {
-                                                separateDialCode: true,
-                                                preferredCountries: ["ng"],
-                                                hiddenInput: "full",
-                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                            });
+                                // load seetup content here//
+                                        $('#pros-displaysetup-content').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+                                    $.ajax({
 
+                                            type: "POST",
+                                            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
+                                            data: {
+                                                UserID: UserID,
+                                                ownerfirst_Name: ownerfirst_Name,
+                                                tagstate: tagstate,
+                                                groupSchoolID: groupSchoolID,
+                                                CampusID: campusID
+                                            },
+                                            success: function(result) {
 
-                                            var tagstatusnew = tagstate;
-                                            $('#prosloadschoolid-forbackward').val(campusID);
-
-                                            if (maintag == '29' && tagstatusnew == '') {
-
-                                                $('#pros-reducemodalclasstypesetup').css('width', '700px');
-                                                //if campus havent't started setiing up it should start from the begginning
-                                                $('#pros-loadimportoption').fadeIn('slow');
+                                                $('#pros-displaysetup-content').html(result);
 
 
-                                            } else {
+                                                var head_phone = window.intlTelInput(document.querySelector(
+                                                    "#pros-headnumset"), {
+                                                    separateDialCode: true,
+                                                    preferredCountries: ["ng"],
+                                                    hiddenInput: "full",
+                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                                });
 
 
 
-                                                if (tagstatusnew == '' || tagstatusnew == '15') {
-                                                    $('#displaysection-content').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
+                                                var head_phone = window.intlTelInput(document.querySelector(
+                                                    "#pros-teachernumset"), {
+                                                    separateDialCode: true,
+                                                    preferredCountries: ["ng"],
+                                                    hiddenInput: "full",
+                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                                });
 
-                                                } else if (tagstatusnew == '16') {
+                                                var head_phone = window.intlTelInput(document.querySelector(
+                                                    "#pros-adminnumset"), {
+                                                    separateDialCode: true,
+                                                    preferredCountries: ["ng"],
+                                                    hiddenInput: "full",
+                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                                });
 
-                                                    $('#pros-displayhead-setup').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(15);
 
+                                                var tagstatusnew = tagstate;
+                                                $('#prosloadschoolid-forbackward').val(campusID);
 
-
-                                                } else if (tagstatusnew == '17') {
-
-                                                    $('#assignschoolheadfaculty  ').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(16);
-
-                                                } else if (tagstatusnew == '18') {
-                                                    $('#proscreateschool-teacher').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(17);
-
-                                                } else if (tagstatusnew == '19') {
-                                                    $('#createotherschooltype-setup').fadeIn('slow');
-
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(18);
-
-                                                } else if (tagstatusnew == '20') {
+                                                if (maintag == '29' && tagstatusnew == '') {
 
                                                     $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                                                    $('#createwelcomemsg-setup').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(19);
+                                                    //if campus havent't started setiing up it should start from the begginning
+                                                    $('#pros-loadimportoption').fadeIn('slow');
 
 
-                                                } else if (tagstatusnew == '21') {
-
-                                                    $('#createclasses-setup ').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(20);
-
-                                                    // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
-
-                                                } else if (tagstatusnew == '22') {
-
-                                                    $('#createsubject-setup').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(21);
-
-                                                } else if (tagstatusnew == '23') {
-
-                                                    $('#mergesubjectcontent').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(22);
+                                                } else {
 
 
-                                                } else if (tagstatusnew == '24') {
 
-                                                    $('#pros-assign-formteachercontent').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(23);
+                                                    if (tagstatusnew == '' || tagstatusnew == '15') {
+                                                        $('#displaysection-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
 
-                                                } else if (tagstatusnew == '25') {
+                                                    } else if (tagstatusnew == '16') {
 
-                                                    $('#assignsubject-teachercontainer').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(24);
-
-                                                } else if (tagstatusnew == '26') {
-
-                                                    $('#pros-loadsession-termcontent').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(25);
-
-                                                } else if (tagstatusnew == '27') {
-
-                                                    $('#pros-schlogo-content').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(26);
-
-                                                }else if(tagstatusnew == '28')
-                                                {
-                                                    $('#prosschool-bgimage-content').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(27);
+                                                        $('#pros-displayhead-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(15);
 
 
-                                                }else if(tagstatusnew == '29')
-                                                {
 
-                                                                //setup completed
-                                                
+                                                    } else if (tagstatusnew == '17') {
+
+                                                        $('#assignschoolheadfaculty  ').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(16);
+
+                                                    } else if (tagstatusnew == '18') {
+                                                        $('#proscreateschool-teacher').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(17);
+
+                                                    } else if (tagstatusnew == '19') {
+                                                        $('#createotherschooltype-setup').fadeIn('slow');
+
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(18);
+
+                                                    } else if (tagstatusnew == '20') {
+
+                                                        $('#pros-reducemodalclasstypesetup').css('width', '700px');
+
+                                                        $('#createwelcomemsg-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(19);
+
+
+                                                    } else if (tagstatusnew == '21') {
+
+                                                        $('#createclasses-setup ').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(20);
+
+                                                        // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
+
+                                                    } else if (tagstatusnew == '22') {
+
+                                                        $('#createsubject-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(21);
+
+                                                    } else if (tagstatusnew == '23') {
+
+                                                        $('#mergesubjectcontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(22);
+
+
+                                                    } else if (tagstatusnew == '24') {
+
+                                                        $('#pros-assign-formteachercontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(23);
+
+                                                    } else if (tagstatusnew == '25') {
+
+                                                        $('#assignsubject-teachercontainer').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(24);
+
+                                                    } else if (tagstatusnew == '26') {
+
+                                                        $('#pros-loadsession-termcontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(25);
+
+                                                    } else if (tagstatusnew == '27') {
+
+                                                        $('#pros-schlogo-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(26);
+
+                                                    }else if(tagstatusnew == '28')
+                                                    {
+                                                        $('#prosschool-bgimage-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(27);
+
+
+                                                    }else if(tagstatusnew == '29')
+                                                    {
+
+                                                                    //setup completed
+                                                    
+                                                    }
                                                 }
                                             }
-                                        }
-                                    });
-                                    //load seetup content here//
-                }else
-                {
+                                        });
+                                        //load seetup content here//
+                    }else
+                    {
 
-                            $.wnoty({
-                                type: 'error',
-                                message: "Opps!! section failed to be created try again later.",
-                                autohideDelay: 5000
-                            });
+                                $.wnoty({
+                                    type: 'error',
+                                    message: "Opps!! section failed to be created try again later.",
+                                    autohideDelay: 5000
+                                });
+
+                    }
+
+                
 
                 }
+            });
+        }
 
-               
+    }); //create section setup en here
 
-            }
+    $('body').on('click', '#pros-addschoolhead-btn', function() {
+
+        var numappended = $("#appendinput-schoolhead").val();
+        numappended++;
+        var numofcampus = numappended + 1;
+        var pros_display_schoolhead_appended_input = '<div id="pros-removeappended-schoolhead' + numappended +
+            '">' +
+            '<br><br><div class="row">' +
+            '<span style="color:red;cursor:pointer;font-size:13px;"><i class="fa fa-times mr-5" id="pros-removeappended-schoolheadbtn" data-id="' +
+            numappended + '" style="float: right;">Remove</i></span>' +
+            '<div class="col-sm-6">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">First name<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus headfnamecover' + numappended + '">' +
+            '<input type="text" class="pros-flexi-input generalheadfirstname" data-id="' + numappended +
+            '" id="scheadinsertid' + numappended + '" placeholder="First name" style="width:93%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '<div class="col-sm-6">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">Last Name<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus headlnamecover' + numappended + '">' +
+            '<input type="text" class="pros-flexi-input generalhealtname"  data-id="' + numappended +
+            '" id="head-lname' + numappended + '" placeholder="Last name" style="width:93%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '<div class="col-sm-12">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Email<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus heademailcover' + numappended + '">' +
+            '<input type="text" class="pros-flexi-input generalheademail" data-id="' + numappended +
+            '" id="head-email' + numappended + '" placeholder="eg.example@exaple.com" style="width:93%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '<div class="col-sm-12">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Phone<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus headnumcover' + numappended + '">' +
+            '<input type="number" name="pros-headnumset' + numappended + '[main]" data-id="' + numappended +
+            '" class="pros-flexi-input generalheadnum" id="pros-headnumset' + numappended +
+            '" placeholder="e.g., XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(document.createElement('div')).append(pros_display_schoolhead_appended_input).appendTo(
+            '#displayschool-headinput');
+
+        var dynamicvar_head = 'pros-headnumset' + numappended;
+
+        window[dynamicvar_head] = window.intlTelInput(document.querySelector("#pros-headnumset" + numappended), {
+            separateDialCode: true,
+            preferredCountries: ["ng"],
+            hiddenInput: "full",
+            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
         });
-    }
 
-}); //create section setup en here
-
-$('body').on('click', '#pros-addschoolhead-btn', function() {
-
-    var numappended = $("#appendinput-schoolhead").val();
-    numappended++;
-    var numofcampus = numappended + 1;
-    var pros_display_schoolhead_appended_input = '<div id="pros-removeappended-schoolhead' + numappended +
-        '">' +
-        '<br><br><div class="row">' +
-        '<span style="color:red;cursor:pointer;font-size:13px;"><i class="fa fa-times mr-5" id="pros-removeappended-schoolheadbtn" data-id="' +
-        numappended + '" style="float: right;">Remove</i></span>' +
-        '<div class="col-sm-6">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">First name<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus headfnamecover' + numappended + '">' +
-        '<input type="text" class="pros-flexi-input generalheadfirstname" data-id="' + numappended +
-        '" id="scheadinsertid' + numappended + '" placeholder="First name" style="width:93%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '<div class="col-sm-6">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">Last Name<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus headlnamecover' + numappended + '">' +
-        '<input type="text" class="pros-flexi-input generalhealtname"  data-id="' + numappended +
-        '" id="head-lname' + numappended + '" placeholder="Last name" style="width:93%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '<div class="col-sm-12">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Email<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus heademailcover' + numappended + '">' +
-        '<input type="text" class="pros-flexi-input generalheademail" data-id="' + numappended +
-        '" id="head-email' + numappended + '" placeholder="eg.example@exaple.com" style="width:93%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '<div class="col-sm-12">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Phone<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus headnumcover' + numappended + '">' +
-        '<input type="number" name="pros-headnumset' + numappended + '[main]" data-id="' + numappended +
-        '" class="pros-flexi-input generalheadnum" id="pros-headnumset' + numappended +
-        '" placeholder="e.g., XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '</div>' +
-        '</div>';
-
-    $(document.createElement('div')).append(pros_display_schoolhead_appended_input).appendTo(
-        '#displayschool-headinput');
-
-    var dynamicvar_head = 'pros-headnumset' + numappended;
-
-    window[dynamicvar_head] = window.intlTelInput(document.querySelector("#pros-headnumset" + numappended), {
-        separateDialCode: true,
-        preferredCountries: ["ng"],
-        hiddenInput: "full",
-        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-    });
-
-    $("#appendinput-schoolhead").val(numappended);
-
-});
-//append school head end here
-
-//append teacher start here
-$('body').on('click', '#pros-addteacher-btn', function() {
-
-    var numappended = $("#appendinput-teacher").val();
-    numappended++;
-    var numofcampus = numappended + 1;
-    var pros_display_schoolhead_appended_input = '<div id="pros-removeappended-teacher' + numappended + '">' +
-        '<br><br><div class="row">' +
-        '<span style="color:red;cursor:pointer;font-size:13px;"><i class="fa fa-times mr-5" id="pros-removeappended-teacherbtn" data-id="' +
-        numappended + '" style="float: right;">Remove</i></span>' +
-        '<div class="col-sm-6">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">First name<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus teacherfnamecover' + numappended + '">' +
-        '<input type="text" class="pros-flexi-input generalteacherfirstname" data-id="' + numappended +
-        '" id="teacherinsertid' + numappended + '" placeholder="First name" style="width:70%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '<div class="col-sm-6">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">Last Name<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus teacherlnamecover' + numappended + '">' +
-        '<input type="text" class="pros-flexi-input generalteacherltname"  data-id="' + numappended +
-        '" id="teacher-lname' + numappended + '" placeholder="Last name" style="width:70%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '<div class="col-sm-12">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Email<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus teacheremailcover' + numappended + '">' +
-        '<input type="text" class="pros-flexi-input generalteacheremail" data-id="' + numappended +
-        '" id="head-email' + numappended + '" placeholder="eg.example@exaple.com" style="width:70%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '<div class="col-sm-12">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Phone<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus teachernumcover' + numappended + '">' +
-        '<input type="number" name="pros-teachernumset' + numappended + '[main]" data-id="' + numappended +
-        '" class="pros-flexi-input generalteachernum" id="pros-teachernumset' + numappended +
-        '" placeholder="e.g., XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '</div>' +
-        '</div>';
-
-    $(document.createElement('div')).append(pros_display_schoolhead_appended_input).appendTo(
-        '#displayschool-teacher');
-
-    var dynamicvar_head = 'pros-teachernumset' + numappended;
-
-    window[dynamicvar_head] = window.intlTelInput(document.querySelector("#pros-teachernumset" + numappended), {
-        separateDialCode: true,
-        preferredCountries: ["ng"],
-        hiddenInput: "full",
-        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-    });
-
-    $("#appendinput-teacher").val(numappended);
-
-});
-//append teacher end here
-
-
-
-
-
-//append teacher start here
-$('body').on('click', '#pros-add-admin-btn', function() {
-
-    var numappended = $("#appendinput-admin").val();
-    numappended++;
-    var numofcampus = numappended + 1;
-
-    var pros_display_schoolhead_appended_input = '<div id="pros-removeappended-admin' + numappended + '">' +
-        '<br><br><div class="row">' +
-        '<span style="color:red;cursor:pointer;font-size:13px;"><i class="fa fa-times mr-5" id="pros-removeappended-adminbtn" data-id="' +
-        numappended + '" style="float: right;">Remove</i></span>' +
-        '<div class="col-sm-6">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">First name<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus adminfnamecover' + numappended + '">' +
-        '<input type="text" class="pros-flexi-input generaladminfirstname" data-id="' + numappended +
-        '" id="admininsertid' + numappended + '" placeholder="First name" style="width:70%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '<div class="col-sm-6">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">Last Name<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus adminlnamecover' + numappended + '">' +
-        '<input type="text" class="pros-flexi-input generaladminltname"  data-id="' + numappended +
-        '" id="admin-lname' + numappended + '" placeholder="Last name" style="width:70%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '<div class="col-sm-12">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Email<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus adminemailcover' + numappended + '">' +
-        '<input type="text" class="pros-flexi-input generaladminemail" data-id="' + numappended +
-        '" id="head-email' + numappended + '" placeholder="eg.example@exaple.com" style="width:70%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '<div class="col-sm-12">' +
-        '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Phone<span style="color:red;">*</span></label></div>' +
-        '<div class="pros-flexi-input-affix-wrapper-campus adminnumcover' + numappended + '">' +
-        '<input type="number" name="pros-adminnumset' + numappended + '[main]" data-id="' + numappended +
-        '" class="pros-flexi-input generaladminnum" id="pros-adminnumset' + numappended +
-        '" placeholder="e.g., XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">' +
-        '</div>&nbsp;&nbsp;' +
-        '</div>' +
-        '</div>' +
-        '</div>';
-
-    $(document.createElement('div')).append(pros_display_schoolhead_appended_input).appendTo(
-        '#displayschool-admin');
-
-    var dynamicvar_admin = 'pros-adminnumset' + numappended;
-
-    window[dynamicvar_admin] = window.intlTelInput(document.querySelector("#pros-adminnumset" + numappended), {
-        separateDialCode: true,
-        preferredCountries: ["ng"],
-        hiddenInput: "full",
-        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-    });
-
-    $("#appendinput-admin").val(numappended);
-
-});
-//append admin end here
-
-
-
-
-//remove appended input here
-$('body').on('click', '#pros-removeappended-schoolheadbtn', function(e) {
-    e.preventDefault();
-    var dividd = $(this).data('id');
-
-    var camcnt = 1;
-    $('#pros-removeappended-schoolhead' + dividd).remove();
-    var numappended = $("#appendinput-schoolhead").val();
-
-    // $('#' + camcnt).html(numappended);
-    numappended--;
-    $("#appendinput-schoolhead").val(numappended);
-});
-//remove appended input 
-
-//remove appended input 4 teacher here
-$('body').on('click', '#pros-removeappended-teacherbtn', function(e) {
-    e.preventDefault();
-    var dividd = $(this).data('id');
-
-    var camcnt = 1;
-    $('#pros-removeappended-teacher' + dividd).remove();
-    var numappended = $("#appendinput-teacher").val();
-
-    // $('#' + camcnt).html(numappended);
-    numappended--;
-    $("#appendinput-teacher").val(numappended);
-});
-//remove appended  input  4 teacher end here
-
-//remove appended input 4 admin here
-$('body').on('click', '#pros-removeappended-adminbtn', function(e) {
-    e.preventDefault();
-    var dividd = $(this).data('id');
-
-    var camcnt = 1;
-    $('#pros-removeappended-admin' + dividd).remove();
-    var numappended = $("#appendinput-teacher").val();
-
-    // $('#' + camcnt).html(numappended);
-    numappended--;
-    $("#appendinput-admin").val(numappended);
-});
-//remove appended  input  4 admin end here
-
-
-
-//add school head setup
-$('body').on('click', '#pros-create-schoolheadbtn', function(e) {
-    $('#pros-create-schoolheadbtn').html('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>creating...' );
-       
-  
-
-    var tagstate = $(this).data('tag');
-    var groupSchoolID = $(this).data('school');
-    var validatestatus = $('#checkfirstvilation').val();
-    var UserID = "<?php echo $UserID; ?>";
-    var CampusID = $(this).data('campus');
-    var maintag = $(this).data('maintag');
-    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-
-
-
-    var schoolheadname = [];
-
-    $('.generalheadfirstname').each(function() {
-        schoolheadname.push($(this).val());
-
-        var dataid = $(this).data('id');
-        var firstnamevaliate = $('#scheadinsertid' + dataid).val();
-
-        if (firstnamevaliate == '' || firstnamevaliate == ',') {
-            $('.headfnamecover' + dataid).css('outline', '1px solid red');
-            $('#checkfirstvilation').val('invalid');
-           
-
-          
-        } else {
-            $('.headfnamecover' + dataid).css('outline', '1px solid green');
-            $('#checkfirstvilation').val('valid');
-            
-        }
+        $("#appendinput-schoolhead").val(numappended);
 
     });
+    //append school head end here
 
+    //append teacher start here
+    $('body').on('click', '#pros-addteacher-btn', function() {
 
-    var schoooheadlastname = [];
+        var numappended = $("#appendinput-teacher").val();
+        numappended++;
+        var numofcampus = numappended + 1;
+        var pros_display_schoolhead_appended_input = '<div id="pros-removeappended-teacher' + numappended + '">' +
+            '<br><br><div class="row">' +
+            '<span style="color:red;cursor:pointer;font-size:13px;"><i class="fa fa-times mr-5" id="pros-removeappended-teacherbtn" data-id="' +
+            numappended + '" style="float: right;">Remove</i></span>' +
+            '<div class="col-sm-6">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">First name<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus teacherfnamecover' + numappended + '">' +
+            '<input type="text" class="pros-flexi-input generalteacherfirstname" data-id="' + numappended +
+            '" id="teacherinsertid' + numappended + '" placeholder="First name" style="width:70%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '<div class="col-sm-6">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">Last Name<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus teacherlnamecover' + numappended + '">' +
+            '<input type="text" class="pros-flexi-input generalteacherltname"  data-id="' + numappended +
+            '" id="teacher-lname' + numappended + '" placeholder="Last name" style="width:70%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '<div class="col-sm-12">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Email<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus teacheremailcover' + numappended + '">' +
+            '<input type="text" class="pros-flexi-input generalteacheremail" data-id="' + numappended +
+            '" id="head-email' + numappended + '" placeholder="eg.example@exaple.com" style="width:70%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '<div class="col-sm-12">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Phone<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus teachernumcover' + numappended + '">' +
+            '<input type="number" name="pros-teachernumset' + numappended + '[main]" data-id="' + numappended +
+            '" class="pros-flexi-input generalteachernum" id="pros-teachernumset' + numappended +
+            '" placeholder="e.g., XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '</div>' +
+            '</div>';
 
-    $('.generalhealtname').each(function() {
-        schoooheadlastname.push($(this).val());
+        $(document.createElement('div')).append(pros_display_schoolhead_appended_input).appendTo(
+            '#displayschool-teacher');
 
+        var dynamicvar_head = 'pros-teachernumset' + numappended;
 
-        var dataid = $(this).data('id');
-        var lastnamevaliate = $('#head-lname' + dataid).val();
+        window[dynamicvar_head] = window.intlTelInput(document.querySelector("#pros-teachernumset" + numappended), {
+            separateDialCode: true,
+            preferredCountries: ["ng"],
+            hiddenInput: "full",
+            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+        });
 
-        if (lastnamevaliate == '' || lastnamevaliate == ',') {
-            $('.headlnamecover' + dataid).css('outline', '1px solid red');
-            $('#checkfirstvilation').val('invalid');
-            
-
-           
-        } else {
-            $('.headlnamecover' + dataid).css('outline', '1px solid green');
-            $('#checkfirstvilation').val('valid');
-            
-        }
+        $("#appendinput-teacher").val(numappended);
 
     });
+    //append teacher end here
 
 
 
-    var schoolphoneemail = [];
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    $('.generalheademail').each(function() {
-        schoolphoneemail.push($(this).val());
-        var dataid = $(this).data('id');
-
-        var lastnameemail = $('#head-email' + dataid).val();
-
-        if (lastnameemail == '' || lastnameemail == ',') {
-            $('.heademailcover' + dataid).css('outline', '1px solid red');
-            $('#checkfirstvilation').val('invalid');
-            
-
-            // $.wnoty({
-            //     type: 'warning',
-            //     message: "hey! email should not be blank",
-            //     autohideDelay: 5000
-            // });
-        } else {
 
 
+    //append teacher start here
+    $('body').on('click', '#pros-add-admin-btn', function() {
 
-            if (!emailPattern.test(lastnameemail)) {
-                $.wnoty({
-                    type: 'warning',
-                    message: "hey! enter a valid email.",
-                    autohideDelay: 5000
-                });
+        var numappended = $("#appendinput-admin").val();
+        numappended++;
+        var numofcampus = numappended + 1;
 
-                $('.heademailcover' + dataid).css('outline', '1px solid red');
+        var pros_display_schoolhead_appended_input = '<div id="pros-removeappended-admin' + numappended + '">' +
+            '<br><br><div class="row">' +
+            '<span style="color:red;cursor:pointer;font-size:13px;"><i class="fa fa-times mr-5" id="pros-removeappended-adminbtn" data-id="' +
+            numappended + '" style="float: right;">Remove</i></span>' +
+            '<div class="col-sm-6">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">First name<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus adminfnamecover' + numappended + '">' +
+            '<input type="text" class="pros-flexi-input generaladminfirstname" data-id="' + numappended +
+            '" id="admininsertid' + numappended + '" placeholder="First name" style="width:70%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '<div class="col-sm-6">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName">Last Name<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus adminlnamecover' + numappended + '">' +
+            '<input type="text" class="pros-flexi-input generaladminltname"  data-id="' + numappended +
+            '" id="admin-lname' + numappended + '" placeholder="Last name" style="width:70%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '<div class="col-sm-12">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Email<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus adminemailcover' + numappended + '">' +
+            '<input type="text" class="pros-flexi-input generaladminemail" data-id="' + numappended +
+            '" id="head-email' + numappended + '" placeholder="eg.example@exaple.com" style="width:70%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '<div class="col-sm-12">' +
+            '<div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName">Phone<span style="color:red;">*</span></label></div>' +
+            '<div class="pros-flexi-input-affix-wrapper-campus adminnumcover' + numappended + '">' +
+            '<input type="number" name="pros-adminnumset' + numappended + '[main]" data-id="' + numappended +
+            '" class="pros-flexi-input generaladminnum" id="pros-adminnumset' + numappended +
+            '" placeholder="e.g., XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">' +
+            '</div>&nbsp;&nbsp;' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+
+        $(document.createElement('div')).append(pros_display_schoolhead_appended_input).appendTo(
+            '#displayschool-admin');
+
+        var dynamicvar_admin = 'pros-adminnumset' + numappended;
+
+        window[dynamicvar_admin] = window.intlTelInput(document.querySelector("#pros-adminnumset" + numappended), {
+            separateDialCode: true,
+            preferredCountries: ["ng"],
+            hiddenInput: "full",
+            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+        });
+
+        $("#appendinput-admin").val(numappended);
+
+    });
+    //append admin end here
+
+
+
+
+    //remove appended input here
+    $('body').on('click', '#pros-removeappended-schoolheadbtn', function(e) {
+        e.preventDefault();
+        var dividd = $(this).data('id');
+
+        var camcnt = 1;
+        $('#pros-removeappended-schoolhead' + dividd).remove();
+        var numappended = $("#appendinput-schoolhead").val();
+
+        // $('#' + camcnt).html(numappended);
+        numappended--;
+        $("#appendinput-schoolhead").val(numappended);
+    });
+    //remove appended input 
+
+    //remove appended input 4 teacher here
+    $('body').on('click', '#pros-removeappended-teacherbtn', function(e) {
+        e.preventDefault();
+        var dividd = $(this).data('id');
+
+        var camcnt = 1;
+        $('#pros-removeappended-teacher' + dividd).remove();
+        var numappended = $("#appendinput-teacher").val();
+
+        // $('#' + camcnt).html(numappended);
+        numappended--;
+        $("#appendinput-teacher").val(numappended);
+    });
+    //remove appended  input  4 teacher end here
+
+    //remove appended input 4 admin here
+    $('body').on('click', '#pros-removeappended-adminbtn', function(e) {
+        e.preventDefault();
+        var dividd = $(this).data('id');
+
+        var camcnt = 1;
+        $('#pros-removeappended-admin' + dividd).remove();
+        var numappended = $("#appendinput-teacher").val();
+
+        // $('#' + camcnt).html(numappended);
+        numappended--;
+        $("#appendinput-admin").val(numappended);
+    });
+    //remove appended  input  4 admin end here
+
+
+
+    //add school head setup
+    $('body').on('click', '#pros-create-schoolheadbtn', function(e) {
+        $('#pros-create-schoolheadbtn').html('<div class="spinner-border spinner-border-sm" role="status"> <span class="sr-only"></span></div>creating...' );
+        
+    
+
+        var tagstate = $(this).data('tag');
+        var groupSchoolID = $(this).data('school');
+        var validatestatus = $('#checkfirstvilation').val();
+        var UserID = "<?php echo $UserID; ?>";
+        var CampusID = $(this).data('campus');
+        var maintag = $(this).data('maintag');
+        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+
+
+
+        var schoolheadname = [];
+
+        $('.generalheadfirstname').each(function() {
+            schoolheadname.push($(this).val());
+
+            var dataid = $(this).data('id');
+            var firstnamevaliate = $('#scheadinsertid' + dataid).val();
+
+            if (firstnamevaliate == '' || firstnamevaliate == ',') {
+                $('.headfnamecover' + dataid).css('outline', '1px solid red');
                 $('#checkfirstvilation').val('invalid');
-               
+            
+
+            
             } else {
-                $('.heademailcover' + dataid).css('outline', '1px solid green');
+                $('.headfnamecover' + dataid).css('outline', '1px solid green');
                 $('#checkfirstvilation').val('valid');
                 
             }
 
-        }
+        });
 
 
+        var schoooheadlastname = [];
+
+        $('.generalhealtname').each(function() {
+            schoooheadlastname.push($(this).val());
 
 
-    });
+            var dataid = $(this).data('id');
+            var lastnamevaliate = $('#head-lname' + dataid).val();
 
+            if (lastnamevaliate == '' || lastnamevaliate == ',') {
+                $('.headlnamecover' + dataid).css('outline', '1px solid red');
+                $('#checkfirstvilation').val('invalid');
+                
 
-    var schoolnum = [];
-
-    $('.generalheadnum').each(function() {
-        schoolnum.push($(this).val());
-        var dataid = $(this).data('id');
-
-        var numhead = $('#pros-headnumset' + dataid).val();
-
-        if (numhead == '' || numhead == ',') {
-            $('.headnumcover' + dataid).css('outline', '1px solid red');
-            $('#checkfirstvilation').val('invalid');
-           
-
-           
-        } else {
-            $('.headnumcover' + dataid).css('outline', '1px solid green');
-            $('#checkfirstvilation').val('valid');
             
-        }
+            } else {
+                $('.headlnamecover' + dataid).css('outline', '1px solid green');
+                $('#checkfirstvilation').val('valid');
+                
+            }
 
-    });
-
-
-
-
-
-
-
-    var formattedinput = [];
-    document.querySelectorAll('.generalheadnum').forEach(function(input) {
-        // Get the `intlTelInput` plugin instance for the input field
-        var iti = window.intlTelInputGlobals.getInstance(input);
-        // Get the raw phone number value from the input field
-        var numberformat = input.value;
-        // Use the `intlTelInputUtils` library to format the phone number with its country code
-        formattedinput.push(intlTelInputUtils.formatNumber(numberformat, iti.getSelectedCountryData()
-            .iso2));
-        // Display the formatted phone number in an alert message
-    });
+        });
 
 
 
+        var schoolphoneemail = [];
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        $('.generalheademail').each(function() {
+            schoolphoneemail.push($(this).val());
+            var dataid = $(this).data('id');
+
+            var lastnameemail = $('#head-email' + dataid).val();
+
+            if (lastnameemail == '' || lastnameemail == ',') {
+                $('.heademailcover' + dataid).css('outline', '1px solid red');
+                $('#checkfirstvilation').val('invalid');
+                
+
+                // $.wnoty({
+                //     type: 'warning',
+                //     message: "hey! email should not be blank",
+                //     autohideDelay: 5000
+                // });
+            } else {
+
+
+
+                if (!emailPattern.test(lastnameemail)) {
+                    $.wnoty({
+                        type: 'warning',
+                        message: "hey! enter a valid email.",
+                        autohideDelay: 5000
+                    });
+
+                    $('.heademailcover' + dataid).css('outline', '1px solid red');
+                    $('#checkfirstvilation').val('invalid');
+                
+                } else {
+                    $('.heademailcover' + dataid).css('outline', '1px solid green');
+                    $('#checkfirstvilation').val('valid');
+                    
+                }
+
+            }
+
+
+
+
+        });
+
+
+        var schoolnum = [];
+
+        $('.generalheadnum').each(function() {
+            schoolnum.push($(this).val());
+            var dataid = $(this).data('id');
+
+            var numhead = $('#pros-headnumset' + dataid).val();
+
+            if (numhead == '' || numhead == ',') {
+                $('.headnumcover' + dataid).css('outline', '1px solid red');
+                $('#checkfirstvilation').val('invalid');
+            
+
+            
+            } else {
+                $('.headnumcover' + dataid).css('outline', '1px solid green');
+                $('#checkfirstvilation').val('valid');
+                
+            }
+
+        });
 
 
 
 
 
 
-    //trim no value is left empty
-    var hasEmptyValuefname = schoolheadname.some(function(value) {
-        return value.trim() === '';
-    });
 
-    var hasEmptyValuelname = schoooheadlastname.some(function(value) {
-        return value.trim() === '';
-    });
-
-    var hasEmptyValueemail = schoolphoneemail.some(function(value) {
-        return value.trim() === '';
-    });
-
-    var hasEmptyValuephone = formattedinput.some(function(value) {
-        return value.trim() === '';
-    });
-    //trim no value is left empty
+        var formattedinput = [];
+        document.querySelectorAll('.generalheadnum').forEach(function(input) {
+            // Get the `intlTelInput` plugin instance for the input field
+            var iti = window.intlTelInputGlobals.getInstance(input);
+            // Get the raw phone number value from the input field
+            var numberformat = input.value;
+            // Use the `intlTelInputUtils` library to format the phone number with its country code
+            formattedinput.push(intlTelInputUtils.formatNumber(numberformat, iti.getSelectedCountryData()
+                .iso2));
+            // Display the formatted phone number in an alert message
+        });
 
 
 
 
 
-    if (hasEmptyValuefname || hasEmptyValuelname || hasEmptyValueemail || hasEmptyValuephone) {
 
 
-        if (maintag == '29') {
+
+
+        //trim no value is left empty
+        var hasEmptyValuefname = schoolheadname.some(function(value) {
+            return value.trim() === '';
+        });
+
+        var hasEmptyValuelname = schoooheadlastname.some(function(value) {
+            return value.trim() === '';
+        });
+
+        var hasEmptyValueemail = schoolphoneemail.some(function(value) {
+            return value.trim() === '';
+        });
+
+        var hasEmptyValuephone = formattedinput.some(function(value) {
+            return value.trim() === '';
+        });
+        //trim no value is left empty
+
+
+
+
+
+        if (hasEmptyValuefname || hasEmptyValuelname || hasEmptyValueemail || hasEmptyValuephone) {
+
+
+            if (maintag == '29') {
+
+                schoolheadname = schoolheadname.toString();
+                schoooheadlastname = schoooheadlastname.toString();
+                schoolphoneemail = schoolphoneemail.toString();
+                formattedinput = formattedinput.toString();
+
+                $.ajax({
+
+                    type: "POST",
+                    url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/createschool-setup.php",
+                    data: {
+
+                        tagstate: tagstate,
+                        groupSchoolID: groupSchoolID,
+                        schoolheadname: schoolheadname,
+                        schoooheadlastname: schoooheadlastname,
+                        schoolphoneemail: schoolphoneemail,
+                        formattedinput: formattedinput,
+                        UserID: UserID,
+                        CampusID: CampusID,
+                        maintag: maintag
+                    },
+
+
+                    success: function(output) {
+
+
+                        var outputfoun = (output);
+
+                        if (outputfoun == 'found') {
+                            $.wnoty({
+                                type: 'warning',
+                                message: "hey! this email already exist",
+                                autohideDelay: 5000
+                            });
+
+
+                        } else {
+
+
+                            $('#pros-displayhead-setup').animate({
+                                // opacity: 0.5,
+                                left: '+=50',
+                                height: 'toggle'
+                            }, 1000);
+
+                            $('#assignschoolheadfaculty').fadeIn('slow');
+
+                        }
+                    
+                                        // load setupcontent here //
+
+                                        $('#pros-displaysetup-content').html(
+                                            '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+                                        $.ajax({
+                                
+                                            type: "POST",
+                                            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
+                                            data: {
+                                                UserID: UserID,
+                                                ownerfirst_Name: ownerfirst_Name,
+                                                tagstate: tagstate,
+                                                groupSchoolID: groupSchoolID,
+                                                CampusID: CampusID
+                                            },
+                                            success: function(result) {
+                                
+                                                $('#pros-displaysetup-content').html(result);
+                                                $('#pros-create-schoolheadbtn').html('Create new');
+                                
+                                
+                                                var head_phone = window.intlTelInput(document.querySelector("#pros-headnumset"), {
+                                                    separateDialCode: true,
+                                                    preferredCountries: ["ng"],
+                                                    hiddenInput: "full",
+                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                                });
+                                
+                                
+                                
+                                                var head_phone = window.intlTelInput(document.querySelector(
+                                                    "#pros-teachernumset"), {
+                                                    separateDialCode: true,
+                                                    preferredCountries: ["ng"],
+                                                    hiddenInput: "full",
+                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                                });
+                                
+                                                var head_phone = window.intlTelInput(document.querySelector("#pros-adminnumset"), {
+                                                    separateDialCode: true,
+                                                    preferredCountries: ["ng"],
+                                                    hiddenInput: "full",
+                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                                });
+                                
+                                
+                                                var tagstatusnew = tagstate;
+                                
+                                                $('#prosloadschoolid-forbackward').val(CampusID);
+                                
+                                
+                                                if (maintag == '29' && tagstatusnew == '') {
+                                
+                                                    $('#pros-reducemodalclasstypesetup').css('width', '700px');
+                                                    //if campus havent't started setiing up it should start from the begginning
+                                                    $('#pros-loadimportoption').fadeIn('slow');
+                                
+                                                } else {
+                                
+                                
+                                
+                                                    if (tagstatusnew == '' || tagstatusnew == '15') {
+                                                        $('#displaysection-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+
+                                                    } else if (tagstatusnew == '16') {
+
+                                                        $('#pros-displayhead-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(15);
+
+
+
+                                                    } else if (tagstatusnew == '17') {
+
+                                                        $('#assignschoolheadfaculty  ').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(16);
+
+                                                    } else if (tagstatusnew == '18') {
+                                                        $('#proscreateschool-teacher').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(17);
+
+                                                    } else if (tagstatusnew == '19') {
+                                                        $('#createotherschooltype-setup').fadeIn('slow');
+
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(18);
+
+                                                    } else if (tagstatusnew == '20') {
+
+                                                        $('#pros-reducemodalclasstypesetup').css('width', '700px');
+
+                                                        $('#createwelcomemsg-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(19);
+
+
+                                                    } else if (tagstatusnew == '21') {
+
+                                                        $('#createclasses-setup ').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(20);
+
+                                                        // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
+
+                                                    } else if (tagstatusnew == '22') {
+
+                                                        $('#createsubject-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(21);
+
+                                                    } else if (tagstatusnew == '23') {
+
+                                                        $('#mergesubjectcontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(22);
+
+
+                                                    } else if (tagstatusnew == '24') {
+
+                                                        $('#pros-assign-formteachercontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(23);
+
+                                                    } else if (tagstatusnew == '25') {
+
+                                                        $('#assignsubject-teachercontainer').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(24);
+
+                                                    } else if (tagstatusnew == '26') {
+
+                                                        $('#pros-loadsession-termcontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(25);
+
+                                                    } else if (tagstatusnew == '27') {
+
+                                                        $('#pros-schlogo-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(26);
+
+                                                    }else if(tagstatusnew == '28')
+                                                    {
+                                                        $('#prosschool-bgimage-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(27);
+
+
+                                                    }else if(tagstatusnew == '29')
+                                                    {
+
+                                                                    //setup completed
+                                                    
+                                                    }
+                                                            
+                                                }
+                                
+                                
+                                
+                                
+                                                const selectBtnnewsubject = document.querySelector(
+                                                        ".getsubjectopenondocument-ready1"),
+                                                    itemssubject = document.querySelectorAll(".subjectlistmeslist");
+                                                selectBtnnewsubject.classList.toggle("open");
+                                
+                                
+                                
+                                
+                                
+                                                $('body').on('click', '.createsubjectgeneral', function() {
+                                                    var facultyid = $(this).data('faculty');
+                                
+                                                    const selectBtn = document.querySelector(".pros-opensubjectwhenclick" +
+                                                            facultyid),
+                                                        items = document.querySelectorAll(".subjectlistmeslist");
+                                
+                                                    // Toggle the "open" subject when the selectBtn is clicked
+                                                    selectBtn.classList.toggle("open");
+                                                });
+                                
+                                
+                                            }
+                                        });
+                                
+                                        // load setupcontent here //   
+                                                    
+                        
+                        
+                        
+                        
+
+                    }
+
+                });
+
+
+
+
+            }else
+            {
+                    $.wnoty({
+                        type: 'warning',
+                        message: "Hey! Please make sure that the school head's details are not left blank.",
+                        autohideDelay: 5000
+                    });
+
+                    $('#pros-create-schoolheadbtn').html('Create new');
+            }
+
+
+
+        } else {
 
             schoolheadname = schoolheadname.toString();
             schoooheadlastname = schoooheadlastname.toString();
             schoolphoneemail = schoolphoneemail.toString();
             formattedinput = formattedinput.toString();
+            
 
             $.ajax({
-
                 type: "POST",
                 url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/createschool-setup.php",
                 data: {
-
                     tagstate: tagstate,
                     groupSchoolID: groupSchoolID,
                     schoolheadname: schoolheadname,
@@ -4339,31 +4713,43 @@ $('body').on('click', '#pros-create-schoolheadbtn', function(e) {
 
                 success: function(output) {
 
+                    var prosfeedback = (output);
 
-                    var outputfoun = (output);
+                    
+                    // alert(prosfeedback);
 
-                    if (outputfoun == 'found') {
+
+                    if (output.trim() == 'found') {
+
+
                         $.wnoty({
                             type: 'warning',
-                            message: "hey! this email already exist",
+                            message: "hey! this email already exist.",
                             autohideDelay: 5000
                         });
 
 
+
+
                     } else {
 
+
+                        $.wnoty({
+                            type: 'success',
+                            message: "Great! school head created successfully.",
+                            autohideDelay: 5000
+                        });
 
                         $('#pros-displayhead-setup').animate({
                             // opacity: 0.5,
                             left: '+=50',
                             height: 'toggle'
                         }, 1000);
-
                         $('#assignschoolheadfaculty').fadeIn('slow');
-
-                    }
-                 
-                                     // load setupcontent here //
+                        
+                        
+                        
+                                    // load setupcontent here //
 
                                     $('#pros-displaysetup-content').html(
                                         '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
@@ -4381,7 +4767,6 @@ $('body').on('click', '#pros-create-schoolheadbtn', function(e) {
                                         success: function(result) {
                             
                                             $('#pros-displaysetup-content').html(result);
-                                            $('#pros-create-schoolheadbtn').html('Create new');
                             
                             
                                             var head_phone = window.intlTelInput(document.querySelector("#pros-headnumset"), {
@@ -4520,7 +4905,7 @@ $('body').on('click', '#pros-create-schoolheadbtn', function(e) {
                                                                 //setup completed
                                                 
                                                 }
-                                                        
+                            
                                             }
                             
                             
@@ -4549,13 +4934,14 @@ $('body').on('click', '#pros-create-schoolheadbtn', function(e) {
                             
                                         }
                                     });
-                            
-                                    // load setupcontent here //   
-                                                
-                    
-                    
-                    
-                       
+
+                                // load setupcontent here //
+                        
+                        
+                        
+                        
+
+                    }
 
                 }
 
@@ -4563,88 +4949,331 @@ $('body').on('click', '#pros-create-schoolheadbtn', function(e) {
 
 
 
-
-        }else
-        {
-                $.wnoty({
-                    type: 'warning',
-                    message: "Hey! Please make sure that the school head's details are not left blank.",
-                    autohideDelay: 5000
-                });
-
-                $('#pros-create-schoolheadbtn').html('Create new');
+        
         }
 
+    })
+    //add school head setup end
 
 
-    } else {
 
-        schoolheadname = schoolheadname.toString();
-        schoooheadlastname = schoooheadlastname.toString();
-        schoolphoneemail = schoolphoneemail.toString();
-        formattedinput = formattedinput.toString();
+    $('body').on('click', '.pros-generalsechead', function() {
+        var facultyid = $(this).data('id');
+    
+
+        const selectBtn = document.querySelector(".prosopendrophead" + facultyid),
+            items = document.querySelectorAll(".item");
+
+        // Toggle the "open" class when the selectBtn is clicked
+        selectBtn.classList.toggle("open");
+    });
+    // This is a comment describing what the code does
+
+
+    $('body').on('click', '.pros-generalformteach', function() {
+        var facultyid = $(this).data('id');
         
 
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/createschool-setup.php",
-            data: {
-                tagstate: tagstate,
-                groupSchoolID: groupSchoolID,
-                schoolheadname: schoolheadname,
-                schoooheadlastname: schoooheadlastname,
-                schoolphoneemail: schoolphoneemail,
-                formattedinput: formattedinput,
-                UserID: UserID,
-                CampusID: CampusID,
-                maintag: maintag
-            },
+        const selectBtn = document.querySelector(".pros-assignformteacherbtncollapse" + facultyid),
+            items = document.querySelectorAll(".item");
+
+        // Toggle the "open" class when the selectBtn is clicked
+        selectBtn.classList.toggle("open");
+    });
+    // This is a comment describing what the code does
 
 
-            success: function(output) {
+    // School head check in Prosper
+    $('body').on('click', '.prosgenerallist-itemssel', function(event) {
+            var facultyID = $(this).data('id');
+            var facunewcheck = $(this).data('faculty');
 
-                var prosfeedback = (output);
+            // Only trigger radio if user clicks outside the radio directly
+            if (event.target.type !== 'radio') {
+                $('.proscheckboxinside' + facultyID).prop("checked", true).trigger("change");
+            }
 
+            // Count selected radios in this faculty
+            let checked = $('.checkshoolheadnew' + facunewcheck + ':checked').length;
+
+            let btnText = document.querySelector(".pros-headdisplaynumslected" + facunewcheck);
+
+            if (btnText) {
+                btnText.innerText = (checked > 0) ? `(${checked} Selected)` : '';
+            }
+});
+
+
+
+
+        $('body').on('change', '.pros-generalcheckschoolhead', function() {
+            // Find the closest ancestor div with the class '.pros-generalcheckschoolhead'
+            var container = $(this).closest('.pros-generalcheckschoolhead');
+
+            // Extract data attributes from the closest ancestor div
+            var facultyID = container.data('faculty');
+            var staffID = container.data('staff');
+
+            // Toggle the checked state of the corresponding checkbox
+            var verychecked = $('.proscheckboxinside' + facultyID + staffID, container).prop("checked");
+            $('.proscheckboxinside' + facultyID + staffID, container).prop("checked", !verychecked);
+
+            // Count the number of checked radio buttons
+            let checked = parseInt($('.checkshoolheadnew' + facultyID + ':checked').length);
+
+            // Update the display based on the count
+            btnText = container.find(".pros-headdisplaynumslected" + facultyID);
+
+            if (checked > 0) {
+                btnText.text(`(${checked} Selected)`);
+            } else {
+                btnText.text("");
+            }
+        });
+        //school head check here prosper input itself
+
+
+
+        // create teacher onboarding start here
+        $('body').on('click', '#createteacher-setup-btn', function(e) {
+            $('#createteacher-setup-btn').html('<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span class="visually-hidden" role="status">Loading...</span>');
+
+            var tagstate = $(this).data('tag');
+            var groupSchoolID = $(this).data('school');
+            var validatestatus = $('#checkvalidatedteacher').val();
+            var UserID = "<?php echo $UserID; ?>";
+            var usertype = '';
+            var CampusID = $(this).data('campus');
+            var maintag = $(this).data('maintag');
+            var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+
+
+            var schoolheadname = [];
+
+            $('.generalteacherfirstname').each(function() {
+                schoolheadname.push($(this).val());
+
+                var dataid = $(this).data('id');
+                var firstnamevaliate = $('#teacherinsertid' + dataid).val();
+
+                if (firstnamevaliate == '' || firstnamevaliate == ',') {
+                    $('.teacherfnamecover' + dataid).css('outline', '1px solid red');
+                    $('#checkvalidatedteacher').val('invalid');
                 
-                // alert(prosfeedback);
+
+                    // $.wnoty({
+                    //     type: 'warning',
+                    //     message: "hey! enter your staff's first name.",
+                    //     autohideDelay: 5000
+                    // });
+                } else {
+                    $('.teacherfnamecover' + dataid).css('outline', '1px solid green');
+                    $('#checkvalidatedteacher').val('valid');
+                
+                }
+
+            });
 
 
-                if (output.trim() == 'found') {
+
+            var schoooheadlastname = [];
+
+            $('.generalteacherltname').each(function() {
+                schoooheadlastname.push($(this).val());
 
 
-                    $.wnoty({
-                        type: 'warning',
-                        message: "hey! this email already exist.",
-                        autohideDelay: 5000
-                    });
+                var dataid = $(this).data('id');
+                var lastnamevaliate = $('#teacher-lname' + dataid).val();
+
+                if (lastnamevaliate == '' || lastnamevaliate == ',') {
+                    $('.teacherlnamecover' + dataid).css('outline', '1px solid red');
+                    $('#checkvalidatedteacher').val('invalid');
+                    
+
+                    // $.wnoty({
+                    //     type: 'warning',
+                    //     message: "hey! enter your staff's last name.",
+                    //     autohideDelay: 5000
+                    // });
+                } else {
+                    $('.teacherlnamecover' + dataid).css('outline', '1px solid green');
+                    $('#checkvalidatedteacher').val('valid');
+                    
+                }
+
+            });
+
+            var schoolphoneemail = [];
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            $('.generalteacheremail').each(function() {
+                schoolphoneemail.push($(this).val());
+                var dataid = $(this).data('id');
+
+                var lastnameemail = $('#teacher-email' + dataid).val();
 
 
+                if (lastnameemail == '' || lastnameemail == ',') {
+                    $('.teacheremailcover' + dataid).css('outline', '1px solid red');
+                    $('#checkvalidatedteacher').val('invalid');
+                    
 
-
+                    // $.wnoty({
+                    //     type: 'warning',
+                    //     message: "hey! email should not be blank",
+                    //     autohideDelay: 5000
+                    // });
                 } else {
 
 
-                    $.wnoty({
-                        type: 'success',
-                        message: "Great! school head created successfully.",
-                        autohideDelay: 5000
-                    });
 
-                    $('#pros-displayhead-setup').animate({
-                        // opacity: 0.5,
-                        left: '+=50',
-                        height: 'toggle'
-                    }, 1000);
-                    $('#assignschoolheadfaculty').fadeIn('slow');
+                    if (!emailPattern.test(lastnameemail)) {
+                        $.wnoty({
+                            type: 'warning',
+                            message: "hey! enter a valid email.",
+                            autohideDelay: 5000
+                        });
+
+                        $('.teacheremailcover' + dataid).css('outline', '1px solid red');
+                        $('#checkvalidatedteacher').val('invalid');
+                        
+                    } else {
+                        $('.teacheremailcover' + dataid).css('outline', '1px solid green');
+                        $('#checkvalidatedteacher').val('valid');
                     
+                    }
+
+                }
+
+
+            });
+
+
+
+
+            var schoolnum = [];
+
+            $('.generalteachernum').each(function() {
+                schoolnum.push($(this).val());
+                var dataid = $(this).data('id');
+
+                var numhead = $('#pros-teachernumset' + dataid).val();
+
+                if (numhead == '' || numhead == ',') {
+                    $('.teachernumcover' + dataid).css('outline', '1px solid red');
+                    $('#checkvalidatedteacher').val('invalid');
                     
+                        
+                } else {
+                    $('.teachernumcover' + dataid).css('outline', '1px solid green');
+                    $('#checkvalidatedteacher').val('valid');
                     
-                                  // load setupcontent here //
+                }
+
+            });
+
+
+
+            var formattedinput = [];
+            document.querySelectorAll('.generalteachernum').forEach(function(input) {
+                // Get the `intlTelInput` plugin instance for the input field
+                var iti = window.intlTelInputGlobals.getInstance(input);
+                // Get the raw phone number value from the input field
+                var numberformat = input.value;
+                // Use the `intlTelInputUtils` library to format the phone number with its country code
+                formattedinput.push(intlTelInputUtils.formatNumber(numberformat, iti.getSelectedCountryData()
+                    .iso2));
+                // Display the formatted phone number in an alert message
+            });
+
+
+            //trim no value is left empty
+            var hasEmptyValuefname = schoolheadname.some(function(value) {
+                return value.trim() === '';
+            });
+
+            var hasEmptyValuelname = schoooheadlastname.some(function(value) {
+                return value.trim() === '';
+            });
+
+            var hasEmptyValueemail = schoolphoneemail.some(function(value) {
+
+                return value.trim() === '';
+            });
+
+            var hasEmptyValuephone = formattedinput.some(function(value) {
+                return value.trim() === '';
+            });
+            //trim no value is left empty
+
+
+            schoolheadname = schoolheadname.toString();
+            schoooheadlastname = schoooheadlastname.toString();
+            schoolphoneemail = schoolphoneemail.toString();
+            formattedinput = formattedinput.toString();
+
+
+
+
+            if (hasEmptyValuefname || hasEmptyValuelname || hasEmptyValueemail || hasEmptyValuephone) {
+
+                if (maintag == '29') {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/createteacher-setup.php",
+                        data: {
+
+                            tagstate: tagstate,
+                            groupSchoolID: groupSchoolID,
+                            schoolheadname: schoolheadname,
+                            schoooheadlastname: schoooheadlastname,
+                            schoolphoneemail: schoolphoneemail,
+                            formattedinput: formattedinput,
+                            UserID: UserID,
+                            schoolheadname: schoolheadname,
+                            usertype: usertype,
+                            CampusID: CampusID,
+                            maintag: maintag
+
+
+                        },
+
+
+                        success: function(result) {
+                            $('#createteacher-setup-btn').html('Create new');
+
+                            if (result.trim() == 'allexist') {
+
+                                $.wnoty({
+                                    type: 'warning',
+                                    message: "Hey!! this email already exist",
+                                    autohideDelay: 5000
+                                });
+
+
+                            } else {
+
+
+                                $('#proscreateschool-teacher').animate({
+                                    // opacity: 0.5,
+                                    left: '+=50',
+                                    height: 'toggle'
+                                }, 1000);
+                                $('#createotherschooltype-setup').fadeIn('slow');
+
+
+
+
+
+                                // loadsetup content on create teacher 
 
                                 $('#pros-displaysetup-content').html(
-                                    '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+                                    '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>'
+                                    );
+
                                 $.ajax({
-                        
+
                                     type: "POST",
                                     url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
                                     data: {
@@ -4655,535 +5284,296 @@ $('body').on('click', '#pros-create-schoolheadbtn', function(e) {
                                         CampusID: CampusID
                                     },
                                     success: function(result) {
-                        
+
                                         $('#pros-displaysetup-content').html(result);
-                        
-                        
-                                        var head_phone = window.intlTelInput(document.querySelector("#pros-headnumset"), {
-                                            separateDialCode: true,
-                                            preferredCountries: ["ng"],
-                                            hiddenInput: "full",
-                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                        });
-                        
-                        
-                        
-                                        var head_phone = window.intlTelInput(document.querySelector(
-                                            "#pros-teachernumset"), {
-                                            separateDialCode: true,
-                                            preferredCountries: ["ng"],
-                                            hiddenInput: "full",
-                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                        });
-                        
-                                        var head_phone = window.intlTelInput(document.querySelector("#pros-adminnumset"), {
-                                            separateDialCode: true,
-                                            preferredCountries: ["ng"],
-                                            hiddenInput: "full",
-                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                        });
-                        
-                        
+
+
+                                        var head_phone = window.intlTelInput(document
+                                            .querySelector("#pros-headnumset"), {
+                                                separateDialCode: true,
+                                                preferredCountries: ["ng"],
+                                                hiddenInput: "full",
+                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                            });
+
+
+
+                                        var head_phone = window.intlTelInput(document
+                                            .querySelector(
+                                                "#pros-teachernumset"), {
+                                                separateDialCode: true,
+                                                preferredCountries: ["ng"],
+                                                hiddenInput: "full",
+                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                            });
+
+                                        var head_phone = window.intlTelInput(document
+                                            .querySelector("#pros-adminnumset"), {
+                                                separateDialCode: true,
+                                                preferredCountries: ["ng"],
+                                                hiddenInput: "full",
+                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                            });
+
+
                                         var tagstatusnew = tagstate;
-                        
+
+
                                         $('#prosloadschoolid-forbackward').val(CampusID);
-                        
-                        
+
+
                                         if (maintag == '29' && tagstatusnew == '') {
-                        
-                                            $('#pros-reducemodalclasstypesetup').css('width', '700px');
+
+                                            $('#pros-reducemodalclasstypesetup').css('width',
+                                                '700px');
                                             //if campus havent't started setiing up it should start from the begginning
                                             $('#pros-loadimportoption').fadeIn('slow');
-                        
+
                                         } else {
-                        
-                        
-                        
+
+
+
                                             if (tagstatusnew == '' || tagstatusnew == '15') {
-                                                $('#displaysection-content').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#displaysection-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
 
-                                            } else if (tagstatusnew == '16') {
+                                                    } else if (tagstatusnew == '16') {
 
-                                                $('#pros-displayhead-setup').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(15);
-
-
-
-                                            } else if (tagstatusnew == '17') {
-
-                                                $('#assignschoolheadfaculty  ').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(16);
-
-                                            } else if (tagstatusnew == '18') {
-                                                $('#proscreateschool-teacher').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(17);
-
-                                            } else if (tagstatusnew == '19') {
-                                                $('#createotherschooltype-setup').fadeIn('slow');
-
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(18);
-
-                                            } else if (tagstatusnew == '20') {
-
-                                                $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                                                $('#createwelcomemsg-setup').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(19);
+                                                        $('#pros-displayhead-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(15);
 
 
-                                            } else if (tagstatusnew == '21') {
 
-                                                $('#createclasses-setup ').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(20);
+                                                    } else if (tagstatusnew == '17') {
 
-                                                // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
+                                                        $('#assignschoolheadfaculty  ').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(16);
 
-                                            } else if (tagstatusnew == '22') {
+                                                    } else if (tagstatusnew == '18') {
+                                                        $('#proscreateschool-teacher').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(17);
 
-                                                $('#createsubject-setup').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(21);
+                                                    } else if (tagstatusnew == '19') {
+                                                        $('#createotherschooltype-setup').fadeIn('slow');
 
-                                            } else if (tagstatusnew == '23') {
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(18);
 
-                                                $('#mergesubjectcontent').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(22);
+                                                    } else if (tagstatusnew == '20') {
 
+                                                        $('#pros-reducemodalclasstypesetup').css('width', '700px');
 
-                                            } else if (tagstatusnew == '24') {
-
-                                                $('#pros-assign-formteachercontent').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(23);
-
-                                            } else if (tagstatusnew == '25') {
-
-                                                $('#assignsubject-teachercontainer').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(24);
-
-                                            } else if (tagstatusnew == '26') {
-
-                                                $('#pros-loadsession-termcontent').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(25);
-
-                                            } else if (tagstatusnew == '27') {
-
-                                                $('#pros-schlogo-content').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(26);
-
-                                            }else if(tagstatusnew == '28')
-                                            {
-                                                $('#prosschool-bgimage-content').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(27);
+                                                        $('#createwelcomemsg-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(19);
 
 
-                                            }else if(tagstatusnew == '29')
-                                            {
+                                                    } else if (tagstatusnew == '21') {
 
-                                                            //setup completed
-                                            
-                                            }
-                        
+                                                        $('#createclasses-setup ').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(20);
+
+                                                        // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
+
+                                                    } else if (tagstatusnew == '22') {
+
+                                                        $('#createsubject-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(21);
+
+                                                    } else if (tagstatusnew == '23') {
+
+                                                        $('#mergesubjectcontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(22);
+
+
+                                                    } else if (tagstatusnew == '24') {
+
+                                                        $('#pros-assign-formteachercontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(23);
+
+                                                    } else if (tagstatusnew == '25') {
+
+                                                        $('#assignsubject-teachercontainer').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(24);
+
+                                                    } else if (tagstatusnew == '26') {
+
+                                                        $('#pros-loadsession-termcontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(25);
+
+                                                    } else if (tagstatusnew == '27') {
+
+                                                        $('#pros-schlogo-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(26);
+
+                                                    }else if(tagstatusnew == '28')
+                                                    {
+                                                        $('#prosschool-bgimage-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(27);
+
+
+                                                    }else if(tagstatusnew == '29')
+                                                    {
+
+                                                                    //setup completed
+                                                    
+                                                    }
+
                                         }
-                        
-                        
-                        
-                        
+
+
+
+
+
+
+
                                         const selectBtnnewsubject = document.querySelector(
                                                 ".getsubjectopenondocument-ready1"),
-                                            itemssubject = document.querySelectorAll(".subjectlistmeslist");
+                                            itemssubject = document.querySelectorAll(
+                                                ".subjectlistmeslist");
                                         selectBtnnewsubject.classList.toggle("open");
-                        
-                        
-                        
-                        
-                        
-                                        $('body').on('click', '.createsubjectgeneral', function() {
+
+
+
+                                        $('body').on('click', '.createsubjectgeneral',
+                                        function() {
                                             var facultyid = $(this).data('faculty');
-                        
-                                            const selectBtn = document.querySelector(".pros-opensubjectwhenclick" +
+
+                                            const selectBtn = document.querySelector(
+                                                    ".pros-opensubjectwhenclick" +
                                                     facultyid),
-                                                items = document.querySelectorAll(".subjectlistmeslist");
-                        
+                                                items = document.querySelectorAll(
+                                                    ".subjectlistmeslist");
+
                                             // Toggle the "open" subject when the selectBtn is clicked
                                             selectBtn.classList.toggle("open");
                                         });
-                        
-                        
+
                                     }
                                 });
 
-                            // load setupcontent here //
-                    
-                    
-                    
-                    
+
+                                // loadsetup content on create teacher 
+
+
+
+
+
+
+
+                            }
+
+                        }
+
+                    });
+
+
+                } else {
+
+
+
+                        $.wnoty({
+                                type: 'warning',
+                                message: "Hey! Please make sure teachers' basic details are not left blank.",
+                                autohideDelay: 5000
+                        });
+
+                        $('#createteacher-setup-btn').html('Create new');
 
                 }
 
-            }
-
-        });
 
 
-
-      
-    }
-
-})
-//add school head setup end
-
-
-
-$('body').on('click', '.pros-generalsechead', function() {
-    var facultyid = $(this).data('id');
-   
-
-    const selectBtn = document.querySelector(".prosopendrophead" + facultyid),
-        items = document.querySelectorAll(".item");
-
-    // Toggle the "open" class when the selectBtn is clicked
-    selectBtn.classList.toggle("open");
-});
-// This is a comment describing what the code does
-
-
-$('body').on('click', '.pros-generalformteach', function() {
-    var facultyid = $(this).data('id');
-    
-
-    const selectBtn = document.querySelector(".pros-assignformteacherbtncollapse" + facultyid),
-        items = document.querySelectorAll(".item");
-
-    // Toggle the "open" class when the selectBtn is clicked
-    selectBtn.classList.toggle("open");
-});
-// This is a comment describing what the code does
-
-
-// School head check in Prosper
-$('body').on('click', '.prosgenerallist-itemssel', function(event) {
-    var facultyID = $(this).data('id');
-    var facunewcheck = $(this).data('faculty');
-    
-    // Check if the event target is a checkbox or not
-    if (event.target.type !== 'checkbox') {
-        // Toggle the checked state of the corresponding checkbox
-        var verychecked = $('.proscheckboxinside' + facultyID).prop("checked");
-        $('.proscheckboxinside' + facultyID).prop("checked", !verychecked);
-    }
-
-    // Count the number of checked checkboxes
-    let checked = $('.checkshoolheadnew' + facunewcheck + ':checked').length;
-
-    btnText = document.querySelector(".pros-headdisplaynumslected" + facunewcheck);
-
-    // Update the display based on the count
-    if (checked > 0) {
-        btnText.innerText = `(${checked} Selected)`;
-    } else {
-        btnText.innerText = "";
-    }
-});
-
-
-
-$('body').on('change', '.pros-generalcheckschoolhead', function() {
-    // Find the closest ancestor div with the class '.pros-generalcheckschoolhead'
-    var container = $(this).closest('.pros-generalcheckschoolhead');
-
-    // Extract data attributes from the closest ancestor div
-    var facultyID = container.data('faculty');
-    var staffID = container.data('staff');
-
-    // Toggle the checked state of the corresponding checkbox
-    var verychecked = $('.proscheckboxinside' + facultyID + staffID, container).prop("checked");
-    $('.proscheckboxinside' + facultyID + staffID, container).prop("checked", !verychecked);
-
-    // Count the number of checked radio buttons
-    let checked = parseInt($('.checkshoolheadnew' + facultyID + ':checked').length);
-
-    // Update the display based on the count
-    btnText = container.find(".pros-headdisplaynumslected" + facultyID);
-
-    if (checked > 0) {
-        btnText.text(`(${checked} Selected)`);
-    } else {
-        btnText.text("");
-    }
-});
-//school head check here prosper input itself
-
-
-
-// create teacher onboarding start here
-$('body').on('click', '#createteacher-setup-btn', function(e) {
-    $('#createteacher-setup-btn').html('<span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span class="visually-hidden" role="status">Loading...</span>');
-
-    var tagstate = $(this).data('tag');
-    var groupSchoolID = $(this).data('school');
-    var validatestatus = $('#checkvalidatedteacher').val();
-    var UserID = "<?php echo $UserID; ?>";
-    var usertype = '';
-    var CampusID = $(this).data('campus');
-    var maintag = $(this).data('maintag');
-    var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-
-
-    var schoolheadname = [];
-
-    $('.generalteacherfirstname').each(function() {
-        schoolheadname.push($(this).val());
-
-        var dataid = $(this).data('id');
-        var firstnamevaliate = $('#teacherinsertid' + dataid).val();
-
-        if (firstnamevaliate == '' || firstnamevaliate == ',') {
-            $('.teacherfnamecover' + dataid).css('outline', '1px solid red');
-            $('#checkvalidatedteacher').val('invalid');
-           
-
-            // $.wnoty({
-            //     type: 'warning',
-            //     message: "hey! enter your staff's first name.",
-            //     autohideDelay: 5000
-            // });
-        } else {
-            $('.teacherfnamecover' + dataid).css('outline', '1px solid green');
-            $('#checkvalidatedteacher').val('valid');
-           
-        }
-
-    });
-
-
-
-    var schoooheadlastname = [];
-
-    $('.generalteacherltname').each(function() {
-        schoooheadlastname.push($(this).val());
-
-
-        var dataid = $(this).data('id');
-        var lastnamevaliate = $('#teacher-lname' + dataid).val();
-
-        if (lastnamevaliate == '' || lastnamevaliate == ',') {
-            $('.teacherlnamecover' + dataid).css('outline', '1px solid red');
-            $('#checkvalidatedteacher').val('invalid');
-            
-
-            // $.wnoty({
-            //     type: 'warning',
-            //     message: "hey! enter your staff's last name.",
-            //     autohideDelay: 5000
-            // });
-        } else {
-            $('.teacherlnamecover' + dataid).css('outline', '1px solid green');
-            $('#checkvalidatedteacher').val('valid');
-            
-        }
-
-    });
-
-    var schoolphoneemail = [];
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    $('.generalteacheremail').each(function() {
-        schoolphoneemail.push($(this).val());
-        var dataid = $(this).data('id');
-
-        var lastnameemail = $('#teacher-email' + dataid).val();
-
-
-        if (lastnameemail == '' || lastnameemail == ',') {
-            $('.teacheremailcover' + dataid).css('outline', '1px solid red');
-            $('#checkvalidatedteacher').val('invalid');
-            
-
-            // $.wnoty({
-            //     type: 'warning',
-            //     message: "hey! email should not be blank",
-            //     autohideDelay: 5000
-            // });
-        } else {
-
-
-
-            if (!emailPattern.test(lastnameemail)) {
-                $.wnoty({
-                    type: 'warning',
-                    message: "hey! enter a valid email.",
-                    autohideDelay: 5000
-                });
-
-                $('.teacheremailcover' + dataid).css('outline', '1px solid red');
-                $('#checkvalidatedteacher').val('invalid');
-                
             } else {
-                $('.teacheremailcover' + dataid).css('outline', '1px solid green');
-                $('#checkvalidatedteacher').val('valid');
-               
-            }
-
-        }
 
 
-    });
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/createteacher-setup.php",
+                    data: {
 
+                        tagstate: tagstate,
+                        groupSchoolID: groupSchoolID,
+                        schoolheadname: schoolheadname,
+                        schoooheadlastname: schoooheadlastname,
+                        schoolphoneemail: schoolphoneemail,
+                        formattedinput: formattedinput,
+                        UserID: UserID,
+                        schoolheadname: schoolheadname,
+                        usertype: usertype,
+                        CampusID: CampusID,
+                        maintag: maintag
 
-
-
-    var schoolnum = [];
-
-    $('.generalteachernum').each(function() {
-        schoolnum.push($(this).val());
-        var dataid = $(this).data('id');
-
-        var numhead = $('#pros-teachernumset' + dataid).val();
-
-        if (numhead == '' || numhead == ',') {
-            $('.teachernumcover' + dataid).css('outline', '1px solid red');
-            $('#checkvalidatedteacher').val('invalid');
-            
-                   
-        } else {
-            $('.teachernumcover' + dataid).css('outline', '1px solid green');
-            $('#checkvalidatedteacher').val('valid');
-            
-        }
-
-    });
+                    },
 
 
 
-    var formattedinput = [];
-    document.querySelectorAll('.generalteachernum').forEach(function(input) {
-        // Get the `intlTelInput` plugin instance for the input field
-        var iti = window.intlTelInputGlobals.getInstance(input);
-        // Get the raw phone number value from the input field
-        var numberformat = input.value;
-        // Use the `intlTelInputUtils` library to format the phone number with its country code
-        formattedinput.push(intlTelInputUtils.formatNumber(numberformat, iti.getSelectedCountryData()
-            .iso2));
-        // Display the formatted phone number in an alert message
-    });
+                    success: function(result) {
+                        $('#createteacher-setup-btn').html('Create new');
+
+                        if (result.trim() == 'allexist') {
+
+                            $.wnoty({
+                                type: 'warning',
+                                message: "Hey!! this email already exist",
+                                autohideDelay: 5000
+                            });
 
 
-    //trim no value is left empty
-    var hasEmptyValuefname = schoolheadname.some(function(value) {
-        return value.trim() === '';
-    });
-
-    var hasEmptyValuelname = schoooheadlastname.some(function(value) {
-        return value.trim() === '';
-    });
-
-    var hasEmptyValueemail = schoolphoneemail.some(function(value) {
-
-        return value.trim() === '';
-    });
-
-    var hasEmptyValuephone = formattedinput.some(function(value) {
-        return value.trim() === '';
-    });
-    //trim no value is left empty
+                        } else {
 
 
-    schoolheadname = schoolheadname.toString();
-    schoooheadlastname = schoooheadlastname.toString();
-    schoolphoneemail = schoolphoneemail.toString();
-    formattedinput = formattedinput.toString();
+                            $.wnoty({
+                                type: 'success',
+                                message: "hey! teacher created successfully.",
+                                autohideDelay: 5000
+                            });
+
+
+                            $('#proscreateschool-teacher').animate({
+                                // opacity: 0.5,
+                                left: '+=50',
+                                height: 'toggle'
+                            }, 1000);
+                            $('#createotherschooltype-setup').fadeIn('slow');
 
 
 
+                            // loadsetup content on create teacher 
 
-    if (hasEmptyValuefname || hasEmptyValuelname || hasEmptyValueemail || hasEmptyValuephone) {
+                            $('#pros-displaysetup-content').html(
+                                '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>'
+                                );
 
-        if (maintag == '29') {
+                            $.ajax({
 
-            $.ajax({
-                type: "POST",
-                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/createteacher-setup.php",
-                data: {
+                                type: "POST",
+                                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
+                                data: {
+                                    UserID: UserID,
+                                    ownerfirst_Name: ownerfirst_Name,
+                                    tagstate: tagstate,
+                                    groupSchoolID: groupSchoolID,
+                                    CampusID: CampusID
+                                },
+                                success: function(result) {
 
-                    tagstate: tagstate,
-                    groupSchoolID: groupSchoolID,
-                    schoolheadname: schoolheadname,
-                    schoooheadlastname: schoooheadlastname,
-                    schoolphoneemail: schoolphoneemail,
-                    formattedinput: formattedinput,
-                    UserID: UserID,
-                    schoolheadname: schoolheadname,
-                    usertype: usertype,
-                    CampusID: CampusID,
-                    maintag: maintag
-
-
-                },
+                                    $('#pros-displaysetup-content').html(result);
 
 
-                success: function(result) {
-                    $('#createteacher-setup-btn').html('Create new');
-
-                    if (result.trim() == 'allexist') {
-
-                        $.wnoty({
-                            type: 'warning',
-                            message: "Hey!! this email already exist",
-                            autohideDelay: 5000
-                        });
-
-
-                    } else {
-
-
-                        $('#proscreateschool-teacher').animate({
-                            // opacity: 0.5,
-                            left: '+=50',
-                            height: 'toggle'
-                        }, 1000);
-                        $('#createotherschooltype-setup').fadeIn('slow');
-
-
-
-
-
-                        // loadsetup content on create teacher 
-
-                        $('#pros-displaysetup-content').html(
-                            '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>'
-                            );
-
-                        $.ajax({
-
-                            type: "POST",
-                            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
-                            data: {
-                                UserID: UserID,
-                                ownerfirst_Name: ownerfirst_Name,
-                                tagstate: tagstate,
-                                groupSchoolID: groupSchoolID,
-                                CampusID: CampusID
-                            },
-                            success: function(result) {
-
-                                $('#pros-displaysetup-content').html(result);
-
-
-                                var head_phone = window.intlTelInput(document
-                                    .querySelector("#pros-headnumset"), {
+                                    var head_phone = window.intlTelInput(document.querySelector(
+                                        "#pros-headnumset"), {
                                         separateDialCode: true,
                                         preferredCountries: ["ng"],
                                         hiddenInput: "full",
@@ -5192,8 +5582,7 @@ $('body').on('click', '#createteacher-setup-btn', function(e) {
 
 
 
-                                var head_phone = window.intlTelInput(document
-                                    .querySelector(
+                                    var head_phone = window.intlTelInput(document.querySelector(
                                         "#pros-teachernumset"), {
                                         separateDialCode: true,
                                         preferredCountries: ["ng"],
@@ -5201,8 +5590,8 @@ $('body').on('click', '#createteacher-setup-btn', function(e) {
                                         utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
                                     });
 
-                                var head_phone = window.intlTelInput(document
-                                    .querySelector("#pros-adminnumset"), {
+                                    var head_phone = window.intlTelInput(document.querySelector(
+                                        "#pros-adminnumset"), {
                                         separateDialCode: true,
                                         preferredCountries: ["ng"],
                                         hiddenInput: "full",
@@ -5210,404 +5599,154 @@ $('body').on('click', '#createteacher-setup-btn', function(e) {
                                     });
 
 
-                                var tagstatusnew = tagstate;
+                                    var tagstatusnew = tagstate;
 
 
-                                $('#prosloadschoolid-forbackward').val(CampusID);
+                                    $('#prosloadschoolid-forbackward').val(CampusID);
 
 
-                                if (maintag == '29' && tagstatusnew == '') {
+                                    if (maintag == '29' && tagstatusnew == '') {
 
-                                    $('#pros-reducemodalclasstypesetup').css('width',
-                                        '700px');
-                                    //if campus havent't started setiing up it should start from the begginning
-                                    $('#pros-loadimportoption').fadeIn('slow');
+                                        $('#pros-reducemodalclasstypesetup').css('width',
+                                            '700px');
+                                        //if campus havent't started setiing up it should start from the begginning
+                                        $('#pros-loadimportoption').fadeIn('slow');
 
-                                } else {
-
-
-
-                                    if (tagstatusnew == '' || tagstatusnew == '15') {
-                                                $('#displaysection-content').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-
-                                            } else if (tagstatusnew == '16') {
-
-                                                $('#pros-displayhead-setup').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(15);
+                                    } else {
 
 
 
-                                            } else if (tagstatusnew == '17') {
+                                        if (tagstatusnew == '' || tagstatusnew == '15') {
+                                                        $('#displaysection-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
 
-                                                $('#assignschoolheadfaculty  ').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(16);
+                                                    } else if (tagstatusnew == '16') {
 
-                                            } else if (tagstatusnew == '18') {
-                                                $('#proscreateschool-teacher').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(17);
-
-                                            } else if (tagstatusnew == '19') {
-                                                $('#createotherschooltype-setup').fadeIn('slow');
-
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(18);
-
-                                            } else if (tagstatusnew == '20') {
-
-                                                $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                                                $('#createwelcomemsg-setup').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(19);
+                                                        $('#pros-displayhead-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(15);
 
 
-                                            } else if (tagstatusnew == '21') {
 
-                                                $('#createclasses-setup ').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(20);
+                                                    } else if (tagstatusnew == '17') {
 
-                                                // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
+                                                        $('#assignschoolheadfaculty  ').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(16);
 
-                                            } else if (tagstatusnew == '22') {
+                                                    } else if (tagstatusnew == '18') {
+                                                        $('#proscreateschool-teacher').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(17);
 
-                                                $('#createsubject-setup').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(21);
+                                                    } else if (tagstatusnew == '19') {
+                                                        $('#createotherschooltype-setup').fadeIn('slow');
 
-                                            } else if (tagstatusnew == '23') {
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(18);
 
-                                                $('#mergesubjectcontent').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(22);
+                                                    } else if (tagstatusnew == '20') {
 
+                                                        $('#pros-reducemodalclasstypesetup').css('width', '700px');
 
-                                            } else if (tagstatusnew == '24') {
-
-                                                $('#pros-assign-formteachercontent').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(23);
-
-                                            } else if (tagstatusnew == '25') {
-
-                                                $('#assignsubject-teachercontainer').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(24);
-
-                                            } else if (tagstatusnew == '26') {
-
-                                                $('#pros-loadsession-termcontent').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(25);
-
-                                            } else if (tagstatusnew == '27') {
-
-                                                $('#pros-schlogo-content').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(26);
-
-                                            }else if(tagstatusnew == '28')
-                                            {
-                                                $('#prosschool-bgimage-content').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(27);
+                                                        $('#createwelcomemsg-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(19);
 
 
-                                            }else if(tagstatusnew == '29')
-                                            {
+                                                    } else if (tagstatusnew == '21') {
 
-                                                            //setup completed
-                                            
-                                            }
+                                                        $('#createclasses-setup ').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(20);
+
+                                                        // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
+
+                                                    } else if (tagstatusnew == '22') {
+
+                                                        $('#createsubject-setup').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(21);
+
+                                                    } else if (tagstatusnew == '23') {
+
+                                                        $('#mergesubjectcontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(22);
+
+
+                                                    } else if (tagstatusnew == '24') {
+
+                                                        $('#pros-assign-formteachercontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(23);
+
+                                                    } else if (tagstatusnew == '25') {
+
+                                                        $('#assignsubject-teachercontainer').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(24);
+
+                                                    } else if (tagstatusnew == '26') {
+
+                                                        $('#pros-loadsession-termcontent').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(25);
+
+                                                    } else if (tagstatusnew == '27') {
+
+                                                        $('#pros-schlogo-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(26);
+
+                                                    }else if(tagstatusnew == '28')
+                                                    {
+                                                        $('#prosschool-bgimage-content').fadeIn('slow');
+                                                        $('#movebackbtn-setup').fadeIn('slow');
+                                                        $('#pros-displaybackvalue-tag').val(27);
+
+
+                                                    }else if(tagstatusnew == '29')
+                                                    {
+
+                                                                    //setup completed
+                                                    
+                                                    }
+
+                                    }
+
+
+
+
+
+
+
+                                    const selectBtnnewsubject = document.querySelector(
+                                            ".getsubjectopenondocument-ready1"),
+                                        itemssubject = document.querySelectorAll(
+                                            ".subjectlistmeslist");
+                                    selectBtnnewsubject.classList.toggle("open");
+
+
+
+                                    $('body').on('click', '.createsubjectgeneral', function() {
+                                        var facultyid = $(this).data('faculty');
+
+                                        const selectBtn = document.querySelector(
+                                                ".pros-opensubjectwhenclick" +
+                                                facultyid),
+                                            items = document.querySelectorAll(
+                                                ".subjectlistmeslist");
+
+                                        // Toggle the "open" subject when the selectBtn is clicked
+                                        selectBtn.classList.toggle("open");
+                                    });
 
                                 }
-
-
-
-
-
-
-
-                                const selectBtnnewsubject = document.querySelector(
-                                        ".getsubjectopenondocument-ready1"),
-                                    itemssubject = document.querySelectorAll(
-                                        ".subjectlistmeslist");
-                                selectBtnnewsubject.classList.toggle("open");
-
-
-
-                                $('body').on('click', '.createsubjectgeneral',
-                                function() {
-                                    var facultyid = $(this).data('faculty');
-
-                                    const selectBtn = document.querySelector(
-                                            ".pros-opensubjectwhenclick" +
-                                            facultyid),
-                                        items = document.querySelectorAll(
-                                            ".subjectlistmeslist");
-
-                                    // Toggle the "open" subject when the selectBtn is clicked
-                                    selectBtn.classList.toggle("open");
-                                });
-
-                            }
-                        });
-
-
-                        // loadsetup content on create teacher 
-
-
-
-
-
-
-
-                    }
-
-                }
-
-            });
-
-
-        } else {
-
-
-
-                $.wnoty({
-                        type: 'warning',
-                        message: "Hey! Please make sure teachers' basic details are not left blank.",
-                        autohideDelay: 5000
-                });
-
-                $('#createteacher-setup-btn').html('Create new');
-
-        }
-
-
-
-    } else {
-
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/createteacher-setup.php",
-            data: {
-
-                tagstate: tagstate,
-                groupSchoolID: groupSchoolID,
-                schoolheadname: schoolheadname,
-                schoooheadlastname: schoooheadlastname,
-                schoolphoneemail: schoolphoneemail,
-                formattedinput: formattedinput,
-                UserID: UserID,
-                schoolheadname: schoolheadname,
-                usertype: usertype,
-                CampusID: CampusID,
-                maintag: maintag
-
-            },
-
-
-
-            success: function(result) {
-                $('#createteacher-setup-btn').html('Create new');
-
-                if (result.trim() == 'allexist') {
-
-                    $.wnoty({
-                        type: 'warning',
-                        message: "Hey!! this email already exist",
-                        autohideDelay: 5000
-                    });
-
-
-                } else {
-
-
-                    $.wnoty({
-                        type: 'success',
-                        message: "hey! teacher created successfully.",
-                        autohideDelay: 5000
-                    });
-
-
-                    $('#proscreateschool-teacher').animate({
-                        // opacity: 0.5,
-                        left: '+=50',
-                        height: 'toggle'
-                    }, 1000);
-                    $('#createotherschooltype-setup').fadeIn('slow');
-
-
-
-                    // loadsetup content on create teacher 
-
-                    $('#pros-displaysetup-content').html(
-                        '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>'
-                        );
-
-                    $.ajax({
-
-                        type: "POST",
-                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
-                        data: {
-                            UserID: UserID,
-                            ownerfirst_Name: ownerfirst_Name,
-                            tagstate: tagstate,
-                            groupSchoolID: groupSchoolID,
-                            CampusID: CampusID
-                        },
-                        success: function(result) {
-
-                            $('#pros-displaysetup-content').html(result);
-
-
-                            var head_phone = window.intlTelInput(document.querySelector(
-                                "#pros-headnumset"), {
-                                separateDialCode: true,
-                                preferredCountries: ["ng"],
-                                hiddenInput: "full",
-                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
                             });
 
 
-
-                            var head_phone = window.intlTelInput(document.querySelector(
-                                "#pros-teachernumset"), {
-                                separateDialCode: true,
-                                preferredCountries: ["ng"],
-                                hiddenInput: "full",
-                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                            });
-
-                            var head_phone = window.intlTelInput(document.querySelector(
-                                "#pros-adminnumset"), {
-                                separateDialCode: true,
-                                preferredCountries: ["ng"],
-                                hiddenInput: "full",
-                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                            });
-
-
-                            var tagstatusnew = tagstate;
-
-
-                            $('#prosloadschoolid-forbackward').val(CampusID);
-
-
-                            if (maintag == '29' && tagstatusnew == '') {
-
-                                $('#pros-reducemodalclasstypesetup').css('width',
-                                    '700px');
-                                //if campus havent't started setiing up it should start from the begginning
-                                $('#pros-loadimportoption').fadeIn('slow');
-
-                            } else {
-
-
-
-                                if (tagstatusnew == '' || tagstatusnew == '15') {
-                                                $('#displaysection-content').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-
-                                            } else if (tagstatusnew == '16') {
-
-                                                $('#pros-displayhead-setup').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(15);
-
-
-
-                                            } else if (tagstatusnew == '17') {
-
-                                                $('#assignschoolheadfaculty  ').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(16);
-
-                                            } else if (tagstatusnew == '18') {
-                                                $('#proscreateschool-teacher').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(17);
-
-                                            } else if (tagstatusnew == '19') {
-                                                $('#createotherschooltype-setup').fadeIn('slow');
-
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(18);
-
-                                            } else if (tagstatusnew == '20') {
-
-                                                $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                                                $('#createwelcomemsg-setup').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(19);
-
-
-                                            } else if (tagstatusnew == '21') {
-
-                                                $('#createclasses-setup ').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(20);
-
-                                                // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
-
-                                            } else if (tagstatusnew == '22') {
-
-                                                $('#createsubject-setup').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(21);
-
-                                            } else if (tagstatusnew == '23') {
-
-                                                $('#mergesubjectcontent').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(22);
-
-
-                                            } else if (tagstatusnew == '24') {
-
-                                                $('#pros-assign-formteachercontent').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(23);
-
-                                            } else if (tagstatusnew == '25') {
-
-                                                $('#assignsubject-teachercontainer').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(24);
-
-                                            } else if (tagstatusnew == '26') {
-
-                                                $('#pros-loadsession-termcontent').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(25);
-
-                                            } else if (tagstatusnew == '27') {
-
-                                                $('#pros-schlogo-content').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(26);
-
-                                            }else if(tagstatusnew == '28')
-                                            {
-                                                $('#prosschool-bgimage-content').fadeIn('slow');
-                                                $('#movebackbtn-setup').fadeIn('slow');
-                                                $('#pros-displaybackvalue-tag').val(27);
-
-
-                                            }else if(tagstatusnew == '29')
-                                            {
-
-                                                            //setup completed
-                                            
-                                            }
-
-                            }
+                            // loadsetup content on create teacher 
 
 
 
@@ -5615,52 +5754,14 @@ $('body').on('click', '#createteacher-setup-btn', function(e) {
 
 
 
-                            const selectBtnnewsubject = document.querySelector(
-                                    ".getsubjectopenondocument-ready1"),
-                                itemssubject = document.querySelectorAll(
-                                    ".subjectlistmeslist");
-                            selectBtnnewsubject.classList.toggle("open");
-
-
-
-                            $('body').on('click', '.createsubjectgeneral', function() {
-                                var facultyid = $(this).data('faculty');
-
-                                const selectBtn = document.querySelector(
-                                        ".pros-opensubjectwhenclick" +
-                                        facultyid),
-                                    items = document.querySelectorAll(
-                                        ".subjectlistmeslist");
-
-                                // Toggle the "open" subject when the selectBtn is clicked
-                                selectBtn.classList.toggle("open");
-                            });
 
                         }
-                    });
+                    }
+                });
 
-
-                    // loadsetup content on create teacher 
-
-
-
-
-
-
-
-
-                }
             }
         });
-
-    }
-});
-// create teacher onboarding end here
-
-
-
-
-
+        // create teacher onboarding end here
 
 
 
@@ -7552,10 +7653,12 @@ $('body').on('click', '#createsubject-setup-btn', function(e) {
             success: function(result) {
                
 
+                // alert(result);
+
 
                 $('#createsubject-setup-btn').html('Create subject');
 
-                if (result == 'found') {
+                if (result.trim() == 'found') {
 
                     $.wnoty({
                         type: 'warning',
@@ -7564,7 +7667,7 @@ $('body').on('click', '#createsubject-setup-btn', function(e) {
                     });
 
 
-                } else if(result== 'success') {
+                } else if(result.trim()== 'success') {
 
                     $.wnoty({
                         type: 'success',
@@ -10181,7 +10284,7 @@ $('body').on('click', '#pros-createsession-termbtn', function() {
                 $('#pros-createsession-termbtn').html('Proceed');
 
 
-                if (pros_output === 'success') {
+                if (pros_output.trim() === 'success') {
 
                     $.wnoty({
                         type: 'success',
@@ -10470,7 +10573,7 @@ $('body').on('click', '#pros-proceeimport-campussetup', function() {
           
             $('#pros-proceeimport-campussetup').html('Proceed');
 
-            if (pros_output === 'success') {
+            if (pros_output.trim() == 'success') {
 
                 $.wnoty({
                     type: 'success',
@@ -10842,74 +10945,53 @@ $(document).ready(function() {
 
      $('body').on('click','.prosgeneralcliklinkhere', function(){
 
-                    var proscampusID = $('#prosloadquestionsettingcampusid').val();
-                    var sectstage = $(this).data('step');
-
-                    
+            var proscampusID = $('#prosloadquestionsettingcampusid').val();
+            var sectstage = $(this).data('step');
 
 
-                    if(sectstage == 'section')
-                    {
+            if(sectstage == 'section')
+            {
 
-                        var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/section?camp=' + proscampusID;
-                         window.location.href = prosdefaulturl;
+                var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/section?camp=' + proscampusID;
+                    window.location.href = prosdefaulturl;
 
-                    }else if(sectstage == 'term')
-                    {
-                        var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/term?camp=' + proscampusID;
-                         window.location.href = prosdefaulturl;
+            }else if(sectstage == 'term')
+            {
+                var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/term?camp=' + proscampusID;
+                    window.location.href = prosdefaulturl;
 
-                    }else if(sectstage == 'logo')
-                    {
-                        
-
-
-                        var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/logo?camp=' + proscampusID + '&tabrel=logo';
-                        window.location.href = prosdefaulturl;
-
-                       
-                    }else if(sectstage == 'loginbg')
-                    {
+            }else if(sectstage == 'logo')
+            {
+                
 
 
-                                    var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/logo?camp=' + proscampusID + '&tabrel=lbg';
-                                    window.location.href = prosdefaulturl;
+                var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/logo?camp=' + proscampusID + '&tabrel=logo';
+                window.location.href = prosdefaulturl;
+
+                
+            }else if(sectstage == 'loginbg')
+            {
 
 
-                    }else if(sectstage == 'class')
-                    {
-                        
-                                     var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/academics?camp=' + proscampusID;
-                                     window.location.href = prosdefaulturl;
-    
-                        
-                    }else if(sectstage == 'subject')
-                    {
-                        
-                         var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/academics?camp=' + proscampusID;
+                            var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/logo?camp=' + proscampusID + '&tabrel=lbg';
                             window.location.href = prosdefaulturl;
-    
-                    }
-
-           
-                    
 
 
+            }else if(sectstage == 'class')
+            {
+                
+                                var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/academics?camp=' + proscampusID;
+                                window.location.href = prosdefaulturl;
 
+                
+            }else if(sectstage == 'subject')
+            {
+                
+                    var prosdefaulturl = '<?php echo $defaultUrl; ?>' + 'app/academics?camp=' + proscampusID;
+                    window.location.href = prosdefaulturl;
 
+            }
 
-            
-
-        // 
      });
-
-
-
-    
-    
-
-     
-         
-
 
 </script>

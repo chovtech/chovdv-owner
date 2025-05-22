@@ -4,32 +4,15 @@
 
 <?php
 
-            $prosselectschoolplanconetentnew = mysqli_query($link,"SELECT * FROM `institution` WHERE AgencyOrSchoolOwnerID='$UserID'");
-            $prosselectschoolplanconetentcntrownew = mysqli_fetch_assoc($prosselectschoolplanconetentnew);
-            $prosselectschoolplanconetentcntnew = mysqli_num_rows($prosselectschoolplanconetentnew);
-            
-            $NoDaysToCountnew = $prosselectschoolplanconetentcntrownew['NoDaysToCount'];
-            $SubscriptionStatusnew = $prosselectschoolplanconetentcntrownew['SubscriptionStatus'];
-            
-            $StartCountDatenew = $prosselectschoolplanconetentcntrownew['StartCountDate'];
-            
-                if($SubscriptionStatusnew == '1')
-                {
-                    
-                          $prosdisabledmenu = "pros-disabled-menu";
-                          
-                          $proslockedicons = '<span style="float: right; margin-right: 5px;"><i class="bx bxs-lock prosremovealllock " style="font-size: 15px; font-weight: 600; color: #ffd700;"></i></span>';
-                    
-                }else
-                {
-                    
-                    
-                         $prosdisabledmenu = "";
-                         
-                         $proslockedicons = '';
-                    
-                }
-                
+       
+        
+            // disable menu setup mode
+            $pros_menuData = pros_locked_menu_onboarding($UserID);
+
+            // echo $pros_menuData['menu_class'];
+            // echo $pros_menuData['lock_icon'];
+            //  $pros_menuData['status'];
+
                
 
 
@@ -49,53 +32,54 @@
     </div>
 
     <ul class="sidebar-List">
-        <li class="sidebar-list-item ">
+        <li class="sidebar-list-item <?php echo $pros_menuData['dash_menu_class'];?>">
             <a href="<?php echo $defaultUrl;?>app/home">
                 <i class='bx bx-grid-alt' style="margin-right: 10px;"></i>
                 <span>Dashboard</span>
             </a>
-           
+            <?php echo $pros_menuData['dash_lock_icon'];?>
         </li>
         
          
                 
                 
 
-        <li class="sidebar-list-item <?php echo $prosdisabledmenu;?>">
+        <li class="sidebar-list-item <?php echo $pros_menuData['menu_class'];?>">
             <a href="<?php echo $defaultUrl;?>app/school">
                 <i class='fa fa-university sideicon' style="margin-right: 10px;"></i>
                 <span class="links_name">My School</span>
             </a>
-             <?php echo $proslockedicons;?>
+             <?php echo $pros_menuData['lock_icon'];?>
         </li>
-        <li class="sidebar-list-item">
+        <li class="sidebar-list-item <?php echo $pros_menuData['menu_class'];?>">
             <a href="<?php echo $defaultUrl;?>app/administration">
                 <i class='bx bxs-network-chart' style="margin-right: 10px;"></i>
                 <span class="links_name">Administration</span>
             </a>
-            <?php echo $proslockedicons;?>
+            <?php echo $pros_menuData['lock_icon'];?>
         </li>
-        <li class="sidebar-list-item <?php echo $prosdisabledmenu;?>">
+
+        <li class="sidebar-list-item <?php echo $pros_menuData['menu_class'];?>">
             <a href="<?php echo $defaultUrl;?>app/academics">
                 <i class='fa fa-book sideicon' style="margin-right: 10px;"></i>
                 <span class="links_name">Academic/E-learning</span>
             </a>
-            <?php echo $proslockedicons;?>
+            <?php echo $pros_menuData['lock_icon'];?>
         </li>
-        <li class="sidebar-list-item <?php echo $prosdisabledmenu;?>">
+        <li class="sidebar-list-item <?php echo $pros_menuData['menu_class'];?>">
             <a href="<?php echo $defaultUrl;?>app/finance">
                 <i class="fa fa-wallet sideicon" style="margin-right: 10px;"></i>
                 <span class="links_name">Finance</span>
             </a>
-            <?php echo $proslockedicons;?>
+            <?php echo $pros_menuData['lock_icon'];?>
         </li>
         
-        <li class="sidebar-list-item <?php echo $prosdisabledmenu;?>">
+        <li class="sidebar-list-item <?php echo $pros_menuData['menu_class'];?>">
             <a href="<?php echo $defaultUrl;?>app/admission-setup">
                 <i class="fa fa-graduation-cap sideicon" style="margin-right: 10px;"></i>
                 <span class="links_name">Admission</span>
             </a>
-            <?php echo $proslockedicons;?>
+            <?php echo $pros_menuData['lock_icon'];?>
         </li>
         
          <li class="sidebar-list-item">
@@ -123,13 +107,13 @@
         <!--    </a>-->
         <!--</li>-->
         
-        <li class="<?php echo $prosdisabledmenu;?>">
+        <li class="<?php echo $pros_menuData['menu_class'];?>">
             <div class="upgrades">
                 <span class="material-icons-sharp">update</span>
                 <h6>Upgrade your plan here</h6>
-                <button type="button" style="font-size: 10px;" class="btn btn-sm btn-primary">
+                <a href="<?php echo $defaultUrl; ?>app/upgrade" type="button" style="font-size: 10px;" class="btn btn-sm btn-primary">
                     Upgrade Plan
-                </button>
+            </a>
             </div>
 
             <small style="margin-left: 30%; cursor: pointer; font-size: 14px;" data-bs-toggle="modal"
@@ -137,7 +121,7 @@
                 <i class="fa fa-cog fa-spin"></i>
                 Settings
             </small>
-            <?php echo $proslockedicons;?>
+            <?php echo $pros_menuData['lock_icon'];?>
         </li>
     </ul>
 </aside>

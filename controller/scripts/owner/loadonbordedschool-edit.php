@@ -55,7 +55,7 @@
                                                             </div>
                                                             
                                                             <div class="pros-input-wrappernew schollurlerr-newedit">
-                                                                  <input name="schoolName" class="pros-flexi-input schoollinkclassedit" id="pros-editschoolurl" placeholder="e.g exampleschools" type="text" spacebottom="10px" required="" value="'.$newlink.'" style="width: 100%;border:none;">
+                                                                  <input name="schoolName" class="pros-flexi-input schoollinkclassedit" id="pros-editschoolurl" data-school="'.$groupofschoolID.'" placeholder="e.g exampleschools" type="text" spacebottom="10px" required="" value="'.$newlink.'" style="width: 100%;border:none;">
                                                                 <span class="pros-input-append">.edumess.com</span>
                                                             </div> &nbsp;&nbsp;&nbsp;
                                                             <span class="sc-iBPTik wIHaT" id="fullschoollinkconedit" data-school="'.$groupofschoolID.'" style="margin-top:-2px;margin-left:40px;color:blue;display:none;">https://<span id="schoollinkdisedit"></span>.edumess.com</span> <br>

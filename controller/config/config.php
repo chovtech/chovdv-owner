@@ -7,7 +7,7 @@
 	//==================DB Connection Parameters=============================================================
 
 	$server = 'localhost';
-	$username = 'edumplvx_edumessversiontwo_dev';
+	$username = 'root';
 	$password = '';
 	$database = 'edumplvx_edumessversiontwo_dev';
 	
@@ -28,9 +28,9 @@
 	$numofcharstobegenerated = 6;
 
 	//================Get the unique Information for page customization=======================================
-	$defaultUrl = "https://dev.edumess.com/";
+	$defaultUrl = "http://localhost/chovdv-owner/";
 	
-    $appUrl = "https://dev.edumess.com/";
+    $appUrl = "http://localhost/chovdv-owner/";
 
 	// $selectserveretails = mysqli_query($link,"SELECT * FROM `serverpassword`");
     // $selectserveretailscnt = mysqli_fetch_assoc($selectserveretails);
@@ -94,6 +94,100 @@
 
 	}
 
+
+	// pros lock menu oboarding process and subscription status
+		function pros_locked_menu_onboarding($UserID) {
+			global $link;
+		
+			// Initialize default return values
+			$result = [
+				'menu_class' => '',
+				'lock_icon'  => '',
+				'status'     => 'enabled',
+				'dash_menu_class'  => '',
+				'dash_lock_icon'  => '',
+			];
+		
+			// Fetch institution and owner data
+			$select_schoolowner = mysqli_query($link, "
+				SELECT * FROM `institution` 
+				INNER JOIN `agencyorschoolowner` 
+				ON `institution`.`AgencyOrSchoolOwnerID` = `agencyorschoolowner`.`AgencyOrSchoolOwnerID` 
+				WHERE `institution`.`AgencyOrSchoolOwnerID` = '$UserID'
+			");
+		
+			if ($select_schoolowner && mysqli_num_rows($select_schoolowner) > 0) {
+				$select_schoolowner_row = mysqli_fetch_assoc($select_schoolowner);
+				$groupschoolID_new = $select_schoolowner_row['InstitutionID'];
+				$tagstatenew = intval($select_schoolowner_row['TagState']);
+		
+				// Fetch campus data
+				$selectverify_campus = mysqli_query($link, "
+					SELECT * FROM `campus` 
+					WHERE InstitutionID = '$groupschoolID_new'
+				");
+		
+				if ($selectverify_campus && mysqli_num_rows($selectverify_campus) > 0) {
+					$campus_row = mysqli_fetch_assoc($selectverify_campus);
+					$tagstatecampusmain = $campus_row['TagState'];
+					$tagstatecampusmain = ($tagstatecampusmain === '') ? 0 : intval($tagstatecampusmain);
+		
+					// Check onboarding lock conditions
+					if ($tagstatecampusmain < 27) {
+						if ($tagstatenew < 16) {
+							$result['menu_class'] = "pros-disabled-menu";
+							$result['lock_icon'] = '<span style="float: right; margin-right: 5px;">
+								<i class="bx bxs-lock prosremovealllock" style="font-size: 15px; font-weight: 600; color: #ffd700;"></i>
+							</span>';
+							$result['status'] = 'disabled';
+
+							$result['dash_menu_class'] = "pros-disabled-menu";
+							$result['dash_lock_icon'] = '<span style="float: right; margin-right: 5px;">
+								<i class="bx bxs-lock prosremovealllock" style="font-size: 15px; font-weight: 600; color: #ffd700;"></i>
+							</span>';
+
+
+							
+						}
+					}else{
+
+
+
+						// PROS CHECK SUBSCRIPTION STATUS HERE
+						$prosselectschoolplanconetentnew = mysqli_query($link,"SELECT * FROM `institution` WHERE AgencyOrSchoolOwnerID='$UserID'");
+						$prosselectschoolplanconetentcntrownew = mysqli_fetch_assoc($prosselectschoolplanconetentnew);
+						$prosselectschoolplanconetentcntnew = mysqli_num_rows($prosselectschoolplanconetentnew);
+						
+						$NoDaysToCountnew = $prosselectschoolplanconetentcntrownew['NoDaysToCount'];
+						$SubscriptionStatusnew = $prosselectschoolplanconetentcntrownew['SubscriptionStatus'];
+						
+						$StartCountDatenew = $prosselectschoolplanconetentcntrownew['StartCountDate'];
+						// PROS CHECK SUBSCRIPTION STATUS HERE     
+						
+						//IMPLEMENT LOCK HERE
+							if($SubscriptionStatusnew == '1')
+							{
+								
+								$result['menu_class'] = "pros-disabled-menu";
+								$result['lock_icon'] = '<span style="float: right; margin-right: 5px;">
+									<i class="bx bxs-lock prosremovealllock" style="font-size: 15px; font-weight: 600; color: #ffd700;"></i>
+								</span>';
+								$result['status'] = 'disabled';
+								
+							}
+						//IMPLEMENT LOCK HERE  
+
+
+
+
+					}
+				}
+			}
+		
+			return $result;
+		}
+			
 	mysqli_set_charset($link, 'utf8');
 	
 ?>
+

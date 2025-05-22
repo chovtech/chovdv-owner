@@ -1,5 +1,5 @@
 <?php
-
+$pros_menuData = pros_locked_menu_onboarding($UserID);
 // error_reporting(E_ALL);
 //     ini_set('display_errors', 1);
     
@@ -177,11 +177,12 @@
                     </span>
                 </li>
                 <li><hr class="dropdown-divider"></li>
-                <li>
-                    <a class="dropdown-item" href="#"><i class='bx bxs-user'></i> Profile</a>
+                <li class="<?php echo $pros_menuData['dash_menu_class'];?>">
+                    <a class="dropdown-item" href="#"><i class='bx bxs-user'></i> Profile <?php echo $pros_menuData['dash_lock_icon'];?></a>
+                    
                 </li>
-                <li><a class="dropdown-item" href="../wallet"><i class="fas fa-wallet"></i> Wallet</a></li>
-                <li><a class="dropdown-item" href="#"><i class='bx bx-credit-card'></i> Subscription</a></li>
+                <li class="<?php echo $pros_menuData['dash_menu_class'];?>"><a class="dropdown-item" href="../wallet"><i class="fas fa-wallet"></i> Wallet <?php echo $pros_menuData['dash_lock_icon'];?></a></li>
+                <li class="<?php echo $pros_menuData['dash_menu_class'];?>"><a class="dropdown-item" href="#"><i class='bx bx-credit-card'></i> Subscription <?php echo $pros_menuData['dash_lock_icon'];?></a></li>
                 <li><a class="dropdown-item" style="color: #ff0000;" href="../../controller/website-login/logout.php" id="logoutbtn"><i class='bx bx-log-out-circle bx-rotate-90' ></i> Logout</a></li>
             </ul>
         </div>

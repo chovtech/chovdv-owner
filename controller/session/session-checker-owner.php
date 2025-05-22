@@ -69,7 +69,7 @@
 
 	if($get_lng_sql_rows > 0)
 	{
-		$DefaultLanguage = $get_lng_sql_fetch['Language'];
+		$DefaultLanguage = $get_lng_sql_fetch['Lang_Val'];
 	}else
 	{
 		$DefaultLanguage = '';
