@@ -1,4 +1,6 @@
 <?php
+
+
         include('../../config/config.php');
         $userid  = $_POST['UserID'];
         $schoolName  = mysqli_real_escape_string($link,$_POST['schoolName']);
@@ -88,9 +90,17 @@
                 //getting school default type
                      $schooltype = $selectagencycntrow['EducationType'];
                 //getting school default type
+
+                // create-schoolonboarding.php
     
-                $insert_sql =  mysqli_query($link,"INSERT INTO `institution`(`AgencyOrSchoolOwnerID`, `EducationType`, `InstitutionGeneralName`, `InstitutionMotto`, `InstitutionPhone`, `InstitutionEmail`,  `CustomUrl`, `SessionOfSignup`, `TermOfSignup`, `DateOfSignup` ) 
-                VALUES ('$userid','$schooltype','$schoolName','$schoolMotto','$firstPhoneNum','$firstCampusEmail','$prosschoolurl','$session_startcount','$termname','$currentdate')");
+                $insert_sql =  mysqli_query($link,"INSERT INTO 
+                `institution`(`AgencyOrSchoolOwnerID`, `EducationType`, 
+                `InstitutionGeneralName`, `InstitutionMotto`, `InstitutionPhone`,
+                 `InstitutionEmail`,  `CustomUrl`, `ActualPlan`,  `SessionOfSignup`,
+                  `TermOfSignup`, `DateOfSignup` ) 
+                VALUES ('$userid','$schooltype','$schoolName',
+                '$schoolMotto','$firstPhoneNum','$firstCampusEmail',
+                '$prosschoolurl', '5', '$session_startcount','$termname','$currentdate')");
     
               $groupofschoolID = mysqli_insert_id($link);
     

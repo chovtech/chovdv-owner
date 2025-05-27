@@ -324,8 +324,8 @@ $('body').on('click', '#pros_signupaff_btn', function() {
         pros_country: $('.pros-franchise-country').val(),
         pros_region: $('.pros-franchiseregion').val(),
         location: $('.pros-load-locationhere').val(),
-        tellusaboutyou_self: $('.prostelabout-yourself-input').val(),
-        tellusaboutyou_want_market: $('.pros-how-youwant-market-edumess').val(),
+         tellusaboutyou_self: $('.prostelabout-yourself-input').val(),
+         tellusaboutyou_want_market: $('.pros-how-youwant-market-edumess').val(),
         consultandid:consultandid,
         tagid:tagstateid,
         defaultlang:defaultlang
@@ -354,8 +354,10 @@ $('body').on('click', '#pros_signupaff_btn', function() {
                              'pros-load-locationhere';
             updateSelectAppearance(fieldClass, isValid);
         } else if (fieldId === 'tellusaboutyou_self' || fieldId === 'tellusaboutyou_want_market') {
+
             const fieldClass = fieldId === 'tellusaboutyou_self' ? 'prostelabout-yourself-input' :
                              'pros-how-youwant-market-edumess';
+
             updateTextareaAppearance(fieldClass, isValid);
         } else {
             updateFieldAppearance(fieldId, isValid);

@@ -1,3 +1,8 @@
+
+
+
+
+
 <a href="#" class="chimafloat chibtn" id="chimenu-share">
     <i class="fa fa-question-circle-o" aria-hidden="true"></i> Help
 </a>
@@ -33,10 +38,12 @@
         </a>
     </li>
     <li>
-       <a href="#" class="chibtn" style="background: #0066FF;">
+       <a href="<?php echo $defaultUrl;?>app/support" class="chibtn" style="background: #0066FF;">
            <i class="fas fa-calendar chi-float"></i>
            <div class="chilabel-container">
-               <div class="chilabel-text">Schedule Virtual Training</div>
+               <div class="chilabel-text"> 
+               
+               Schedule Virtual Training</div>
                <i class="fa fa-play chilabel-arrow"></i>
            </div>
        </a>

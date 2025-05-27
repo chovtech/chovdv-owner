@@ -106,6 +106,7 @@
 				'status'     => 'enabled',
 				'dash_menu_class'  => '',
 				'dash_lock_icon'  => '',
+				'school_plan'  => '',
 			];
 		
 			// Fetch institution and owner data
@@ -120,6 +121,8 @@
 				$select_schoolowner_row = mysqli_fetch_assoc($select_schoolowner);
 				$groupschoolID_new = $select_schoolowner_row['InstitutionID'];
 				$tagstatenew = intval($select_schoolowner_row['TagState']);
+
+				$ActualPlan = $select_schoolowner_row['ActualPlan'];
 		
 				// Fetch campus data
 				$selectverify_campus = mysqli_query($link, "
@@ -145,6 +148,10 @@
 							$result['dash_lock_icon'] = '<span style="float: right; margin-right: 5px;">
 								<i class="bx bxs-lock prosremovealllock" style="font-size: 15px; font-weight: 600; color: #ffd700;"></i>
 							</span>';
+
+							$result['school_plan'] = $ActualPlan;
+
+							
 
 
 							
@@ -173,7 +180,10 @@
 									<i class="bx bxs-lock prosremovealllock" style="font-size: 15px; font-weight: 600; color: #ffd700;"></i>
 								</span>';
 								$result['status'] = 'disabled';
+								$result['school_plan'] = $ActualPlan;
 								
+							}else {
+								$result['school_plan'] = $ActualPlan;
 							}
 						//IMPLEMENT LOCK HERE  
 
@@ -181,6 +191,8 @@
 
 
 					}
+
+					
 				}
 			}
 		

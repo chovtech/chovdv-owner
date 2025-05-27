@@ -55,7 +55,7 @@
                             echo '
                                 <div class="btn-group" style="margin-top:20px;">
                                     <button type="button" class="btn btn-secondary btn-lg" style="font-size:15px;" data-tag="" id="pros-skipcampuseditsetup-campussetup">Make changes <i class="fa fa-angle-double-right"></i></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <button type="button" class="btn btn-primary btn-lg" style="font-size:15px;" data-tag="29" data-maincampus="'.$campusID_newmain.'" data-campus="'.$campusID_new .'" data-school="'.$groupschoolID_new.'"   id="git g">Use for all campuses <i class="fa fa-long-arrow-right"></i></button>
+                                    <button type="button" class="btn btn-primary btn-lg" style="font-size:15px;" data-tag="29" data-maincampus="'.$campusID_newmain.'" data-campus="'.$campusID_new .'" data-school="'.$groupschoolID_new.'"   id="pros-proceeimport-campussetup">Use for all campuses <i class="fa fa-long-arrow-right"></i></button>
                                 </div>';
                     echo '</div>';
                 //load setup choices for other campus either import or edit end here

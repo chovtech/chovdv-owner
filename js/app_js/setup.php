@@ -1448,7 +1448,7 @@ $('body').on('click', '#proscreatescampusgetid', function() {
 
                         var feedback = (output);
 
-                        if (feedback == 'success') {
+                        if (feedback.trim() == 'success') {
 
                             $.wnoty({
                                 type: 'success',
