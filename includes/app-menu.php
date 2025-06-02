@@ -108,7 +108,7 @@
         <!--    </a>-->
         <!--</li>-->
         
-        <li class="<?php echo $pros_menuData['menu_class'];?>">
+        <li class="">
             <div class="upgrades">
                 <span class="material-icons-sharp">update</span>
                 <h6>Upgrade your plan here</h6>
@@ -117,11 +117,13 @@
             </a>
             </div>
 
-            <small style="margin-left: 30%; cursor: pointer; font-size: 14px;" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
+            <a href="<?php echo $defaultUrl; ?>app/menus" class="<?php echo $pros_menuData['menu_class'];?>"
+             style="margin-left: 30%; cursor: pointer; font-size: 14px;color:#6c757d;text-decoration:none;" >
+                
                 <i class="fa fa-cog fa-spin"></i>
                 Settings
-            </small>
+                
+            </a>
             <?php echo $pros_menuData['lock_icon'];?>
         </li>
     </ul>

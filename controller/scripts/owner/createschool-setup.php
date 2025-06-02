@@ -47,6 +47,25 @@
                 {
 
 
+                $selectserveretails = mysqli_query($link,"SELECT * FROM `serverpassword`");
+                $selectserveretailscnt = mysqli_fetch_assoc($selectserveretails);
+              
+                 $servername =  $selectserveretailscnt['ServerName'];
+                 $serverpwd =  $selectserveretailscnt['ServerPassword'];
+                 $Host =  $selectserveretailscnt['Host'];
+                 
+                 
+                 $affiliate_wa_sql = mysqli_query($link,"SELECT `affiliate`.Phone AS wanum FROM `affiliate` 
+                 INNER JOIN `agencyorschoolowner` ON 
+                 `affiliate`.`AffiliateID` =  `agencyorschoolowner`.`AffiliateID`
+                 INNER JOIN `institution`
+                 ON `agencyorschoolowner`.`AgencyOrSchoolOwnerID` =
+                 `institution`.`AgencyOrSchoolOwnerID` WHERE `institution`.`InstitutionID`='$groupSchoolID'");
+                 
+                 $affiliate_wa_row = mysqli_fetch_assoc($affiliate_wa_sql);
+                 
+                 $affiliate_wanum = $affiliate_wa_row['wanum'];
+
 
                  $countnumofsucees = '';
                  $countnumoffailure = '';
@@ -106,11 +125,6 @@
                                           
                                           $logindetailscontainer = '';
                                           
-                                                      $selectserveretails = mysqli_query($link,"SELECT * FROM `serverpassword`");
-                                                      $selectserveretailscnt = mysqli_fetch_assoc($selectserveretails);
-                                                      
-                                                     $servername =  $selectserveretailscnt['ServerName'];
-                                                     $serverpwd =  $selectserveretailscnt['ServerPassword'];
                                                        
                                                      $email_to =  'hello@edumess.com';
                                                      $delivery = 'hello@edumess.com';
@@ -128,7 +142,7 @@
                                                         //Server settings
                                                         $mail->SMTPDebug = 0;                      //Enable verbose debug output
                                                         $mail->isSMTP();                                            //Send using SMTP
-                                                        $mail->Host       = 'chovgroup.com';                     //Set the SMTP server to send through
+                                                        $mail->Host       = $Host;                     //Set the SMTP server to send through
                                                         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
                                                         $mail->Username   = $servername;                     //SMTP username
                                                         $mail->Password   = $serverpwd;                             //SMTP password
@@ -382,7 +396,7 @@
                                                                                            <tr>
                                                                                               <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:\'Cabin\',sans-serif;" align="left">
                                                                                                  <div style="font-size: 13px; line-height: 140%; text-align: center; word-wrap: break-word;">
-                                                                                                    <p style="line-height: 140%;">'.$website_signupwhatsdes.' <span style="color: #3598db; line-height: 18.2px;">+234 704 527 7801</span>, '.$website_signupwhatsdessub.' <a href="https://wa.me/+2347045277801" style="color: #2dc26b; line-height: 18.2px;">WhatsApp +2347045277801</a>
+                                                                                                    <p style="line-height: 140%;">'.$website_signupwhatsdes.' <span style="color: #3598db; line-height: 18.2px;">+'.$affiliate_wanum.'</span>, '.$website_signupwhatsdessub.' <a href="https://wa.me/'.$affiliate_wanum.'" style="color: #2dc26b; line-height: 18.2px;">WhatsApp '.$affiliate_wanum.'</a>
                                                                                                     </p>
                                                                                                  </div>
                                                                                               </td>

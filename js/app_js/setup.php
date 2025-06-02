@@ -1,5 +1,7 @@
 <script>
 
+
+
      //pros load logo content here for upload
     $(document).ready(function() {
         $image_crop = $('#pros-load-image').croppie({
@@ -187,12 +189,12 @@
     });
 
 
-// getschool id when adding new campus to list
-$('body').on('click', '#proscreatescampusgetid', function() {
-    var schoolid = $(this).data('school');
-    $('#groupschoolnewcampusid').val(schoolid);
-});
-// getschool id when adding new campus to list
+    // getschool id when adding new campus to list
+    $('body').on('click', '#proscreatescampusgetid', function() {
+        var schoolid = $(this).data('school');
+        $('#groupschoolnewcampusid').val(schoolid);
+    });
+    // getschool id when adding new campus to list
 
 
 
@@ -518,6 +520,48 @@ $('body').on('click', '#proscreatescampusgetid', function() {
 
 
 // select LGA base on state selected end here
+
+    //update url first create here
+
+    function  prosschool_urlvalid(schoolname)
+    {
+       const urlgotten =  schoolname.trim().toLowerCase().replace(/ /g, "").replace(/[0-9]/g, "").replace(/[^a-z]/g, "");
+         const pros_url = urlgotten.substring(0, 16);
+        //  alert(url);
+        //  $('#prosschoollink-initial').val(url);
+         return pros_url;
+    }
+   
+    $("body").on("input", "#schoolnameinitial", function() { 
+        // alert('hello');
+        var schoolname = $('#schoolnameinitial').val();
+        // var schoolurllength = schoolurl.length;
+
+         const pros_url = prosschool_urlvalid(schoolname);
+        $('#prosschoollink-initial').val(pros_url);
+
+            var schoolink = pros_url;
+            var UserID = "<?php echo $UserID; ?>";
+            pros_checkurlhere(schoolink,UserID);
+
+    });
+
+
+    $("body").on("input", "#pros-schoolnameID-new", function() { 
+        // alert('hello');
+        var schoolname = $('#pros-schoolnameID-new').val();
+        // var schoolurllength = schoolurl.length;
+
+         const pros_url = prosschool_urlvalid(schoolname);
+        $('#pros-schoolurlnew').val(pros_url);
+
+            var schoolink = pros_url;
+            var UserID = "<?php echo $UserID; ?>";
+            pros_checkurlhere(schoolink,UserID);
+
+    });
+
+    
 
 
 
@@ -898,6 +942,8 @@ $('body').on('click', '#proscreatescampusgetid', function() {
     }); //edit school
 
 
+
+   
 
 
     $("body").on("click", "#addschoolinitialbtn-new", function() {
@@ -1626,8 +1672,84 @@ $('body').on('click', '#proscreatescampusgetid', function() {
 
             $('#pros-displaysetup-content').html(
                 '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+              
+
+                prosload_set_upcontent(CampusID,groupSchoolID,UserID,ownerfirst_Name,tagstate);
 
             
+          
+
+        } else {
+
+
+            $.wnoty({
+                type: 'warning',
+                message: "Oops!! you are only required to  set up with the main campus colored blue.",
+                autohideDelay: 6000
+            });
+        }
+
+
+    });
+    //load setup modal when click on school 
+
+
+    //open create class dropdown
+    $('body').on('click', '.createclassgeneral', function() {
+      
+        var facultyid = $(this).data('faculty');
+
+
+        const selectBtn = document.querySelector(".pros-openclasswhenclick" +
+                facultyid),
+            items = document.querySelectorAll(".listmeslist");
+
+        // Toggle the "open" class when the selectBtn is clicked
+        selectBtn.classList.toggle("open");
+    });
+    //open create class dropdown
+
+    $('body').on('click', '.createsubjectgeneral', function() {
+        // alert('hello');
+        var facultyid = $(this).data('faculty');
+
+        const selectBtnsub = document.querySelector(".pros-opensubjectwhenclick" +
+                facultyid),
+            items = document.querySelectorAll(".subjectlistmeslist");
+
+        // Toggle the "open" subject when the selectBtn is clicked
+        selectBtnsub.classList.toggle("open");
+    });
+
+
+
+    // load setup modal
+    $('body').on('click', '.pros-loadsetupmodal', function() {
+        var CampusID = $(this).data('campus');
+
+        var groupSchoolID = $(this).data('id');
+        var UserID = "<?php echo $UserID; ?>";
+        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
+        var tagstate = $(this).data('tag');
+
+       
+            
+
+        prosload_set_upcontent(CampusID,groupSchoolID,UserID,ownerfirst_Name,tagstate);
+
+
+    });
+    // load setup modal
+
+    function prosload_set_upcontent(CampusID,groupSchoolID,UserID,ownerfirst_Name,tagstate)
+    {
+
+
+      
+      
+
+        $('#pros-displaysetup-content').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+        
             $.ajax({
 
                 type: "POST",
@@ -1644,153 +1766,168 @@ $('body').on('click', '#proscreatescampusgetid', function() {
                     $('#pros-displaysetup-content').html(result);
 
 
-                    var head_phone = window.intlTelInput(document.querySelector("#pros-headnumset"), {
-                        separateDialCode: true,
-                        preferredCountries: ["ng"],
-                        hiddenInput: "full",
-                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                    });
 
 
+                    var head_phones = [];
+                        document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                            head_phones.push(window.intlTelInput(input, {
+                                separateDialCode: true,
+                                preferredCountries: ["ng"],
+                                hiddenInput: "full",
+                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            }));
+                        });
 
-                    var head_phone = window.intlTelInput(document.querySelector(
-                        "#pros-teachernumset"), {
-                        separateDialCode: true,
-                        preferredCountries: ["ng"],
-                        hiddenInput: "full",
-                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                    });
+                   
 
-                    var head_phone = window.intlTelInput(document.querySelector("#pros-adminnumset"), {
-                        separateDialCode: true,
-                        preferredCountries: ["ng"],
-                        hiddenInput: "full",
-                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                    });
+                       var head_phone = [];
+                        document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                            head_phone.push(window.intlTelInput(input, {
+                                separateDialCode: true,
+                                preferredCountries: ["ng"],
+                                hiddenInput: "full",
+                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            }));
+                        });
+
+
+                       var prosvalidatedadmin_admin =  $('#pros-adminnumset');
+                       
+                            // console.log(prosvalidatedadmin_admin);
+                        if(prosvalidatedadmin_admin.length > 0)
+                        {
+
+                           
+                            // var head_phone = window.intlTelInput(document.querySelector("#pros-adminnumset"), {
+                            //     separateDialCode: true,
+                            //     preferredCountries: ["ng"],
+                            //     hiddenInput: "full",
+                            //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            // });
+
+
+                        }else
+                        {
+
+                        }
+
+                  
+
 
 
                     var tagstatusnew = tagstate;
+                    
+
 
                     $('#prosloadschoolid-forbackward').val(CampusID);
-                
+
+                    
+                    if (tagstatusnew == '' || tagstatusnew == '15') {
+                        $('#displaysection-content').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeOut('slow');
+
+                    } else if (tagstatusnew == '16') {
+
+                        $('#pros-displayhead-setup').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(15);
 
 
-                    if (maintagstate == '29' && tagstatusnew == '') {
+
+                    } else if (tagstatusnew == '17') {
+
+                        $('#assignschoolheadfaculty').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(16);
+
+                    } else if (tagstatusnew == '18') {
+                        $('#proscreateschool-teacher').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(17);
+
+                    } else if (tagstatusnew == '19') {
+                        $('#createotherschooltype-setup').fadeIn('slow');
+
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(18);
+
+                    } else if (tagstatusnew == '20') {
 
                         $('#pros-reducemodalclasstypesetup').css('width', '700px');
-                        //if campus havent't started setiing up it should start from the begginning
-                        $('#pros-loadimportoption').fadeIn('slow');
 
-                    } else {
-
-
-
-                        if (tagstatusnew == '' || tagstatusnew == '15') {
-                            $('#displaysection-content').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-
-                        } else if (tagstatusnew == '16') {
-
-                            $('#pros-displayhead-setup').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(15);
+                        $('#createwelcomemsg-setup').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(19);
 
 
+                    } else if (tagstatusnew == '21') {
 
-                        } else if (tagstatusnew == '17') {
+                        $('#createclasses-setup ').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(20);
 
-                            $('#assignschoolheadfaculty  ').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(16);
+                        // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
 
-                        } else if (tagstatusnew == '18') {
-                            $('#proscreateschool-teacher').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(17);
+                    } else if (tagstatusnew == '22') {
 
-                        } else if (tagstatusnew == '19') {
-                            $('#createotherschooltype-setup').fadeIn('slow');
+                        $('#createsubject-setup').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(21);
 
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(18);
+                    } else if (tagstatusnew == '23') {
 
-                        } else if (tagstatusnew == '20') {
-
-                            $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                            $('#createwelcomemsg-setup').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(19);
+                        $('#mergesubjectcontent').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(22);
 
 
-                        } else if (tagstatusnew == '21') {
+                    } else if (tagstatusnew == '24') {
 
-                            $('#createclasses-setup ').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(20);
+                        $('#pros-assign-formteachercontent').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(23);
 
-                            // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
+                    } else if (tagstatusnew == '25') {
 
-                        } else if (tagstatusnew == '22') {
+                        $('#assignsubject-teachercontainer').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(24);
 
-                            $('#createsubject-setup').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(21);
+                    } else if (tagstatusnew == '26') {
 
-                        } else if (tagstatusnew == '23') {
+                        $('#pros-loadsession-termcontent').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(25);
 
-                            $('#mergesubjectcontent').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(22);
+                    } else if (tagstatusnew == '27') {
+
+                        $('#pros-schlogo-content').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(26);
+
+                    }else if(tagstatusnew == '28')
+                    {
+                        $('#prosschool-bgimage-content').fadeIn('slow');
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        $('#pros-displaybackvalue-tag').val(27);
 
 
-                        } else if (tagstatusnew == '24') {
+                    }else if(tagstatusnew == '29')
+                    {
 
-                            $('#pros-assign-formteachercontent').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(23);
-
-                        } else if (tagstatusnew == '25') {
-
-                            $('#assignsubject-teachercontainer').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(24);
-
-                        } else if (tagstatusnew == '26') {
-
-                            $('#pros-loadsession-termcontent').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(25);
-
-                        } else if (tagstatusnew == '27') {
-
-                            $('#pros-schlogo-content').fadeIn('slow');
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(26);
-
-                        }else if(tagstatusnew == '28')
-                        {
-
+                                    //setup completed
                         
-                            $('#prosschool-bgimage-content').fadeIn('slow');
-                        
-                            $('#movebackbtn-setup').fadeIn('slow');
-                            $('#pros-displaybackvalue-tag').val(27);
-
-
-                        }else if(tagstatusnew == '29')
-                        {
-
-                                        //setup completed
-                        
-                        }
-
                     }
 
 
+                    
+                    const selectBtnnewclass = document.querySelector(
+                                    ".getclassopenondocument-ready1"),
+                                itemsclass = document.querySelectorAll(".listmeslist");
+                            selectBtnnewclass.classList.toggle("open");
 
-                    const selectBtnnewsubject = document.querySelector(
-                            ".getsubjectopenondocument-ready1"),
+
+                    const selectBtnnewsubject = document.querySelector(".getsubjectopenondocument-ready1"),
                         itemssubject = document.querySelectorAll(".subjectlistmeslist");
                     selectBtnnewsubject.classList.toggle("open");
 
@@ -1798,235 +1935,20 @@ $('body').on('click', '#proscreatescampusgetid', function() {
 
 
 
-                    $('body').on('click', '.createsubjectgeneral', function() {
-                        var facultyid = $(this).data('faculty');
+                          
 
-                        const selectBtn = document.querySelector(".pros-opensubjectwhenclick" +
-                                facultyid),
-                            items = document.querySelectorAll(".subjectlistmeslist");
 
-                        // Toggle the "open" subject when the selectBtn is clicked
-                        selectBtn.classList.toggle("open");
-                    });
+
+
+
+
+                   
 
                 }
             });
 
-        } else {
-            $.wnoty({
-                type: 'warning',
-                message: "Oops!! you are only required to  set up with the main campus colored blue.",
-                autohideDelay: 6000
-            });
-        }
 
-
-    });
-    //load setup modal when click on school 
-
-
-    //open create class dropdown
-    $('body').on('click', '.createclassgeneral', function() {
-        var facultyid = $(this).data('faculty');
-
-
-        const selectBtn = document.querySelector(".pros-openclasswhenclick" +
-                facultyid),
-            items = document.querySelectorAll(".listmeslist");
-
-        // Toggle the "open" class when the selectBtn is clicked
-        selectBtn.classList.toggle("open");
-    });
-    //open create class dropdown
-
-
-
-    // load setup modal
-    $('body').on('click', '.pros-loadsetupmodal', function() {
-        var CampusID = $(this).data('campus');
-
-        var groupSchoolID = $(this).data('id');
-        var UserID = "<?php echo $UserID; ?>";
-        var ownerfirst_Name = "<?php echo $PrimaryName; ?>";
-        var tagstate = $(this).data('tag');
-
-        $('#pros-displaysetup-content').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
-            
-
-
-
-
-
-        $.ajax({
-
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
-            data: {
-                UserID: UserID,
-                ownerfirst_Name: ownerfirst_Name,
-                tagstate: tagstate,
-                groupSchoolID: groupSchoolID,
-                CampusID: CampusID
-            },
-            success: function(result) {
-
-                $('#pros-displaysetup-content').html(result);
-
-
-
-                var head_phone = window.intlTelInput(document.querySelector("#pros-headnumset"), {
-                    separateDialCode: true,
-                    preferredCountries: ["ng"],
-                    hiddenInput: "full",
-                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                });
-
-                var head_phone = window.intlTelInput(document.querySelector("#pros-teachernumset"), {
-                    separateDialCode: true,
-                    preferredCountries: ["ng"],
-                    hiddenInput: "full",
-                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                });
-
-                var head_phone = window.intlTelInput(document.querySelector("#pros-adminnumset"), {
-                    separateDialCode: true,
-                    preferredCountries: ["ng"],
-                    hiddenInput: "full",
-                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                });
-
-
-                var tagstatusnew = tagstate;
-
-
-                $('#prosloadschoolid-forbackward').val(CampusID);
-
-                
-                if (tagstatusnew == '' || tagstatusnew == '15') {
-                    $('#displaysection-content').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-
-                } else if (tagstatusnew == '16') {
-
-                    $('#pros-displayhead-setup').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(15);
-
-
-
-                } else if (tagstatusnew == '17') {
-
-                    $('#assignschoolheadfaculty  ').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(16);
-
-                } else if (tagstatusnew == '18') {
-                    $('#proscreateschool-teacher').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(17);
-
-                } else if (tagstatusnew == '19') {
-                    $('#createotherschooltype-setup').fadeIn('slow');
-
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(18);
-
-                } else if (tagstatusnew == '20') {
-
-                    $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                    $('#createwelcomemsg-setup').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(19);
-
-
-                } else if (tagstatusnew == '21') {
-
-                    $('#createclasses-setup ').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(20);
-
-                    // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
-
-                } else if (tagstatusnew == '22') {
-
-                    $('#createsubject-setup').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(21);
-
-                } else if (tagstatusnew == '23') {
-
-                    $('#mergesubjectcontent').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(22);
-
-
-                } else if (tagstatusnew == '24') {
-
-                    $('#pros-assign-formteachercontent').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(23);
-
-                } else if (tagstatusnew == '25') {
-
-                    $('#assignsubject-teachercontainer').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(24);
-
-                } else if (tagstatusnew == '26') {
-
-                    $('#pros-loadsession-termcontent').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(25);
-
-                } else if (tagstatusnew == '27') {
-
-                    $('#pros-schlogo-content').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(26);
-
-                }else if(tagstatusnew == '28')
-                {
-                    $('#prosschool-bgimage-content').fadeIn('slow');
-                    $('#movebackbtn-setup').fadeIn('slow');
-                    $('#pros-displaybackvalue-tag').val(27);
-
-
-                }else if(tagstatusnew == '29')
-                {
-
-                                //setup completed
-                    
-                }
-
-
-
-
-                const selectBtnnewsubject = document.querySelector(".getsubjectopenondocument-ready1"),
-                    itemssubject = document.querySelectorAll(".subjectlistmeslist");
-                selectBtnnewsubject.classList.toggle("open");
-
-
-
-
-
-
-                $('body').on('click', '.createsubjectgeneral', function() {
-                    var facultyid = $(this).data('faculty');
-
-                    const selectBtn = document.querySelector(".pros-opensubjectwhenclick" +
-                            facultyid),
-                        items = document.querySelectorAll(".subjectlistmeslist");
-
-                    // Toggle the "open" subject when the selectBtn is clicked
-                    selectBtn.classList.toggle("open");
-                });
-
-            }
-        });
-
-    });
-    // load setup modal
+    }
 
 
 
@@ -2050,67 +1972,82 @@ $('body').on('click', '#proscreatescampusgetid', function() {
 
 
 
+   
 
 
 
-    $('body').on('keyup', '.schoollinkclass', function() {
+
+    $('body').on('input', '.schoollinkclass', function() {
+
+      
 
         var schoolink = $(this).val();
         var UserID = "<?php echo $UserID; ?>";
-        var SchoolID = '';
+        pros_checkurlhere(schoolink,UserID);
+
+        
 
 
-        if (schoolink == '') {
-            $('#fullschoollinkcon').fadeOut();
-            $('#schoollinkdis').html(schoolink);
+    });
 
-            $('#fullschoollinkcon-new').fadeOut();
-            $('#schoollinkdis-new').html(schoolink);
-        } else {
-            $('#fullschoollinkcon').fadeIn();
-            $('#schoollinkdis').html(schoolink);
+    function  pros_checkurlhere(schoolink,UserID)
+    {
 
-            $('#fullschoollinkcon-new').fadeIn();
-            $('#schoollinkdis-new').html(schoolink);
+            var SchoolID = '';
 
 
-            $.ajax({
-                type: "POST",
-                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/verify-schoollink.php",
-                data: {
-                    schoolink: schoolink,
-                    UserID: UserID,
-                    SchoolID: SchoolID
-                },
-                success: function(result) {
-                    var userrole = (result);
+            if (schoolink == '') {
+                $('#fullschoollinkcon').fadeOut();
+                $('#schoollinkdis').html(schoolink);
+
+                $('#fullschoollinkcon-new').fadeOut();
+                $('#schoollinkdis-new').html(schoolink);
+            } else {
+                $('#fullschoollinkcon').fadeIn();
+                $('#schoollinkdis').html(schoolink);
+
+                $('#fullschoollinkcon-new').fadeIn();
+                $('#schoollinkdis-new').html(schoolink);
 
 
-                    if (userrole.trim() == 'found') {
-                        // alert(userrole);
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/verify-schoollink.php",
+                    data: {
+                        schoolink: schoolink,
+                        UserID: UserID,
+                        SchoolID: SchoolID
+                    },
+                    success: function(result) {
+                        var userrole = (result);
+
+
+                        if (userrole.trim() == 'found') {
+                            // alert(userrole);
+                                $('.pros_verifyurl_exist_input_here').val('');//empty input
+                            $('.pros_verifyurl_exist_input_here').val('found'); //    pros append value to input if Url found
+                            $.wnoty({
+                                type: 'warning',
+                                message: "This Url already exist for another school",
+                                autohideDelay: 6000
+                            });
+                        } else {
+
                             $('.pros_verifyurl_exist_input_here').val('');//empty input
-                           $('.pros_verifyurl_exist_input_here').val('found'); //    pros append value to input if Url found
-                        $.wnoty({
-                            type: 'warning',
-                            message: "This Url already exist for another school",
-                            autohideDelay: 6000
-                        });
-                    } else {
+                            $('.pros_verifyurl_exist_input_here').val('okay'); //    pros append value to input if Url not found
 
-                        $('.pros_verifyurl_exist_input_here').val('');//empty input
-                        $('.pros_verifyurl_exist_input_here').val('okay'); //    pros append value to input if Url not found
+                        }
 
                     }
+                });
+            }
 
-                }
-            });
-        }
+    }
+    
+    //CHECK SCHOOL LINK HERE
 
 
-    });//CHECK SCHOOL LINK HERE
-
-
-    $('body').on('keyup', '.schoollinkclassedit', function() {
+    $('body').on('input', '.schoollinkclassedit', function() {
 
         var schoolink = $('.schoollinkclassedit').val();
         var UserID = "<?php echo $UserID; ?>";
@@ -3653,44 +3590,56 @@ $('body').on('click', '#proscreatescampusgetid', function() {
 
 
 
-    // check input usertype
+        // check input usertype
     $('body').on('click', '.generalclass-checksection', function (e) {
-    let checkboxId = $(this).data('id');
-    let $checkbox = $('#' + checkboxId);
-    let sectionID = checkboxId.replace('prosfacultyid', '');
 
-    // Toggle checkbox state manually
-    $checkbox.prop('checked', !$checkbox.prop('checked'));
+        if($(e.target).is('input[type="checkbox"]') || $(e.target).is('label'))
+        {
+            return;
+        }
+       
+        let checkboxId = $(this).data('id');
+        let $checkbox = $('#' + checkboxId);
+        let sectionID = checkboxId.replace('prosfacultyid', '');
 
-    // Update outline based on new state
-    if ($checkbox.prop('checked')) {
-        $(this).css('outline', '1px solid #007bff');
-        $('.sectionalianameherechecked' + sectionID).css('outline', '1px solid #007bff');
-    } else {
-        $(this).css('outline', 'none');
-        $('.sectionalianameherechecked' + sectionID).css('outline', 'none');
-    }
+        // Toggle checkbox state manually
+        // $checkbox.prop('checked', !$checkbox.prop('checked'));
+        $checkbox.prop('checked', !$checkbox.prop('checked')).trigger('change');
 
-    // Animation
-    $(this).animate({ top: '-=20px' }, 'fast', 'swing')
-           .delay(200)
-           .animate({ top: '+=20px' }, 'fast', 'swing');
-});
+        // Update outline based on new state
 
-// Prevent checkbox click from bubbling up and double-toggling
-$('body').on('click', '.sectioncheckbox', function (e) {
-    e.stopPropagation(); // stop checkbox from bubbling to card
-    let sectionID = $(this).attr('id').replace('prosfacultyid', '');
-    let $card = $(this).closest('.generalclass-checksection');
+        if ($checkbox.prop('checked')) {
+            $(this).css('outline', '1px solid #007bff');
 
-    if ($(this).prop('checked')) {
-        $card.css('outline', '1px solid #007bff');
-        $('.sectionalianameherechecked' + sectionID).css('outline', '1px solid #007bff');
-    } else {
-        $card.css('outline', 'none');
-        $('.sectionalianameherechecked' + sectionID).css('outline', 'none');
-    }
-});
+            $('.sectionalianameherechecked' + sectionID).attr('disabled', false);
+        } else {
+            $(this).css('outline', 'none');
+            $('.sectionalianameherechecked' + sectionID).attr('disabled', true);
+        }
+
+        // Animation
+        $(this).animate({ top: '-=20px' }, 'fast', 'swing')
+            .delay(200)
+            .animate({ top: '+=20px' }, 'fast', 'swing');
+    });
+
+
+       
+
+    // Prevent checkbox click from bubbling up and double-toggling
+    $('body').on('change', '.sectioncheckbox', function (e) {
+        e.stopPropagation(); // stop checkbox from bubbling to card
+        let sectionID = $(this).attr('id').replace('prosfacultyid', '');
+        let $card = $(this).closest('.generalclass-checksection');
+
+        if ($(this).prop('checked')) {
+            $card.css('outline', '1px solid #007bff');
+            $('.sectionalianameherechecked' + sectionID).attr('disabled', false);
+        } else {
+            $card.css('outline', 'none');
+            $('.sectionalianameherechecked' + sectionID).attr('disabled', true);
+        }
+    });
 
 
 
@@ -3738,6 +3687,8 @@ $('body').on('click', '.sectioncheckbox', function (e) {
         var campusID = $(this).data('campus');
         var groupSchoolID = $(this).data('school');
         var maintag = $(this).data('main');
+
+
 
 
         var selSchoolFaculty_check = [];
@@ -3824,169 +3775,12 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                         $('#displaysection-content').animate({
                             left: '+=50',
                             height: 'toggle'
-                        }, 1000);
+                        }, 500);
 
                         $('#pros-displayhead-setup').fadeIn('slow');
-
-                                // load seetup content here//
-                                        $('#pros-displaysetup-content').html('<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
-                                    $.ajax({
-
-                                            type: "POST",
-                                            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
-                                            data: {
-                                                UserID: UserID,
-                                                ownerfirst_Name: ownerfirst_Name,
-                                                tagstate: tagstate,
-                                                groupSchoolID: groupSchoolID,
-                                                CampusID: campusID
-                                            },
-                                            success: function(result) {
-
-                                                $('#pros-displaysetup-content').html(result);
-
-
-                                                var head_phone = window.intlTelInput(document.querySelector(
-                                                    "#pros-headnumset"), {
-                                                    separateDialCode: true,
-                                                    preferredCountries: ["ng"],
-                                                    hiddenInput: "full",
-                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                                });
-
-
-
-                                                var head_phone = window.intlTelInput(document.querySelector(
-                                                    "#pros-teachernumset"), {
-                                                    separateDialCode: true,
-                                                    preferredCountries: ["ng"],
-                                                    hiddenInput: "full",
-                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                                });
-
-                                                var head_phone = window.intlTelInput(document.querySelector(
-                                                    "#pros-adminnumset"), {
-                                                    separateDialCode: true,
-                                                    preferredCountries: ["ng"],
-                                                    hiddenInput: "full",
-                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                                });
-
-
-                                                var tagstatusnew = tagstate;
-                                                $('#prosloadschoolid-forbackward').val(campusID);
-
-                                                if (maintag == '29' && tagstatusnew == '') {
-
-                                                    $('#pros-reducemodalclasstypesetup').css('width', '700px');
-                                                    //if campus havent't started setiing up it should start from the begginning
-                                                    $('#pros-loadimportoption').fadeIn('slow');
-
-
-                                                } else {
-
-
-
-                                                    if (tagstatusnew == '' || tagstatusnew == '15') {
-                                                        $('#displaysection-content').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-
-                                                    } else if (tagstatusnew == '16') {
-
-                                                        $('#pros-displayhead-setup').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(15);
-
-
-
-                                                    } else if (tagstatusnew == '17') {
-
-                                                        $('#assignschoolheadfaculty  ').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(16);
-
-                                                    } else if (tagstatusnew == '18') {
-                                                        $('#proscreateschool-teacher').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(17);
-
-                                                    } else if (tagstatusnew == '19') {
-                                                        $('#createotherschooltype-setup').fadeIn('slow');
-
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(18);
-
-                                                    } else if (tagstatusnew == '20') {
-
-                                                        $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                                                        $('#createwelcomemsg-setup').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(19);
-
-
-                                                    } else if (tagstatusnew == '21') {
-
-                                                        $('#createclasses-setup ').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(20);
-
-                                                        // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
-
-                                                    } else if (tagstatusnew == '22') {
-
-                                                        $('#createsubject-setup').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(21);
-
-                                                    } else if (tagstatusnew == '23') {
-
-                                                        $('#mergesubjectcontent').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(22);
-
-
-                                                    } else if (tagstatusnew == '24') {
-
-                                                        $('#pros-assign-formteachercontent').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(23);
-
-                                                    } else if (tagstatusnew == '25') {
-
-                                                        $('#assignsubject-teachercontainer').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(24);
-
-                                                    } else if (tagstatusnew == '26') {
-
-                                                        $('#pros-loadsession-termcontent').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(25);
-
-                                                    } else if (tagstatusnew == '27') {
-
-                                                        $('#pros-schlogo-content').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(26);
-
-                                                    }else if(tagstatusnew == '28')
-                                                    {
-                                                        $('#prosschool-bgimage-content').fadeIn('slow');
-                                                        $('#movebackbtn-setup').fadeIn('slow');
-                                                        $('#pros-displaybackvalue-tag').val(27);
-
-
-                                                    }else if(tagstatusnew == '29')
-                                                    {
-
-                                                                    //setup completed
-                                                    
-                                                    }
-                                                }
-                                            }
-                                        });
-                                        //load seetup content here//
+                        $('#movebackbtn-setup').fadeIn('slow');
+                        
+                          prosload_set_upcontent(campusID,groupSchoolID,UserID,ownerfirst_Name,tagstate);
                     }else
                     {
 
@@ -4064,6 +3858,76 @@ $('body').on('click', '.sectioncheckbox', function (e) {
 
     });
     //append school head end here
+
+
+
+
+      // Add phone number formatting on input
+        $('body').on('input','.generalheadnum', function() {
+            const phone = $(this).val();
+            const formattedPhone = formatPhoneNumber(phone);
+            if (formattedPhone !== phone) {
+                $(this).val(formattedPhone);
+            }
+        });
+
+        $('body').on('input','.campusphone, .campusnumberedit, #staffnumber', function() {
+            const phone = $(this).val();
+            const formattedPhone = formatPhoneNumber(phone);
+            if (formattedPhone !== phone) {
+                $(this).val(formattedPhone);
+            }
+        });
+
+
+        
+
+        $('body').on('input','.generalteachernum', function() {
+            const phone = $(this).val();
+            const formattedPhone = formatPhoneNumber(phone);
+            if (formattedPhone !== phone) {
+                $(this).val(formattedPhone);
+            }
+        });
+
+        $('body').on('input','.generaladminnum', function() {
+            const phone = $(this).val();
+            const formattedPhone = formatPhoneNumber(phone);
+            if (formattedPhone !== phone) {
+                $(this).val(formattedPhone);
+            }
+        });
+
+
+        // Function to format phone number
+        function formatPhoneNumber(phone) {
+           
+            // Check if phone is null or undefined
+            if (!phone) return '';
+            
+            // Convert to string if it's a number
+            phone = phone.toString();
+            
+            // Remove all non-digit characters
+            let cleaned = phone.replace(/\D/g, '');
+            
+            // If number is 11 digits and starts with 0, remove the first digit
+            if (cleaned.length === 11 && cleaned.startsWith('0')) {
+                cleaned = cleaned.substring(1);
+            }
+
+            if (cleaned.length > 10 ) {
+                cleaned = cleaned.substring(0, cleaned.length - 1);
+            }
+            
+            // If number is 13 digits and starts with 234, remove the country code
+            if (cleaned.length === 13 && cleaned.startsWith('234')) {
+                cleaned = cleaned.substring(3);
+            }
+             
+            return cleaned;
+        }
+
 
     //append teacher start here
     $('body').on('click', '#pros-addteacher-btn', function() {
@@ -4492,31 +4356,42 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                                 
                                                 $('#pros-displaysetup-content').html(result);
                                                 $('#pros-create-schoolheadbtn').html('Create new');
-                                
-                                
-                                                var head_phone = window.intlTelInput(document.querySelector("#pros-headnumset"), {
-                                                    separateDialCode: true,
-                                                    preferredCountries: ["ng"],
-                                                    hiddenInput: "full",
-                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                                });
-                                
-                                
-                                
-                                                var head_phone = window.intlTelInput(document.querySelector(
-                                                    "#pros-teachernumset"), {
-                                                    separateDialCode: true,
-                                                    preferredCountries: ["ng"],
-                                                    hiddenInput: "full",
-                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                                });
-                                
-                                                var head_phone = window.intlTelInput(document.querySelector("#pros-adminnumset"), {
-                                                    separateDialCode: true,
-                                                    preferredCountries: ["ng"],
-                                                    hiddenInput: "full",
-                                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                                });
+                                                                
+                                                                
+                                                                            
+                                                    var head_phones = [];
+                                                        document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                                            head_phones.push(window.intlTelInput(input, {
+                                                                separateDialCode: true,
+                                                                preferredCountries: ["ng"],
+                                                                hiddenInput: "full",
+                                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                                            }));
+                                                        });
+
+                                                    // var head_phone = window.intlTelInput(document.querySelector(".pros-headnumset"), {
+                                                    //     separateDialCode: true,
+                                                    //     preferredCountries: ["ng"],
+                                                    //     hiddenInput: "full",
+                                                    //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                                    // });
+
+                                                    var head_phone = [];
+                                                        document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                                            head_phone.push(window.intlTelInput(input, {
+                                                                separateDialCode: true,
+                                                                preferredCountries: ["ng"],
+                                                                hiddenInput: "full",
+                                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                                            }));
+                                                        });
+
+                                                // var head_phone = window.intlTelInput(document.querySelector("#pros-adminnumset"), {
+                                                //     separateDialCode: true,
+                                                //     preferredCountries: ["ng"],
+                                                //     hiddenInput: "full",
+                                                //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                                // });
                                 
                                 
                                                 var tagstatusnew = tagstate;
@@ -4645,16 +4520,7 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                                 
                                 
                                 
-                                                $('body').on('click', '.createsubjectgeneral', function() {
-                                                    var facultyid = $(this).data('faculty');
-                                
-                                                    const selectBtn = document.querySelector(".pros-opensubjectwhenclick" +
-                                                            facultyid),
-                                                        items = document.querySelectorAll(".subjectlistmeslist");
-                                
-                                                    // Toggle the "open" subject when the selectBtn is clicked
-                                                    selectBtn.classList.toggle("open");
-                                                });
+                                               
                                 
                                 
                                             }
@@ -4722,12 +4588,26 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                     if (output.trim() == 'found') {
 
 
-                        $.wnoty({
-                            type: 'warning',
-                            message: "hey! this email already exist.",
-                            autohideDelay: 5000
-                        });
+                            $.wnoty({
+                                type: 'warning',
+                                message: "hey! this email already exist.",
+                                autohideDelay: 5000
+                            });
 
+                           $('#pros-create-schoolheadbtn').html('Register Now');
+
+
+                          
+
+                             // set time out
+                                $('#pros-displayhead-setup').animate({
+                                    // opacity: 0.5,
+                                    left: '+=50',
+                                    height: 'toggle'
+                                }, 1000);
+                                $('#assignschoolheadfaculty').fadeIn('slow');
+                                prosload_set_upcontent(CampusID,groupSchoolID,UserID,ownerfirst_Name,tagstate);
+                           
 
 
 
@@ -4739,6 +4619,9 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                             message: "Great! school head created successfully.",
                             autohideDelay: 5000
                         });
+                        $('#pros-create-schoolheadbtn').html('Register Now');
+                          
+                       
 
                         $('#pros-displayhead-setup').animate({
                             // opacity: 0.5,
@@ -4746,201 +4629,8 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                             height: 'toggle'
                         }, 1000);
                         $('#assignschoolheadfaculty').fadeIn('slow');
+                        prosload_set_upcontent(CampusID,groupSchoolID,UserID,ownerfirst_Name,tagstate);
                         
-                        
-                        
-                                    // load setupcontent here //
-
-                                    $('#pros-displaysetup-content').html(
-                                        '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
-                                    $.ajax({
-                            
-                                        type: "POST",
-                                        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/loadsetup-modal.php",
-                                        data: {
-                                            UserID: UserID,
-                                            ownerfirst_Name: ownerfirst_Name,
-                                            tagstate: tagstate,
-                                            groupSchoolID: groupSchoolID,
-                                            CampusID: CampusID
-                                        },
-                                        success: function(result) {
-                            
-                                            $('#pros-displaysetup-content').html(result);
-                            
-                            
-                                            var head_phone = window.intlTelInput(document.querySelector("#pros-headnumset"), {
-                                                separateDialCode: true,
-                                                preferredCountries: ["ng"],
-                                                hiddenInput: "full",
-                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                            });
-                            
-                            
-                            
-                                            var head_phone = window.intlTelInput(document.querySelector(
-                                                "#pros-teachernumset"), {
-                                                separateDialCode: true,
-                                                preferredCountries: ["ng"],
-                                                hiddenInput: "full",
-                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                            });
-                            
-                                            var head_phone = window.intlTelInput(document.querySelector("#pros-adminnumset"), {
-                                                separateDialCode: true,
-                                                preferredCountries: ["ng"],
-                                                hiddenInput: "full",
-                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                            });
-                            
-                            
-                                            var tagstatusnew = tagstate;
-                            
-                                            $('#prosloadschoolid-forbackward').val(CampusID);
-                            
-                            
-                                            if (maintag == '29' && tagstatusnew == '') {
-                            
-                                                $('#pros-reducemodalclasstypesetup').css('width', '700px');
-                                                //if campus havent't started setiing up it should start from the begginning
-                                                $('#pros-loadimportoption').fadeIn('slow');
-                            
-                                            } else {
-                            
-                            
-                            
-                                                if (tagstatusnew == '' || tagstatusnew == '15') {
-                                                    $('#displaysection-content').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-
-                                                } else if (tagstatusnew == '16') {
-
-                                                    $('#pros-displayhead-setup').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(15);
-
-
-
-                                                } else if (tagstatusnew == '17') {
-
-                                                    $('#assignschoolheadfaculty  ').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(16);
-
-                                                } else if (tagstatusnew == '18') {
-                                                    $('#proscreateschool-teacher').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(17);
-
-                                                } else if (tagstatusnew == '19') {
-                                                    $('#createotherschooltype-setup').fadeIn('slow');
-
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(18);
-
-                                                } else if (tagstatusnew == '20') {
-
-                                                    $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                                                    $('#createwelcomemsg-setup').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(19);
-
-
-                                                } else if (tagstatusnew == '21') {
-
-                                                    $('#createclasses-setup ').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(20);
-
-                                                    // $('#pros-reducemodalclasstypesetup').addClass('modal-xl');
-
-                                                } else if (tagstatusnew == '22') {
-
-                                                    $('#createsubject-setup').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(21);
-
-                                                } else if (tagstatusnew == '23') {
-
-                                                    $('#mergesubjectcontent').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(22);
-
-
-                                                } else if (tagstatusnew == '24') {
-
-                                                    $('#pros-assign-formteachercontent').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(23);
-
-                                                } else if (tagstatusnew == '25') {
-
-                                                    $('#assignsubject-teachercontainer').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(24);
-
-                                                } else if (tagstatusnew == '26') {
-
-                                                    $('#pros-loadsession-termcontent').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(25);
-
-                                                } else if (tagstatusnew == '27') {
-
-                                                    $('#pros-schlogo-content').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(26);
-
-                                                }else if(tagstatusnew == '28')
-                                                {
-                                                    $('#prosschool-bgimage-content').fadeIn('slow');
-                                                    $('#movebackbtn-setup').fadeIn('slow');
-                                                    $('#pros-displaybackvalue-tag').val(27);
-
-
-                                                }else if(tagstatusnew == '29')
-                                                {
-
-                                                                //setup completed
-                                                
-                                                }
-                            
-                                            }
-                            
-                            
-                            
-                            
-                                            const selectBtnnewsubject = document.querySelector(
-                                                    ".getsubjectopenondocument-ready1"),
-                                                itemssubject = document.querySelectorAll(".subjectlistmeslist");
-                                            selectBtnnewsubject.classList.toggle("open");
-                            
-                            
-                            
-                            
-                            
-                                            $('body').on('click', '.createsubjectgeneral', function() {
-                                                var facultyid = $(this).data('faculty');
-                            
-                                                const selectBtn = document.querySelector(".pros-opensubjectwhenclick" +
-                                                        facultyid),
-                                                    items = document.querySelectorAll(".subjectlistmeslist");
-                            
-                                                // Toggle the "open" subject when the selectBtn is clicked
-                                                selectBtn.classList.toggle("open");
-                                            });
-                            
-                            
-                                        }
-                                    });
-
-                                // load setupcontent here //
-                        
-                        
-                        
-                        
-
                     }
 
                 }
@@ -4988,8 +4678,10 @@ $('body').on('click', '.sectioncheckbox', function (e) {
             var facultyID = $(this).data('id');
             var facunewcheck = $(this).data('faculty');
 
+           
             // Only trigger radio if user clicks outside the radio directly
             if (event.target.type !== 'radio') {
+                // alert(facunewcheck);
                 $('.proscheckboxinside' + facultyID).prop("checked", true).trigger("change");
             }
 
@@ -5243,7 +4935,7 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                         success: function(result) {
                             $('#createteacher-setup-btn').html('Create new');
 
-                            if (result.trim() == 'allexist') {
+                            if (result == 'allexist') {
 
                                 $.wnoty({
                                     type: 'warning',
@@ -5260,6 +4952,7 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                                     left: '+=50',
                                     height: 'toggle'
                                 }, 1000);
+                                
                                 $('#createotherschooltype-setup').fadeIn('slow');
 
 
@@ -5288,32 +4981,35 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                                         $('#pros-displaysetup-content').html(result);
 
 
-                                        var head_phone = window.intlTelInput(document
-                                            .querySelector("#pros-headnumset"), {
-                                                separateDialCode: true,
-                                                preferredCountries: ["ng"],
-                                                hiddenInput: "full",
-                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                            });
+                                        
+                               var head_phones = [];
+                                    document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                        head_phones.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
+                                    });
 
+                            
 
-
-                                        var head_phone = window.intlTelInput(document
-                                            .querySelector(
-                                                "#pros-teachernumset"), {
-                                                separateDialCode: true,
-                                                preferredCountries: ["ng"],
-                                                hiddenInput: "full",
-                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                            });
-
-                                        var head_phone = window.intlTelInput(document
-                                            .querySelector("#pros-adminnumset"), {
-                                                separateDialCode: true,
-                                                preferredCountries: ["ng"],
-                                                hiddenInput: "full",
-                                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                            });
+                                  var head_phone = [];
+                                    document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                        head_phone.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
+                                    }); 
+                                        // var head_phone = window.intlTelInput(document
+                                        //     .querySelector("#pros-adminnumset"), {
+                                        //         separateDialCode: true,
+                                        //         preferredCountries: ["ng"],
+                                        //         hiddenInput: "full",
+                                        //         utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        //     });
 
 
                                         var tagstatusnew = tagstate;
@@ -5446,19 +5142,7 @@ $('body').on('click', '.sectioncheckbox', function (e) {
 
 
 
-                                        $('body').on('click', '.createsubjectgeneral',
-                                        function() {
-                                            var facultyid = $(this).data('faculty');
-
-                                            const selectBtn = document.querySelector(
-                                                    ".pros-opensubjectwhenclick" +
-                                                    facultyid),
-                                                items = document.querySelectorAll(
-                                                    ".subjectlistmeslist");
-
-                                            // Toggle the "open" subject when the selectBtn is clicked
-                                            selectBtn.classList.toggle("open");
-                                        });
+                                       
 
                                     }
                                 });
@@ -5549,7 +5233,10 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                             $('#createotherschooltype-setup').fadeIn('slow');
 
 
+                        }
 
+
+                        
                             // loadsetup content on create teacher 
 
                             $('#pros-displaysetup-content').html(
@@ -5572,31 +5259,35 @@ $('body').on('click', '.sectioncheckbox', function (e) {
                                     $('#pros-displaysetup-content').html(result);
 
 
-                                    var head_phone = window.intlTelInput(document.querySelector(
-                                        "#pros-headnumset"), {
-                                        separateDialCode: true,
-                                        preferredCountries: ["ng"],
-                                        hiddenInput: "full",
-                                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                    var head_phones = [];
+                                    document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                        head_phones.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
                                     });
 
+                            
 
-
-                                    var head_phone = window.intlTelInput(document.querySelector(
-                                        "#pros-teachernumset"), {
-                                        separateDialCode: true,
-                                        preferredCountries: ["ng"],
-                                        hiddenInput: "full",
-                                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                  var head_phone = [];
+                                    document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                        head_phone.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
                                     });
 
-                                    var head_phone = window.intlTelInput(document.querySelector(
-                                        "#pros-adminnumset"), {
-                                        separateDialCode: true,
-                                        preferredCountries: ["ng"],
-                                        hiddenInput: "full",
-                                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                    });
+                                    // var head_phone = window.intlTelInput(document.querySelector(
+                                    //     "#pros-adminnumset"), {
+                                    //     separateDialCode: true,
+                                    //     preferredCountries: ["ng"],
+                                    //     hiddenInput: "full",
+                                    //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                    // });
 
 
                                     var tagstatusnew = tagstate;
@@ -5729,18 +5420,7 @@ $('body').on('click', '.sectioncheckbox', function (e) {
 
 
 
-                                    $('body').on('click', '.createsubjectgeneral', function() {
-                                        var facultyid = $(this).data('faculty');
-
-                                        const selectBtn = document.querySelector(
-                                                ".pros-opensubjectwhenclick" +
-                                                facultyid),
-                                            items = document.querySelectorAll(
-                                                ".subjectlistmeslist");
-
-                                        // Toggle the "open" subject when the selectBtn is clicked
-                                        selectBtn.classList.toggle("open");
-                                    });
+                                   
 
                                 }
                             });
@@ -5754,8 +5434,6 @@ $('body').on('click', '.sectioncheckbox', function (e) {
 
 
 
-
-                        }
                     }
                 });
 
@@ -6009,7 +5687,7 @@ $('body').on('click', '#createadmin-setup-btn', function(e) {
                 //CHECKING THE ACTION OF A USER SETUP
                 if (action == 'edit') {
 
-                    if (result == 'found') {
+                    if (result.trim() == 'allexist') {
 
                         $.wnoty({
                             type: 'warning',
@@ -6050,32 +5728,35 @@ $('body').on('click', '#createadmin-setup-btn', function(e) {
                                 $('#pros-displaysetup-content').html(result);
 
 
-                                var head_phone = window.intlTelInput(document
-                                    .querySelector("#pros-headnumset"), {
-                                        separateDialCode: true,
-                                        preferredCountries: ["ng"],
-                                        hiddenInput: "full",
-                                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                var head_phones = [];
+                                    document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                        head_phones.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
                                     });
 
+                            
 
-
-                                var head_phone = window.intlTelInput(document
-                                    .querySelector(
-                                        "#pros-teachernumset"), {
-                                        separateDialCode: true,
-                                        preferredCountries: ["ng"],
-                                        hiddenInput: "full",
-                                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                  var head_phone = [];
+                                    document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                        head_phone.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
                                     });
 
-                                var head_phone = window.intlTelInput(document
-                                    .querySelector("#pros-adminnumset"), {
-                                        separateDialCode: true,
-                                        preferredCountries: ["ng"],
-                                        hiddenInput: "full",
-                                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                    });
+                                // var head_phone = window.intlTelInput(document
+                                //     .querySelector("#pros-adminnumset"), {
+                                //         separateDialCode: true,
+                                //         preferredCountries: ["ng"],
+                                //         hiddenInput: "full",
+                                //         utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                //     });
 
 
                                 var tagstatusnew = tagstate;
@@ -6209,19 +5890,7 @@ $('body').on('click', '#createadmin-setup-btn', function(e) {
 
 
 
-                                $('body').on('click', '.createsubjectgeneral',
-                                function() {
-                                    var facultyid = $(this).data('faculty');
-
-                                    const selectBtn = document.querySelector(
-                                            ".pros-opensubjectwhenclick" +
-                                            facultyid),
-                                        items = document.querySelectorAll(
-                                            ".subjectlistmeslist");
-
-                                    // Toggle the "open" subject when the selectBtn is clicked
-                                    selectBtn.classList.toggle("open");
-                                });
+                              
 
                             }
                         });
@@ -6248,7 +5917,7 @@ $('body').on('click', '#createadmin-setup-btn', function(e) {
 
                 } else {
 
-                    if (result == 'found') {
+                    if (result.trim() == 'allexist') {
 
                         $.wnoty({
                             type: 'warning',
@@ -6309,32 +5978,34 @@ $('body').on('click', '#createadmin-setup-btn', function(e) {
                                 $('#pros-displaysetup-content').html(result);
 
 
-                                var head_phone = window.intlTelInput(document
-                                    .querySelector("#pros-headnumset"), {
-                                        separateDialCode: true,
-                                        preferredCountries: ["ng"],
-                                        hiddenInput: "full",
-                                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                var head_phones = [];
+                                    document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                        head_phones.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
                                     });
 
+                            
 
-
-                                var head_phone = window.intlTelInput(document
-                                    .querySelector(
-                                        "#pros-teachernumset"), {
-                                        separateDialCode: true,
-                                        preferredCountries: ["ng"],
-                                        hiddenInput: "full",
-                                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                  var head_phone = [];
+                                    document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                        head_phone.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
                                     });
-
-                                var head_phone = window.intlTelInput(document
-                                    .querySelector("#pros-adminnumset"), {
-                                        separateDialCode: true,
-                                        preferredCountries: ["ng"],
-                                        hiddenInput: "full",
-                                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                                    });
+                                // var head_phone = window.intlTelInput(document
+                                //     .querySelector("#pros-adminnumset"), {
+                                //         separateDialCode: true,
+                                //         preferredCountries: ["ng"],
+                                //         hiddenInput: "full",
+                                //         utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                //     });
 
 
                                 var tagstatusnew = tagstate;
@@ -6466,19 +6137,7 @@ $('body').on('click', '#createadmin-setup-btn', function(e) {
 
 
 
-                                $('body').on('click', '.createsubjectgeneral',
-                                function() {
-                                    var facultyid = $(this).data('faculty');
-
-                                    const selectBtn = document.querySelector(
-                                            ".pros-opensubjectwhenclick" +
-                                            facultyid),
-                                        items = document.querySelectorAll(
-                                            ".subjectlistmeslist");
-
-                                    // Toggle the "open" subject when the selectBtn is clicked
-                                    selectBtn.classList.toggle("open");
-                                });
+                               
 
                             }
                         });
@@ -6590,31 +6249,36 @@ $('body').on('click', '#assignschoolheadtofac-btn', function(e) {
 
 
 
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-headnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                        var head_phones = [];
+                        document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                            head_phones.push(window.intlTelInput(input, {
+                                separateDialCode: true,
+                                preferredCountries: ["ng"],
+                                hiddenInput: "full",
+                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            }));
+                        });
+                       
+
+                        var head_phone = [];
+
+
+                        document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                            head_phone.push(window.intlTelInput(input, {
+                                separateDialCode: true,
+                                preferredCountries: ["ng"],
+                                hiddenInput: "full",
+                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            }));
                         });
 
-
-
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-teachernumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
-
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-adminnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
+                        // var head_phone = window.intlTelInput(document.querySelector(
+                        //     "#pros-adminnumset"), {
+                        //     separateDialCode: true,
+                        //     preferredCountries: ["ng"],
+                        //     hiddenInput: "full",
+                        //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                        // });
 
 
                         var tagstatusnew = tagstate;
@@ -6822,18 +6486,7 @@ $('body').on('click', '#assignschoolheadtofac-btn', function(e) {
 
 
 
-                        $('body').on('click', '.createsubjectgeneral', function() {
-                            var facultyid = $(this).data('faculty');
-
-                            const selectBtn = document.querySelector(
-                                    ".pros-opensubjectwhenclick" +
-                                    facultyid),
-                                items = document.querySelectorAll(
-                                    ".subjectlistmeslist");
-
-                            // Toggle the "open" subject when the selectBtn is clicked
-                            selectBtn.classList.toggle("open");
-                        });
+                       
 
                     }
                 });
@@ -6854,325 +6507,146 @@ $('body').on('click', '#assignschoolheadtofac-btn', function(e) {
 
 
 //move back btn by  steps
+//move back btn by steps
 $('body').on('click', '#movebackbtn-setup', function(e) {
+    // Prevent multiple clicks
+    if ($(this).data('processing')) return;
+    $(this).data('processing', true);
 
     var getback_wardbtn = $('#pros-displaybackvalue-tag').val();
     var UserID = "<?php echo $UserID; ?>";
-
     var campusID = $('#prosloadschoolid-forbackward').val();
 
-
-    if (getback_wardbtn == '15') {
-
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-
-
-                $('#pros-displaybackvalue-tag').val(15);
-
-
-                $('#pros-displayhead-setup').fadeOut('slow');
-
-                $('#movebackbtn-setup').fadeOut('slow');
-
-                $('#displaysection-content').fadeIn('slow');
-
-
-            }
-        });
-
-
-
-    } else if (getback_wardbtn == '16') {
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-                $('#pros-displaybackvalue-tag').val(15);
-
-                $('#assignschoolheadfaculty').fadeOut('slow');
-
-                $('#pros-displayhead-setup').fadeIn('slow');
-
-
-            }
-        });
-
-
-
-    } else if (getback_wardbtn == '17') {
-
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-                $('#pros-displaybackvalue-tag').val(16);
-
-                $('#proscreateschool-teacher').fadeOut('slow');
-
-
-                $('#assignschoolheadfaculty').fadeIn('slow');
-
-            }
-        });
-
-    } else if (getback_wardbtn == '18') {
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-                $('#pros-displaybackvalue-tag').val(17);
-
-                $('#createotherschooltype-setup').fadeOut('slow');
-
-
-                $('#proscreateschool-teacher').fadeIn('slow');
-
-            }
-        });
-
-    } else if (getback_wardbtn == '19') {
-
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-                $('#pros-displaybackvalue-tag').val(18);
-
-                $('#createwelcomemsg-setup').fadeOut('slow');
-
-                $('#pros-reducemodalclasstypesetup').css('width', '86%');
-
-                $('#createotherschooltype-setup').fadeIn('slow');
-            }
-        });
-
-    } else if (getback_wardbtn == '20') {
-        $.ajax({
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-                $('#pros-displaybackvalue-tag').val(19);
-
-                $('#createclasses-setup').fadeOut('slow');
-
-
-                $('#pros-reducemodalclasstypesetup').css('width', '700px');
-
-                $('#createwelcomemsg-setup').fadeIn('slow');
-
-            }
-
-        });
-    } else if (getback_wardbtn == '21') {
-
-
-        $.ajax({
-
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-                $('#pros-displaybackvalue-tag').val(20);
-
-                $('#createsubject-setup').fadeOut('slow');
-                $('#pros-reducemodalclasstypesetup').css('width', '86%');
-
-
-                $('#createclasses-setup').fadeIn('fast');
-            }
-        });
-
-    } else if (getback_wardbtn == '22') {
-
-
-
-        $.ajax({
-
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-                $('#pros-displaybackvalue-tag').val(21);
-
-
-                $('#mergesubjectcontent').fadeOut('slow');
-                $('#pros-reducemodalclasstypesetup').css('width', '86%');
-
-                $('#createsubject-setup').fadeIn('fast');
-            }
-        });
-
-
-
-    } else if (getback_wardbtn == '23') {
-
-
-        $.ajax({
-
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-                $('#pros-displaybackvalue-tag').val(22);
-                $('#pros-assign-formteachercontent').fadeOut('slow');
-                $('#mergesubjectcontent').fadeIn('fast');
-                $('#pros-reducemodalclasstypesetup').css('width', '86%');
-
-            }
-        });
-
-
-
-    } else if (getback_wardbtn == '24') {
-
-        $.ajax({
-
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-                $('#pros-displaybackvalue-tag').val(23);
-                $('#assignsubject-teachercontainer').fadeOut('slow');
-                $('#pros-assign-formteachercontent').fadeIn('fast');
-                $('#pros-reducemodalclasstypesetup').css('width', '86%');
-
-            }
-        });
-
-
-
-    } else if (getback_wardbtn == '25') {
-
-        $.ajax({
-
-            type: "POST",
-            url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-            data: {
-                getback_wardbtn: getback_wardbtn,
-                UserID: UserID,
-                campusID: campusID
-            },
-            success: function(result) {
-                $('#pros-displaybackvalue-tag').val(24);
-                $('#pros-loadsession-termcontent').fadeOut('slow');
-                $('#assignsubject-teachercontainer').fadeIn('fast');
-                $('#pros-reducemodalclasstypesetup').css('width', '86%');
-
-            }
-        });
-
-    }else if (getback_wardbtn == '26') {
-
-
-
-
-
-                $.ajax({
-
-                    type: "POST",
-                    url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-                    data: {
-                        getback_wardbtn: getback_wardbtn,
-                        UserID: UserID,
-                        campusID: campusID
-                    },
-                    success: function(result) {
-                        $('#pros-displaybackvalue-tag').val(25);
-                        $('#pros-schlogo-content').fadeOut('slow');
-                        $('#pros-loadsession-termcontent').fadeIn('fast');
-                        $('#pros-reducemodalclasstypesetup').css('width', '86%');
-
-                    }
-
-                });
-        
-
-        }else if(getback_wardbtn == '27')
-        {
-
-
-
-            $.ajax({
-
-                type: "POST",
-                url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
-                data: {
-                    getback_wardbtn: getback_wardbtn,
-                    UserID: UserID,
-                    campusID: campusID
-                },
-                success: function(result) {
-                    $('#pros-displaybackvalue-tag').val(26);
-                    $('#prosschool-bgimage-content').fadeOut('slow');
-                    $('#pros-schlogo-content').fadeIn('fast');
-                    $('#pros-reducemodalclasstypesetup').css('width', '86%');
-
-                }
-
-            });
-
+    // Disable button during processing
+    $(this).prop('disabled', true);
+
+    $.ajax({
+        type: "POST",
+        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/updatesetup-backwardtag.php",
+        data: {
+            getback_wardbtn: getback_wardbtn,
+            UserID: UserID,
+            campusID: campusID
+        },
+        success: function(result) {
+            // Handle the transition based on the current step
+            handleStepTransition(getback_wardbtn);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+            // alert('An error occurred while processing your request. Please try again.');
+        },
+        complete: function() {
+            // Reset button state
+            $('#movebackbtn-setup').prop('disabled', false).data('processing', false);
         }
-
-
-
-
-
-
-
+    });
 });
+
+// Function to handle step transitions
+function handleStepTransition(currentStep) {
+    const transitions = {
+        '15': {
+            fadeOut: ['#pros-displayhead-setup', '#movebackbtn-setup'],
+            fadeIn: ['#displaysection-content'],
+            setValue: 15
+        },
+        '16': {
+            fadeOut: ['#assignschoolheadfaculty'],
+            fadeIn: ['#pros-displayhead-setup'],
+            setValue: 15
+        },
+        '17': {
+            fadeOut: ['#proscreateschool-teacher'],
+            fadeIn: ['#assignschoolheadfaculty'],
+            setValue: 16
+        },
+        '18': {
+            fadeOut: ['#createotherschooltype-setup'],
+            fadeIn: ['#proscreateschool-teacher'],
+            setValue: 17
+        },
+        '19': {
+            fadeOut: ['#createwelcomemsg-setup'],
+            fadeIn: ['#createotherschooltype-setup'],
+            setValue: 18,
+            css: { '#pros-reducemodalclasstypesetup': { width: '86%' } }
+        },
+        '20': {
+            fadeOut: ['#createclasses-setup'],
+            fadeIn: ['#createwelcomemsg-setup'],
+            setValue: 19,
+            css: { '#pros-reducemodalclasstypesetup': { width: '700px' } }
+        },
+        '21': {
+            fadeOut: ['#createsubject-setup'],
+            fadeIn: ['#createclasses-setup'],
+            setValue: 20,
+            css: { '#pros-reducemodalclasstypesetup': { width: '86%' } }
+        },
+        '22': {
+            fadeOut: ['#mergesubjectcontent'],
+            fadeIn: ['#createsubject-setup'],
+            setValue: 21,
+            css: { '#pros-reducemodalclasstypesetup': { width: '86%' } }
+        },
+        '23': {
+            fadeOut: ['#pros-assign-formteachercontent'],
+            fadeIn: ['#mergesubjectcontent'],
+            setValue: 22,
+            css: { '#pros-reducemodalclasstypesetup': { width: '86%' } }
+        },
+        '24': {
+            fadeOut: ['#assignsubject-teachercontainer'],
+            fadeIn: ['#pros-assign-formteachercontent'],
+            setValue: 23,
+            css: { '#pros-reducemodalclasstypesetup': { width: '86%' } }
+        },
+        '25': {
+            fadeOut: ['#pros-loadsession-termcontent'],
+            fadeIn: ['#assignsubject-teachercontainer'],
+            setValue: 24,
+            css: { '#pros-reducemodalclasstypesetup': { width: '86%' } }
+        },
+        '26': {
+            fadeOut: ['#pros-schlogo-content'],
+            fadeIn: ['#pros-loadsession-termcontent'],
+            setValue: 25,
+            css: { '#pros-reducemodalclasstypesetup': { width: '86%' } }
+        },
+        '27': {
+            fadeOut: ['#prosschool-bgimage-content'],
+            fadeIn: ['#pros-schlogo-content'],
+            setValue: 26,
+            css: { '#pros-reducemodalclasstypesetup': { width: '86%' } }
+        }
+    };
+
+    const transition = transitions[currentStep];
+    if (!transition) return;
+
+    // Update the value
+    $('#pros-displaybackvalue-tag').val(transition.setValue);
+
+    // Apply CSS changes if any
+    if (transition.css) {
+        Object.entries(transition.css).forEach(([selector, styles]) => {
+            $(selector).css(styles);
+        });
+    }
+
+    // Handle fade transitions with consistent timing
+    transition.fadeOut.forEach(selector => {
+        $(selector).fadeOut(300);
+    });
+
+    // Wait for fadeOut to complete before fading in
+    setTimeout(() => {
+        transition.fadeIn.forEach(selector => {
+            $(selector).fadeIn(300);
+        });
+    }, 300);
+}
 //move back btn by  steps ends here
 
 
@@ -7405,31 +6879,34 @@ $('body').on('click', '#createclass-setup-btn', function(e) {
                         $('#pros-displaysetup-content').html(result);
 
 
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-headnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
+                              var head_phones = [];
+                                    document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                        head_phones.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
+                                    });
 
+                            
 
-
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-teachernumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
-
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-adminnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
+                                  var head_phone = [];
+                                    document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                        head_phone.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
+                                    });
+                                // var head_phone = window.intlTelInput(document.querySelector(
+                                //     "#pros-adminnumset"), {
+                                //     separateDialCode: true,
+                                //     preferredCountries: ["ng"],
+                                //     hiddenInput: "full",
+                                //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                // });
 
 
 
@@ -7566,19 +7043,7 @@ $('body').on('click', '#createclass-setup-btn', function(e) {
 
 
 
-                        $('body').on('click', '.createsubjectgeneral', function() {
-                            var facultyid = $(this).data('faculty');
-
-                            const selectBtn = document.querySelector(
-                                    ".pros-opensubjectwhenclick" +
-                                    facultyid),
-                                items = document.querySelectorAll(
-                                    ".subjectlistmeslist");
-
-                            // Toggle the "open" subject when the selectBtn is clicked
-                            selectBtn.classList.toggle("open");
-                        });
-
+                       
                     }
                 });
 
@@ -7704,31 +7169,35 @@ $('body').on('click', '#createsubject-setup-btn', function(e) {
                             $('#pros-displaysetup-content').html(result);
 
 
-                            var head_phone = window.intlTelInput(document.querySelector(
-                                "#pros-headnumset"), {
-                                separateDialCode: true,
-                                preferredCountries: ["ng"],
-                                hiddenInput: "full",
-                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                            });
+                            var head_phones = [];
+                                    document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                        head_phones.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
+                                    });
 
+                            
 
-
-                            var head_phone = window.intlTelInput(document.querySelector(
-                                "#pros-teachernumset"), {
-                                separateDialCode: true,
-                                preferredCountries: ["ng"],
-                                hiddenInput: "full",
-                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                            });
-
-                            var head_phone = window.intlTelInput(document.querySelector(
-                                "#pros-adminnumset"), {
-                                separateDialCode: true,
-                                preferredCountries: ["ng"],
-                                hiddenInput: "full",
-                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                            });
+                                  var head_phone = [];
+                                    document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                        head_phone.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
+                                    });   
+                                    
+                                // var head_phone = window.intlTelInput(document.querySelector(
+                                // "#pros-adminnumset"), {
+                                // separateDialCode: true,
+                                // preferredCountries: ["ng"],
+                                // hiddenInput: "full",
+                                // utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                // });
 
 
                             var tagstatusnew = tagstate;
@@ -7864,18 +7333,7 @@ $('body').on('click', '#createsubject-setup-btn', function(e) {
 
 
 
-                            $('body').on('click', '.createsubjectgeneral', function() {
-                                var facultyid = $(this).data('faculty');
-
-                                const selectBtn = document.querySelector(
-                                        ".pros-opensubjectwhenclick" +
-                                        facultyid),
-                                    items = document.querySelectorAll(
-                                        ".subjectlistmeslist");
-
-                                // Toggle the "open" subject when the selectBtn is clicked
-                                selectBtn.classList.toggle("open");
-                            });
+                          
 
                         }
                     });
@@ -7916,18 +7374,87 @@ $('body').on('click', '#proceedtocreatestaff-setup', function(e) {
 
     } else {
 
+
+        var UserID = $(this).data('uid');
+        var ownerfirst_Name = $(this).data('uname');
+        var tagstate = $(this).data('utage');
+        var groupSchoolID = $(this).data('instid');
+        var CampusID = $(this).data('campid');
+
+        prosload_admin_execu_inputs(UserID,ownerfirst_Name,tagstate,groupSchoolID,CampusID,usertypecheck);
+
         $('#createotheeusertypecover').animate({
             left: '+=50',
             height: 'toggle'
-        }, 1000);
+        }, 500);
 
         $('#admininputcoversetup').fadeIn('slow');
+
+        if(usertypecheck == 'admin')
+        {
+
+            $('.prosotherstaffreg').html('an admin');
+
+        }else
+        {
+            $('.prosotherstaffreg').html('senior executive');
+        }
+
         $('#usertypevalue-setup').val(usertypecheck);
+
 
     }
 });
 
 //click yes to create other user btn
+
+// prosload admin input here
+
+function  prosload_admin_execu_inputs(UserID,ownerfirst_Name,tagstate,groupSchoolID,CampusID,usertypecheck)
+{
+
+
+   
+    $('#admininputcoversetup').html(
+        '<div align="center"> <i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i></div>');
+    
+    $.ajax({
+        type: "POST",
+        url: "<?php echo $defaultUrl; ?>/controller/scripts/owner/load_adminsetup_input.php",
+        data: {
+            tagstate: tagstate,
+            UserID: UserID,
+            CampusID: CampusID,
+            groupSchoolID: groupSchoolID,
+            ownerfirst_Name: ownerfirst_Name,
+            usertypecheck: usertypecheck
+        },
+         success: function(result) {
+
+            $('#admininputcoversetup').html(result);
+
+            // alert(result);
+                  var head_phone = [];
+                        document.querySelectorAll('.pros-adminnumset').forEach(function (input) {
+                            head_phone.push(window.intlTelInput(input, {
+                                separateDialCode: true,
+                                preferredCountries: ["ng"],
+                                hiddenInput: "full",
+                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            }));
+                        });
+                
+
+            
+
+            }
+        });
+
+
+    
+}
+
+
 
 //click on enter to display display class like tag kind
 $('body').on('keypress', '.geneclassnameinput', function(e) {
@@ -8574,31 +8101,35 @@ $('body').on('click', '#createmergesubject-setup-btn', function() {
                     $('#pros-displaysetup-content').html(result);
 
 
-                    var head_phone = window.intlTelInput(document.querySelector(
-                        "#pros-headnumset"), {
-                        separateDialCode: true,
-                        preferredCountries: ["ng"],
-                        hiddenInput: "full",
-                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                    });
+                    var head_phones = [];
+                        document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                            head_phones.push(window.intlTelInput(input, {
+                                separateDialCode: true,
+                                preferredCountries: ["ng"],
+                                hiddenInput: "full",
+                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            }));
+                        });
 
+                
 
+                        var head_phone = [];
+                        document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                            head_phone.push(window.intlTelInput(input, {
+                                separateDialCode: true,
+                                preferredCountries: ["ng"],
+                                hiddenInput: "full",
+                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            }));
+                        }); 
 
-                    var head_phone = window.intlTelInput(document.querySelector(
-                        "#pros-teachernumset"), {
-                        separateDialCode: true,
-                        preferredCountries: ["ng"],
-                        hiddenInput: "full",
-                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                    });
-
-                    var head_phone = window.intlTelInput(document.querySelector(
-                        "#pros-adminnumset"), {
-                        separateDialCode: true,
-                        preferredCountries: ["ng"],
-                        hiddenInput: "full",
-                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                    });
+                    // var head_phone = window.intlTelInput(document.querySelector(
+                    //     "#pros-adminnumset"), {
+                    //     separateDialCode: true,
+                    //     preferredCountries: ["ng"],
+                    //     hiddenInput: "full",
+                    //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                    // });
 
 
                     var tagstatusnew = tagstate;
@@ -8731,18 +8262,7 @@ $('body').on('click', '#createmergesubject-setup-btn', function() {
 
 
 
-                    $('body').on('click', '.createsubjectgeneral', function() {
-                        var facultyid = $(this).data('faculty');
-
-                        const selectBtn = document.querySelector(
-                                ".pros-opensubjectwhenclick" +
-                                facultyid),
-                            items = document.querySelectorAll(
-                                ".subjectlistmeslist");
-
-                        // Toggle the "open" subject when the selectBtn is clicked
-                        selectBtn.classList.toggle("open");
-                    });
+                  
 
                 }
             });
@@ -8841,31 +8361,36 @@ $('body').on('click', '#assignformteacher-setup-btn', function() {
                         $('#pros-displaysetup-content').html(result);
 
 
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-headnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
+                        
+                            var head_phones = [];
+                                    document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                        head_phones.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
+                                    });
 
+                            
 
+                                  var head_phone = [];
+                                    document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                        head_phone.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
+                                    }); 
 
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-teachernumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
-
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-adminnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
+                                // var head_phone = window.intlTelInput(document.querySelector(
+                                //     "#pros-adminnumset"), {
+                                //     separateDialCode: true,
+                                //     preferredCountries: ["ng"],
+                                //     hiddenInput: "full",
+                                //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                // });
 
 
                         var tagstatusnew = tagstate;
@@ -8998,18 +8523,7 @@ $('body').on('click', '#assignformteacher-setup-btn', function() {
 
 
 
-                        $('body').on('click', '.createsubjectgeneral', function() {
-                            var facultyid = $(this).data('faculty');
-
-                            const selectBtn = document.querySelector(
-                                    ".pros-opensubjectwhenclick" +
-                                    facultyid),
-                                items = document.querySelectorAll(
-                                    ".subjectlistmeslist");
-
-                            // Toggle the "open" subject when the selectBtn is clicked
-                            selectBtn.classList.toggle("open");
-                        });
+                       
 
                     }
                 });
@@ -9149,34 +8663,39 @@ $('body').on('click', '.generalbnmergesub-btn', function() {
 
 
 
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-headnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
+                      
+                             var head_phones = [];
+                                    document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                        head_phones.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
+                                    });
+
+                            
+
+                                  var head_phone = [];
+                                    document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                        head_phone.push(window.intlTelInput(input, {
+                                            separateDialCode: true,
+                                            preferredCountries: ["ng"],
+                                            hiddenInput: "full",
+                                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                        }));
+                                    }); 
+
+                                // var head_phone = window.intlTelInput(document.querySelector(
+                                //     "#pros-adminnumset"), {
+                                //     separateDialCode: true,
+                                //     preferredCountries: ["ng"],
+                                //     hiddenInput: "full",
+                                //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                // });
 
 
-
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-teachernumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
-
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-adminnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
-
-
-                        var tagstatusnew = tagstate;
+                         var tagstatusnew = tagstate;
 
 
 
@@ -9392,34 +8911,39 @@ $('body').on('click', '.remove-linkmergegenehovrbtn', function() {
 
 
 
-                    var head_phone = window.intlTelInput(document.querySelector(
-                        "#pros-headnumset"), {
-                        separateDialCode: true,
-                        preferredCountries: ["ng"],
-                        hiddenInput: "full",
-                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                    });
+                    
+                    var head_phones = [];
+                        document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                            head_phones.push(window.intlTelInput(input, {
+                                separateDialCode: true,
+                                preferredCountries: ["ng"],
+                                hiddenInput: "full",
+                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            }));
+                        });
+
+                
+
+                        var head_phone = [];
+                        document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                            head_phone.push(window.intlTelInput(input, {
+                                separateDialCode: true,
+                                preferredCountries: ["ng"],
+                                hiddenInput: "full",
+                                utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            }));
+                        }); 
+
+                        // var head_phone = window.intlTelInput(document.querySelector(
+                        //     "#pros-adminnumset"), {
+                        //     separateDialCode: true,
+                        //     preferredCountries: ["ng"],
+                        //     hiddenInput: "full",
+                        //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                        // });
 
 
-
-                    var head_phone = window.intlTelInput(document.querySelector(
-                        "#pros-teachernumset"), {
-                        separateDialCode: true,
-                        preferredCountries: ["ng"],
-                        hiddenInput: "full",
-                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                    });
-
-                    var head_phone = window.intlTelInput(document.querySelector(
-                        "#pros-adminnumset"), {
-                        separateDialCode: true,
-                        preferredCountries: ["ng"],
-                        hiddenInput: "full",
-                        utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                    });
-
-
-                    var tagstatusnew = tagstate;
+                      var tagstatusnew = tagstate;
 
 
 
@@ -9548,21 +9072,7 @@ $('body').on('click', '.remove-linkmergegenehovrbtn', function() {
 
 
 
-                    $('body').on('click', '.createsubjectgeneral', function() {
-                        var facultyid = $(this).data('faculty');
-
-                        const selectBtn = document.querySelector(
-                                ".pros-opensubjectwhenclick" +
-                                facultyid),
-                            items = document.querySelectorAll(
-                                ".subjectlistmeslist");
-
-                        // Toggle the "open" subject when the selectBtn is clicked
-                        selectBtn.classList.toggle("open");
-                    });
-
-
-
+                  
 
 
 
@@ -9893,31 +9403,36 @@ $('body').on('click', '#pros-assignsubject-proceedbtn', function() {
                         $('#pros-displaysetup-content').html(result);
 
 
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-headnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
+                       
+                        var head_phones = [];
+                            document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                head_phones.push(window.intlTelInput(input, {
+                                    separateDialCode: true,
+                                    preferredCountries: ["ng"],
+                                    hiddenInput: "full",
+                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                }));
+                            });
 
+                    
 
+                            var head_phone = [];
+                            document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                head_phone.push(window.intlTelInput(input, {
+                                    separateDialCode: true,
+                                    preferredCountries: ["ng"],
+                                    hiddenInput: "full",
+                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                }));
+                            }); 
 
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-teachernumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
-
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-adminnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
+                        // var head_phone = window.intlTelInput(document.querySelector(
+                        //     "#pros-adminnumset"), {
+                        //     separateDialCode: true,
+                        //     preferredCountries: ["ng"],
+                        //     hiddenInput: "full",
+                        //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                        // });
 
 
                         var tagstatusnew = tagstate;
@@ -10052,19 +9567,7 @@ $('body').on('click', '#pros-assignsubject-proceedbtn', function() {
 
 
 
-                        $('body').on('click', '.createsubjectgeneral', function() {
-                            var facultyid = $(this).data('faculty');
-
-                            const selectBtn = document.querySelector(
-                                    ".pros-opensubjectwhenclick" +
-                                    facultyid),
-                                items = document.querySelectorAll(
-                                    ".subjectlistmeslist");
-
-                            // Toggle the "open" subject when the selectBtn is clicked
-                            selectBtn.classList.toggle("open");
-                        });
-
+                       
                     }
                 });
 
@@ -10197,6 +9700,7 @@ $('body').on('click', '#pros-submitlogin-bgfinal', function() {
                         success: function(result) {
                             $('#displaycampus-created').html(result);
                             var userrole = (result);
+                            location.reload();
 
                         }
                     });
@@ -10366,34 +9870,38 @@ $('body').on('click', '#pros-createsession-termbtn', function() {
 
 
 
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-headnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
+                        var head_phones = [];
+                            document.querySelectorAll('.pros-headnumset').forEach(function (input) {
+                                head_phones.push(window.intlTelInput(input, {
+                                    separateDialCode: true,
+                                    preferredCountries: ["ng"],
+                                    hiddenInput: "full",
+                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                }));
+                            });
+
+                    
+
+                            var head_phone = [];
+                            document.querySelectorAll('.pros-teachernumset').forEach(function (input) {
+                                head_phone.push(window.intlTelInput(input, {
+                                    separateDialCode: true,
+                                    preferredCountries: ["ng"],
+                                    hiddenInput: "full",
+                                    utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                                }));
+                            }); 
+
+                            // var head_phone = window.intlTelInput(document.querySelector(
+                            //     "#pros-adminnumset"), {
+                            //     separateDialCode: true,
+                            //     preferredCountries: ["ng"],
+                            //     hiddenInput: "full",
+                            //     utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+                            // });
 
 
-
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-teachernumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
-
-                        var head_phone = window.intlTelInput(document.querySelector(
-                            "#pros-adminnumset"), {
-                            separateDialCode: true,
-                            preferredCountries: ["ng"],
-                            hiddenInput: "full",
-                            utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
-                        });
-
-
-                        var tagstatusnew = tagstate;
+                            var tagstatusnew = tagstate;
 
 
 
@@ -10645,33 +10153,17 @@ $(document).ready(function() {
         itemsclass = document.querySelectorAll(".listmeslist");
     selectBtnnewclassdoc.classList.toggle("open");
 
-    $('body').on('click', '.createclassgeneral', function() {
-        var facultyid = $(this).data('faculty');
-
-        const selectBtn = document.querySelector(
-                ".pros-openclasswhenclick" +
-                facultyid),
-            items = document.querySelectorAll(
-                ".listmeslist");
-
-        // Toggle the "open" class when the selectBtn is clicked
-        selectBtn.classList.toggle("open");
-    });
+   
 
 
 
-    $('body').on('click', '.createsubjectgeneral', function() {
-        var facultyid = $(this).data('faculty');
+   
 
-        const selectBtn = document.querySelector(
-                ".pros-opensubjectwhenclick" +
-                facultyid),
-            items = document.querySelectorAll(
-                ".subjectlistmeslist");
 
-        // Toggle the "open" subject when the selectBtn is clicked
-        selectBtn.classList.toggle("open");
-    });
+
+
+
+
 
 });
 

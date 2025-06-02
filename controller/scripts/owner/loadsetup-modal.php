@@ -1,5 +1,5 @@
-<?php
 
+<?php
 
     include('../../config/config.php');
 
@@ -9,11 +9,26 @@
     $groupschoolID_new = $_POST['groupSchoolID'];
     $campusID_new = $_POST['CampusID'];
 
-
-    $selectverify_campus_new_maincam = mysqli_query($link, "SELECT  * FROM `campus` WHERE   InstitutionID='$groupschoolID_new'");
+    
+    $selectverify_campus_new_maincam = mysqli_query($link, "SELECT  * FROM `campus` WHERE   
+    InstitutionID='$groupschoolID_new'");
     $selectverify_campuscnt_new_maincam = mysqli_num_rows($selectverify_campus_new_maincam);
     $selectverify_campuscnt_row_new_maincam = mysqli_fetch_assoc($selectverify_campus_new_maincam);
 
+
+    // PROS GET ALREADY CREATED SCHOOL HEAD HERE
+      $sch_head_sql =  mysqli_query($link,"SELECT * FROM `staff` WHERE `Role`='schoolhead' AND
+    `InstitutionID`='$groupschoolID_new'  ORDER BY `StaffFirstName` ASC");
+     $sch_head_sql_cnt = mysqli_num_rows($sch_head_sql);
+
+      // PROS GET ALREADY CREATED TEACHERS HERE
+      $sch_teacher_sql =  mysqli_query($link,"SELECT * FROM `staff` WHERE `Role`='teacher' AND
+    `InstitutionID`='$groupschoolID_new'  ORDER BY `StaffFirstName` ASC");
+     $sch_teacher_sql_cnt = mysqli_num_rows($sch_teacher_sql);
+
+     
+
+    
     $tagstatecampusmain = $selectverify_campuscnt_row_new_maincam['TagState'];
 
     if($tagstatecampusmain == '29'){
@@ -91,7 +106,7 @@
                                         $delect_section_cnt_row = mysqli_fetch_assoc($delect_section);
                                         $num = 1;
 
-                                    echo '<br><div class="row">';
+                                    echo '<br><div class="row g-3">';
                                             do {
 
                                                     $section_name = $delect_section_cnt_row['SectionListName'];
@@ -111,45 +126,67 @@
                                                                 $sectionalisanamegotten =  trim($pros_verify_sectio_created_cnt_row['SectionName']);
                                                                 $pros_checked_sectioncreated = 'checked';
                                                                 $bordercolor = '1px solid #007bff';
+
+                                                                $disabledchecked = '';
                                                                 
                                                         }else
                                                         {
                                                             $sectionalisanamegotten = trim($section_name);
                                                             $pros_checked_sectioncreated = '';
                                                             $bordercolor = 'none';
-                                                        }
-                                                    
 
-                                                        echo
-                                                            '
-                                                            <div class="col-sm-6 mb-3">
-                                                                        
-                                                                    <div class="card generalclass-checksection checksectiongeneral'.$facultyID.'" 
-                                                                        data-id="prosfacultyid'.$facultyID.'" 
-                                                                        style="cursor:pointer;border-radius:10px;outline:'.$bordercolor.';">
-                                                                        <div class="card-body" style="border:none;border-radius:5px;height:50px;">
-                                                                            <div class="radio-group">
-                                                                                <input class="form-check-input pros-checkchildren sectioncheckbox" 
-                                                                                    id="prosfacultyid'.$facultyID.'" 
-                                                                                    data-id="prosfacultyid'.$facultyID.'"  
-                                                                                    data-checkverify="checksectiongeneral' . $facultyID . '"
-                                                                                    type="checkbox"
-                                                                                    value="'.$section_name.'"
-                                                                                    '.$pros_checked_sectioncreated.'
-                                                                                    >
-                                                                                <label for="prosfacultyid'.$facultyID.'" 
-                                                                                    style="cursor:pointer;font-size:12px;">
-                                                                                    '.$section_name.'
-                                                                                </label>
+                                                                $disabledchecked = 'disabled';
+                                                        }
+                                                        
+
+                                                            echo
+                                                                '
+
+
+                                                                            <div class="col-12">
+                                                                            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px;
+                                                                                transition: all 0.3s ease; cursor: pointer;outline:'.$bordercolor.';"
+                                                                                class="section-item generalclass-checksection checksectiongeneral'.$facultyID.'" 
+                                                                            data-id="prosfacultyid'.$facultyID.'" 
+                                                                                >
+                                                                                <div class="row align-items-center">
+                                                                                    <div class="col-md-4">
+
+                                                                                            <div class="d-flex align-items-center">
+                                                                                                <input class="form-check-input pros-checkchildren sectioncheckbox" 
+                                                                                                    id="prosfacultyid'.$facultyID.'" 
+
+                                                                                                    data-id="prosfacultyid'.$facultyID.'"  
+                                                                                                    data-checkverify="checksectiongeneral' . $facultyID . '"
+                                                                                                    type="checkbox"
+                                                                                                    value="'.$section_name.'"
+                                                                                                    '.$pros_checked_sectioncreated.'
+
+                                                                                                    style="width: 18px; height: 18px; margin-right: 10px;"
+                                                                                                    >
+                                                                                                <label
+                                                                                                
+                                                                                                for="prosfacultyid'.$facultyID.'" 
+                                                                                                    style="cursor:pointer;font-size:12px;">
+                                                                                                    '.$section_name.'
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-8">
+                                                                                        <small><b>Customize your alias here</b></small>
+                                                                                    <input type="text" 
+                                                                                    style="border-radius: 8px; border: 1px solid #e0e0e0; padding: 8px 12px; font-size: 13px;" data-id="'.$facultyID.'" value="'.$sectionalisanamegotten.'" class="form-control prosgetcheckedsectionaliasgeneralclass
+                                                                                        sectioncheckbox pros-checkchildren sectionalianameherechecked'.$facultyID.'" '.$disabledchecked.' placeholder="Enter alias name (e.g., Primary)" >  
+
+                                                                                        
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>      
 
-                                                                </div>';
-                                                        
-                                                        echo '<div class="col-sm-6 mb-3">
-                                                                    <input type="text" style="border-radius:10px;height:50px;color:gray;font-size:13px;outline:'.$bordercolor.'" data-id="'.$facultyID.'" value="'.$sectionalisanamegotten.'" class="form-control prosgetcheckedsectionaliasgeneralclass sectioncheckbox pros-checkchildren sectionalianameherechecked'.$facultyID.'" placeholder="enter section alias" >          
-                                                            </div>';
+                                                                ';
+                                                            
                                                     
 
                                                 } while ($delect_section_cnt_row = mysqli_fetch_assoc($delect_section));
@@ -159,7 +196,8 @@
                                         <br>
                                             
                                             
-                                            <button type="button" id="pros-create-sectionbtn" data-school="'.$groupschoolID_new.'" data-main="'.$tagstatecampusmain.'" data-tag="16" data-campus="'.$campusID_new .'"   style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Create section</button><br>
+                                            <button type="button" id="pros-create-sectionbtn"
+                                             data-school="'.$groupschoolID_new.'" data-main="'.$tagstatecampusmain.'" data-tag="16" data-campus="'.$campusID_new .'"   style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Create section</button><br>
                                     </div>
 
                                     <div class="col-sm-3 d-none d-lg-block" style="margin-top:6%;padding-left:80px;">
@@ -230,36 +268,95 @@
                             Kindly create a school head to manage your campus. add multiple school head by clicking  add school head below.
                     </span><br>';
 
-                    echo '  <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
-                                    <div class="pros-flexi-input-affix-wrapper-campus headfnamecover">
-                                        <input type="text" class="pros-flexi-input generalheadfirstname" data-id="" id="scheadinsertid" placeholder="First name" style="width:70%;">
-                                    </div>&nbsp;&nbsp;
-                                </div>
 
-                                <div class="col-sm-6">
-                                    <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
-                                    <div class="pros-flexi-input-affix-wrapper-campus headlnamecover">
-                                        <input type="text" class="pros-flexi-input generalhealtname"  data-id="" id="head-lname" placeholder="Last name" style="width:70%;">
-                                    </div>&nbsp;&nbsp;
-                                </div>
+                                                    
 
-                                <div class="col-sm-12">
-                                        <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
-                                        <div class="pros-flexi-input-affix-wrapper-campus heademailcover">
-                                            <input type="text" class="pros-flexi-input generalheademail" data-id="" id="head-email" placeholder="eg:example@example.com" style="width:70%;">
+                    if($sch_head_sql_cnt > 0)://if user already created school head
+
+                        $sch_head_sql_row = mysqli_fetch_assoc($sch_head_sql);
+                       
+                       do{
+
+
+
+                                 echo '<div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
+                                        <div class="pros-flexi-input-affix-wrapper-campus headfnamecover">
+                                            <input type="text" class="pros-flexi-input generalheadfirstname" value="'.$sch_head_sql_row['StaffFirstName'].'" data-id="" id="scheadinsertid" placeholder="First name" style="width:70%;">
                                         </div>&nbsp;&nbsp;
-                                </div>
+                                    </div>
 
-                                <div class="col-sm-12">
-                                        <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
-                                        <div class="pros-flexi-input-affix-wrapper-campus headnumcover">
-                                            <input type="number" name="pros-headnumset[main]" data-id="" class="pros-flexi-input generalheadnum" id="pros-headnumset" placeholder="e:g XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">
-                                        </div>&nbsp;&nbsp; 
-                                </div>
-                                
-                            </div>
+                                   
+
+                                    <div class="col-sm-6">
+                                        <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
+                                        <div class="pros-flexi-input-affix-wrapper-campus headlnamecover">
+                                            <input type="text" class="pros-flexi-input generalhealtname" value="'.$sch_head_sql_row['StaffLastName'].'"  data-id="" id="head-lname" placeholder="Last name" style="width:70%;">
+                                        </div>&nbsp;&nbsp;
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                            <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
+                                            <div class="pros-flexi-input-affix-wrapper-campus heademailcover">
+                                                <input type="text" class="pros-flexi-input generalheademail" data-id="" value="'.$sch_head_sql_row['StaffEmail'].'" id="head-email" placeholder="eg:example@example.com" style="width:70%;">
+                                            </div>&nbsp;&nbsp;
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                            <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
+                                            <div class="pros-flexi-input-affix-wrapper-campus headnumcover">
+                                                <input type="tel" value="'.$sch_head_sql_row['StaffMainNumber'].'" name="pros-headnumset[main]" data-id="" class="pros-flexi-input generalheadnum pros-headnumset" id="pros-headnumset" placeholder="e:g XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">
+                                            </div>&nbsp;&nbsp; 
+                                    </div>
+                                </div><br>';
+                      
+                        
+
+                       }while($sch_head_sql_row = mysqli_fetch_assoc($sch_head_sql));
+                      
+                     elseif($sch_head_sql_cnt == 0):
+                            // if no school head is created
+
+                    echo '<div class="row">
+                        <div class="col-sm-6">
+                            <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
+                            <div class="pros-flexi-input-affix-wrapper-campus headfnamecover">
+                                <input type="text" class="pros-flexi-input generalheadfirstname" data-id="" id="scheadinsertid" placeholder="First name" style="width:70%;">
+                            </div>&nbsp;&nbsp;
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
+                            <div class="pros-flexi-input-affix-wrapper-campus headlnamecover">
+                                <input type="text" class="pros-flexi-input generalhealtname"  data-id="" id="head-lname" placeholder="Last name" style="width:70%;">
+                            </div>&nbsp;&nbsp;
+                        </div>
+
+                        <div class="col-sm-12">
+                                <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
+                                <div class="pros-flexi-input-affix-wrapper-campus heademailcover">
+                                    <input type="text" class="pros-flexi-input generalheademail" data-id="" id="head-email" placeholder="eg:example@example.com" style="width:70%;">
+                                </div>&nbsp;&nbsp;
+                        </div>
+
+                        <div class="col-sm-12">
+                                <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
+                                <div class="pros-flexi-input-affix-wrapper-campus headnumcover">
+                                    <input type="number" name="pros-headnumset[main]" data-id="" class="pros-flexi-input generalheadnum pros-headnumset" id="pros-headnumset" placeholder="e:g XXX-XXX-XXXX" style="width:91%;margin-left:4%;">
+                                </div>&nbsp;&nbsp; 
+                        </div>
+                    </div>';
+
+
+
+                     endif;
+
+
+
+
+
+                    echo '
 
                             <div id="displayschool-headinput"></div>
                     <center>
@@ -334,7 +431,8 @@
                                 </span><br><br>';
 
 
-                                $delect_section_new = mysqli_query($link, "SELECT * FROM `section` WHERE CampusID='$campusID_new' ORDER BY SectionName ASC");
+                                $delect_section_new = mysqli_query($link, "SELECT * FROM `section`
+                                 WHERE CampusID='$campusID_new' ORDER BY SectionName ASC");
                                 $delect_section_cnt_new = mysqli_num_rows($delect_section_new);
                                 $delect_section_cnt_row_new = mysqli_fetch_assoc($delect_section_new);
 
@@ -342,7 +440,7 @@
                                         do {
                                                 $section_name_new = $delect_section_cnt_row_new['SectionName'];
                                                 $facultyID_new = $delect_section_cnt_row_new['SectionID'];
-
+                                                $PrincipalOrDeanOrHeadTeacherUserID = $delect_section_cnt_row_new['PrincipalOrDeanOrHeadTeacherUserID'];
 
                                                 // check if section set up from the main campus the same with template
                                                 
@@ -368,6 +466,15 @@
                                                                         $headfirstname = $checkstaffverificationcnt_row['StaffFirstName'];
                                                                         $headlastname = $checkstaffverificationcnt_row['StaffLastName'];
                                                                         $headStaffID = $checkstaffverificationcnt_row['StaffID'];
+
+
+                                                                        if($PrincipalOrDeanOrHeadTeacherUserID == $headStaffID):
+                                                                            $pros_checked_head = 'checked';
+                                                                            
+                                                                            elseif($PrincipalOrDeanOrHeadTeacherUserID != $headStaffID):
+                                                                                $pros_checked_head = '';
+                                                                            endif;
+                                                                            
                                                                         
                                                                         
                                                                         $sectiontemplateassigndupliacte = substr($headfirstname.' '.$headlastname.'...', 0, 8);
@@ -403,7 +510,7 @@
                                                                         echo '<li class="item prosgenerallist-itemssel" data-id="' . $facultyID_new . '' . $headStaffID . '" data-faculty="' . $facultyID_new . '">
                                                                                     <img  class="" src="' . $defaultUrl . '/assets/images/users/defaultprofile.png" style="width:30px;height:30px;">&nbsp;
                                                                                     <span class="item-text">' . $sectiontemplateassigndupliacte . '</span>
-                                                                                    <input type="radio" '.$proschecksectionassign.' class="pros-checkbox-input-new pros-generalcheckschoolhead checkshoolheadnew'.$facultyID_new .' proscheckboxinside'.$facultyID_new . '' .$headStaffID.'" data-staff="'.$headStaffID.'" data-faculty="' . $facultyID_new . '" id="schoolassign" style="float: right; margin-right:10px;;"   name="schoolhead-assign'.$facultyID_new.'" value="' . $headStaffID . '">
+                                                                                    <input type="radio" '.$pros_checked_head.' '.$proschecksectionassign.' class="pros-checkbox-input-new pros-generalcheckschoolhead checkshoolheadnew'.$facultyID_new .' proscheckboxinside'.$facultyID_new . '' .$headStaffID.'" data-staff="'.$headStaffID.'" data-faculty="' . $facultyID_new . '" id="schoolassign" style="float: right; margin-right:10px;;"   name="schoolhead-assign'.$facultyID_new.'" value="' . $headStaffID . '">
                                                                                 </li>';
 
                                                                     } while ($checkstaffverificationcnt_row = mysqli_fetch_assoc($checkstaffverification_head));
@@ -485,39 +592,101 @@
                             Kindly create a subject teacher below.
                         </span><br>';
 
+                                                // if teacher created already
+                                                if($sch_teacher_sql_cnt)
+                                                {
+
+
+                                                    $sch_teacher_sql_row = mysqli_fetch_assoc($sch_teacher_sql);
+
+                                                    do{
+
+
+
+                                                            echo '<div class="row ">
+                                                        <div class="col-sm-6">
+                                                            <div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
+                                                            <div class="pros-flexi-input-affix-wrapper-campus teacherfnamecover">
+                                                                <input type="text" value="'.$sch_teacher_sql_row['StaffFirstName'].'" class="pros-flexi-input generalteacherfirstname" data-id="" id="teacherinsertid" placeholder="First name" style="width:70%;">
+                                                            </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
+                                                            <div class="pros-flexi-input-affix-wrapper-campus teacherlnamecover">
+                                                                <input type="text" value="'.$sch_teacher_sql_row['StaffLastName'].'" class="pros-flexi-input generalteacherltname"  data-id="" id="teacher-lname" placeholder="Last name" style="width:70%;">
+                                                            </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-12">
+                                                                <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
+                                                                <div class="pros-flexi-input-affix-wrapper-campus teacheremailcover">
+                                                                    <input type="text" value="'.$sch_teacher_sql_row['StaffEmail'].'" class="pros-flexi-input generalteacheremail" data-id="" id="teacher-email" placeholder="eg:example@example.com" style="width:70%;">
+                                                                </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-12">
+                                                                <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
+                                                                <div class="pros-flexi-input-affix-wrapper-campus teachernumcover">
+                                                                        <input type="tel" value="'.$sch_teacher_sql_row['StaffMainNumber'].'" 
+                                                                        name="pros-teachernumset[main]" data-id="" class="pros-flexi-input generalteachernum pros-teachernumset" id="pros-teachernumset" placeholder="e.g., XXX-XXX-XXXX" style="width:91%;margin-left:4%;">
+                                                                </div>&nbsp;&nbsp;
+                                                        </div>
+                                                    </div><br><br>';
+
+
+                                                    }while($sch_teacher_sql_row = mysqli_fetch_assoc($sch_teacher_sql));
+
+
+
+                                                    
+                                                    
+                                                }else
+                                                {
+
+
+                                                    echo '<div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
+                                                            <div class="pros-flexi-input-affix-wrapper-campus teacherfnamecover">
+                                                                <input type="text" class="pros-flexi-input generalteacherfirstname" data-id="" id="teacherinsertid" placeholder="First name" style="width:70%;">
+                                                            </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
+                                                            <div class="pros-flexi-input-affix-wrapper-campus teacherlnamecover">
+                                                                <input type="text" class="pros-flexi-input generalteacherltname"  data-id="" id="teacher-lname" placeholder="Last name" style="width:70%;">
+                                                            </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-12">
+                                                                <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
+                                                                <div class="pros-flexi-input-affix-wrapper-campus teacheremailcover">
+                                                                    <input type="text" class="pros-flexi-input generalteacheremail" data-id="" id="teacher-email" placeholder="eg:example@example.com" style="width:70%;">
+                                                                </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-12">
+                                                                <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
+                                                                <div class="pros-flexi-input-affix-wrapper-campus teachernumcover">
+                                                                        <input type="number" name="pros-teachernumset[main]" data-id="" class="pros-flexi-input generalteachernum pros-teachernumset" id="pros-teachernumset" placeholder="e.g., XXX-XXX-XXXX" style="width:91%;margin-left:4%;">
+                                                                </div>&nbsp;&nbsp;
+                                                        </div>
+                                                    </div>';
+
+                                                }
+
+                                       
+ 
+
+
+
+
 
                                 echo '
                                                     
-                                    <div class="row">
-
-                                            <div class="col-sm-6">
-                                                <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
-                                                <div class="pros-flexi-input-affix-wrapper-campus teacherfnamecover">
-                                                    <input type="text" class="pros-flexi-input generalteacherfirstname" data-id="" id="teacherinsertid" placeholder="First name" style="width:70%;">
-                                                </div>&nbsp;&nbsp;
-                                            </div>
-
-                                            <div class="col-sm-6">
-                                                <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
-                                                <div class="pros-flexi-input-affix-wrapper-campus teacherlnamecover">
-                                                    <input type="text" class="pros-flexi-input generalteacherltname"  data-id="" id="teacher-lname" placeholder="Last name" style="width:70%;">
-                                                </div>&nbsp;&nbsp;
-                                            </div>
-
-                                            <div class="col-sm-12">
-                                                    <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
-                                                    <div class="pros-flexi-input-affix-wrapper-campus teacheremailcover">
-                                                        <input type="text" class="pros-flexi-input generalteacheremail" data-id="" id="teacher-email" placeholder="eg:example@example.com" style="width:70%;">
-                                                    </div>&nbsp;&nbsp;
-                                            </div>
-
-                                            <div class="col-sm-12">
-                                                    <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
-                                                    <div class="pros-flexi-input-affix-wrapper-campus teachernumcover">
-                                                            <input type="number" name="pros-teachernumset[main]" data-id="" class="pros-flexi-input generalteachernum" id="pros-teachernumset" placeholder="e.g., XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">
-                                                    </div>&nbsp;&nbsp;
-                                            </div>
-                                    </div>
+                                    
 
                                     <div id="displayschool-teacher"></div>
                                 
@@ -601,7 +770,7 @@
 
 
                     <div class="col-sm-6 col-md-12 col-lg-6" style="margin-top:3%;">
-                        <span class="pros-schoolheading ms-1" style="line-height: 35px;" >Create Other staff</span>
+                        <span class="pros-schoolheading ms-1" style="line-height: 35px;" >Create <span class="prosotherstaffreg"> Other staff</span></span>
                     
                         <span class="pros-sectionpart ms-1"  style="color: #363949;font-size:12px;display:block;">
                             kindly click yes to create any  staff of your choice  or skip to get to another step 
@@ -612,38 +781,45 @@
 
                             <div class="col-sm-12 mb-3">
 
+                                <div class="card generalcreateotheeusertypecover" style="cursor:pointer;" data-id="2">
+                                        <div class="card-body" style="border:none;border:1px solid #007bff;border-radius:5px;height:60px;">
+
+                                            <div class="radio-group">
+                                                <input type="radio"
+                                                data-uid="'.$userid.'" 
+                                                data-uname="'.$ownername.'" 
+                                                data-utage="'.$tagstate.'" 
+                                                data-instid="'.$groupschoolID_new.'"
+                                                data-campid="'.$campusID_new.'" 
+                                                
+                                                style="cursor:pointer;" class="with-gap usertypecheck-setup" value="admin" id="pros-checksetupdamin" name="usertype">
+                                                <label class="ml-1" data-id="2" for="pros-checksetupdamin" style="font-weight:600;cursor:pointer;">Admin </label>
+                                            </div>
+                                        
+                                        </div>
+
+                                </div>    
+
+                            </div>
+                            
+                            <div class="col-sm-12 mb-3">
                                 <div class="card generalcreateotheeusertypecover" style="cursor:pointer;" data-id="1">
-
                                     <div class="card-body" style="border:none;border:1px solid #007bff;border-radius:5px;height:60px;">
-
                                         <div class="radio-group">
-                                            
-                                            <input type="radio" style="cursor:pointer;" class="with-gap usertypecheck-setup" value="senior executive/Board member" id="proschecksetupboard" name="usertype">
-
-                                            <label for="seniorexecutive" style="font-weight:600;cursor:pointer;">Senior executive/Board member</label>
+                                            <input type="radio" 
+                                            data-uid="'.$userid.'" 
+                                            data-uname="'.$ownername.'" 
+                                            data-utage="'.$tagstate.'" 
+                                            data-instid="'.$groupschoolID_new.'"
+                                            data-campid="'.$campusID_new.'" 
+                                            style="cursor:pointer;" class="with-gap usertypecheck-setup" value="executive" id="proschecksetupboard" name="usertype">
+                                            <label for="proschecksetupboard" style="font-weight:600;cursor:pointer;"  data-id="1">Senior executive/Board member</label>
                                             
                                         </div>
                                         
                                     </div>
 
                                 </div>  
-
-                            </div>
-                            
-                            <div class="col-sm-12 mb-3">
-
-                                <div class="card generalcreateotheeusertypecover" style="cursor:pointer;" data-id="2">
-                                
-                                    <div class="card-body" style="border:none;border:1px solid #007bff;border-radius:5px;height:60px;">
-
-                                        <div class="radio-group">
-                                            <input type="radio" style="cursor:pointer;" class="with-gap usertypecheck-setup" value="admin" id="pros-checksetupdamin" name="usertype">
-                                            <label class="ml-1" for="personalassist" style="font-weight:600;cursor:pointer;">Admin </label>
-                                        </div>
-                                    
-                                    </div>
-
-                                </div>     
                             
                             </div>
 
@@ -652,59 +828,22 @@
                             </div>
 
                             <div class="col-6">
-                                        <button type="button" class="btn btn-primary btn-sm" style="width:70%;float:right;margin-top:20px;" id="proceedtocreatestaff-setup">yes <i class="fa fa-long-arrow-right"></i></button>
+                                        <button type="button" class="btn btn-primary btn-sm" style="width:70%;float:right;margin-top:20px;" 
+                                        
+                                         data-uid="'.$userid.'" 
+                                        data-uname="'.$ownername.'" 
+                                        data-utage="'.$tagstate.'" 
+                                        data-instid="'.$groupschoolID_new.'"
+                                        data-campid="'.$campusID_new.'" 
+                                        
+                                        id="proceedtocreatestaff-setup">yes <i class="fa fa-long-arrow-right"></i></button>
                             </div>
                         </div>';
 
                     echo '
                         <div id="admininputcoversetup" style="display:none">        
-                            <div class="row">
-
-                                    <div class="col-sm-6">
-                                        <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
-                                        <div class="pros-flexi-input-affix-wrapper-campus adminfnamecover">
-                                            <input type="text" class="pros-flexi-input generaladminfirstname" data-id="" id="admininsertid" placeholder="First name" style="width:93%;">
-                                        </div>&nbsp;&nbsp;
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
-                                        <div class="pros-flexi-input-affix-wrapper-campus adminlnamecover">
-                                            <input type="text" class="pros-flexi-input generaladminltname"  data-id="" id="admin-lname" placeholder="Last name" style="width:93%;">
-                                        </div>&nbsp;&nbsp;
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                            <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
-                                            <div class="pros-flexi-input-affix-wrapper-campus adminemailcover">
-                                                <input type="text" class="pros-flexi-input generaladminemail" data-id="" id="admin-email" placeholder="eg:example@example.com" style="width:93%;">
-                                            </div>&nbsp;&nbsp;
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                            <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
-                                            <div class="pros-flexi-input-affix-wrapper-campus adminnumcover">
-                                                <input type="number" name="pros-adminnumset[main]" data-id="" class="pros-flexi-input generaladminnum" id="pros-adminnumset" placeholder="e.g., XXXX-XXX-XXXX" style="width:93%;margin-left:4%;">
-                                            </div>&nbsp;&nbsp;
-                                    </div>
-
-                            </div>
-
-                            <div id="displayschool-admin"></div>
-                        
-
-                                <center>
-                                <span class="circle-icon" id="pros-add-admin-btn" style="color:#007bff;font-size:12px;cursor:pointer;">
-                                Add staff <i class="fa fa-plus"></i>
-                                </span>
-                            </center>&nbsp;&nbsp; ';
-
-                            echo '<br>
-                            <button type="button" id="createadmin-setup-btn" data-maintag="'.$tagstatecampusmain.'" data-action="edit" data-tag="21" data-school="'.$groupschoolID_new.'" data-campus="'.$campusID_new.'"  style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Create Now</button><br>
-                            <input type="hidden" id="appendinput-admin">
-                            <input type="hidden" id="checkvalidatedadmin">
-                            </div>
-                            ';
+                        </div>';
+                            
                     // create other user type
 
                     echo '<input type="hidden" id="usertypevalue-setup">'; //store usertype value here
@@ -852,11 +991,33 @@
 
                                                                                                     $pros_ClassTemplateName =  $pros_select_row_classfor_section_created_row['ClassTemplateName'];
                                                                                                     $pros_ClassTemplateID =  $pros_select_row_classfor_section_created_row['ClassTemplateID'];
+
+                                                                                                    $p_class_created = mysqli_query($link,"SELECT * FROM `classordepartment` WHERE `CampusID`='$campusID_new'
+                                                                                                    AND `ClassTemplateID`='$pros_ClassTemplateID' AND `SectionID`='$facultynameID_class'
+                                                                                                    ORDER BY `ClassOrDepartmentName` ASC");
+                                                                                    
+                                                                                        
+                                                                                                        $p_class_created_cnt = mysqli_num_rows($p_class_created);
+                                                                                                    
+                                                                                                            $pros_classcreated = array();
+                                                                                                    
+                                                                                                        if($p_class_created_cnt > 0):
+                                                                                                            $p_class_created_row = mysqli_fetch_assoc($p_class_created);
+                                                                                                    
+                                                                                                            do{
+                                                                                                    
+                                                                                                                $pros_classcreated[] = $p_class_created_row['ClassOrDepartmentName'];
+                                                                                                    
+                                                                                                            }while($p_class_created_row = mysqli_fetch_assoc($p_class_created));
+                                                                                                    
+                                                                                                        endif;
+                                                                                    
+                                                                                    
                                     
 
                                                                                                     echo '<h6>'.$pros_ClassTemplateName.'</h6>
                                                                                                             <div class="col-sm-12 mb-3">
-                                                                                                                    <input type="text" style="border-radius:10px;height:50px;color:gray;font-size:13px;"  data-faculty="'.$facultynameID_class.'" data-classlist="'.$pros_ClassTemplateID.'"  class="form-control prosgeneralclassselecttobecreated prosgeneralclass-getfaculty'.$pros_ClassTemplateID.'" placeholder="e:g;JSS ONE A,JSS ONE B" >          
+                                                                                                                    <input type="text"  value="'.implode(',', $pros_classcreated).'" style="border-radius:10px;height:50px;color:gray;font-size:13px;"  data-faculty="'.$facultynameID_class.'" data-classlist="'.$pros_ClassTemplateID.'"  class="form-control prosgeneralclassselecttobecreated prosgeneralclass-getfaculty'.$pros_ClassTemplateID.'" placeholder="e:g;JSS ONE A,JSS ONE B" >          
                                                                                                         </div>';
                                                                                                 
 
@@ -1008,8 +1169,6 @@
                         </div>';
 
 
-
-                                
 
                                     echo'<div class="list-items" style="padding:15px 40px 40px 40px;list-style-type:none;">';
 
@@ -1513,7 +1672,7 @@
 
                                             }else
                                             {
-                                            $verifyteacher_staffID = $formteacherverifycam;
+                                              $verifyteacher_staffID = $formteacherverifycam;
                                             }
 
                                         echo '<div class="col-sm-6">
@@ -1527,7 +1686,8 @@
                                     
                                             <ul class="list-items">';
                                     
-                                                            $checkstaffverification_form = mysqli_query($link, "SELECT * FROM `staff` WHERE InstitutionID='$groupschoolID_new' AND `Role`='teacher'");
+                                                            $checkstaffverification_form = mysqli_query($link, "SELECT * FROM `staff` WHERE InstitutionID='$groupschoolID_new'
+                                                             AND `Role`='teacher'");
                                                             $checkstaffverificationcnt_form = mysqli_num_rows($checkstaffverification_form);
                                                             $checkstaffverificationcnt_row_form = mysqli_fetch_assoc($checkstaffverification_form);
                                     
@@ -1555,7 +1715,13 @@
 
                                                                                             <img  class="" src="' . $defaultUrl . '/assets/images/users/defaultprofile.png" style="width:40px;height:40px;">&nbsp;
                                                                                             <span class="item-text abba_tooltip">'.$fullnameform  . ' <span class="abba_tooltiptext">'.$formfirstname.' '.$formlastname.'</span></span>
-                                                                                            <input type="radio" name="formradio'.$classformID.'" '.$checkedformteacher.' class="pros-checkbox-input-new pros-generalcheckschoolhead pro-generalclassassign-formteacher checkshoolheadnew'.$classformID.' data-staff="'.$formStaffID.'" proscheckboxinside'.$classformID .''. $formStaffID. '" data-faculty="'.$classformID.'" id="formteacherschoolassign" style="float: right; margin-right:10px;"    value="'.$formStaffID.'">
+                                                                                            <input type="radio" name="formradio'.$classformID.'" '.$checkedformteacher.'
+                                                                                             class="pros-checkbox-input-new pros-generalcheckschoolhead pro-generalclassassign-formteacher checkshoolheadnew'.$classformID.' 
+                                                                                             proscheckboxinside'.$classformID .''. $formStaffID. '"
+                                                                                             data-staff="'.$formStaffID.'"
+                                                                                             data-faculty="'.$classformID.'"
+
+                                                                                             id="formteacherschoolassign" style="float: right; margin-right:10px;"    value="'.$formStaffID.'">
                                                                                 </li>';
 
                                     
@@ -2137,7 +2303,7 @@
 
     
 
-                                    
+                                  
 
                                 //create school head start here // 
                                     echo '<div class="row" id="pros-displayhead-setup" style="padding:0%;display:none">
@@ -2154,263 +2320,329 @@
                                                             
 
                                                     <div class="col-sm-6 col-md-12 col-lg-6" style="margin-top:3%;">
-                                                            <span class="pros-schoolheading" style="line-height: 35px;" >Create a school head</span>
+                                                            <span class="pros-schoolheading" style="line-height: 35px;" >Register a school head</span>
                                                         
                                                             <span class="pros-sectionpart "  style="color: #363949;font-size:12px;display: block;">
-                                                                    Kindly create a school head to manage your campus.add multiple school head by clicking  add school head below.
+                                                                    Kindly register a school head to manage your campus.add multiple school head by clicking  add school head below.
                                                             </span><br>
                                                         ';
 
 
+                                                        if($sch_head_sql_cnt > 0)://if user already created school head
 
-                                                        echo '  <div class="row">
+                                                            $sch_head_sql_row = mysqli_fetch_assoc($sch_head_sql);
+                                                           
+                                                           do{
+
+
+
+                                                                     echo '<div class="row">
                                                                         <div class="col-sm-6">
                                                                             <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
                                                                             <div class="pros-flexi-input-affix-wrapper-campus headfnamecover">
-                                                                                <input type="text" class="pros-flexi-input generalheadfirstname" data-id="" id="scheadinsertid" placeholder="First name" style="width:70%;">
+                                                                                <input type="text" class="pros-flexi-input generalheadfirstname" value="'.$sch_head_sql_row['StaffFirstName'].'" data-id="" id="scheadinsertid" placeholder="First name" style="width:70%;">
                                                                             </div>&nbsp;&nbsp;
                                                                         </div>
+
+                                                                       
 
                                                                         <div class="col-sm-6">
                                                                             <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
                                                                             <div class="pros-flexi-input-affix-wrapper-campus headlnamecover">
-                                                                                <input type="text" class="pros-flexi-input generalhealtname"  data-id="" id="head-lname" placeholder="Last name" style="width:70%;">
+                                                                                <input type="text" class="pros-flexi-input generalhealtname" value="'.$sch_head_sql_row['StaffLastName'].'"  data-id="" id="head-lname" placeholder="Last name" style="width:70%;">
                                                                             </div>&nbsp;&nbsp;
                                                                         </div>
 
                                                                         <div class="col-sm-12">
                                                                                 <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
                                                                                 <div class="pros-flexi-input-affix-wrapper-campus heademailcover">
-                                                                                    <input type="text" class="pros-flexi-input generalheademail" data-id="" id="head-email" placeholder="eg:example@example.com" style="width:70%;">
+                                                                                    <input type="text" class="pros-flexi-input generalheademail" data-id="" value="'.$sch_head_sql_row['StaffEmail'].'" id="head-email" placeholder="eg:example@example.com" style="width:70%;">
                                                                                 </div>&nbsp;&nbsp;
                                                                         </div>
 
                                                                         <div class="col-sm-12">
                                                                                 <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
                                                                                 <div class="pros-flexi-input-affix-wrapper-campus headnumcover">
-                                                                                    <input type="number" name="pros-headnumset[main]" data-id="" class="pros-flexi-input generalheadnum" id="pros-headnumset" placeholder="e:g XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">
+                                                                                    <input type="tel" value="'.$sch_head_sql_row['StaffMainNumber'].'" name="pros-headnumset[main]" data-id="" class="pros-flexi-input generalheadnum pros-headnumset" id="pros-headnumset" placeholder="e:g XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">
                                                                                 </div>&nbsp;&nbsp; 
                                                                         </div>
-                                                                        
-                                                                    </div>
+                                                                    </div><br>';
+                                                          
+                                                            
 
-                                                                    <div id="displayschool-headinput"></div>
-                                                                    
-                                                                
-                                                    
-                                                                        <center>
-                                                                        <span class="circle-icon" id="pros-addschoolhead-btn" style="color:#007bff;font-size:12px;cursor:pointer;">
+                                                           }while($sch_head_sql_row = mysqli_fetch_assoc($sch_head_sql));
+                                                          
+                                                         elseif($sch_head_sql_cnt == 0):
+                                                                // if no school head is created
+
+                                                        echo '<div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
+                                                                <div class="pros-flexi-input-affix-wrapper-campus headfnamecover">
+                                                                    <input type="text" class="pros-flexi-input generalheadfirstname" data-id="" id="scheadinsertid" placeholder="First name" style="width:70%;">
+                                                                </div>&nbsp;&nbsp;
+                                                            </div>
+
+                                                            <div class="col-sm-6">
+                                                                <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
+                                                                <div class="pros-flexi-input-affix-wrapper-campus headlnamecover">
+                                                                    <input type="text" class="pros-flexi-input generalhealtname"  data-id="" id="head-lname" placeholder="Last name" style="width:70%;">
+                                                                </div>&nbsp;&nbsp;
+                                                            </div>
+
+                                                            <div class="col-sm-12">
+                                                                    <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
+                                                                    <div class="pros-flexi-input-affix-wrapper-campus heademailcover">
+                                                                        <input type="text" class="pros-flexi-input generalheademail" data-id="" id="head-email" placeholder="eg:example@example.com" style="width:70%;">
+                                                                    </div>&nbsp;&nbsp;
+                                                            </div>
+
+                                                            <div class="col-sm-12">
+                                                                    <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
+                                                                    <div class="pros-flexi-input-affix-wrapper-campus headnumcover">
+                                                                        <input type="number" name="pros-headnumset[main]" data-id="" class="pros-flexi-input generalheadnum pros-headnumset" id="pros-headnumset" placeholder="e:g XXX-XXX-XXXX" style="width:91%;margin-left:4%;">
+                                                                    </div>&nbsp;&nbsp; 
+                                                            </div>
+                                                        </div>';
+
+
+
+                                                         endif;
+
+                                                             
+                                                               
+                                                                       echo '<div id="displayschool-headinput"></div>
+                                                                        <center><span class="circle-icon" id="pros-addschoolhead-btn" style="color:#007bff;font-size:12px;cursor:pointer;">
                                                                         Add school head <i class="fa fa-plus"></i>
-                                                                        </span>
-                                                                    </center>&nbsp;&nbsp;<br>
-                                                                    <input type="hidden" id="appendinput-schoolhead">
-                                                                    <input type="hidden" id="checkvalidatedschoolhead">
-                                                                    
-                                                                    
-                                                                    <button type="button" id="pros-create-schoolheadbtn" data-maintag="'.$tagstatecampusmain.'" data-campus="'.$campusID_new.'" data-tag="17" data-school="'.$groupschoolID_new .'"   style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Create new</button><br>
-                                                                </div>
-
-                                                        <div class="col-sm-3 d-none d-lg-block" style="margin-top:6%;padding-left:80px;">
-                                                            <div class="pros-wizard-container" >
-
-                                                                
-                                                                <div class="pros-wizard-steps">
-
-                                                                    <div class="pros-wizard-step">
-                                                                    <div class="pros-step-content">
-                                                                        <div class="pros-step-number">1</div>
-                                                                        
-                                                                        <div class="pros-step-description " style="font-size:13px;">  Section</div>
-                                                                    </div>
-                                                                    </div>
-                                                                
-                                                                    <div class="pros-wizard-step">
-                                                                
-                                                                    <div class="pros-step-content">
-                                                                        <div class="pros-step-number active">2</div>
-                                                                        <div class="pros-step-description active" style="font-size:13px;">School head</div>
-                                                                    </div>
-                                                                    </div>
-
-                                                                    <div class="pros-wizard-step">
-                                                                    <div class="pros-step-content">
-                                                                        <div class="pros-step-number">3</div>
-                                                                        <div class="pros-step-description" style="font-size:13px;">Assign School head</div>
-                                                                    </div>
-                                                                    </div>
-                                                                    
-                                                                    <div class="pros-wizard-step">
-                                                                    <div class="pros-step-content">
-                                                                        <div class="pros-step-number">4</div>
-                                                                        <div class="vr" style="background-color:blue;"></div>
-                                                                        <div class="pros-step-description" style="font-size:13px;">Teacher</div>
-                                                                    </div>
-                                                                    </div>
-
-                                                                    <div class="pros-wizard-step">
-                                                                    <div class="pros-step-content">
-                                                                        <div class="pros-step-number">5</div>
-                                                                        <div class="pros-step-description" style="font-size:13px;">Other staff</div>
-                                                                    </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div> 
-                                                        </div>
-                                            </div>';
-
-                                //create school head end here//  
-
-                                    //  create section start here    
-                                        echo '<div class="row" id="displaysection-content" style="padding:0%;display:none">
-
-                                                        <div class="col-sm-3 d-none d-lg-block" style="margin-top:5%;padding-right:70px;">
-                                                            <div class="pros-diskschooltitle " style="margin-right:10rem;"><h1>Choose section</h1></div><br><br>
-
-                                                                <div class="pros-dotted-box">
-                                                                    <span class="schooliconinform" >
-                                                                    <img  class="schooliconinform-image-new" src="../../assets/images/users/school-sectionimage.png" >
-                                                                    </span>
-                                                                </div>
-                                                        </div>
-
-
-                                                    <div class="col-sm-6 col-md-12 col-lg-6" style="margin-top:3%;">
-                                                            <span class="pros-schoolheading" style="line-height: 35px; margin-left:2%;" >Create and Customize School Sections</span>
-                                                        
-                                                            <span class="pros-sectionpart ms-2"  style="color:#363949;font-size:13px; display: block;">
-                                                                Select the sections you want to include in your school (e.g., Junior Secondary, Senior Secondary) and assign an alias to each one for clarity.
-                                                                The alias will help you personalize the section names to suit your school\'s structure.
-                                                            </span>
-                                                        ';
-
-                                                            $delect_section = mysqli_query($link, "SELECT * FROM `sectionlist`");
-                                                            $delect_section_cnt = mysqli_num_rows($delect_section);
-                                                            $delect_section_cnt_row = mysqli_fetch_assoc($delect_section);
-                                                            $num = 1;
-
-                                                        echo '<br><div class="row">';
-                                                                do {
-
-                                                                        $section_name = trim($delect_section_cnt_row['SectionListName']);
-                                                                        $facultyID = $delect_section_cnt_row['SectionListID'];
-                                                                        //<span style="font-weight:800;">'.$num++.'</span>
-
-
-
-                                                                        $pros_verify_sectio_created = mysqli_query($link,"SELECT * FROM `section` WHERE `CampusID`='$campusID_new' AND SectionListID='$facultyID'"); 
-                                                                        $pros_verify_sectio_created_cnt = mysqli_num_rows($pros_verify_sectio_created);
-                                                                        $pros_verify_sectio_created_cnt_row = mysqli_fetch_assoc($pros_verify_sectio_created);
-
-
-                                                                        if($pros_verify_sectio_created_cnt > 0)
-                                                                        {
-
-                                                                                $sectionalisanamegotten =  trim($pros_verify_sectio_created_cnt_row['SectionName']);
-                                                                                $pros_checked_sectioncreated = 'checked';
-                                                                                $bordercolor = '1px solid #007bff';
-                                                                                
-                                                                        }else
-                                                                        {
-                                                                            $sectionalisanamegotten = trim($section_name);
-                                                                            $pros_checked_sectioncreated = '';
-                                                                            $bordercolor = 'none';
-                                                                        }
-                                                                        
-
-                                                                            echo
-                                                                                '
-                                                                                <div class="col-sm-6 mb-3">
-                                                                                        
-                                                                                    <div class="card generalclass-checksection checksectiongeneral'.$facultyID.'" 
-                                                                                            data-id="prosfacultyid'.$facultyID.'" 
-                                                                                            style="cursor:pointer;border-radius:10px;outline:'.$bordercolor.';">
-                                                                                            <div class="card-body" style="border:none;border-radius:5px;height:50px;">
-                                                                                                <div class="radio-group">
-                                                                                                    <input class="form-check-input pros-checkchildren sectioncheckbox" 
-                                                                                                        id="prosfacultyid'.$facultyID.'" 
-
-                                                                                                         data-id="prosfacultyid'.$facultyID.'"  
-                                                                                                         data-checkverify="checksectiongeneral' . $facultyID . '"
-                                                                                                        type="checkbox"
-                                                                                                        value="'.$section_name.'"
-                                                                                                        '.$pros_checked_sectioncreated.'
-                                                                                                        >
-                                                                                                    <label for="prosfacultyid'.$facultyID.'" 
-                                                                                                        style="cursor:pointer;font-size:12px;">
-                                                                                                        '.$section_name.'
-                                                                                                    </label>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>                
-
-
-                                                                                    </div>';
-                                                                            
-                                                                            echo '<div class="col-sm-6 mb-3">
-                                                                                        <input type="text" style="border-radius:10px;height:50px;color:gray;font-size:13px;outline:'.$bordercolor.'" data-id="'.$facultyID.'" value="'.$sectionalisanamegotten.'" class="form-control prosgetcheckedsectionaliasgeneralclass sectioncheckbox pros-checkchildren sectionalianameherechecked'.$facultyID.'" placeholder="enter section alias" >          
-                                                                                </div>';
-                                                                        
-
-                                                                    } while ($delect_section_cnt_row = mysqli_fetch_assoc($delect_section));
-
-                                                        echo '</div>
-
-                                                        
-                                                            <button type="button" id="pros-create-sectionbtn" data-school="'.$groupschoolID_new.'" data-main="'.$tagstatecampusmain.'" data-tag="16" data-campus="' . $campusID_new . '"   style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Create section</button><br>
+                                                                        </span></center>&nbsp;&nbsp;<br>
+                                                                        <input type="hidden" id="appendinput-schoolhead">
+                                                                        <input type="hidden" id="checkvalidatedschoolhead">
+                                                                    <button type="button" id="pros-create-schoolheadbtn" data-maintag="'.$tagstatecampusmain.'" data-campus="'.$campusID_new.'" data-tag="17" data-school="'.$groupschoolID_new .'"   style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Register Now</button><br>
                                                     </div>
 
                                                     <div class="col-sm-3 d-none d-lg-block" style="margin-top:6%;padding-left:80px;">
+                                                        <div class="pros-wizard-container" >
 
-                                                            <div class="pros-wizard-container" >
+                                                            
+                                                            <div class="pros-wizard-steps">
 
-                                                                
-                                                                <div class="pros-wizard-steps">
-
-                                                                    <div class="pros-wizard-step">
-                                                                    <div class="pros-step-content">
-                                                                        <div class="pros-step-number active">1</div>
-                                                                        <div class="vertical-line"> </div>
-                                                                        <div class="pros-step-description active" style="font-size:13px;">  Section</div>
-                                                                    </div>
-                                                                    </div>
-                                                                
-                                                                    <div class="pros-wizard-step">
-                                                                
-                                                                    <div class="pros-step-content">
-                                                                        <div class="pros-step-number">2</div>
-                                                                        <div class="pros-step-description" style="font-size:13px;">School head</div>
-                                                                    </div>
-                                                                    </div>
-
+                                                                <div class="pros-wizard-step">
+                                                                <div class="pros-step-content">
+                                                                    <div class="pros-step-number">1</div>
                                                                     
-                                                                    <div class="pros-wizard-step">
-                                                                    <div class="pros-step-content">
-                                                                        <div class="pros-step-number">2</div>
-                                                                        <div class="pros-step-description" style="font-size:13px;">Assign School head</div>
-                                                                    </div>
-                                                                    </div>
-
-                                                                    
-                                                                    <div class="pros-wizard-step">
-                                                                    <div class="pros-step-content">
-                                                                        <div class="pros-step-number">4</div>
-                                                                        <div class="vr" style="background-color:blue;"></div>
-                                                                        <div class="pros-step-description" style="font-size:13px;">Teacher</div>
-                                                                    </div>
-                                                                    </div>
-
-                                                                    <div class="pros-wizard-step">
-                                                                    <div class="pros-step-content">
-                                                                        <div class="pros-step-number">5</div>
-                                                                        <div class="pros-step-description" style="font-size:13px;">Other staff</div>
-                                                                    </div>
-                                                                    </div>
-                                                                    
+                                                                    <div class="pros-step-description " style="font-size:13px;">  Section</div>
                                                                 </div>
-                                                            </div> 
+                                                                </div>
+                                                            
+                                                                <div class="pros-wizard-step">
+                                                            
+                                                                <div class="pros-step-content">
+                                                                    <div class="pros-step-number active">2</div>
+                                                                    <div class="pros-step-description active" style="font-size:13px;">School head</div>
+                                                                </div>
+                                                                </div>
+
+                                                                <div class="pros-wizard-step">
+                                                                <div class="pros-step-content">
+                                                                    <div class="pros-step-number">3</div>
+                                                                    <div class="pros-step-description" style="font-size:13px;">Assign School head</div>
+                                                                </div>
+                                                                </div>
+                                                                
+                                                                <div class="pros-wizard-step">
+                                                                <div class="pros-step-content">
+                                                                    <div class="pros-step-number">4</div>
+                                                                    <div class="vr" style="background-color:blue;"></div>
+                                                                    <div class="pros-step-description" style="font-size:13px;">Teacher</div>
+                                                                </div>
+                                                                </div>
+
+                                                                <div class="pros-wizard-step">
+                                                                <div class="pros-step-content">
+                                                                    <div class="pros-step-number">5</div>
+                                                                    <div class="pros-step-description" style="font-size:13px;">Other staff</div>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                    </div>';
+
+                                                        
+                                            echo '</div>';
+
+                                //create school head end here//  
+
+                                //  create section start here    
+                                    echo '<div class="row" id="displaysection-content" style="padding:0%;display:none">
+                                                    <div class="col-sm-3 d-none d-lg-block" style="margin-top:5%;padding-right:70px;">
+                                                        <div class="pros-diskschooltitle " style="margin-right:10rem;"><h1>Choose section</h1></div><br><br>
+
+                                                            <div class="pros-dotted-box">
+                                                                <span class="schooliconinform" >
+                                                                <img  class="schooliconinform-image-new" src="../../assets/images/users/school-sectionimage.png" >
+                                                                </span>
+                                                            </div>
                                                     </div>
-                                                </div>';
-                                //  create section end here 
+
+
+                                                <div class="col-sm-6 col-md-12 col-lg-6" style="margin-top:3%;">
+                                                        <span class="pros-schoolheading" style="line-height: 35px; margin-left:2%;" >Create and Customize School Sections</span>
+                                                    
+                                                        <span class="pros-sectionpart ms-2"  style="color:#363949;font-size:13px; display: block;">
+                                                            Select the sections you want to include in your school (e.g., Junior Secondary, Senior Secondary) and assign an alias to each one for clarity.
+                                                            The alias will help you personalize the section names to suit your school\'s structure.
+                                                        </span>
+                                                    ';
+
+                                                        $delect_section = mysqli_query($link, "SELECT * FROM `sectionlist`");
+                                                        $delect_section_cnt = mysqli_num_rows($delect_section);
+                                                        $delect_section_cnt_row = mysqli_fetch_assoc($delect_section);
+                                                        $num = 1;
+
+                                                    echo '<br>
+                                                       <div class="row g-3">';
+                                                            do {
+
+                                                                    $section_name = trim($delect_section_cnt_row['SectionListName']);
+                                                                    $facultyID = $delect_section_cnt_row['SectionListID'];
+                                                                    //<span style="font-weight:800;">'.$num++.'</span>
+
+
+
+                                                                    $pros_verify_sectio_created = mysqli_query($link,"SELECT * FROM `section` WHERE `CampusID`='$campusID_new' AND SectionListID='$facultyID'"); 
+                                                                    $pros_verify_sectio_created_cnt = mysqli_num_rows($pros_verify_sectio_created);
+                                                                    $pros_verify_sectio_created_cnt_row = mysqli_fetch_assoc($pros_verify_sectio_created);
+
+
+                                                                    if($pros_verify_sectio_created_cnt > 0)
+                                                                    {
+
+                                                                            $sectionalisanamegotten =  trim($pros_verify_sectio_created_cnt_row['SectionName']);
+                                                                            $pros_checked_sectioncreated = 'checked';
+                                                                            $bordercolor = '1px solid #007bff';
+
+                                                                            $disabledchecked = '';
+                                                                            
+                                                                    }else
+                                                                    {
+                                                                        $sectionalisanamegotten = trim($section_name);
+                                                                        $pros_checked_sectioncreated = '';
+                                                                        $bordercolor = 'none';
+
+                                                                            $disabledchecked = 'disabled';
+                                                                    }
+                                                                    
+
+                                                                        echo
+                                                                            '
+
+
+                                                                                        <div class="col-12">
+                                                                                        <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px;
+                                                                                            transition: all 0.3s ease; cursor: pointer;outline:'.$bordercolor.';"
+                                                                                            class="section-item generalclass-checksection checksectiongeneral'.$facultyID.'" 
+                                                                                        data-id="prosfacultyid'.$facultyID.'" 
+                                                                                            >
+                                                                                            <div class="row align-items-center">
+                                                                                                <div class="col-md-4">
+
+                                                                                                        <div class="d-flex align-items-center">
+                                                                                                            <input class="form-check-input pros-checkchildren sectioncheckbox" 
+                                                                                                                id="prosfacultyid'.$facultyID.'" 
+
+                                                                                                                data-id="prosfacultyid'.$facultyID.'"  
+                                                                                                                data-checkverify="checksectiongeneral' . $facultyID . '"
+                                                                                                                type="checkbox"
+                                                                                                                value="'.$section_name.'"
+                                                                                                                '.$pros_checked_sectioncreated.'
+
+                                                                                                                style="width: 18px; height: 18px; margin-right: 10px;"
+                                                                                                                >
+                                                                                                            <label
+                                                                                                            
+                                                                                                            for="prosfacultyid'.$facultyID.'" 
+                                                                                                                style="cursor:pointer;font-size:12px;">
+                                                                                                                '.$section_name.'
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    
+                                                                                                </div>
+                                                                                                <div class="col-md-8">
+                                                                                                    <small><b>Customize your alias here</b></small>
+                                                                                                <input type="text" 
+                                                                                                style="border-radius: 8px; border: 1px solid #e0e0e0; padding: 8px 12px; font-size: 13px;" data-id="'.$facultyID.'" value="'.$sectionalisanamegotten.'" class="form-control prosgetcheckedsectionaliasgeneralclass
+                                                                                                    sectioncheckbox pros-checkchildren sectionalianameherechecked'.$facultyID.'" '.$disabledchecked.' placeholder="Enter alias name (e.g., Primary)" >  
+
+                                                                                                    
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                            ';
+                                                                        
+                                                                        
+
+                                                                } while ($delect_section_cnt_row = mysqli_fetch_assoc($delect_section));
+
+                                                    echo '</div>
+
+                                                    
+                                                        <button type="button" id="pros-create-sectionbtn" data-school="'.$groupschoolID_new.'" data-main="'.$tagstatecampusmain.'" data-tag="16" data-campus="' . $campusID_new . '"   style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Create section</button><br>
+                                                </div>
+
+                                                <div class="col-sm-3 d-none d-lg-block" style="margin-top:6%;padding-left:80px;">
+
+                                                        <div class="pros-wizard-container" >
+
+                                                            
+                                                            <div class="pros-wizard-steps">
+
+                                                                <div class="pros-wizard-step">
+                                                                <div class="pros-step-content">
+                                                                    <div class="pros-step-number active">1</div>
+                                                                    <div class="vertical-line"> </div>
+                                                                    <div class="pros-step-description active" style="font-size:13px;">  Section</div>
+                                                                </div>
+                                                                </div>
+                                                            
+                                                                <div class="pros-wizard-step">
+                                                            
+                                                                <div class="pros-step-content">
+                                                                    <div class="pros-step-number">2</div>
+                                                                    <div class="pros-step-description" style="font-size:13px;">School head</div>
+                                                                </div>
+                                                                </div>
+
+                                                                
+                                                                <div class="pros-wizard-step">
+                                                                <div class="pros-step-content">
+                                                                    <div class="pros-step-number">2</div>
+                                                                    <div class="pros-step-description" style="font-size:13px;">Assign School head</div>
+                                                                </div>
+                                                                </div>
+
+                                                                
+                                                                <div class="pros-wizard-step">
+                                                                <div class="pros-step-content">
+                                                                    <div class="pros-step-number">4</div>
+                                                                    <div class="vr" style="background-color:blue;"></div>
+                                                                    <div class="pros-step-description" style="font-size:13px;">Teacher</div>
+                                                                </div>
+                                                                </div>
+
+                                                                <div class="pros-wizard-step">
+                                                                <div class="pros-step-content">
+                                                                    <div class="pros-step-number">5</div>
+                                                                    <div class="pros-step-description" style="font-size:13px;">Other staff</div>
+                                                                </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div> 
+                                                </div>
+                                    </div>';
+                              //  create section end here 
 
 
 
@@ -2449,6 +2681,9 @@
 
                                                             $section_name_new = $delect_section_cnt_row_new['SectionName'];
                                                             $facultyID_new = $delect_section_cnt_row_new['SectionID'];
+                                                            $PrincipalOrDeanOrHeadTeacherUserID = $delect_section_cnt_row_new['PrincipalOrDeanOrHeadTeacherUserID'];
+
+                                                            
                                                             // <div class="pros-flexi-label-wrapper" style="margin-right:11.1rem;"><label for="schoolName">Select School head<span style="color:red;">*</span></label></div>
                                                             // <small class="text-muted ms-2" style="font-size:11px;margin-left:3px;">Kindly choose the school head you want to assign sections to.</small><br>
 
@@ -2475,6 +2710,14 @@
                                                                                                 $headlastname = $checkstaffverificationcnt_row['StaffLastName'];
                                                                                                 $headStaffID = $checkstaffverificationcnt_row['StaffID'];
 
+                                                                                                    if($PrincipalOrDeanOrHeadTeacherUserID == $headStaffID):
+                                                                                                    $pros_checked_head = 'checked';
+
+                                                                                                    elseif($PrincipalOrDeanOrHeadTeacherUserID != $headStaffID):
+                                                                                                        $pros_checked_head = '';
+                                                                                                    endif;
+
+
                                                                                                 $fullname = substr($headfirstname.' '.$headlastname.'...', 0, 8);
                                                                                             
                                                                                                 
@@ -2482,7 +2725,10 @@
                                                                                                 echo '<li class="item prosgenerallist-itemssel" data-id="' . $facultyID_new . '' . $headStaffID . '" data-faculty="' . $facultyID_new . '">
                                                                                                                 <img  class="" src="' . $defaultUrl . '/assets/images/users/defaultprofile.png" style="width:40px;height:40px;">&nbsp;
                                                                                                                 <span class="item-text abba_tooltip">'. $fullname.'  <span class="abba_tooltiptext">'.$headfirstname.' '.$headlastname.'</span></span>
-                                                                                                                    <input type="radio" class="pros-checkbox-input-new pros-generalcheckschoolhead checkshoolheadnew' . $facultyID_new . ' proscheckboxinside' . $facultyID_new . '' . $headStaffID . '" data-staff="'.$headStaffID.'" data-faculty="' . $facultyID_new . '" id="schoolassign" style="float: right; margin-right:10px;"   name="schoolhead-assign'.$facultyID_new.'" value="' . $headStaffID . '">
+                                                                                                                    <input type="radio" class="pros-checkbox-input-new pros-generalcheckschoolhead checkshoolheadnew' . $facultyID_new . ' proscheckboxinside' . $facultyID_new . '' . $headStaffID . '" 
+                                                                                                                    data-staff="'.$headStaffID.'" data-faculty="' . $facultyID_new . '" 
+                                                                                                                    id="schoolassign" style="float: right; margin-right:10px;" 
+                                                                                                                      name="schoolhead-assign'.$facultyID_new.'" value="' . $headStaffID . '" '.$pros_checked_head.'>
                                                                                                         </li>';
 
                                                                                             } while ($checkstaffverificationcnt_row = mysqli_fetch_assoc($checkstaffverification_head));
@@ -2510,51 +2756,50 @@
                                 </div>
 
                                 <div class="col-sm-3 d-none d-lg-block" style="margin-top:6%;padding-left:80px;">
-
-                                <div class="pros-wizard-container" >
-
-                                    
-                                    <div class="pros-wizard-steps">
-                                        <div class="pros-wizard-step">
-                                        <div class="pros-step-content">
-                                            <div class="pros-step-number ">1</div>
-                                            <div class="pros-step-description" style="font-size:13px;">  Section</div>
-                                        </div>
-                                        </div>
-                                    
-                                        <div class="pros-wizard-step">
-                                        <div class="pros-step-content">
-                                            <div class="pros-step-number">2</div>
-                                            <div class="pros-step-description" style="font-size:13px;">School head</div>
-                                        </div>
-                                        </div>
+                                    <div class="pros-wizard-container" >
 
                                         
-                                        <div class="pros-wizard-step">
-                                        <div class="pros-step-content">
-                                            <div class="pros-step-number active">3</div>
-                                            <div class="pros-step-description active" style="font-size:11px;">Assign School head</div>
-                                        </div>
-                                        </div>
-                                                
+                                        <div class="pros-wizard-steps">
+                                            <div class="pros-wizard-step">
+                                            <div class="pros-step-content">
+                                                <div class="pros-step-number ">1</div>
+                                                <div class="pros-step-description" style="font-size:13px;">  Section</div>
+                                            </div>
+                                            </div>
                                         
-                                        
-                                        <div class="pros-wizard-step">
-                                        <div class="pros-step-content">
-                                            <div class="pros-step-number">4</div>
-                                            <div class="pros-step-description" style="font-size:13px;">Teacher</div>
-                                        </div>
-                                        </div>
+                                            <div class="pros-wizard-step">
+                                            <div class="pros-step-content">
+                                                <div class="pros-step-number">2</div>
+                                                <div class="pros-step-description" style="font-size:13px;">School head</div>
+                                            </div>
+                                            </div>
 
-                                        <div class="pros-wizard-step">
-                                        <div class="pros-step-content">
-                                            <div class="pros-step-number">5</div>
-                                            <div class="pros-step-description" style="font-size:13px;">Other staff</div>
+                                            
+                                            <div class="pros-wizard-step">
+                                            <div class="pros-step-content">
+                                                <div class="pros-step-number active">3</div>
+                                                <div class="pros-step-description active" style="font-size:11px;">Assign School head</div>
+                                            </div>
+                                            </div>
+                                                    
+                                            
+                                            
+                                            <div class="pros-wizard-step">
+                                            <div class="pros-step-content">
+                                                <div class="pros-step-number">4</div>
+                                                <div class="pros-step-description" style="font-size:13px;">Teacher</div>
+                                            </div>
+                                            </div>
+
+                                            <div class="pros-wizard-step">
+                                            <div class="pros-step-content">
+                                                <div class="pros-step-number">5</div>
+                                                <div class="pros-step-description" style="font-size:13px;">Other staff</div>
+                                            </div>
+                                            </div>
+                                            
                                         </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div> 
+                                    </div> 
                                 </div>';
                             echo '</div>';
 
@@ -2565,7 +2810,7 @@
 
 
                             //create school teacher start here 
-                                echo '<div class="row" id="proscreateschool-teacher" style="padding:0%;display:none">
+                        echo '<div class="row" id="proscreateschool-teacher" style="padding:0%;display:none">
                                     <div class="col-sm-3 d-none d-lg-block" style="margin-top:5%;padding-right:70px;">
                                             <div class="pros-diskschooltitle " style="margin-right:10rem;"><h1>Create teacher</h1></div><br><br>
                                         <div class="pros-dotted-box">
@@ -2578,43 +2823,102 @@
 
 
                                     <div class="col-sm-6 col-md-12 col-lg-6" style="margin-top:3%;">
-                                        <span class="pros-schoolheading ms-1" style="line-height: 35px;" >Create teacher</span>
+                                        <span class="pros-schoolheading ms-1" style="line-height: 35px;" >Register a teacher</span>
                                     
                                         <span class="pros-sectionpart ms-1"  style="color: #363949;font-size:12px;display:block;">
-                                            Kindly create a subject teacher below.
+                                            Kindly register a subject teacher below.
                                         </span><br>';
+
+                                                // if teacher created already
+                                                if($sch_teacher_sql_cnt)
+                                                {
+
+
+                                                    $sch_teacher_sql_row = mysqli_fetch_assoc($sch_teacher_sql);
+
+                                                    do{
+
+
+
+                                                            echo '<div class="row ">
+                                                        <div class="col-sm-6">
+                                                            <div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
+                                                            <div class="pros-flexi-input-affix-wrapper-campus teacherfnamecover">
+                                                                <input type="text" value="'.$sch_teacher_sql_row['StaffFirstName'].'" class="pros-flexi-input generalteacherfirstname" data-id="" id="teacherinsertid" placeholder="First name" style="width:70%;">
+                                                            </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
+                                                            <div class="pros-flexi-input-affix-wrapper-campus teacherlnamecover">
+                                                                <input type="text" value="'.$sch_teacher_sql_row['StaffLastName'].'" class="pros-flexi-input generalteacherltname"  data-id="" id="teacher-lname" placeholder="Last name" style="width:70%;">
+                                                            </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-12">
+                                                                <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
+                                                                <div class="pros-flexi-input-affix-wrapper-campus teacheremailcover">
+                                                                    <input type="text" value="'.$sch_teacher_sql_row['StaffEmail'].'" class="pros-flexi-input generalteacheremail" data-id="" id="teacher-email" placeholder="eg:example@example.com" style="width:70%;">
+                                                                </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-12">
+                                                                <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
+                                                                <div class="pros-flexi-input-affix-wrapper-campus teachernumcover">
+                                                                        <input type="tel" value="'.$sch_teacher_sql_row['StaffMainNumber'].'" 
+                                                                        name="pros-teachernumset[main]" data-id="" class="pros-flexi-input generalteachernum pros-teachernumset" id="pros-teachernumset" placeholder="e.g., XXX-XXX-XXXX" style="width:91%;margin-left:4%;">
+                                                                </div>&nbsp;&nbsp;
+                                                        </div>
+                                                    </div><br><br>';
+
+
+                                                    }while($sch_teacher_sql_row = mysqli_fetch_assoc($sch_teacher_sql));
+
+
+
+                                                    
+                                                    
+                                                }else
+                                                {
+
+
+                                                    echo '<div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
+                                                            <div class="pros-flexi-input-affix-wrapper-campus teacherfnamecover">
+                                                                <input type="text" class="pros-flexi-input generalteacherfirstname" data-id="" id="teacherinsertid" placeholder="First name" style="width:70%;">
+                                                            </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
+                                                            <div class="pros-flexi-input-affix-wrapper-campus teacherlnamecover">
+                                                                <input type="text" class="pros-flexi-input generalteacherltname"  data-id="" id="teacher-lname" placeholder="Last name" style="width:70%;">
+                                                            </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-12">
+                                                                <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
+                                                                <div class="pros-flexi-input-affix-wrapper-campus teacheremailcover">
+                                                                    <input type="text" class="pros-flexi-input generalteacheremail" data-id="" id="teacher-email" placeholder="eg:example@example.com" style="width:70%;">
+                                                                </div>&nbsp;&nbsp;
+                                                        </div>
+
+                                                        <div class="col-sm-12">
+                                                                <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
+                                                                <div class="pros-flexi-input-affix-wrapper-campus teachernumcover">
+                                                                        <input type="number" name="pros-teachernumset[main]" data-id="" class="pros-flexi-input generalteachernum pros-teachernumset" id="pros-teachernumset" placeholder="e.g., XXX-XXX-XXXX" style="width:91%;margin-left:4%;">
+                                                                </div>&nbsp;&nbsp;
+                                                        </div>
+                                                    </div>';
+
+                                                }
+
+                                       
 
 
                                                 echo '
-                                                    <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <div class="pros-flexi-label-wrapper" style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
-                                                                <div class="pros-flexi-input-affix-wrapper-campus teacherfnamecover">
-                                                                    <input type="text" class="pros-flexi-input generalteacherfirstname" data-id="" id="teacherinsertid" placeholder="First name" style="width:70%;">
-                                                                </div>&nbsp;&nbsp;
-                                                            </div>
-
-                                                            <div class="col-sm-6">
-                                                                <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
-                                                                <div class="pros-flexi-input-affix-wrapper-campus teacherlnamecover">
-                                                                    <input type="text" class="pros-flexi-input generalteacherltname"  data-id="" id="teacher-lname" placeholder="Last name" style="width:70%;">
-                                                                </div>&nbsp;&nbsp;
-                                                            </div>
-
-                                                            <div class="col-sm-12">
-                                                                    <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
-                                                                    <div class="pros-flexi-input-affix-wrapper-campus teacheremailcover">
-                                                                        <input type="text" class="pros-flexi-input generalteacheremail" data-id="" id="teacher-email" placeholder="eg:example@example.com" style="width:70%;">
-                                                                    </div>&nbsp;&nbsp;
-                                                            </div>
-
-                                                            <div class="col-sm-12">
-                                                                    <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
-                                                                    <div class="pros-flexi-input-affix-wrapper-campus teachernumcover">
-                                                                            <input type="number" name="pros-teachernumset[main]" data-id="" class="pros-flexi-input generalteachernum" id="pros-teachernumset" placeholder="e.g., XXXX-XXX-XXXX" style="width:91%;margin-left:4%;">
-                                                                    </div>&nbsp;&nbsp;
-                                                            </div>
-                                                    </div>
+                                                    
 
                                                     <div id="displayschool-teacher"></div>
                                                 
@@ -2625,7 +2929,7 @@
                                                 </center>&nbsp;&nbsp;';
 
                                             echo '<br>
-                                            <button type="button" id="createteacher-setup-btn" data-tag="19" data-maintag="'.$tagstatecampusmain.'"  data-campus="'.$campusID_new.'" data-school="'. $groupschoolID_new .'"    style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Create Now</button><br>
+                                            <button type="button" id="createteacher-setup-btn" data-tag="19" data-maintag="'.$tagstatecampusmain.'"  data-campus="'.$campusID_new.'" data-school="'. $groupschoolID_new .'"    style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Register Now</button><br>
                                             <input type="hidden" id="appendinput-teacher">
                                             <input type="hidden" id="checkvalidatedteacher">
                                     </div>
@@ -2680,186 +2984,174 @@
                                         </div> 
                                     </div>';
 
-                                echo '</div>';
-                                //create school teacher end here 
+                         echo '</div>';
+                            //create school teacher end here 
 
 
 
 
 
+                                // $prosloadother_staff_title =  '<span class="prosotherstaffreg"> Other staff</span> </span>';
+
+                                // prosload_set_upcontent(CampusID,groupSchoolID,UserID,ownerfirst_Name,tagstate);
+ 
                                 //create  other staff  start here 
                                     echo '<div class="row" id="createotherschooltype-setup" style="padding:0%;display:none">
-                                    <div class="col-sm-3 d-none d-lg-block" style="margin-top:5%;padding-right:70px;">
-                                            <div class="pros-diskschooltitle " style="margin-right:10rem;"><h1> Other staff</h1></div><br><br>
-                                        <div class="pros-dotted-box">
-                                            <span class="schooliconinform" >
-                                            <img  class="pros-schooliconinform-schoolhead-image" src="../../assets/images/users/teacher-setupimage.png" >
-                                            </span>
-                                        </div>
+                                 
 
-                                    </div>
+                                            <div class="col-sm-3 d-none d-lg-block" style="margin-top:5%;padding-right:70px;">
+                                                <div class="pros-diskschooltitle " style="margin-right:10rem;"><h1> Other staff</h1></div><br><br>
+                                                <div class="pros-dotted-box">
+                                                    <span class="schooliconinform" >
+                                                    <img  class="pros-schooliconinform-schoolhead-image" src="../../assets/images/users/teacher-setupimage.png" >
+                                                    </span>
+                                                </div>
+                                             </div>
+
 
 
                                     <div class="col-sm-6 col-md-12 col-lg-6" style="margin-top:3%;">
-                                        <span class="pros-schoolheading ms-1" style="line-height: 35px;" >Create Other staff</span>
+
+                                        <span class="pros-schoolheading ms-1" style="line-height: 35px;" >Register <span class="prosotherstaffreg"> Other staff</span> </span>
                                     
                                         <span class="pros-sectionpart ms-1"  style="color: #363949;font-size:12px;display:block;">
                                             kindly click yes to create any  staff of your choice  or skip to get to another step 
                                         </span><br>';
 
-
-                                    echo '<div class="row" id="createotheeusertypecover" >
-
-                                            <div class="col-sm-12 mb-3">
-
-                                                <div class="card generalcreateotheeusertypecover" style="cursor:pointer;" data-id="1">
-
-                                                    <div class="card-body" style="border:none;border:1px solid #007bff;border-radius:5px;height:60px;">
-
-                                                        <div class="radio-group">
-                                                            
-                                                            <input type="radio" style="cursor:pointer;" class="with-gap usertypecheck-setup" value="senior executive/Board member" id="proschecksetupboard" name="usertype">
-
-                                                            <label for="seniorexecutive" style="font-weight:600;cursor:pointer;"  data-id="1">Senior executive/Board member</label>
-                                                            
-                                                        </div>
-                                                        
-                                                    </div>
-
-                                                </div>  
-
-                                            </div>
-                                            
-                                            <div class="col-sm-12 mb-3">
-
-                                                <div class="card generalcreateotheeusertypecover" style="cursor:pointer;" data-id="2">
-                                                
-                                                    <div class="card-body" style="border:none;border:1px solid #007bff;border-radius:5px;height:60px;">
-
-                                                        <div class="radio-group">
-                                                            <input type="radio" style="cursor:pointer;" class="with-gap usertypecheck-setup" value="admin" id="pros-checksetupdamin" name="usertype">
-                                                            <label class="ml-1" data-id="2" for="personalassist" style="font-weight:600;cursor:pointer;">Admin </label>
-                                                        </div>
+                                        echo '<div class="row" id="createotheeusertypecover" >
+                                                <div class="col-sm-12 mb-3">
+                                                    <div class="card generalcreateotheeusertypecover" style="cursor:pointer;" data-id="2">
                                                     
-                                                    </div>
+                                                        <div class="card-body" style="border:none;border:1px solid #007bff;border-radius:5px;height:60px;">
 
-                                                </div>     
+                                                            <div class="radio-group">
+                                                                <input type="radio"
+                                                                data-uid="'.$userid.'" 
+                                                                data-uname="'.$ownername.'" 
+                                                                data-utage="'.$tagstate.'" 
+                                                                data-instid="'.$groupschoolID_new.'"
+                                                                data-campid="'.$campusID_new.'" 
+                                                                
+                                                                style="cursor:pointer;" class="with-gap usertypecheck-setup" value="admin" id="pros-checksetupdamin" name="usertype">
+                                                                <label class="ml-1" data-id="2" for="pros-checksetupdamin" style="font-weight:600;cursor:pointer;">Admin </label>
+                                                            </div>
+                                                        
+                                                        </div>
+
+                                                    </div>    
+                                                </div>
+
+                                                <div class="col-sm-12 mb-3">
+
+                                                    <div class="card generalcreateotheeusertypecover" style="cursor:pointer;" data-id="1">
+
+                                                        <div class="card-body" style="border:none;border:1px solid #007bff;border-radius:5px;height:60px;">
+
+                                                            <div class="radio-group">
+                                                                
+                                                                <input type="radio" 
+
+                                                                data-uid="'.$userid.'" 
+                                                                data-uname="'.$ownername.'" 
+                                                                data-utage="'.$tagstate.'" 
+                                                                data-instid="'.$groupschoolID_new.'"
+                                                                data-campid="'.$campusID_new.'" 
+                                                                
+                                                                
+                                                                style="cursor:pointer;" class="with-gap usertypecheck-setup" value="executive" id="proschecksetupboard" name="usertype">
+
+                                                                <label for="proschecksetupboard" style="font-weight:600;cursor:pointer;"  data-id="1">Senior executive/Board member</label>
+                                                                
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                    </div>  
+
+                                                </div>
+                                                
                                             
-                                            </div>
 
-                                            <div class="col-6">
-                                                    <button type="button" class="btn btn-secondary btn-sm" style="width:70%;margin-top:20px;" data-action="notedit" data-tag="20" id="skipcreatestaff" data-campus="'.$campusID_new.'"    class="btn  text-dark" class="">skip <i class="fa fa-angle-double-right"></i></button>
-                                            </div>
-
-                                            <div class="col-6">
-                                                        <button type="button" class="btn btn-primary btn-sm" style="width:70%;float:right;margin-top:20px;" id="proceedtocreatestaff-setup">yes <i class="fa fa-long-arrow-right"></i></button>
-                                            </div>
-                                        </div>';
-
-                                    echo '
-                                    <div id="admininputcoversetup" style="display:none">        
-                                        <div class="row">
-
-                                                <div class="col-sm-6">
-                                                    <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> First name<span style="color:red;">*</span></label></div>
-                                                    <div class="pros-flexi-input-affix-wrapper-campus adminfnamecover">
-                                                        <input type="text" class="pros-flexi-input generaladminfirstname" data-id="" id="admininsertid" placeholder="First name" style="width:93%;">
-                                                    </div>&nbsp;&nbsp;
+                                                <div class="col-6">
+                                                        <button type="button" class="btn btn-secondary btn-sm" style="width:70%;margin-top:20px;" data-action="notedit" data-tag="20" id="skipcreatestaff" data-campus="'.$campusID_new.'"    class="btn  text-dark" class="">skip <i class="fa fa-angle-double-right"></i></button>
                                                 </div>
 
-                                                <div class="col-sm-6">
-                                                    <div class="pros-flexi-label-wrapper " style="margin-right:6rem;"><label for="schoolName"> Last Name<span style="color:red;">*</span></label></div>
-                                                    <div class="pros-flexi-input-affix-wrapper-campus adminlnamecover">
-                                                        <input type="text" class="pros-flexi-input generaladminltname"  data-id="" id="admin-lname" placeholder="Last name" style="width:93%;">
-                                                    </div>&nbsp;&nbsp;
+                                                <div class="col-6">
+                                                            <button type="button" class="btn btn-primary btn-sm" style="width:70%;float:right;margin-top:20px;"
+                                                            
+
+                                                                data-uid="'.$userid.'" 
+                                                                data-uname="'.$ownername.'" 
+                                                                data-utage="'.$tagstate.'" 
+                                                                data-instid="'.$groupschoolID_new.'"
+                                                                data-campid="'.$campusID_new.'" 
+                                                            
+                                                            id="proceedtocreatestaff-setup">yes <i class="fa fa-long-arrow-right"></i></button>
                                                 </div>
+                                            </div>';
 
-                                                <div class="col-sm-12">
-                                                        <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Email<span style="color:red;">*</span></label></div>
-                                                        <div class="pros-flexi-input-affix-wrapper-campus adminemailcover">
-                                                            <input type="text" class="pros-flexi-input generaladminemail" data-id="" id="admin-email" placeholder="eg:example@example.com" style="width:93%;">
-                                                        </div>&nbsp;&nbsp;
-                                                </div>
 
-                                                <div class="col-sm-12">
-                                                        <div class="pros-flexi-label-wrapper" style="margin-right:22rem;"><label for="schoolName"> Phone<span style="color:red;">*</span></label></div>
-                                                        <div class="pros-flexi-input-affix-wrapper-campus adminnumcover">
-                                                            <input type="number" name="pros-adminnumset[main]" data-id="" class="pros-flexi-input generaladminnum" id="pros-adminnumset" placeholder="e.g., XXXX-XXX-XXXX" style="width:93%;margin-left:4%;">
-                                                        </div>&nbsp;&nbsp;
-                                                </div>
+                                        //create admin input
+                                     
+                                     echo '<div  id="admininputcoversetup" style="display:none">';
 
-                                        </div>
+                                     echo '</div>';
+                                        
+                                    // create other user type
 
-                                        <div id="displayschool-admin"></div>
-                                    
-
-                                            <center>
-                                            <span class="circle-icon" id="pros-add-admin-btn" style="color:#007bff;font-size:12px;cursor:pointer;">
-                                            Add staff <i class="fa fa-plus"></i>
-                                            </span>
-                                        </center>&nbsp;&nbsp; ';
-
-                                        echo '<br>
-                                        <button type="button" id="createadmin-setup-btn" data-action="notedit" data-maintag="'.$tagstatecampusmain.'" data-tag="20" data-school="'.$groupschoolID_new.'" data-campus="'.$campusID_new.'"    style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Create Now</button><br>
-                                        <input type="hidden" id="appendinput-admin">
-                                        <input type="hidden" id="checkvalidatedadmin">
-                                        </div>
-                                        ';
-                                // create other user type
-
-                                echo '<input type="hidden" id="usertypevalue-setup">'; //store usertype value here
+                                         echo '<input type="hidden" id="usertypevalue-setup">'; //store usertype value here
 
                                 echo '</div>
 
-                                <div class="col-sm-3 d-none d-lg-block" style="margin-top:6%;padding-left:80px;">
+                                    <div class="col-sm-3 d-none d-lg-block" style="margin-top:6%;padding-left:80px;">
 
-                                    <div class="pros-wizard-container">
+                                        <div class="pros-wizard-container">
 
-                                    
-                                        <div class="pros-wizard-steps">
-
-                                            <div class="pros-wizard-step">
-                                            <div class="pros-step-content">
-                                                <div class="pros-step-number ">1</div>
-                                                <div class="pros-step-description" style="font-size:13px;">  Section</div>
-                                            </div>
-                                            </div>
                                         
-                                            <div class="pros-wizard-step">
-                                        
-                                            <div class="pros-step-content">
-                                                <div class="pros-step-number">2</div>
-                                                <div class="pros-step-description" style="font-size:13px;">School head</div>
-                                            </div>
-                                            </div>
+                                            <div class="pros-wizard-steps">
 
+                                                <div class="pros-wizard-step">
+                                                <div class="pros-step-content">
+                                                    <div class="pros-step-number ">1</div>
+                                                    <div class="pros-step-description" style="font-size:13px;">  Section</div>
+                                                </div>
+                                                </div>
                                             
-                                            <div class="pros-wizard-step">
-                                            <div class="pros-step-content">
-                                                <div class="pros-step-number ">3</div>
-                                                <div class="pros-step-description " style="font-size:11px;">Assign School head</div>
-                                            </div>
-                                            </div>
-                                                    
+                                                <div class="pros-wizard-step">
                                             
-                                            
-                                            <div class="pros-wizard-step">
-                                            <div class="pros-step-content">
-                                                <div class="pros-step-number ">4</div>
-                                                <div class="pros-step-description " style="font-size:13px;">Teacher</div>
-                                            </div>
-                                            </div>
+                                                <div class="pros-step-content">
+                                                    <div class="pros-step-number">2</div>
+                                                    <div class="pros-step-description" style="font-size:13px;">School head</div>
+                                                </div>
+                                                </div>
 
-                                            <div class="pros-wizard-step">
-                                            <div class="pros-step-content">
-                                                <div class="pros-step-number active">5</div>
-                                                <div class="pros-step-description active" style="font-size:13px;">Other staff</div>
+                                                
+                                                <div class="pros-wizard-step">
+                                                <div class="pros-step-content">
+                                                    <div class="pros-step-number ">3</div>
+                                                    <div class="pros-step-description " style="font-size:11px;">Assign School head</div>
+                                                </div>
+                                                </div>
+                                                        
+                                                
+                                                
+                                                <div class="pros-wizard-step">
+                                                <div class="pros-step-content">
+                                                    <div class="pros-step-number ">4</div>
+                                                    <div class="pros-step-description " style="font-size:13px;">Teacher</div>
+                                                </div>
+                                                </div>
+
+                                                <div class="pros-wizard-step">
+                                                <div class="pros-step-content">
+                                                    <div class="pros-step-number active">5</div>
+                                                    <div class="pros-step-description active" style="font-size:13px;">Other staff</div>
+                                                </div>
+                                                </div>
+                                                
                                             </div>
-                                            </div>
-                                            
-                                        </div>
-                                    </div> 
-                                </div>';
+                                        </div> 
+                                    </div>';
 
                                 echo '</div>';
                                 //create  other staff  end here 
@@ -2952,11 +3244,40 @@
 
                                                                                                                                 $pros_ClassTemplateName =  $pros_select_row_classfor_section_created_row['ClassTemplateName'];
                                                                                                                                 $pros_ClassTemplateID =  $pros_select_row_classfor_section_created_row['ClassTemplateID'];
+
+
+
+                                                                                                                $p_class_created = mysqli_query($link,"SELECT * FROM `classordepartment` WHERE `CampusID`='$campusID_new'
+                                                                                                                            AND `ClassTemplateID`='$pros_ClassTemplateID' AND `SectionID`='$facultynameID_class'
+                                                                                                                            ORDER BY `ClassOrDepartmentName` ASC");
+
+                                                                                                                
+                                                                                                                $p_class_created_cnt = mysqli_num_rows($p_class_created);
+
+                                                                                                                    $pros_classcreated = array();
+
+                                                                                                                if($p_class_created_cnt > 0):
+                                                                                                                    $p_class_created_row = mysqli_fetch_assoc($p_class_created);
+
+                                                                                                                    do{
+
+                                                                                                                        $pros_classcreated[] = $p_class_created_row['ClassOrDepartmentName'];
+
+                                                                                                                    }while($p_class_created_row = mysqli_fetch_assoc($p_class_created));
+
+                                                                                                                endif;
+
+                                                                                                                
+
+
                                                                 
 
                                                                                                                                 echo '<h6>'.$pros_ClassTemplateName.'</h6>
                                                                                                                                         <div class="col-sm-12 mb-3">
-                                                                                                                                                <input type="text" style="border-radius:10px;height:50px;color:gray;font-size:13px;"  data-faculty="'.$facultynameID_class.'" data-classlist="'.$pros_ClassTemplateID.'"  class="form-control prosgeneralclassselecttobecreated prosgeneralclass-getfaculty'.$pros_ClassTemplateID.'" placeholder="e:g;JSS ONE A,JSS ONE B" >          
+                                                                                                                                                <input type="text" style="border-radius:10px;height:50px;color:gray;font-size:13px;" 
+                                                                                                                                                value="'.implode(',', $pros_classcreated).'"
+                                                                                                                                                 data-faculty="'.$facultynameID_class.'"
+                                                                                                                                                 data-classlist="'.$pros_ClassTemplateID.'"  class="form-control prosgeneralclassselecttobecreated prosgeneralclass-getfaculty'.$pros_ClassTemplateID.'" placeholder="e:g;JSS ONE A,JSS ONE B" >          
                                                                                                                                         </div>';
                                                                                                                                 
 
@@ -2997,7 +3318,7 @@
 
 
                                             echo '<br> <button type="button" id="createclass-setup-btn" data-maintag="'.$tagstatecampusmain.'"  data-campus="'.$campusID_new.'"  data-tag="22" data-school="'.$groupschoolID_new.'"    style="background-color:#007bff;cursor:pointer;width:100%;font-size:14px;" class="btn btn-block btn-lg text-light mt-2">Create Class</button><br>
-                                    </div>
+                                       </div>
 
                                         <div class="col-sm-3 d-none d-lg-block" style="margin-top:6%;padding-left:80px;">
 
@@ -3632,6 +3953,14 @@
 
                                                                             $fullnameform = substr($formfirstname.' '.$formlastname.'...', 0, 9);
 
+
+
+
+                                                                                $p_form_teach_ass = mysqli_query($link, "SELECT * FROM `classordepartment` WHERE
+                                                                                    `HODOrFormTeacherUserID`='$formStaffID' AND `ClassOrDepartmentID`='$classformID'");
+                                                                                $p_form_teach_ass_cnt = mysqli_num_rows($p_form_teach_ass);
+
+                                                                                $checkstaffs = ($p_form_teach_ass_cnt > 0) ? 'checked':'';
                                                                                 
                                                                                         
             
@@ -3639,7 +3968,7 @@
 
                                                                                             <img  class="" src="' . $defaultUrl . '/assets/images/users/defaultprofile.png" style="width:40px;height:40px;">&nbsp;
                                                                                             <span class="item-text abba_tooltip">'.$fullnameform  . ' <span class="abba_tooltiptext">'.$formfirstname.' '.$formlastname.'</span></span>
-                                                                                            <input type="radio" name="formradio'.$classformID.'" class="pros-checkbox-input-new pros-generalcheckschoolhead pro-generalclassassign-formteacher checkshoolheadnew'.$classformID.' proscheckboxinside'.$classformID .''. $formStaffID. '" data-staff="'.$formStaffID.'" data-faculty="'.$classformID.'" id="formteacherschoolassign" style="float: right; margin-right:10px;"   name="schoolhead-assign" value="' .$formStaffID.'">
+                                                                                            <input type="radio" '. $checkstaffs.' name="formradio'.$classformID.'" class="pros-checkbox-input-new pros-generalcheckschoolhead pro-generalclassassign-formteacher checkshoolheadnew'.$classformID.' proscheckboxinside'.$classformID .''. $formStaffID. '" data-staff="'.$formStaffID.'" data-faculty="'.$classformID.'" id="formteacherschoolassign" style="float: right; margin-right:10px;"   name="schoolhead-assign" value="' .$formStaffID.'">
                                                                                 </li>';
 
                                                 

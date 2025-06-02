@@ -36,10 +36,9 @@
     <link rel="stylesheet" href="../../css/app_css/schemework.css">
     <link href="../../assets/plugins/notify/wnoty.css" rel="stylesheet">
 
-    
-        <!-- Calendly link widget begin -->
-        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <!-- Calendly link widget begin -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
     <style>
         :root {
@@ -148,60 +147,6 @@
             transform: translateY(-2px);
         }
 
-        .schedule-form {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            margin-top: 3rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-color);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 0.75rem;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-button:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
         .support-info {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             border-radius: 16px;
@@ -210,18 +155,51 @@
             color: white;
             margin: 2rem auto;
             max-width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-image {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .support-image img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .support-image img:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
         .support-info h3 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .support-info p {
             font-size: 1.1rem;
             opacity: 0.9;
             margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .support-contact {
@@ -229,6 +207,8 @@
             justify-content: center;
             gap: 2rem;
             margin-top: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-item {
@@ -260,60 +240,21 @@
             gap: 0.5rem;
             text-decoration: none;
             color: white;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            color: white;
         }
 
         .whatsapp-button i {
             font-size: 1.5rem;
         }
-
-        .error-message {
-            color: #dc3545;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
-        .form-control.error {
-            border-color: #dc3545;
-        }
-
-        .form-control.error:focus {
-            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
-        }
-
-        .form-control.success {
-            border-color: var(--success-color);
-        }
-
-        .form-control.success:focus {
-            box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.1);
-        }
-
-        @media (max-width: 768px) {
-            .support-section {
-                padding: 2rem 1rem;
-            }
-
-            .meeting-options {
-                grid-template-columns: 1fr;
-            }
-
-            .schedule-form {
-                margin: 2rem 1rem;
-            }
-
-            .support-info {
-                margin: 1rem;
-                padding: 2rem 1rem;
-            }
-
-            .support-contact {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-
-
 
         .coming_soon {
             position: relative;
@@ -326,14 +267,39 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.7); /* White with transparency */
-            backdrop-filter: blur(1px); /* Apply blur effect */
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(1px);
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 8px;
             font-size: 15px;
             font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .support-section {
+                padding: 2rem 1rem;
+            }
+
+            .meeting-options {
+                grid-template-columns: 1fr;
+            }
+
+            .support-info {
+                margin: 1rem;
+                padding: 2rem 1rem;
+            }
+
+            .support-image img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .support-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -368,7 +334,6 @@
                         <h3>Google Meet</h3>
                         <p>Schedule a meeting with our support team using Google Meet. Perfect for quick consultations and technical support.</p>
                         <a style="cursor:pointer;" class="meeting-button" data-platform="google" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/d/cncj-9ny-28b/edumess-support'});return false;">Schedule Google Meet</a>
-                        <!-- <a href="#"   onclick="Calendly.initPopupWidget({url: https://calendly.com/d/cncj-9ny-28b/edumess-support'}); return false;" data-platform="google">Schedule Google Meet</a> -->
                     </div>
 
                     <div class="meeting-card coming_soon">
@@ -381,47 +346,14 @@
                     </div>
                 </div>
 
-                <!-- <div class="schedule-form" style="display: none;">
-                    <h3 class="text-center mb-4">Schedule Your Meeting</h3>
-                    <form id="meetingForm" novalidate>
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" class="form-control" id="name" required 
-                                   pattern="[A-Za-z\s]{2,50}" 
-                                   title="Please enter a valid name (2-50 characters, letters only)">
-                            <div class="error-message" id="nameError">Please enter a valid name (2-50 characters, letters only)</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" class="form-control" id="email" required>
-                            <div class="error-message" id="emailError">Please enter a valid email address</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="date">Preferred Date</label>
-                            <input type="date" class="form-control" id="date" required 
-                                   min="<?php echo date('Y-m-d'); ?>">
-                            <div class="error-message" id="dateError">Please select a valid date</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="time">Preferred Time</label>
-                            <input type="time" class="form-control" id="time" required>
-                            <div class="error-message" id="timeError">Please select a valid time</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="topic">Meeting Topic</label>
-                            <textarea class="form-control" id="topic" rows="3" required 
-                                      minlength="10" maxlength="500"></textarea>
-                            <div class="error-message" id="topicError">Please enter a topic (10-500 characters)</div>
-                        </div>
-                        <button type="submit" class="submit-button">Schedule Meeting</button>
-                    </form>
-                </div> -->
-
                 <div class="support-info">
+                    <div class="support-image">
+                        <img src="https://edumess.com/assets/images/users/edusupport.png" alt="Customer Support Team">
+                    </div>
                     <h3>Need Immediate Assistance?</h3>
                     <p>Our support team is available on WhatsApp for quick responses to your queries.</p>
                     <div class="support-contact">
-                        <a href="https://wa.me/2347045277801" class="whatsapp-button" target="_blank">
+                        <a href="https://wa.me/<?php echo $consultant_whats_appno; ?>" class="whatsapp-button" target="_blank">
                             <i class='bx bxl-whatsapp'></i>
                             <span>Chat on WhatsApp</span>
                         </a>
@@ -437,205 +369,5 @@
     <script src="../../assets/plugins/knob/jquery.knob.js"></script>
     <script src="../../assets/plugins/notify/wnoty.js"></script>
     <script src="../../js/admin_js/adminScript.js"></script>
-
-    <script>
-
-        // $(document).ready(function() {
-        //     // Initialize knob
-        //     $('[data-plugin="knob"]').knob();
-
-        //     // Form validation functions
-        //     function validateName(name) {
-        //         const regex = /^[A-Za-z\s]{2,50}$/;
-        //         return regex.test(name);
-        //     }
-
-        //     function validateEmail(email) {
-        //         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        //         return regex.test(email);
-        //     }
-
-        //     function validateDate(date) {
-        //         const selectedDate = new Date(date);
-        //         const today = new Date();
-        //         today.setHours(0, 0, 0, 0);
-        //         return selectedDate >= today;
-        //     }
-
-        //     function validateTime(time) {
-        //         return time !== '';
-        //     }
-
-        //     function validateTopic(topic) {
-        //         return topic.length >= 10 && topic.length <= 500;
-        //     }
-
-        //     // Real-time validation
-        //     $('#name').on('input', function() {
-        //         const isValid = validateName(this.value);
-        //         $(this).toggleClass('error', !isValid).toggleClass('success', isValid);
-        //         $('#nameError').toggle(!isValid);
-        //     });
-
-        //     $('#email').on('input', function() {
-        //         const isValid = validateEmail(this.value);
-        //         $(this).toggleClass('error', !isValid).toggleClass('success', isValid);
-        //         $('#emailError').toggle(!isValid);
-        //     });
-
-        //     $('#date').on('change', function() {
-        //         const isValid = validateDate(this.value);
-        //         $(this).toggleClass('error', !isValid).toggleClass('success', isValid);
-        //         $('#dateError').toggle(!isValid);
-        //     });
-
-        //     $('#time').on('change', function() {
-        //         const isValid = validateTime(this.value);
-        //         $(this).toggleClass('error', !isValid).toggleClass('success', isValid);
-        //         $('#timeError').toggle(!isValid);
-        //     });
-
-        //     $('#topic').on('input', function() {
-        //         const isValid = validateTopic(this.value);
-        //         $(this).toggleClass('error', !isValid).toggleClass('success', isValid);
-        //         $('#topicError').toggle(!isValid);
-        //     });
-
-        //     // Support System Code
-        //     $('.meeting-button').click(function(e) {
-        //         e.preventDefault();
-        //         const platform = $(this).data('platform');
-        //         $('.schedule-form').slideDown();
-        //         $('#meetingForm').data('platform', platform);
-        //     });
-
-        //     $('#meetingForm').submit(function(e) {
-        //         e.preventDefault();
-                
-        //         // Validate all fields
-        //         const name = $('#name').val();
-        //         const email = $('#email').val();
-        //         const date = $('#date').val();
-        //         const time = $('#time').val();
-        //         const topic = $('#topic').val();
-
-        //         const isNameValid = validateName(name);
-        //         const isEmailValid = validateEmail(email);
-        //         const isDateValid = validateDate(date);
-        //         const isTimeValid = validateTime(time);
-        //         const isTopicValid = validateTopic(topic);
-
-        //         // Show/hide error messages
-        //         $('#nameError').toggle(!isNameValid);
-        //         $('#emailError').toggle(!isEmailValid);
-        //         $('#dateError').toggle(!isDateValid);
-        //         $('#timeError').toggle(!isTimeValid);
-        //         $('#topicError').toggle(!isTopicValid);
-
-        //         // Update input classes
-        //         $('#name').toggleClass('error', !isNameValid).toggleClass('success', isNameValid);
-        //         $('#email').toggleClass('error', !isEmailValid).toggleClass('success', isEmailValid);
-        //         $('#date').toggleClass('error', !isDateValid).toggleClass('success', isDateValid);
-        //         $('#time').toggleClass('error', !isTimeValid).toggleClass('success', isTimeValid);
-        //         $('#topic').toggleClass('error', !isTopicValid).toggleClass('success', isTopicValid);
-
-        //         if (isNameValid && isEmailValid && isDateValid && isTimeValid && isTopicValid) {
-        //             const platform = $(this).data('platform');
-                    
-        //             const formDatanew = {
-        //                 'name': name,
-        //                 'email': email,
-        //                 'date': date,
-        //                 'time': time,
-        //                 'topic': topic,
-        //                 'platform': platform
-        //             };
-
-        //             // console.log('Meeting scheduled:', formDatanew);
-
-
-
-        //             // Send AJAX request to backend
-        //             $.ajax({
-        //                 url: '../../controller/scripts/support/schedule-meeting.php',
-        //                 type: 'POST',
-        //                 data: { 
-        //                     ...formDatanew},
-        //                 // dataType: 'json',
-        //                 // processData: false,
-        //                 // contentType: false,
-        //                 beforeSend: function() {
-        //                     // Show loading state
-        //                     $('.submit-button').prop('disabled', true).html('<i class="bx bx-loader-alt bx-spin"></i> Scheduling...');
-        //                 },
-        //                 success: function(response) {
-
-        //                     alert(response.message);
-        //                     // if (response.status === 'success') {
-        //                     //     // Show success message
-        //                     //     $.notify({
-        //                     //         message: response.message || 'Meeting scheduled successfully! We will contact you shortly.'
-        //                     //     }, {
-        //                     //         type: 'success',
-        //                     //         placement: {
-        //                     //             from: 'top',
-        //                     //             align: 'right'
-        //                     //         }
-        //                     //     });
-
-        //                     //     // Reset form and hide it
-        //                     //     $('#meetingForm')[0].reset();
-        //                     //     $('.schedule-form').slideUp();
-        //                     // } else {
-        //                     //     // Show error message
-        //                     //     $.notify({
-        //                     //         message: response.message || 'Failed to schedule meeting. Please try again.'
-        //                     //     }, {
-        //                     //         type: 'danger',
-        //                     //         placement: {
-        //                     //             from: 'top',
-        //                     //             align: 'right'
-        //                     //         }
-        //                     //     });
-        //                     // }
-        //                 },
-        //                 error: function(xhr, status, error) {
-        //                     // Show error message
-        //                     // $.notify({
-        //                     //     message: 'An error occurred. Please try again later.'
-        //                     // }, {
-        //                     //     type: 'danger',
-        //                     //     placement: {
-        //                     //         from: 'top',
-        //                     //         align: 'right'
-        //                     //     }
-        //                     // });
-        //                     alert('Error:', error);
-        //                     console.error('Error:', error);
-        //                 },
-        //                 complete: function() {
-        //                     // Reset button state
-        //                     $('.submit-button').prop('disabled', false).html('Schedule Meeting');
-        //                 }
-        //             });
-                    
-        //             // Show success message
-        //             // $.notify({
-        //             //     message: 'Meeting scheduled successfully! We will contact you shortly.'
-        //             // }, {
-        //             //     type: 'success',
-        //             //     placement: {
-        //             //         from: 'top',
-        //             //         align: 'right'
-        //             //     }
-        //             // });
-
-        //             // // Reset form
-        //             // this.reset();
-        //             // $('.schedule-form').slideUp();
-        //         }
-        //     });
-        // });
-    </script>
 </body>
 </html>

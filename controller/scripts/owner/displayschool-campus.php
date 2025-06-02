@@ -484,7 +484,7 @@
 
                 <div class="modal-header" style="border:none;">
 
-                  <u style="color:blue;font-size:13px;text-decoration:underline;cursor:pointer;display:none;" id="movebackbtn-setup"><i class="fa fa-arrow-left"></i> Back</u>
+                  <a style="color:blue;font-size:13px;text-decoration:underline;cursor:pointer;display:none;" id="movebackbtn-setup"><i class="fa fa-arrow-left"></i> Back</a>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                   

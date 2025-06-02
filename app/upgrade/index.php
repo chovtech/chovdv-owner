@@ -6,8 +6,6 @@
         include('../../lang/' . $DefaultLanguage . '.php');
     }
 
-   
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -182,7 +182,7 @@
                                                             <input type="radio" disabled class="defaultlang spanish with-gap spanishclick"
                                                                 value="spanish" id="spanish" name="radio-btn" style="cursor:pointer;">
                                                             <label style="margin-left:15px;font-size:13px;"
-                                                                for="spanish">español <small style="color: #888;">(coming soon. Stay tuned!)</small></label>
+                                                                for="spanish">español <small style="color: #888;">(Coming soon. Stay tuned!)</small></label>
                 
                                                             <!-- <span style="float:right;margin-right:5%;"><i
                                                                         class="flag-icon flag-icon-es"></i></span> -->
@@ -195,7 +195,7 @@
                 
                                                             <input type="radio" disabled  class="defaultlang chinese with-gap chineseclick"
                                                                 value="chinese" id="chinese" name="radio-btn" style="cursor:pointer;">
-                                                            <label style="margin-left:15px;font-size:13px;" for="chinese">中文 <small style="color: #888;"> (coming soon. Stay tuned!)</small></label>
+                                                            <label style="margin-left:15px;font-size:13px;" for="chinese">中文 <small style="color: #888;"> (Coming soon. Stay tuned!)</small></label>
                                                             <!-- <span style="float:right;margin-right:5%;"><i
                                                                         class="flag-icon flag-icon-ch"></i></span> -->
                                                         </div>
@@ -208,7 +208,7 @@
                 
                                                             <input type="radio" disabled class="defaultlang arabic with-gap arabicclick"
                                                                 value="arabic" id="arabic" name="radio-btn" style="cursor:pointer;">
-                                                            <label style="margin-left:15px;font-size:13px;" for="arabic">العربية <small style="color: #888;"> (coming soon. Stay tuned!)</small></label>
+                                                            <label style="margin-left:15px;font-size:13px;" for="arabic">العربية <small style="color: #888;"> (Coming soon. Stay tuned!)</small></label>
                                                             <!-- <span style="float:right;margin-right:5%;"><i
                                                                         class="flag-icon flag-icon-eh"></i></span> -->
                                                         </div>
@@ -220,7 +220,7 @@
                 
                                                             <input type="radio" disabled class="defaultlang hindi with-gap hindicclick"
                                                                 value="hindi" id="hindi" name="radio-btn" style="cursor:pointer;">
-                                                            <label style="margin-left:15px;font-size:13px;" for="hindi">हिंदी <small style="color: #888;"> (coming soon. Stay tuned!)</small></label>
+                                                            <label style="margin-left:15px;font-size:13px;" for="hindi">हिंदी <small style="color: #888;"> (Coming soon. Stay tuned!)</small></label>
                                                             <!-- <span style="float:right;margin-right:5%;"><i
                                                                         class="flag-icon flag-icon-ci"></i></span> -->
                                                         </div>
@@ -294,114 +294,98 @@
                 
                                             <div class="container-fluid">
                 
-                                                <div class="row" style='margin-top: 40px;'>
-                
-                                                    <div class="col-sm-12">
-                
-                                                        <div class="square-box" id="k-container" style="outline: 3px solid #007bff;">
-                
-                                                            <input type="radio" checked class="typeofscho with-gap" value="1" id="k12value"
-                                                                name="schooltype" style="margin-left:2%;margin-top:2%;">
-                
-                                                            <label style="font-size:13px;float:right;margin-right:3%;margin-top:2%;"
-                                                                for="sec"></label>
-                                                            <br>
-                
-                                                            <div class="row">
-                
-                                                                <div class="col-sm-6">
-                
-                                                                    <img class="img-fluid" src="../../assets/images/users/k-12.png" width="70%">
-                
-                                                                </div>
-                
-                                                                <div class="col-sm-6">
-                
-                                                                    <span>
-                                                                        <b style="color:black;">
-                                                                            <?php echo $portal_typeofsch_k12; ?>
-                                                                        </b>
-                                                                    </span><br>
-                
-                                                                    <p style="font-size:12px;margin-top:3%;">
-                                                                        <?php echo $portal_typeofsch_K12_des; ?>
-                                                                    </p>
-                
-                                                                </div>
+                                            <div class="row" style='margin-top: 40px;'>
+
+
+                                                <div class="col-sm-12">
+                                                    <div class="square-box" id="k-container" style="outline: 3px solid #007bff; padding: 15px; border-radius: 8px;">
+                                                        <input type="radio" checked class="typeofscho with-gap" value="1" id="k12value"
+                                                            name="schooltype" style="margin-left:2%;margin-top:2%;">
+                                                        <label style="font-size:13px;float:right;margin-right:3%;margin-top:2%;"
+                                                            for="sec"></label>
+                                                        <br>
+                                                        <div class="row" style="align-items: center;">
+                                                            <div class="col-sm-6" style="text-align: center;">
+                                                                <img class="img-fluid" src="https://edumess.com/assets/images/users/k-12.png" 
+                                                                    style="max-width: 70%; height: auto; object-fit: contain; padding: 10px;" 
+                                                                    alt="K-12 Education">
                                                             </div>
-                
-                                                        </div>
-                                                    </div>
-                
-                                                    <div class="col-sm-12">
-                
-                                                        <div class="square-box divlms bg-light pros-disabled-menu" id="tertiarycontainer">
-                
-                                                            <input type="radio" disabled class="typeofscho with-gap" value="2" id="tertiary"
-                                                                name="schooltype" style="margin-left:2%;margin-top:2%;">
-                
-                                                            <label style="font-size:13px;float:right;margin-right:3%;margin-top:2%;"
-                                                                for="tertiary"><small style="color: #888;">coming soon. Stay tuned!</small></label>
-                
-                                                            <br>
-                                                            <div class="row">
-                
-                                                                <div class="col-sm-6">
-                                                                    <img class="img-fluid" src="../../assets/images/users/k-12.png" width="70%">
-                                                                </div>
-                
-                                                                <div class="col-sm-6">
-                                                                    <span>
-                                                                        <b style="color:black;">
-                                                                            <?php echo $portal_typeofsch_tertairy; ?>
-                                                                        </b>
-                                                                    </span>
-                                                                    <br>
-                
-                                                                    <p style="font-size:12px;margin-top:3%;">
-                                                                        <?php echo $portal_typeofsch_tertiary_des; ?>
-                                                                    </p>
-                
-                                                                </div>
-                
+                                                            <div class="col-sm-6">
+                                                                <span>
+                                                                    <b style="color:black; font-size: 16px;">
+                                                                        <?php echo $portal_typeofsch_k12; ?>
+                                                                    </b>
+                                                                </span><br>
+                                                                <p style="font-size:12px;margin-top:3%; line-height: 1.5;">
+                                                                    <?php echo $portal_typeofsch_K12_des; ?>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
-                
-                                                    <div class="col-sm-12 pros-disabled-menu">
-                
-                                                        <div class="square-box divlms bg-light " id="lmscontainer">
-                
-                                                            <input type="radio" disabled class="typeofscho with-gap" value="3"
-                                                                id="contentcreator" name="schooltype"
-                                                                style="margin-left:2%;margin-top:2%;">
-                
-                                                            <label style="font-size:13px;float:right;margin-right:3%;margin-top:2%;"
-                                                                for="contentcreator"><small style="color: #888;">coming soon. Stay tuned!</small></label>
-                                                            <br>
-                
-                                                            <div class="row">
-                
-                                                                <div class="col-sm-6">
-                                                                    <img class="img-fluid" src="../../assets/images/users/k-12.png" width="70%">
-                                                                </div>
-                
-                                                                <div class="col-sm-6">
-                                                                    <span><b style="color:black;">
-                                                                            <?php echo $portal_typeofsch_lms; ?>
-                                                                        </b></span>
-                                                                    <p style="font-size:12px;margin-top:3%;">
-                                                                        <?php echo $portal_typeofsch_contentcreator_des; ?>
-                                                                    </p>
-                
-                                                                </div>
-                
-                                                            </div>
-                
-                
+                                                </div>
+
+                                            <div class="col-sm-12">
+                                                <div class="square-box divlms bg-light pros-disabled-menu" id="tertiarycontainer" 
+                                                    style="padding: 15px; border-radius: 8px; margin-top: 20px; background-color: #f8f9fa;">
+                                                    <input type="radio" disabled class="typeofscho with-gap" value="2" id="tertiary"
+                                                        name="schooltype" style="margin-left:2%;margin-top:2%;">
+                                                    <label style="font-size:13px;float:right;margin-right:3%;margin-top:2%;"
+                                                        for="tertiary">
+                                                        <span class="badge badge-warning" style="font-size: 14px; padding: 5px 10px; background-color: #ffc107; color: #000; border-radius: 4px;">Coming soon. Stay tuned!</span>
+                                                    </label>
+                                                    <br>
+                                                    <div class="row" style="align-items: center;">
+                                                        <div class="col-sm-6" style="text-align: center;">
+                                                            <img class="img-fluid" src="https://edumess.com/assets/images/users/uni.png" 
+                                                                style="max-width: 70%; height: auto; object-fit: contain; padding: 10px;" 
+                                                                alt="Tertiary Education">
                                                         </div>
-                
+                                                        <div class="col-sm-6">
+                                                            <span>
+                                                                <b style="color:black; font-size: 16px;">
+                                                                    <?php echo $portal_typeofsch_tertairy; ?>
+                                                                </b>
+                                                            </span>
+                                                            <br>
+                                                            <p style="font-size:12px;margin-top:3%; line-height: 1.5;">
+                                                                <?php echo $portal_typeofsch_tertiary_des; ?>
+                                                            </p>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 pros-disabled-menu">
+                                                <div class="square-box divlms bg-light" id="lmscontainer" 
+                                                    style="padding: 15px; border-radius: 8px; margin-top: 20px; background-color: #f8f9fa;">
+                                                    <input type="radio" disabled class="typeofscho with-gap" value="3"
+                                                        id="contentcreator" name="schooltype"
+                                                        style="margin-left:2%;margin-top:2%;">
+                                                    <label style="font-size:13px;float:right;margin-right:3%;margin-top:2%;"
+                                                        for="contentcreator">
+                                                        <span class="badge badge-warning" style="font-size: 14px; padding: 5px 10px; background-color: #ffc107; color: #000; border-radius: 4px;">Coming soon. Stay tuned!</span>
+                                                    </label>
+                                                    <br>
+                                                    <div class="row" style="align-items: center;">
+                                                        <div class="col-sm-6" style="text-align: center;">
+                                                            <img class="img-fluid" src="https://edumess.com/assets/images/users/lms-cont.jpg" 
+                                                                style="max-width: 70%; height: auto; object-fit: contain; padding: 10px;" 
+                                                                alt="LMS Content Creator">
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <span><b style="color:black; font-size: 16px;">
+                                                                    <?php echo $portal_typeofsch_lms; ?>
+                                                                </b></span>
+                                                            <p style="font-size:12px;margin-top:3%; line-height: 1.5;">
+                                                                <?php echo $portal_typeofsch_contentcreator_des; ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                
+                                                
                 
                                                     <p></p>
                                                     <p></p>
@@ -1076,7 +1060,7 @@
                                             <div class="radio-group">
 
                                                 <input type="radio" style="cursor:pointer;" class="with-gap usertypecheck"
-                                                    value="Senior executive/Board member" id="seniorexecutive" name="usertype">
+                                                    value="executive" id="seniorexecutive" name="usertype">
 
                                                 <label for="seniorexecutive" style="font-weight:600;cursor:pointer;">Senior
                                                     executive/Board member</label>
