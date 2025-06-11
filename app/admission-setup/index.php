@@ -179,6 +179,9 @@ mysqli_set_charset($link, 'utf8');
     <?php include('../../controller/js/app/admission-setup.php'); ?>
     <!-- <script src="https://cdn.datatables.net/v/1.11.3/js/jquery.dataTables.min.js"></script> -->
 
+    <!-- current page js -->
+    <?php include('../../js/current_page.php'); ?>
+
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 

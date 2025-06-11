@@ -28,7 +28,9 @@
 
     $date = date("Y-m-d H:i:s");
 
-    $abba_sql_delete_assignoptionalfees = ("DELETE FROM `assignoptionalfees` WHERE `InstitutionID` = '$abba_instituion_id' AND `CampusID` = '$campus_id' AND `ClassOrDepartmentID` = '$class_id' AND `Session` = '$abba_display_session' AND `TermOrSemesterID` = '$abba_display_term' AND `Status` != 1");
+    $abba_sql_delete_assignoptionalfees = ("DELETE FROM `assignoptionalfees` WHERE `InstitutionID` = '$abba_instituion_id' 
+    AND `CampusID` = '$campus_id' AND `ClassOrDepartmentID` = '$class_id' AND `Session` = '$abba_display_session' 
+    AND `TermOrSemesterID` = '$abba_display_term' AND `Status` != 1");
     $abba_result_delete_assignoptionalfees = mysqli_query($link, $abba_sql_delete_assignoptionalfees);
 
     foreach ($student_array as $i => $student_id) 

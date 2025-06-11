@@ -112,8 +112,8 @@
             <div class="upgrades">
                 <span class="material-icons-sharp">update</span>
                 <h6>Upgrade your plan here</h6>
-                <a href="<?php echo $defaultUrl; ?>app/upgrade" type="button" style="font-size: 10px;" class="btn btn-sm btn-primary">
-                    Upgrade Plan
+                <a href="<?php echo $defaultUrl; ?>app/subscription" type="button" style="font-size: 10px;" class="btn btn-sm btn-primary">
+                    Pay Now
             </a>
             </div>
 

@@ -1274,9 +1274,12 @@
     <script src="../../js/admin_js/adminScript.js"></script>
     <?php include("../../js/app_js/dashboardjs.php"); ?>
 
+        <!-- current page js -->
+        <?php include('../../js/current_page.php'); ?>
+
     <!-- header js -->
     <?php include('../../controller/js/app/header.php'); ?>
-        <?php include('../../controller/js/app/edumesssubscription.php'); ?>
+    <?php include('../../controller/js/app/edumesssubscription.php'); ?>
     <!-- get dashboard contents -->
     <script src="../../controller/js/app/dashboard-data.js"></script>
     

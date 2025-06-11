@@ -88,7 +88,8 @@ if ($abba_row_cnt_check_category > 0)
     
                                     $subcategory_title = $abba_row_check_subcategory['RouteName'];
     
-                                    $abba_sql_transactions = ("SELECT * FROM `transactions` WHERE `CategoryID` = '$category_id' AND `SubcategoryID` = '$subcategory_id' AND `ClassOrDepartmentID` = '$class_id' AND `Session` = '$abba_display_session' AND `TermOrSemesterID` = '$abba_display_term' AND `DeleteStatus` != '1' AND `CampusID` = '$campus_id'");
+                                    $abba_sql_transactions = ("SELECT * FROM `transactions` WHERE `CategoryID` = '$category_id'
+                                     AND `SubcategoryID` = '$subcategory_id' AND `ClassOrDepartmentID` = '$class_id' AND `Session` = '$abba_display_session' AND `TermOrSemesterID` = '$abba_display_term' AND `DeleteStatus` != '1' AND `CampusID` = '$campus_id'");
                                     $abba_result_transactions = mysqli_query($link, $abba_sql_transactions);
                                     $abba_row_transactions = mysqli_fetch_assoc($abba_result_transactions);
                                     $abba_row_cnt_transactions = mysqli_num_rows($abba_result_transactions);

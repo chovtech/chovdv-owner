@@ -1593,7 +1593,9 @@
     <script src="../../assets/plugins/notify/wnoty.js"></script>
     <?php include('../../js/app_js/setup.php'); ?>
 
-   
+    <!-- current page js -->
+    <?php include('../../js/current_page.php'); ?>
+    
 
 
     <!-- header js -->

@@ -45,9 +45,9 @@
     <!-- font awesome cn -->
     <link href="../css/website_css/registration.css" rel="stylesheet">
 
-	<!-css notify--->
-	<link href="../../assets/plugins/notify/wnoty.css" rel="stylesheet">
-	<!-css notify--->
+	<!--css notify--->
+	<link href="../assets/plugins/notify/wnoty.css" rel="stylesheet">
+	<!--css notify--->
 </head>
 
 <body id="verificationid">
@@ -75,7 +75,7 @@
                         </div>
                         
                         <div style="padding-top:20px;">
-                            <a href="https://edumess-v2.edumess.com/sign-in/" type="button" class="btn btn-outline-primary btn-lg" style="width:120px;"><i class="fa fa-home"> Home</i></a>
+                            <a href="<?php echo $defaultUrl; ?>/sign-in/" type="button" class="btn btn-outline-primary btn-lg" style="width:120px;"><i class="fa fa-home"> Home</i></a>
                             &nbsp;&nbsp;&nbsp;
                             <button type="button" class="btn btn-primary btn-lg" style="width:120px;" id="signinbtn"><i class="fa fa-user-circle"> Login</i></button><br><br>
 
@@ -102,7 +102,10 @@
     <script src="../js/website_js/registration.js"></script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
-    <script src="../../assets/plugins/notify/wnoty.js"></script>
+    
+    <script src="../assets/plugins/notify/wnoty.js"></script>
+        
+    <!-- <script src="../js/current_page.php"></script> -->
     <script>
         
         $(document).ready(function () {
@@ -136,12 +139,12 @@
             }
         });
     
-        function getIpAddress(callback) {
-          $.getJSON("https://api.ipify.org?format=json", function(data) {
-            var ipAddress = data.ip;
-            callback(ipAddress);
-          });
-        }
+        // function getIpAddress(callback) {
+        //   $.getJSON("https://api.ipify.org?format=json", function(data) {
+        //     var ipAddress = data.ip;
+        //     callback(ipAddress);
+        //   });
+        // }
         
         // Function to be executed on button click or Enter key press
         function pros_login_function() {
@@ -150,40 +153,40 @@
           
             var last_page_url = localStorage.getItem('current_page');
         
-          navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+        //   navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
         
-          function successCallback(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
+        //   function successCallback(position) {
+        //     var latitude = position.coords.latitude;
+        //     var longitude = position.coords.longitude;
         
-            var geocodingAPIUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyBhnNN0pyO-mBwXdwWZh6BTzhByk3GqW3s";
+        //     var geocodingAPIUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyBhnNN0pyO-mBwXdwWZh6BTzhByk3GqW3s";
         
-            $.getJSON(geocodingAPIUrl, function(data) {
-                if (data.results.length > 0) {
-                    var locationName = data.results[0].formatted_address;
-                    getIpAddress(function(ipAddress) {
-                        performLogin(locationName, latitude, longitude, ipAddress);
-                    });
-                    } else {
-                    var locationName = 'unavailable';
-                    getIpAddress(function(ipAddress) {
-                        performLogin(locationName, latitude, longitude, ipAddress);
-                    });
-                }
-            });
-          }
+        //     $.getJSON(geocodingAPIUrl, function(data) {
+        //         if (data.results.length > 0) {
+        //             var locationName = data.results[0].formatted_address;
+        //             getIpAddress(function(ipAddress) {
+        //                 performLogin(locationName, latitude, longitude, ipAddress);
+        //             });
+        //             } else {
+        //             var locationName = 'unavailable';
+        //             getIpAddress(function(ipAddress) {
+        //                 performLogin(locationName, latitude, longitude, ipAddress);
+        //             });
+        //         }
+        //     });
+        //   }
         
-          function errorCallback(error) {
-            var latitude = 'unavailable';
-            var longitude = 'unavailable';
-            var locationName = 'unavailable';
-            getIpAddress(function(ipAddress) {
-              performLogin(locationName, latitude, longitude, ipAddress);
-            });
-          }
+        //   function errorCallback(error) {
+        //     var latitude = 'unavailable';
+        //     var longitude = 'unavailable';
+        //     var locationName = 'unavailable';
+        //     getIpAddress(function(ipAddress) {
+        //       performLogin(locationName, latitude, longitude, ipAddress);
+        //     });
+        //   }
         
           // Function to perform login after obtaining geolocation data
-          function performLogin(locationName, latitude, longitude, ipAddress) {
+        //   function performLogin(locationName, latitude, longitude, ipAddress) {
             var uname = $('#show-username').html();
             var pwd = $('#signinpassword').val();
         
@@ -232,7 +235,7 @@
                 $.ajax({
                     type: 'post',
                     url: '../controller/website-login/proccessuserlogin.php',
-                    data: {uname:uname,pwd:pwd,latitude:latitude,longitude:longitude,locationName:locationName,ipAddress:ipAddress,defaultlang:defaultlang}, //Pass $id
+                    data: {uname:uname,pwd:pwd,latitude:0,longitude:0,locationName:0,ipAddress:0,defaultlang:defaultlang}, //Pass $id
                     success: function (data) {
                         
                         $('#signinbtn').prop("disabled", false);
@@ -241,7 +244,7 @@
     
                         var userrole = (data);
                         
-                        if (userrole == 'consultant') {
+                        if (userrole.trim() == 'affiliate') {
                             $(this).html("Login");
                             $(this).prop("disabled", false);
                             $('#signinbtn').html('Login');
@@ -250,11 +253,11 @@
                                 message: "Login Successful",
                                 autohideDelay: 5000
                             }); 
-                            window.location.href = last_page_url;
+                            window.location.href = (last_page_url) ? last_page_url : "../affiliate/home";
                             
                             localStorage.setItem('current_username', uname);
                         }
-                        else if (userrole == 'owner') {
+                        else if (userrole.trim() == 'owner') {
                             
                             $(this).html("Login");
                             $(this).prop("disabled", false);
@@ -263,7 +266,7 @@
                                 message: "Login Successful",
                                 autohideDelay: 5000
                             }); 
-                            window.location.href = last_page_url;
+                            window.location.href = (last_page_url) ? last_page_url : "../app/home";;
                             
                             localStorage.setItem('current_username', uname);
                         }
@@ -282,7 +285,7 @@
             }
         
           }
-        }
+        // }
 
     </script>
 </body>

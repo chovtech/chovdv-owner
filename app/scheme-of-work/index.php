@@ -658,7 +658,8 @@
     <script src="../../assets/plugins/Croppie/croppie.min.js"></script>
 
     <!-- current page js -->
-    <!-- <?php #include('../../js/current_page.php'); ?> -->
+    <?php include('../../js/current_page.php'); ?>
+    
 
     <!-- onboarding js -->
     <?php include('../../controller/js/app/schemme-ofwork-onboarding.php'); ?>

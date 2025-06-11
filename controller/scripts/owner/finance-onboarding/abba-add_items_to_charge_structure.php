@@ -44,8 +44,10 @@
         
             $catArray[] = array('cat_id' => $catId);
         }
+
+      print_r($subCatArray);
         
-        $subCatString_check = implode(',', $subCatArray);
+         $subCatString_check = implode(',', $subCatArray);
         
         if($subCatString_check == '')
         {
@@ -67,10 +69,13 @@
             $catString = $catString_check;
         }
 
-        $abba_sql_delete_chargestructure = ("DELETE FROM `chargestructure` WHERE `InstitutionID` = '$abba_instituion_id' AND `CampusID` = '$campus_id' AND `Session` = '$abba_display_session' AND `TermOrSemesterID` = '$abba_display_term' AND `ClassOrDepartmentID` = '$class_id_new'");
+        $abba_sql_delete_chargestructure = ("DELETE FROM `chargestructure` WHERE `InstitutionID` = '$abba_instituion_id'
+         AND `CampusID` = '$campus_id' AND `Session` = '$abba_display_session' AND `TermOrSemesterID` = '$abba_display_term'
+          AND `ClassOrDepartmentID` = '$class_id_new'");
         $abba_result_delete_chargestructure = mysqli_query($link, $abba_sql_delete_chargestructure);
 
-        $abba_sql_delete_assignoptionalfees = ("DELETE FROM `assignoptionalfees` WHERE `CampusID` = '$campus_id' AND `ClassOrDepartmentID` = '$class_id_new' AND `Session` = '$abba_display_session' AND `TermOrSemesterID` = '$abba_display_term' AND `CategoryID` NOT IN ($catString) AND `SubcategoryID` NOT IN ($subCatString)");
+        $abba_sql_delete_assignoptionalfees = ("DELETE FROM `assignoptionalfees` WHERE `CampusID` = '$campus_id' 
+        AND `ClassOrDepartmentID` = '$class_id_new' AND `Session` = '$abba_display_session' AND `TermOrSemesterID` = '$abba_display_term' AND `CategoryID` NOT IN ($catString) AND `SubcategoryID` NOT IN ($subCatString)");
         $abba_result_delete_assignoptionalfees = mysqli_query($link, $abba_sql_delete_assignoptionalfees);
 
         foreach ($rowData as $item) 
@@ -81,7 +86,10 @@
             $value = $item['value'];
             $isChecked = $item['isChecked'];
 
-            $abba_sql_insert_chargestructure = ("INSERT INTO `chargestructure`(`ChargeStructureID`, `InstitutionID`, `CampusID`, `CategoryID`, `SubcategoryID`, `Session`, `TermOrSemesterID`, `ClassOrDepartmentID`, `Amount`, `Status`) VALUES (NULL,'$abba_instituion_id','$campus_id','$catId','$subCatId','$abba_display_session','$abba_display_term','$class_id_new','$value','$isChecked')");
+            $abba_sql_insert_chargestructure = ("INSERT INTO `chargestructure`(`ChargeStructureID`, `InstitutionID`, 
+            `CampusID`, `CategoryID`, `SubcategoryID`, `Session`, `TermOrSemesterID`, `ClassOrDepartmentID`, `Amount`,
+             `Status`) VALUES (NULL,'$abba_instituion_id','$campus_id','$catId','$subCatId','$abba_display_session',
+             '$abba_display_term','$class_id_new','$value','$isChecked')");
             $abba_result_insert_chargestructure = mysqli_query($link, $abba_sql_insert_chargestructure);
 
         }
