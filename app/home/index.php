@@ -1084,7 +1084,8 @@
 
 
 
-                                                                                                 $verifyplan = "SELECT * FROM `plantransaction` WHERE InstitutionID='$institutionid' AND SessionName='$session_startcount' AND TermOrSemesterName='$termorsemesterdebt' AND PlanID='$planid'";
+                                                                                                 $verifyplan = "SELECT * FROM `plantransaction` WHERE
+                                                                                                  InstitutionID='$institutionid' AND SessionName='$session_startcount' AND TermOrSemesterName='$termorsemesterdebt' AND PlanID='$planid'";
                                                                                                  $verifyplan_res = mysqli_query($link, $verifyplan);
                                                                                                  $verifyplan_rescnt = mysqli_num_rows($verifyplan_res);
 

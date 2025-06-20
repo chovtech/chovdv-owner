@@ -1,5 +1,6 @@
 <?php
     include('../../controller/session/session-checker-owner.php');
+    include('../../controller/config/function.php');
     if ($DefaultLanguage == '') {
         include('../../lang/english.php');
     } else {
@@ -16,7 +17,7 @@
     <meta name="author" content="EduMESS" />
     <meta name="description" content="EduMESS (Education Management and E-Learning Software Solution) is a leading school management, automation and elearning solution." />
     <meta name="keywords" content="Best, School, Management, Best School, Best School Management, Best School Management Software, Free School Management Software, Portal, School Owner, Group of School Owner, Consultants, Brand Promoters | School Portal Generator">
-    <title>EduMESS - Pricing Plans</title>
+    <title>EduMESS - Subscription</title>
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="../../assets/images/website_images/favicon.png" type="image/x-icon">
@@ -278,6 +279,14 @@
         <!-- Settings Menu -->
         <?php include('../../includes/setting-menu.php'); ?>
 
+
+            <?php
+                $pros_get_current_term = mysqli_query($link,"SELECT * FROM session 
+                INNER JOIN termorsemester WHERE session.sessionStatus='1'
+                AND termorsemester.status=1");//PROS GET CURRENT TERM AND SESSION HERE
+                $pros_get_current_term_fetch = mysqli_fetch_assoc($pros_get_current_term);
+            ?>
+
         <!-- Main Content -->
         <main class="main-container">
             <div class="main-cards">
@@ -289,11 +298,13 @@
                             <div class="d-flex gap-4 text-muted small">
                                 <span class="d-flex align-items-center">
                                     <i class="fas fa-calendar-alt me-2"></i>
-                                    <span id="currentSession">2023/2024</span>
+                                   <input type="hidden" id="currentSessionID" value="<?php echo $pros_get_current_term_fetch['sessionName'] ?>">
+                                    <span id="currentSession"><?php echo $pros_get_current_term_fetch['sessionName'] ?></span>
                                 </span>
                                 <span class="d-flex align-items-center">
                                     <i class="fas fa-book me-2"></i>
-                                    <span id="currentTerm">First Term</span>
+                                    <input type="hidden" id="currentTermID" value="<?php echo $pros_get_current_term_fetch['TermOrSemesterID'] ?>">
+                                    <span id="currentTerm"><?php echo $pros_get_current_term_fetch['TermOrSemesterName'] ?></span>
                                 </span>
                             </div>
                         </div>
@@ -305,14 +316,25 @@
                                     Top Up
                                 </a>
                             </div>
-                            <p class="h2 fw-bold mb-0">₦25,000.00</p>
+                            
+                            <p class="h2 fw-bold mb-0">₦ 
+                              <?php 
+                                echo $pros_wallet_bal =  (!empty($rowGetUserDetails['WalletBalance']) && is_numeric($rowGetUserDetails['WalletBalance'])) 
+                                    ? number_format($rowGetUserDetails['WalletBalance'], 2) 
+                                    : number_format(0, 2); 
+
+                                    
+
+                                     echo '<input type="hidden" value="'.$rowGetUserDetails['WalletBalance'].'" id="pros_wall_bal">';
+                                ?>
+                            </p>
                         </div>
                     </div>
 
                     <!-- Main Content Grid -->
                     <div class="row g-4">
                         <!-- Left Column: Quick Actions -->
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 order-2 order-lg-1">
                             <div class="d-grid gap-3">
                                 <a  class="card p-3 text-start border-0 pros_card text-decoration-none" href="../upgrade">
                                     <div class="d-flex align-items-center">
@@ -340,24 +362,34 @@
                         </div>
 
                         <!-- Right Column: Payment & History -->
-                        <div class="col-lg-8">
+                        <div class="col-lg-8 order-1 order-lg-2">
                             <!-- Payment Card -->
                             <div class="card mb-4 pros_card">
                                 <div class="card-body p-4">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <h3 class="h5 fw-semibold mb-0"></h3>
-                                        <span class="text-muted small">No.of Students: 50</span>
+                                        <span class="text-muted small prosloadnumber_student"> </span>
                                     </div>
 
                                     <div class="mb-4">
                                         <label class="form-label fw-medium">Select Campus</label>
-                                        <select id="campusSelect" class="form-select">
-                                            <option value="">Select a campus</option>
-                                            <option value="main">Main Campus</option>
-                                            <option value="north">North Campus</option>
-                                            <option value="south">South Campus</option>
-                                            <option value="east">East Campus</option>
+                                        <select id="campusSelect" class="form-select pro_load_payment_campus">
+                                           
                                         </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label fw-medium">Select Term</label>
+                                        <select id="TermSelect" class="form-select pro_load_payment_term">
+                                          <option value="NULL">Select campus to load term</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Place this just before the Number of Students input -->
+                                    <div class="mb-2">
+                                    <marquee behavior="scroll" direction="left" scrollamount="5" style="color: #842029; background: #fff3cd; border: 1px solid #ffeeba; padding: 10px; font-weight: 600; border-radius: .25rem;">
+                                        ⚠️ Warning: Do not enter more than your actual number of students. No refunds after payment. Please confirm your student count before proceeding.
+                                    </marquee>
                                     </div>
 
                                     <div class="mb-4">
@@ -368,7 +400,15 @@
                                                 <i class="fas fa-users text-muted"></i>
                                             </span>
                                         </div>
+                                        <small class="text-muted  mt-1  ms-2 paidfor_fullcontent " style="display: none;">
+                                            No. of Students Paid For: <span id="studentsPaidFor">0</span> &nbsp;|&nbsp; No. of Students Remaining: <span id="studentsRemaining">0</span>
+                                        </small>
+
+
                                     </div>
+                                  
+                                   
+
 
                                     <div class="bg-light rounded-3 p-4 mb-4">
                                         <div class="d-flex justify-content-between align-items-center">
@@ -378,11 +418,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" class="pros_number_student_input">
+                                    <input type="hidden" class="pros_amount_per_student_input">
+                                    <input type="hidden" class="pros_plan_id_hidden">
 
-                                    <button id="makePaymentBtn" class="btn btn-primary w-100">
+                                    
+
+                                   
+                                    <button id="makePaymentBtn" disabled class="btn btn-primary w-100">
                                         <i class="fas fa-credit-card me-2"></i>
                                         Make Payment
-                                    </button>
+                                    </button> 
+                                    <center><small class="small text-muted mb-0 ">₦ <span class="prosload_amount_per_student"></span></small> </center>
                                 </div>
                             </div>
                         </div>
@@ -408,106 +455,60 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <div class="d-flex gap-2">
-                            <div class="input-group">
-                                <input type="text" class="form-control form-control-sm" placeholder="Search transactions...">
-                                <span class="input-group-text">
-                                    <i class="fas fa-search text-muted"></i>
-                                </span>
+                    <div class=" justify-content-between align-items-center mb-4">
+                        <div class="row">
+                          <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" id="transactionSearch" placeholder="Search transactions...">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-search text-muted"></i>
+                                    </span>
+                                </div>
                             </div>
-                            <select class="form-select form-select-sm">
-                                <option value="all">Session</option>
-                                <!-- <option value="payments">Payments</option>
-                                <option value="topups">Top-ups</option>
-                                <option value="refunds">Refunds</option> -->
-                            </select>
+                            <div class="col-md-3">
+                                <select class="form-select form-select-sm pros_transaction_hist_session">
+                                    <option value="all">Session</option>
+
+                                            <?php
+
+                                                    $abba_sql_session = ("SELECT * FROM `session` ORDER BY sessionName DESC");
+                                                    $abba_result_session = mysqli_query($link, $abba_sql_session);
+                                                    $abba_row_session = mysqli_fetch_assoc($abba_result_session);
+                                                    $abba_row_cnt_session = mysqli_num_rows($abba_result_session);
+
+                                                    if ($abba_row_cnt_session > 0) {
+                                                        do {
+                                                            if ($abba_row_session['sessionStatus'] == '1') {
+                                                                $abba_selected_session = 'selected';
+                                                            } else {
+                                                                $abba_selected_session = '';
+                                                            }
+                                                            echo '<option value="' . $abba_row_session['sessionName'] . '" ' . $abba_selected_session . '>' . $abba_row_session['sessionName'] . '</option>';
+
+                                                        } while ($abba_row_session = mysqli_fetch_assoc($abba_result_session));
+                                                    } else {
+                                                        echo '<option value="0">No Records Found</option>';
+                                                    }
+                                        ?>
+                                    <!-- <option value="payments">Payments</option>
+                                    <option value="topups">Top-ups</option>
+                                    <option value="refunds">Refunds</option> -->
+                                </select>
+                            </div>
+                            <!-- <div class="col-3">
                             <select class="form-select form-select-sm">
                                 <option value="7">Term</option>
-                                <!-- <option value="30">Last 30 days</option>
-                                <option value="90">Last 90 days</option>
-                                <option value="custom">Custom Range</option> -->
+                               
                             </select>
+                            </div> -->
                         </div>
                     </div>
 
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Date & Time</th>
-                                    <th>Transaction ID</th>
-                                    <th>Type</th>
-                                    <th>Campus</th>
-                                    <th>Students</th>
-                                    <th>Amount</th>
-                                    <th>Status</th>
-                                    <!-- <th>Actions</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Transaction 1 -->
-                                <tr>
-                                    <td>
-                                        <div class="small fw-medium">2024-02-20</div>
-                                        <div class="small text-muted">14:30 PM</div>
-                                    </td>
-                                    <td class="small text-muted">TRX123456789</td>
-                                    <td>
-                                        <span class="badge badge-payment">
-                                            <i class="fas fa-credit-card me-1"></i>
-                                            Payment
-                                        </span>
-                                    </td>
-                                    <td class="small">Main Campus</td>
-                                    <td class="small">50</td>
-                                    <td>
-                                        <div class="small fw-medium">₦25,000.00</div>
-                                        <div class="small text-muted">via Wallet</div>
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-success">
-                                            <i class="fas fa-check-circle me-1"></i>
-                                            Completed
-                                        </span>
-                                    </td>
-                                    <!-- <td>
-                                        <button onclick="showTransactionDetails('TRX123456789')" class="btn btn-link text-primary p-0 me-2">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button class="btn btn-link text-muted p-0">
-                                            <i class="fas fa-ellipsis-v"></i>
-                                        </button>
-                                    </td> -->
-                                </tr>
-                                <!-- Add more transactions here -->
-                            </tbody>
-                        </table>
+                    <div class="table-responsive prosload_transaction_history">
                     </div>
+                    <div class="pagination-container"></div>
 
-                    <!-- Pagination -->
-                    <div class="d-flex justify-content-between align-items-center mt-4">
-                        <div class="small text-muted">
-                            Showing <span class="fw-medium">1</span> to <span class="fw-medium">3</span> of <span class="fw-medium">12</span> transactions
-                        </div>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-sm btn-outline-secondary" disabled>
-                                <i class="fas fa-chevron-left me-1"></i>
-                                Previous
-                            </button>
-                            <div class="btn-group">
-                                <button class="btn btn-sm btn-primary">1</button>
-                                <button class="btn btn-sm btn-outline-secondary">2</button>
-                                <button class="btn btn-sm btn-outline-secondary">3</button>
-                                <span class="btn btn-sm btn-outline-secondary disabled">...</span>
-                                <button class="btn btn-sm btn-outline-secondary">12</button>
-                            </div>
-                            <button class="btn btn-sm btn-outline-secondary">
-                                Next
-                                <i class="fas fa-chevron-right ms-1"></i>
-                            </button>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -557,7 +558,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+    </div> -->
 
 
     <!-- Scripts -->
@@ -572,45 +573,448 @@
     <?php include('../../js/current_page.php'); ?>
 
     <script>
-        $(document).ready(function() {
+
+         $(document).ready(function() {
+
+                var userID = $('#user_id').val();
+                var usertype = $('#user_type').val();
+                var instutitionID = $(".abba-change-institution option:selected").val();
+
+                // pros process to load content base on institution
+                prosload_payment_campus(instutitionID);
+                
+
+                function prosload_payment_campus(instutitionID) {
+                    $('.pro_load_payment_campus').html('<option value="NULL">Loading..</option>');
+                    // get campus ajax
+                    var dataString = 'pros_instituion_id=' + instutitionID;
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../../controller/scripts/owner/edumessssubscription/pros_get_campus.php",
+                        data: dataString,
+                        //cache: false,
+                        success: function (output) {
+                            // alert(output);
+                            $('.pro_load_payment_campus').html(output);
+
+                            var selectedOption = $('.pro_load_payment_campus').find('option:selected');
+                            var numStudent = parseInt(selectedOption.data('numstudent')) || 0;
+                            var plan_amount = parseInt(selectedOption.data('planprice')) || 0;
+                            var planid = parseInt(selectedOption.data('planid')) || 0;
+
+                            proload_number_student(numStudent,plan_amount,planid);
+                        }
+                    });
+                    
+                }
+                    
+
+                // get total student here
+                $('.pro_load_payment_campus').on('change', function() {
+                    var selectedOption = $(this).find('option:selected');
+                    var numStudent = parseInt(selectedOption.data('numstudent')) || 0;
+                    var plan_amount = parseInt(selectedOption.data('planprice')) || 0;
+                    var planid = parseInt(selectedOption.data('planid')) || 0;
+                    proload_number_student(numStudent,plan_amount,planid);
+
+                    var campusID = $(this).find('option:selected').val();
+
+                    prosload_term_forpayment(campusID);//load campus term here
+                });
+
+                // pros load term here
+                function prosload_term_forpayment(campusID)
+                {
+                    $('.pro_load_payment_term').html('<option value="NULL">Loading..</option>');
+                    var instutitionID = $(".abba-change-institution option:selected").val();
+                    var userID = $('#user_id').val();
+                    var usertype = $('#user_type').val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "../../controller/scripts/owner/edumessssubscription/prosload_termforpayment.php",
+                        data: {
+                            campusID,
+                            userID,
+                            usertype,
+                            instutitionID
+                        },
+                        //cache: false,
+                        success: function (output) {
+                            // alert(output);
+                            $('.pro_load_payment_term').html(output);
+
+                            var selectedOption = $('.pro_load_payment_term').find('option:selected');
+                            var paidfor = parseInt(selectedOption.data('paid')) || 0;
+                            var reamining = parseInt(selectedOption.data('rem')) || 0;
+                            
+                            prosload_payrem(paidfor,reamining);
+
+                        }
+                    });
+                }
+
+
+                $('.pro_load_payment_term').on('change', function() {
+                    var selectedOption = $(this).find('option:selected');
+                        var paidfor = parseInt(selectedOption.data('paid')) || 0;
+                        var reamining = parseInt(selectedOption.data('rem')) || 0;
+                        prosload_payrem(paidfor,reamining);
+                });
+
+                function  prosload_payrem(paidfor,reamining){
+                    $('.paidfor_fullcontent').show();
+                        $('#studentsPaidFor').html(paidfor);
+                        $('#studentsRemaining').html(reamining);
+                }
+
+                function proload_number_student(numStudent,plan_amount,planid) {
+                        $('.prosloadnumber_student').text('No.of Students: ' + numStudent);
+                        $('.pros_number_student_input').val(numStudent);
+
+                        $('.prosload_amount_per_student').text(plan_amount + '/student/term' );
+                        $('.pros_amount_per_student_input').val(plan_amount);
+                        $('.pros_plan_id_hidden').val(planid);
+                }   
+
         });
+
+        $('.abba-change-institution').on('change', function() {
+                var instutitionID = $(this).find("option:selected").val();
+                prosload_payment_campus(instutitionID);
+        });
+
+        // pros load transaction hist
+
+        $(document).ready(function() {
+
+            var instutitionID = $(".abba-change-institution option:selected").val();
+            var userID = $('#user_id').val();
+            var usertype = $('#user_type').val();
+            var session = $(".pros_transaction_hist_session option:selected").val();
+            prosload_transaction(instutitionID,userID,usertype,session);
+        });
+
+        $('.pros_transaction_hist_session').on('change', function() {
+                var instutitionID = $(".abba-change-institution option:selected").val();
+                var userID = $('#user_id').val();
+                var usertype = $('#user_type').val();
+                var session =$(this).find("option:selected").val();
+                prosload_transaction(instutitionID,userID,usertype,session);
+        });
+
+
+        // Global state
+        let allTransactions = [];
+        let currentInstitutionID = '';
+        let currentUserID = '';
+        let currentUserType = '';
+        let currentSession = '';
+
+        //  Load Transactions (AJAX)
+        function prosload_transaction(institutionID, userID, usertype, session, page = 1) {
+            // Save current filters
+            currentInstitutionID = institutionID;
+            currentUserID = userID;
+            currentUserType = usertype;
+            currentSession = session;
+
+            $.ajax({
+                url: "../../controller/scripts/owner/edumessssubscription/pros_get_transac_history.php",
+                type: 'POST',
+                data: {
+                    institutionID,
+                    userID,
+                    usertype,
+                    session,
+                    page
+                },
+                success: function (response) {
+                    if (response.success) {
+                        allTransactions = response.data.transactions; // Store all for search
+                        displaytractions(allTransactions);
+                        renderPagination(response.data.pagination);
+                    } else {
+                        showError('Failed to load transactions.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Status:", status);
+                    console.error("AJAX Error:", error);
+                    console.log("Response Text:", xhr.responseText);
+                    showError('Error occurred while loading.');
+                }
+            });
+        }
+
+        //Display Transactions
+        function displaytractions(transactions) {
+            const container = $('.prosload_transaction_history');
+            container.empty();
+
+            if (!Array.isArray(transactions) || transactions.length === 0) {
+                const emptyCard = `
+                    <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486800.png" alt="No data" style="width: 60px; opacity: 0.8;">
+                        <div><strong>No transactions found</strong></div>
+                        <small class="text-muted">Try a different search or filter.</small>
+                    </div>`;
+                container.append(emptyCard);
+                return;
+            }
+
+            let table = `
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Transaction Ref</th>
+                            <th>Type</th>
+                            <th>Campus</th>
+                            <th>Session</th>
+                            <th>Term/Semester</th>
+                            <th>Students</th>
+                            <th>Amount Paid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            transactions.forEach(tx => {
+                const dateTime = new Date(tx.DatePaid);
+                const date = dateTime.toLocaleDateString();
+                const time = dateTime.toLocaleTimeString();
+
+                table += `
+                    <tr>
+                        <td>
+                            <div class="small fw-medium">${date}</div>
+                            <div class="small text-muted">${time}</div>
+                        </td>
+                        <td class="small text-muted">${tx.ref_number || 'N/A'}</td>
+                        <td>
+                            <span class="badge badge-payment">
+                                <i class="fas fa-credit-card me-1"></i>
+                                ${tx.transaction_type || 'N/A'}
+                            </span>
+                        </td>
+                        <td class="small">${tx.CampusName || 'N/A'}</td>
+                        <td class="small">${tx.SessionName || 'N/A'}</td>
+                        <td class="small">${tx.TermAliasName || 'N/A'}</td>
+                        <td class="small">${tx.num_of_student || 0}</td>
+                        <td>
+                            <div class="small fw-medium">₦${parseFloat(tx.ActualAmount || 0).toLocaleString()}</div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            table += `</tbody></table>`;
+            container.append(table);
+        }
+
+        // Live Search Input
+        $('#transactionSearch').on('input', function () {
+            const query = $(this).val().toLowerCase().trim();
+
+            if (query === '') {
+                displaytractions(allTransactions);
+                return;
+            }
+
+            const filtered = allTransactions.filter(tx => {
+                return (
+                    (tx.ref_number && tx.ref_number.toLowerCase().includes(query)) ||
+                    (tx.transaction_type && tx.transaction_type.toLowerCase().includes(query)) ||
+                    (tx.CampusName && tx.CampusName.toLowerCase().includes(query)) ||
+                    (tx.SessionName && tx.SessionName.toLowerCase().includes(query)) ||
+                    (tx.TermOrSemesterName && tx.TermOrSemesterName.toLowerCase().includes(query))||
+                    (tx.ActualAmount && tx.ActualAmount.toLowerCase().includes(query)) ||
+                    (tx.TermAliasName && tx.TermAliasName.toLowerCase().includes(query))
+                );
+            });
+
+            displaytractions(filtered);
+        });
+
+        // Pagination Renderer
+        function renderPagination(pagination) {
+            const container = $('.pagination-container');
+
+            const { current_page, total_pages, total_records, limit } = pagination;
+            const start = (current_page - 1) * limit + 1;
+            const end = Math.min(current_page * limit, total_records);
+
+            let html = `
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <div class="small text-muted">
+                        Showing <span class="fw-medium">${start}</span> to <span class="fw-medium">${end}</span> of <span class="fw-medium">${total_records}</span> transactions
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-secondary" ${current_page === 1 ? 'disabled' : ''} 
+                            onclick="prosload_transaction(currentInstitutionID, currentUserID, currentUserType, currentSession, ${current_page - 1})">
+                            <i class="fas fa-chevron-left me-1"></i>
+                            Previous
+                        </button>
+                        <div class="btn-group">
+            `;
+
+            for (let i = 1; i <= total_pages; i++) {
+                if (i === current_page) {
+                    html += `<button class="btn btn-sm btn-primary">${i}</button>`;
+                } else {
+                    html += `<button class="btn btn-sm btn-outline-secondary" onclick="prosload_transaction(currentInstitutionID, currentUserID, currentUserType, currentSession, ${i})">${i}</button>`;
+                }
+            }
+
+            html += `
+                        </div>
+                        <button class="btn btn-sm btn-outline-secondary" ${current_page === total_pages ? 'disabled' : ''} 
+                            onclick="prosload_transaction(currentInstitutionID, currentUserID, currentUserType, currentSession, ${current_page + 1})">
+                            Next
+                            <i class="fas fa-chevron-right ms-1"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            container.html(html);
+        }
+
     </script>
 
 
 
     <script>
+
         document.addEventListener('DOMContentLoaded', function() {
             const studentCountInput = document.getElementById('studentCount');
             const totalAmountSpan = document.getElementById('totalAmount');
             const makePaymentBtn = document.getElementById('makePaymentBtn');
             const campusSelect = document.getElementById('campusSelect');
-            const pricePerStudent = 500;
+            const perstudentinput = document.querySelector('.pros_amount_per_student_input');
+            const number_studdent = document.querySelector('.pros_number_student_input');
+            const planidsec = document.querySelector('.pros_plan_id_hidden');
+
+            
+            const pros_wallet = document.getElementById('pros_wall_bal');
+
+                                   
             const historyModal = new bootstrap.Modal(document.getElementById('historyModal'));
 
             // Calculate total amount when number of students changes
             studentCountInput.addEventListener('input', function() {
+
+                const pricePerStudent =  parseInt(perstudentinput.value) || 0;
+                const number_student_val =  parseInt(number_studdent.value) || 0;
+                
                 const count = parseInt(this.value) || 0;
+                if(count > number_student_val)
+                {
+                    showError('Hey!! your input should not be greater than your number of student for the campus selected');
+                    totalAmountSpan.textContent = 0.00.toFixed(2);
+                    return;
+                    
+                }
+                
+
                 const total = count * pricePerStudent;
+
+                
+                if(total > parseInt(pros_wallet.value))
+                {
+                    showError('Opps!! wallet insufficient, kindly fund your wallet to proceed');
+                    totalAmountSpan.textContent = 0.00.toFixed(2);
+                    return;
+                    
+                    makePaymentBtn.disabled = true;
+
+                }
+
+
+
                 totalAmountSpan.textContent = total.toFixed(2);
+                makePaymentBtn.disabled = false; // Enable button when input is valid
             });
 
             // Make payment button click handler
             makePaymentBtn.addEventListener('click', function() {
+
                 const count = parseInt(studentCountInput.value) || 0;
                 const campus = campusSelect.value;
+                const pricePerStudent =  parseInt(perstudentinput.value) || 0;
+                
+                const plan_id = parseInt(planidsec.value) || 0;
+                const total_payment = count * pricePerStudent;
+
+                var userID = $('#user_id').val();
+                var usertype = $('#user_type').val();
+                var session = $('#currentSessionID').val();
+                var term = $('.pro_load_payment_term').val();
+                
+                
+                const pros_wallet_bal = $('#pros_wall_bal').val();
 
                 if (!campus) {
-                    alert('Please select a campus');
+                    showError('Please select a campus');
                     return;
                 }
                 
                 if (count < 1) {
-                    alert('Please enter a valid number of students');
+                    showError('Please enter a valid number of students');
                     return;
                 }
+
+
+                $('#makePaymentBtn').html('processing...<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true);
+              
+                
+                var instutitionID = $(".abba-change-institution option:selected").val();
+                $.ajax({
+                    type: "POST",
+                    url: "../../controller/scripts/owner/edumessssubscription/pros_sch_payment.php",
+                    data: {
+                        num_student: count,
+                        campus_id: campus,
+                        total_payment: total_payment,
+                        institutionID: instutitionID,
+                        userID: userID,
+                        usertype: usertype,
+                        session: session,
+                        term: term,
+                        transaction_method: 'wallet',
+                        plan_id: plan_id,
+                        discount: '0'
+                    },
+                    dataType: "json", // IMPORTANT
+                  
+                    success: function (response) {
+                        if (response.status === 'success') {
+                            // alert(response.message); // or display in DOM
+
+                            showSuccess(response.message)
+                        } else {
+                            // alert("Error: " + response.message);
+                            showError(response.message)
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        // alert("AJAX Error: " + error);
+
+                        console.log("AJAX Error: " + error);
+                        console.log("Raw response from server:", xhr.responseText);
+                    },
+                    complete: function () {
+                        // Re-enable the button regardless of success or error
+                        $('#makePaymentBtn').prop('disabled', false).html(`<i class="fas fa-credit-card me-2"></i>
+                        Make Payment`);
+                    }
+                });
+
                 
                 // Here you would typically integrate with your payment gateway
-                alert(`Processing payment for ${count} students at ${campusSelect.options[campusSelect.selectedIndex].text}`);
+                // alert(`Processing payment for ${count} students at ${campusSelect.options[campusSelect.selectedIndex].text}`);
             });
 
             // View History button click handler
@@ -631,12 +1035,30 @@
         }
 
         // Close modal when clicking outside
-        document.getElementById('transactionModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                hideTransactionDetails();
-            }
-        });
-    </script>
+        // document.getElementById('transactionModal').addEventListener('click', function(e) {
+        //     if (e.target === this) {
+        //         hideTransactionDetails();
+        //     }
+        // });
+
+        function showError(message) {
+            $.wnoty({
+                type: 'warning',
+                message: message,
+                autohideDelay: 5000
+            });
+        }
+
+
+        function showSuccess(message) {
+            $.wnoty({
+                type: 'success',
+                message: message,
+                autohideDelay: 5000
+            });
+        }
+
+   </script>
 
 </body>
 </html>

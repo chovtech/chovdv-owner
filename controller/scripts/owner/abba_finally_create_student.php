@@ -24,7 +24,7 @@
     $abba_get_student_reg_number = mysqli_real_escape_string($link,$_POST['abba_get_student_reg_number']);
     $abba_get_student_password = mysqli_real_escape_string($link,md5($_POST['abba_get_student_password']));
     $abba_get_student_type = $_POST['abba_get_student_type'];
-    $abba_get_student_parent = $_POST['abba_get_student_parent'];
+    $abba_get_student_parent = (isset($_POST['abba_get_student_parent']) ? $_POST['abba_get_student_parent'] : '');
 
     $abba_sql_check_username = "SELECT * FROM `userlogin` WHERE `UserRegNumberOrUsername` ='$abba_get_student_reg_number' AND `InstitutionIDOrCampusID` = '$abba_campus_id' AND `UserType` = 'student'";
     $abba_sql_Result_check_username = mysqli_query($link, $abba_sql_check_username);

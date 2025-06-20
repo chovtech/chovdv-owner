@@ -95,7 +95,7 @@
 	}
 
 
-	// pros lock menu oboarding process and subscription status
+	   // pros lock menu oboarding process and subscription status
 		function pros_locked_menu_onboarding($UserID) {
 			global $link;
 		
@@ -198,6 +198,9 @@
 		
 			return $result;
 		}
+
+
+		// pros load institution content for subscription
 			
 	mysqli_set_charset($link, 'utf8');
 	

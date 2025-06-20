@@ -110,9 +110,10 @@
         
         <li class="">
             <div class="upgrades">
-                <span class="material-icons-sharp">update</span>
-                <h6>Upgrade your plan here</h6>
+                <span class="material-icons-sharp">credit_card</span>
+                <h6>Click to subscribe below</h6>
                 <a href="<?php echo $defaultUrl; ?>app/subscription" type="button" style="font-size: 10px;" class="btn btn-sm btn-primary">
+                <i class="fas fa-credit-card me-2"></i>
                     Pay Now
             </a>
             </div>
