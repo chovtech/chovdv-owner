@@ -617,11 +617,7 @@
             
             
             $('body').on('click', '.prosclionhidetimmercontentbtn', function () {
-       
-            
                   $('.prosloadcountdowncontentcontent').fadeOut();
-            
-            
             });
             
             

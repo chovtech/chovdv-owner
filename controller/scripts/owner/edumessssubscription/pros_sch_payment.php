@@ -21,7 +21,7 @@ function creditWallet($link, $affiliateID, $amount) {
 function sendMessage($name, $phone, $message) {
     // Replace this with your real SMS or Email function
     // This is just logging for now
-    echo "Message to $name ($phone): $message\n";
+    // echo "Message to $name ($phone): $message\n";
 }
 
 // Input data
@@ -62,6 +62,10 @@ try {
     if (!$insert) throw new Exception('Failed to insert plan transaction.');
     $updateownerwallet_bal = mysqli_query($link, "UPDATE agencyorschoolowner SET WalletBalance = WalletBalance - $total_payment WHERE AgencyOrSchoolOwnerID = '$userID'");
 
+     $getcam = mysqli_query($link, "SELECT * FROM `institution` 
+     INNER JOIN `campus` ON `institution`.`InstitutionID`
+         = `campus`.`InstitutionID` WHERE `campus`.`CampusID`='$campusID'");
+     $getcam_row = mysqli_fetch_assoc($getcam);//get campus details
     
     // 2. Get affiliate payment structure
     $structure = mysqli_query($link, "SELECT * FROM affiliate_payment_structure");
@@ -187,38 +191,40 @@ try {
     mysqli_commit($link);
 
           // Send all affiliate messages
-        // foreach ($messages as $msg) {
-        //       $messageText = "Hi {$msg['name']}, congratulations! 🎉 You’ve just earned ₦" . number_format($msg['amount'], 2) . " as part of a new school subscription payment. 
-        //     Ref No: $ref_number
-        //     Session: $session
-        //     Term: $term
-        //     Keep up the great work promoting our platform!";
+        foreach ($messages as $msg) {
+            
+            $messageText = "Hi {$msg['name']}, congratulations! 🎉 You’ve just earned ₦" . number_format($msg['amount'], 2) . " as part of a new school subscription payment. 
+            School: {$getcam_row['InstitutionGeneralName']}
+            Ref No: $ref_number
+            Session: $session
+            Term: $term
+            Keep up the great work promoting our platform!";
               
-        //       sendMessage($msg['name'], $msg['phone'], $messageText);
-        // }
+              sendMessage($msg['name'], $msg['phone'], $messageText);
+        } 
 
-      // Notify the school
-      // $schoolQuery = mysqli_query($link, "SELECT Name, Phone FROM agencyorschoolowner WHERE AgencyOrSchoolOwnerID='$userID'");
-      // if ($school = mysqli_fetch_assoc($schoolQuery)) {
-      //   $msg = "Dear {$school['Name']}, your subscription payment of ₦" . number_format($total_payment, 2) . " was received successfully. 
-      // Ref No: $ref_number
-      // Session: $session
-      // Term: $term
-      // Thank you for using our platform. Your account has been updated accordingly.";
-        
-      //   sendMessage($school['Name'], $school['Phone'], $msg);
-      // }
+        // Notify the school
+        $schoolQuery = mysqli_query($link, "SELECT AgencyOrSchoolOwnerName, AgencyOrSchoolOwnerMainPhone
+        FROM agencyorschoolowner WHERE AgencyOrSchoolOwnerID='$userID'");
+        if ($school = mysqli_fetch_assoc($schoolQuery)) {
+            $msg = "Dear {$school['AgencyOrSchoolOwnerName']}, your subscription payment of ₦" . number_format($total_payment, 2) . " was received successfully. 
+            Ref No: $ref_number
+            Session: $session
+            Term: $term
+            Thank you for using our platform. Your account has been updated accordingly.";
+            
+            sendMessage($getcam_row['InstitutionGeneralName'], $school['AgencyOrSchoolOwnerMainPhone'], $msg);
+        }
 
-      // Notify the company (admin)
-      // $companyMsg = "New subscription received.
-      // Ref No: $ref_number
-      // School: {$school['Name']}
-      // Amount Paid: ₦" . number_format($total_payment, 2) . "
-      // Company Share: ₦" . number_format($company_share, 2) . "
-      // Session: $session
-      // Term: $term";
-
-      // sendMessage("Company", "COMPANY_PHONE", $companyMsg);
+        // Notify the company (admin)
+            $companyMsg = "New subscription received.
+                Ref No: $ref_number
+                School: {$getcam_row['InstitutionGeneralName']}
+                Amount Paid: ₦" . number_format($total_payment, 2) . "
+                Company Share: ₦" . number_format($company_share, 2) . "
+                Session: $session
+                Term: $term";
+        sendMessage("EduMESS", "2347045277801", $companyMsg);
 
 
 

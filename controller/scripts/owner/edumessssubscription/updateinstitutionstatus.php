@@ -21,7 +21,7 @@
             $InstitutionID = $prosmakepaymenthererow['InstitutionID'];
             
             
-            $updateinstitution = mysqli_query($link,"UPDATE `institution` SET SubscriptionStatus='1' WHERE InstitutionID='$InstitutionID'");
+            $updateinstitution = mysqli_query($link,"UPDATE `institution` SET SubscriptionStatus='free' WHERE InstitutionID='$InstitutionID'");
             
             if($updateinstitution == true)
             {

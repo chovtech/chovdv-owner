@@ -165,14 +165,14 @@
 						$prosselectschoolplanconetentcntrownew = mysqli_fetch_assoc($prosselectschoolplanconetentnew);
 						$prosselectschoolplanconetentcntnew = mysqli_num_rows($prosselectschoolplanconetentnew);
 						
-						$NoDaysToCountnew = $prosselectschoolplanconetentcntrownew['NoDaysToCount'];
+						// $NoDaysToCountnew = $prosselectschoolplanconetentcntrownew['NoDaysToCount'];
 						$SubscriptionStatusnew = $prosselectschoolplanconetentcntrownew['SubscriptionStatus'];
 						
-						$StartCountDatenew = $prosselectschoolplanconetentcntrownew['StartCountDate'];
+						// $StartCountDatenew = $prosselectschoolplanconetentcntrownew['StartCountDate'];
 						// PROS CHECK SUBSCRIPTION STATUS HERE     
 						
 						//IMPLEMENT LOCK HERE
-							if($SubscriptionStatusnew == '1')
+							if($SubscriptionStatusnew == 'free')
 							{
 								
 								$result['menu_class'] = "pros-disabled-menu";
