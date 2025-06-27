@@ -34,7 +34,7 @@ if (!$pros_instituion_id) {
 
       $amount_per_student = 0;
 
-     if($pros_get_plansubscription > 0):
+     if($pros_get_plansubscription_cnt > 0):
         $pros_get_plansubscription_row = mysqli_fetch_assoc($pros_get_plansubscription);
         $amount_per_student = intval($pros_get_plansubscription_row['Amount']);
      endif;
@@ -60,7 +60,7 @@ $pros_session = $pros_get_current_term_fetch['sessionName'] ?? '';
 
 
 if (mysqli_num_rows($pros_query_link_campus) > 1):
-    echo '<option value="NULL" data-planid="'.$planid.'" data-planprice="'.$amount_per_student.'">Select Campus</option>';
+    echo '<option value="NULL" data-studpaid="0" data-planid="'.$planid.'" data-planprice="'.$amount_per_student.'">Select Campus</option>';
 endif;
 
 
@@ -109,6 +109,28 @@ while ($pros_get_details_campus = mysqli_fetch_assoc($pros_query_link_campus)) {
         $total_student = $result['totalstud'];
     }
 
-    echo '<option data-planid="'.$planid.'" value="' . $pros_campus_id . '" data-planprice="'.$amount_per_student.'" data-numstudent="' . $total_student . '">' . $pros_campus_name . '</option>';
+
+    // Fetch accurate payment records
+    $paymentsResult = mysqli_query($link, "
+        SELECT (ActualAmount + DiscountedAmount) AS amount
+        FROM plantransaction
+        WHERE CampusID = '$pros_campus_id'
+          AND SessionName = '$pros_session'
+          AND TermOrSemesterName = '$TermOrSemesterID'
+          AND transaction_type IN ('normal', 'upgrade','downgrade')
+    ");
+
+    $totalPaid = 0;
+    $totalPaidStudents = 0;
+    while ($row = mysqli_fetch_assoc($paymentsResult)) {
+        // $students = (int)($row['num_of_student'] ?? 0);
+        $amount = (float)($row['amount'] ?? 0);
+        $totalPaid += $amount;
+        // $totalPaidStudents += $students;
+    }
+
+    $totalPaidStudents = $amount_per_student > 0 ? floor($totalPaid / $amount_per_student) : 0;
+
+    echo '<option data-studpaid="'.$totalPaidStudents.'" data-planid="'.$planid.'" value="' . $pros_campus_id . '" data-planprice="'.$amount_per_student.'" data-numstudent="' . $total_student . '">' . $pros_campus_name . '</option>';
 }
 ?>

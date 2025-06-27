@@ -95,112 +95,139 @@
 	}
 
 
-	   // pros lock menu oboarding process and subscription status
-		function pros_locked_menu_onboarding($UserID) {
-			global $link;
-		
-			// Initialize default return values
-			$result = [
-				'menu_class' => '',
-				'lock_icon'  => '',
-				'status'     => 'enabled',
-				'dash_menu_class'  => '',
-				'dash_lock_icon'  => '',
-				'school_plan'  => '',
-			];
-		
-			// Fetch institution and owner data
-			$select_schoolowner = mysqli_query($link, "
-				SELECT * FROM `institution` 
-				INNER JOIN `agencyorschoolowner` 
-				ON `institution`.`AgencyOrSchoolOwnerID` = `agencyorschoolowner`.`AgencyOrSchoolOwnerID` 
-				WHERE `institution`.`AgencyOrSchoolOwnerID` = '$UserID'
-			");
-		
-			if ($select_schoolowner && mysqli_num_rows($select_schoolowner) > 0) {
-				$select_schoolowner_row = mysqli_fetch_assoc($select_schoolowner);
-				$groupschoolID_new = $select_schoolowner_row['InstitutionID'];
-				$tagstatenew = intval($select_schoolowner_row['TagState']);
+	// pros lock menu oboarding process and subscription status
+	function pros_locked_menu_onboarding($UserID) {
+		global $link;
+	
+		// Initialize default return values
+		$result = [
+			'menu_class' => '',
+			'lock_icon'  => '',
+			'status'     => 'enabled',
+			'dash_menu_class'  => '',
+			'dash_lock_icon'  => '',
+			'school_plan'  => '',
+		];
+	
+		// Fetch institution and owner data
+		$select_schoolowner = mysqli_query($link, "
+			SELECT * FROM `institution` 
+			INNER JOIN `agencyorschoolowner` 
+			ON `institution`.`AgencyOrSchoolOwnerID` = `agencyorschoolowner`.`AgencyOrSchoolOwnerID` 
+			WHERE `institution`.`AgencyOrSchoolOwnerID` = '$UserID'
+		");
+	
+		if ($select_schoolowner && mysqli_num_rows($select_schoolowner) > 0) {
+			$select_schoolowner_row = mysqli_fetch_assoc($select_schoolowner);
+			$groupschoolID_new = $select_schoolowner_row['InstitutionID'];
+			$tagstatenew = intval($select_schoolowner_row['TagState']);
 
-				$ActualPlan = $select_schoolowner_row['ActualPlan'];
-		
-				// Fetch campus data
-				$selectverify_campus = mysqli_query($link, "
-					SELECT * FROM `campus` 
-					WHERE InstitutionID = '$groupschoolID_new'
-				");
-		
-				if ($selectverify_campus && mysqli_num_rows($selectverify_campus) > 0) {
-					$campus_row = mysqli_fetch_assoc($selectverify_campus);
-					$tagstatecampusmain = $campus_row['TagState'];
-					$tagstatecampusmain = ($tagstatecampusmain === '') ? 0 : intval($tagstatecampusmain);
-		
-					// Check onboarding lock conditions
-					if ($tagstatecampusmain < 27) {
-						if ($tagstatenew < 16) {
+			$ActualPlan = $select_schoolowner_row['ActualPlan'];
+	
+			// Fetch campus data
+			$selectverify_campus = mysqli_query($link, "
+				SELECT * FROM `campus` 
+				WHERE InstitutionID = '$groupschoolID_new'
+			");
+	
+			if ($selectverify_campus && mysqli_num_rows($selectverify_campus) > 0) {
+				$campus_row = mysqli_fetch_assoc($selectverify_campus);
+				$tagstatecampusmain = $campus_row['TagState'];
+				$tagstatecampusmain = ($tagstatecampusmain === '') ? 0 : intval($tagstatecampusmain);
+	
+				// Check onboarding lock conditions
+				if ($tagstatecampusmain < 27) {
+					if ($tagstatenew < 16) {
+						$result['menu_class'] = "pros-disabled-menu";
+						$result['lock_icon'] = '<span style="float: right; margin-right: 5px;">
+							<i class="bx bxs-lock prosremovealllock" style="font-size: 15px; font-weight: 600; color: #ffd700;"></i>
+						</span>';
+						$result['status'] = 'disabled';
+
+						$result['dash_menu_class'] = "pros-disabled-menu";
+						$result['dash_lock_icon'] = '<span style="float: right; margin-right: 5px;">
+							<i class="bx bxs-lock prosremovealllock" style="font-size: 15px; font-weight: 600; color: #ffd700;"></i>
+						</span>';
+
+						$result['school_plan'] = $ActualPlan;
+
+						
+
+
+						
+					}
+				}else{
+
+
+
+					// PROS CHECK SUBSCRIPTION STATUS HERE
+					$prosselectschoolplanconetentnew = mysqli_query($link,"SELECT * FROM `institution` WHERE AgencyOrSchoolOwnerID='$UserID'");
+					$prosselectschoolplanconetentcntrownew = mysqli_fetch_assoc($prosselectschoolplanconetentnew);
+					$prosselectschoolplanconetentcntnew = mysqli_num_rows($prosselectschoolplanconetentnew);
+					
+					// $NoDaysToCountnew = $prosselectschoolplanconetentcntrownew['NoDaysToCount'];
+					$SubscriptionStatusnew = $prosselectschoolplanconetentcntrownew['SubscriptionStatus'];
+					
+					// $StartCountDatenew = $prosselectschoolplanconetentcntrownew['StartCountDate'];
+					// PROS CHECK SUBSCRIPTION STATUS HERE     
+					
+					//IMPLEMENT LOCK HERE
+						if($SubscriptionStatusnew == 'free')
+						{
+							
 							$result['menu_class'] = "pros-disabled-menu";
 							$result['lock_icon'] = '<span style="float: right; margin-right: 5px;">
 								<i class="bx bxs-lock prosremovealllock" style="font-size: 15px; font-weight: 600; color: #ffd700;"></i>
 							</span>';
 							$result['status'] = 'disabled';
-
-							$result['dash_menu_class'] = "pros-disabled-menu";
-							$result['dash_lock_icon'] = '<span style="float: right; margin-right: 5px;">
-								<i class="bx bxs-lock prosremovealllock" style="font-size: 15px; font-weight: 600; color: #ffd700;"></i>
-							</span>';
-
 							$result['school_plan'] = $ActualPlan;
-
 							
-
-
-							
+						}else {
+							$result['school_plan'] = $ActualPlan;
 						}
-					}else{
-
-
-
-						// PROS CHECK SUBSCRIPTION STATUS HERE
-						$prosselectschoolplanconetentnew = mysqli_query($link,"SELECT * FROM `institution` WHERE AgencyOrSchoolOwnerID='$UserID'");
-						$prosselectschoolplanconetentcntrownew = mysqli_fetch_assoc($prosselectschoolplanconetentnew);
-						$prosselectschoolplanconetentcntnew = mysqli_num_rows($prosselectschoolplanconetentnew);
-						
-						// $NoDaysToCountnew = $prosselectschoolplanconetentcntrownew['NoDaysToCount'];
-						$SubscriptionStatusnew = $prosselectschoolplanconetentcntrownew['SubscriptionStatus'];
-						
-						// $StartCountDatenew = $prosselectschoolplanconetentcntrownew['StartCountDate'];
-						// PROS CHECK SUBSCRIPTION STATUS HERE     
-						
-						//IMPLEMENT LOCK HERE
-							if($SubscriptionStatusnew == 'free')
-							{
-								
-								$result['menu_class'] = "pros-disabled-menu";
-								$result['lock_icon'] = '<span style="float: right; margin-right: 5px;">
-									<i class="bx bxs-lock prosremovealllock" style="font-size: 15px; font-weight: 600; color: #ffd700;"></i>
-								</span>';
-								$result['status'] = 'disabled';
-								$result['school_plan'] = $ActualPlan;
-								
-							}else {
-								$result['school_plan'] = $ActualPlan;
-							}
-						//IMPLEMENT LOCK HERE  
+					//IMPLEMENT LOCK HERE  
 
 
 
 
-					}
-
-					
 				}
+
+				
 			}
-		
-			return $result;
 		}
+	
+		return $result;
+	}
+
+	function prosload_session()
+	{
+		global $link;
+
+		$pros_sql_session = ("SELECT * FROM `session` ORDER BY sessionName DESC");
+		$pros_result_session = mysqli_query($link, $pros_sql_session);
+		$pros_row_session = mysqli_fetch_assoc($pros_result_session);
+		$pros_row_cnt_session = mysqli_num_rows($pros_result_session);
+
+		$pros_session_content = "";
+		if ($pros_row_cnt_session > 0) {
+			do {
+				if ($pros_row_session['sessionStatus'] == '1') {
+					$pros_selected_session = 'selected';
+				} else {
+					$pros_selected_session = '';
+				}
+				$pros_session_content.= '<option value="' . $pros_row_session['sessionName'] . '" ' . $pros_selected_session . '>' . $pros_row_session['sessionName'] . '</option>';
+
+			} while ($pros_row_session = mysqli_fetch_assoc($pros_result_session));
+		} else {
+			$pros_session_content.='<option value="0">No Records Found</option>';
+		}
+		return $pros_session_content;
+		
+	}
 
 
-		// pros load institution content for subscription
+	// pros load institution content for subscription
 			
 	mysqli_set_charset($link, 'utf8');
 	

@@ -18,11 +18,12 @@ function creditWallet($link, $affiliateID, $amount) {
     mysqli_query($link, "UPDATE affiliate SET WalletBal = WalletBal + $amount WHERE AffiliateID = '$affiliateID'");
 }
 
-function sendMessage($name, $phone, $message) {
+require_once('../messaging/wametor/send_wa_msg.php');
+// function sendMessage($name, $phone, $message) {
     // Replace this with your real SMS or Email function
     // This is just logging for now
     // echo "Message to $name ($phone): $message\n";
-}
+// }
 
 // Input data
 $userID = sanitize($link, 'userID');
@@ -56,9 +57,18 @@ $ref_number_subs = generateRefID('Subs-');
 mysqli_begin_transaction($link);
 
 try {
+
+    $wamentorData = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM whatsappapikey WHERE Purpose='Default' AND Api_source='wamentor'"));
+    $wamentor_key = $wamentorData['ApiKey'] ?? '';
+    $wamentor_userid = $wamentorData['Api_userid'] ?? '';
+
     // 1. Insert plan transaction
-    $insert = mysqli_query($link, "INSERT INTO `plantransaction`(`CampusID`, `PlanID`, `SessionName`, `TermOrSemesterName`, `ActualAmount`, `DiscountedAmount`, `DatePaid`, `ref_number`, `transaction_type`, `num_of_student`) 
-        VALUES ('$campusID', '$plan_id', '$session', '$term', '$total_payment', '$discount', '$date_time', '$ref_number_subs', '$transaction_method', '$num_student')");
+    $insert = mysqli_query($link, "INSERT INTO `plantransaction`(`CampusID`, `PlanID`, `SessionName`, 
+    `TermOrSemesterName`, `ActualAmount`, `DiscountedAmount`, `DatePaid`, `ref_number`,
+     `transaction_type`,`transaction_method`, `num_of_student`) 
+        VALUES ('$campusID', '$plan_id', '$session', '$term',
+         '$total_payment', '$discount', '$date_time', 
+         '$ref_number_subs', 'normal', '$transaction_method', '$num_student')");
     if (!$insert) throw new Exception('Failed to insert plan transaction.');
     $updateownerwallet_bal = mysqli_query($link, "UPDATE agencyorschoolowner SET WalletBalance = WalletBalance - $total_payment WHERE AgencyOrSchoolOwnerID = '$userID'");
 
@@ -190,54 +200,108 @@ try {
     // COMMIT TRANSACTION
     mysqli_commit($link);
 
+            $affPayload = [
+                "user_id" => $wamentor_userid,
+                "template_id" => "plan-notify",
+                "message" => "Hi {{name}}, you’ve just earned ₦{{amount}} from {{school}} subscription.",
+                "contacts" => []
+            ];
+
           // Send all affiliate messages
         foreach ($messages as $msg) {
             
-            $messageText = "Hi {$msg['name']}, congratulations! 🎉 You’ve just earned ₦" . number_format($msg['amount'], 2) . " as part of a new school subscription payment. 
-            School: {$getcam_row['InstitutionGeneralName']}
-            Ref No: $ref_number
-            Session: $session
-            Term: $term
-            Keep up the great work promoting our platform!";
+            // $messageText = "Hi {$msg['name']}, congratulations! 🎉
+            //  You’ve just earned ₦" . number_format($msg['amount'], 2) . " as part of a new school subscription payment. 
+            // School: {$getcam_row['InstitutionGeneralName']}
+            // Ref No: $ref_number
+            // Session: $session
+            // Term: $term
+            // Keep up the great work promoting our platform!";
               
-              sendMessage($msg['name'], $msg['phone'], $messageText);
+            //   sendMessage($msg['name'], $msg['phone'], $messageText);
+
+
+            $affPayload['contacts'][] = [
+                "number" => $msg['phone'],
+                "name" => $msg['name'],
+                "amount" => number_format($msg['amount'], 2),
+                "school" =>$getcam_row['InstitutionGeneralName']
+                // "plan_status" => $transaction_type
+            ];
         } 
+
+
+      
+        sendWhatsAppMsg($affPayload, $wamentor_key);
 
         // Notify the school
         $schoolQuery = mysqli_query($link, "SELECT AgencyOrSchoolOwnerName, AgencyOrSchoolOwnerMainPhone
         FROM agencyorschoolowner WHERE AgencyOrSchoolOwnerID='$userID'");
         if ($school = mysqli_fetch_assoc($schoolQuery)) {
-            $msg = "Dear {$school['AgencyOrSchoolOwnerName']}, your subscription payment of ₦" . number_format($total_payment, 2) . " was received successfully. 
-            Ref No: $ref_number
-            Session: $session
-            Term: $term
-            Thank you for using our platform. Your account has been updated accordingly.";
-            
-            sendMessage($getcam_row['InstitutionGeneralName'], $school['AgencyOrSchoolOwnerMainPhone'], $msg);
+
+            // $msg = "Dear {$school['AgencyOrSchoolOwnerName']}, your subscription payment 
+            // of ₦" . number_format($total_payment, 2) . " was received successfully. 
+            // Ref No: $ref_number
+            // Session: $session
+            // Term: $term
+            // Thank you for using our platform. Your account has been updated accordingly.";
+            // sendMessage($getcam_row['InstitutionGeneralName'], $school['AgencyOrSchoolOwnerMainPhone'], $msg);
+
+            sendWhatsAppMsg([
+                "user_id" => $wamentor_userid,
+                "template_id" => "admin-notify",
+                "message" => "Dear {{name}}, your subscription payment of ₦{{amount}} for {{school}}  was received successfully. 
+                  \n\n Ref: {{ref}}, \n\nTerm: {{term}},\n\n Session: {{session}}.",
+                "contacts" => [[
+                    "number" => $school['AgencyOrSchoolOwnerMainPhone'],
+                    "name" => $school['AgencyOrSchoolOwnerName'],
+                    "amount" => number_format($total_payment, 2),
+                    "school" => $getcam_row['InstitutionGeneralName'],
+                    // "plan_status" => $transaction_type,
+                    "ref" =>  $ref_number,
+                    "term" => $term,
+                    "session" => $session
+                ]]
+            ], $wamentor_key);
+        
         }
 
         // Notify the company (admin)
-            $companyMsg = "New subscription received.
-                Ref No: $ref_number
-                School: {$getcam_row['InstitutionGeneralName']}
-                Amount Paid: ₦" . number_format($total_payment, 2) . "
-                Company Share: ₦" . number_format($company_share, 2) . "
-                Session: $session
-                Term: $term";
-        sendMessage("EduMESS", "2347045277801", $companyMsg);
+        //     $companyMsg = "New subscription received.
+        //         Ref No: $ref_number
+        //         School: {$getcam_row['InstitutionGeneralName']}
+        //         Amount Paid: ₦" . number_format($total_payment, 2) . "
+        //         Company Share: ₦" . number_format($company_share, 2) . "
+        //         Session: $session
+        //         Term: $term";
+        // sendMessage("EduMESS", "2347045277801", $companyMsg);
 
 
+        sendWhatsAppMsg([
+            "user_id" => $wamentor_userid,
+            "template_id" => "admin-notify",
+            "message" => "New subscription received.
+              \n\nRef: {{ref}}, \n\n
+              School: {{school}},\n\n 
+              Amount Paid: ₦{{amountpaid}},\n\n
+              Company Share: ₦{{companyshare}},\n\n
+              Term: {{term}}, Session: {{session}}.",
+            "contacts" => [[
+                "number" => $school['AgencyOrSchoolOwnerMainPhone'],
+                "name" => $school['AgencyOrSchoolOwnerName'],
+                "amount" =>number_format($total_payment, 2),
+                "amountpaid" => $getcam_row['InstitutionGeneralName'],
+                "companyshare" => number_format($company_share, 2),
+                "ref" =>  $ref_number,
+                "term" => $term,
+                "session" => $session
+            ]]
+        ], $wamentor_key);
 
-      // POST https://whatsapp.chovtech.com/api/vendors/register
-      // {
-      //   "name": "EduMESS",
-      //   "company_name": "EduMESS INC",
-      //   "email": "edumessinc@gmail.com",
-      //   "phone_number": "+2347045277801",
-      //   "password": "TheCompany@2025"
-      // }
+        
+   
 
-    echo json_encode(['status' => 'success', 'message' => 'Transaction successful and messages sent.', 'ref_number' => $ref_number]);
+    echo json_encode(['status' => 'success', 'message' => 'Transaction successful .', 'ref_number' => $ref_number]);
 
 } catch (Exception $e) {
     mysqli_rollback($link);

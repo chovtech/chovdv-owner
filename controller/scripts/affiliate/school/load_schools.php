@@ -11,7 +11,8 @@ $ownerId = mysqli_real_escape_string($link, $_POST['ownerId']);
 
 
 
- $pros_get_current_term = mysqli_query($link,"SELECT * FROM session INNER JOIN termorsemester WHERE session.sessionStatus='1' AND termorsemester.status=1");//PROS GET CURRENT TERM AND SESSION HERE
+ $pros_get_current_term = mysqli_query($link,"SELECT * FROM session INNER JOIN
+  termorsemester WHERE session.sessionStatus='1' AND termorsemester.status=1");//PROS GET CURRENT TERM AND SESSION HERE
 
  $pros_get_current_term_fetch = mysqli_fetch_assoc($pros_get_current_term);
  
@@ -52,7 +53,8 @@ if ($pros_row_cnt_institution_cont > 0) {
 
         // Get campuses
         $select_campus_count_sql = mysqli_query($link, "
-            SELECT * FROM `campus`  WHERE `InstitutionID` = '$InstitutionID' AND `CampusTrashStatus`='0' ORDER BY CampusName ASC "); 
+            SELECT * FROM `campus`  WHERE `InstitutionID` = '$InstitutionID' 
+            AND `CampusTrashStatus`='0' ORDER BY CampusName ASC "); 
            
        
         
@@ -73,7 +75,7 @@ if ($pros_row_cnt_institution_cont > 0) {
              // Check payment status
         $pros_get_paid_nonpayment_sql = "
             SELECT * FROM `plantransaction` 
-            WHERE `InstitutionID` = '$CampusID'
+            WHERE `CampusID` = '$CampusID'
             
             
         ";

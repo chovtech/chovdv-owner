@@ -6,6 +6,9 @@
 
         date_default_timezone_set("Africa/Lagos");
 
+        require_once('../../controller/scripts/owner/messaging/wametor/send_wa_msg.php');
+
+
         $sql_session = mysqli_query($link, "SELECT * FROM session WHERE sessionStatus = '1'");
         $sessionData = mysqli_fetch_assoc($sql_session);
         $sessionName = $sessionData['sessionName'];
@@ -26,34 +29,134 @@
         $countdownEnd = '';
         $styleContent = 'style="border-radius: 14px;display:none;"';
         $startCountdown = false;
+        $send_message = false;
 
-        // Loop through all campuses under current School Owner
-        // Or replace with your session variable
         $sql_campuses = mysqli_query($link, "SELECT * FROM campus WHERE InstitutionID 
         IN (SELECT InstitutionID FROM institution WHERE AgencyOrSchoolOwnerID = '$UserID')");
-
+        
         while ($campus = mysqli_fetch_assoc($sql_campuses)) {
             $campusID = $campus['CampusID'];
-
-            $sql_paid = mysqli_query($link, "SELECT * FROM plantransaction
-            WHERE CampusID = '$campusID' AND SessionName = '$sessionName' 
-            AND TermOrSemesterName = '{$termData['TermOrSemesterID']}'
+        
+            // Count eligible students in campus
+            $studentsQuery = mysqli_query($link, "
+                SELECT COUNT(DISTINCT student.StudentID) AS totalStudents
+                FROM student
+                INNER JOIN classordepartmentstudentallocation alloc ON student.StudentID = alloc.StudentID
+                WHERE student.CampusID = '$campusID'
+                  AND alloc.CampusID = '$campusID'
+                  AND alloc.Session = '$sessionName'
+                  AND student.StudentTrashStatus = 0
+                  AND student.StudentID NOT IN (
+                      SELECT UserID FROM deactivateuser
+                      WHERE UserType = 'student'
+                      AND sessionName = '$sessionName'
+                      AND TermOrSemesterName = '{$termData['TermOrSemesterID']}'
+                      AND Status = 0
+                  )
             ");
-            $hasPaid = mysqli_num_rows($sql_paid) > 0;
-
-            if (!empty($Resumption_Date)) {
+            $row = mysqli_fetch_assoc($studentsQuery);
+            $totalStudents = (int)$row['totalStudents'];
+        
+            // Check if the campus has paid
+            $paymentQuery = mysqli_query($link, "
+                SELECT 1 FROM plantransaction
+                WHERE CampusID = '$campusID'
+                  AND SessionName = '$sessionName'
+                  AND TermOrSemesterName = '{$termData['TermOrSemesterID']}'
+                LIMIT 1
+            ");
+            $hasPaid = mysqli_num_rows($paymentQuery) > 0;
+        
+            // If campus has students and hasn't paid, and we're past the delay period
+            if ($totalStudents > 0 && !$hasPaid && !empty($Resumption_Date)) {
                 $daysSinceResumption = (strtotime($today) - strtotime($Resumption_Date)) / 86400;
-                $startDelay = 14; // 2 weeks delay
-
-                if ($daysSinceResumption >= $startDelay && $NoDaysToCount > 0 && !$hasPaid) {
+                $startDelay = 14;
+        
+                if ($daysSinceResumption >= $startDelay && $NoDaysToCount > 0) {
                     $startCountdown = true;
                     $countdownStart = date("Y-m-d", strtotime("$Resumption_Date + $startDelay days"));
                     $countdownEnd = date("Y-m-d 23:59:59", strtotime("$countdownStart + $NoDaysToCount days"));
                     $styleContent = 'style="border-radius: 14px;display:block;"';
-                    break; // only need one unpaid campus to trigger countdown
+
+
+
+
+                    $institutionID = $campus['InstitutionID'];
+
+                    // ✅ Check if reminder already sent
+                    $reminderCheck = mysqli_query($link, "
+                        SELECT 1 FROM subscription_reminder_log 
+                        WHERE InstitutionID = '$institutionID' 
+                        AND Session = '$sessionName' 
+                        AND Term = '{$termData['TermOrSemesterID']}' 
+                        LIMIT 1
+                    ");
+
+                    if (mysqli_num_rows($reminderCheck) == 0) {
+                        $send_message = true;
+                    }
+            
+                    break;
                 }
             }
         }
+
+
+        // pros prepared msg here
+
+        if($send_message)
+        {
+
+            $wamentorData = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM whatsappapikey WHERE Purpose='Default' AND Api_source='wamentor'"));
+            $wamentor_key = $wamentorData['ApiKey'] ?? '';
+            $wamentor_userid = $wamentorData['Api_userid'] ?? '';
+
+
+            // Fetch institution and owner data
+			$select_schoolowner = mysqli_query($link, "
+            SELECT * FROM `institution` 
+            INNER JOIN `agencyorschoolowner` 
+            ON `institution`.`AgencyOrSchoolOwnerID` = `agencyorschoolowner`.`AgencyOrSchoolOwnerID` 
+            WHERE `institution`.`AgencyOrSchoolOwnerID` = '$UserID'
+            ");
+
+            if ($select_schoolowner && mysqli_num_rows($select_schoolowner) > 0):
+				$select_schoolowner_row = mysqli_fetch_assoc($select_schoolowner);
+
+				$groupschoolID_new = $select_schoolowner_row['InstitutionID'];
+				// $tagstatenew = intval($select_schoolowner_row['TagState']);
+				$AgencyOrSchoolOwnerMainPhone = $select_schoolowner_row['AgencyOrSchoolOwnerMainPhone'];
+                $AgencyOrSchoolOwnerName = $select_schoolowner_row['AgencyOrSchoolOwnerName'];
+                $InstitutionGeneralName = $select_schoolowner_row['InstitutionGeneralName'];
+
+
+
+                  if (!empty($AgencyOrSchoolOwnerMainPhone)):
+                    sendWhatsAppMsg([
+                        "user_id" => $wamentor_userid,
+                        "template_id" => "admin-notify",
+                        "message" => "Hi {{name}}, your school's subscription for {{school}} is overdue.\n\nTerm: {{term}},\nSession: {{session}}.\n\nPlease renew to avoid service interruption.",
+                        "contacts" => [[
+                            "number" => $AgencyOrSchoolOwnerMainPhone,
+                            "name" => $AgencyOrSchoolOwnerName,
+                            "school" => $InstitutionGeneralName,
+                            "term" => $termName,
+                            "session" => $sessionName
+                        ]]
+                    ], $wamentor_key);
+                endif;
+
+                mysqli_query($link, "
+                INSERT IGNORE INTO subscription_reminder_log (InstitutionID, Session, Term) 
+                VALUES ('$groupschoolID_new', '$sessionName', '{$termData['TermOrSemesterID']}')
+              ");
+
+            endif;
+    
+        }
+        
+
+
 ?>
 
 <?php if ($startCountdown): ?>

@@ -62,6 +62,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 
     <script src="../../assets/plugins/dselect.js"></script>
+    <script src="../../assets/plugins/sweetalert2@11.js"></script>
     
     <style>
         /* .qr-code {
@@ -254,28 +255,23 @@
                                             >
                                         </li> -->
                                     </ul>
-                                
-                                    
                                     <div class="tab-content" id="ex1-content">
-                                        
-                                      
-        
                                         <div class="tab-pane fade show active" id="abba_ex1-tabs-10" role="tabpanel" aria-labelledby="abba_ex1-tab-10">
                                             <input type="text" id="pros-text-to-copy" value="<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>" readonly style="border:none;width:100%;"><br><br>
-        
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-file" id="copy-button"> Copy</i></button>
-                                            <!-- Open Link in New Tab Button -->
+                                             <!-- Open Link in New Tab Button -->
                                                 <a href="<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>" target="_blank" class="btn btn-info btn-sm">
                                                     <i class="fas fa-external-link-alt"></i> Open 
                                                 </a>
-                                                    
+                                                    <!-- Action Buttons -->
                                                 <a href="whatsapp://send?text=<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>"  type="button" class="btn btn-success btn-sm" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"> Share via WhatsApp</i></a>
-                                            
+
+                                                <button type="button" class="btn btn-warning btn-sm" onclick="generateLeadSwal()">
+                                                    <i class="fas fa-link"></i> Generate Lead Link
+                                                </button>
                                         </div>
                                         
-                                        <!-- <div class="tab-pane fade" id="abba_ex1-tabs-20" role="tabpanel" aria-labelledby="abba_ex1-tab-20">
-                                            Tab 2 content
-                                        </div> -->
+                                       
                                     </div>
                                     <!-- Tab panes -->
                                 </div>
@@ -286,6 +282,21 @@
                 </div>
             </div>
         </div>
+
+        <?php
+            $affiliates = [];
+            $sql = mysqli_query($link, "SELECT AffiliateID, AffiliateFName, 
+            referral_code FROM affiliate WHERE AffiliateID != '$AffiliateID'");
+            while ($row = mysqli_fetch_assoc($sql)) {
+                $affiliates[] = [
+                    'id' => $row['AffiliateID'],
+                    'name' => $row['AffiliateFName'],
+                    'ref' => $row['referral_code']
+                ];
+            }
+            echo '<script>const allAffiliates = ' . json_encode($affiliates) . ';</script>';
+        ?>
+
 
     <!--Script-->
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
@@ -317,6 +328,58 @@
     <!-- current page js -->
     <?php include('../../js/current_page.php'); ?>
     <?php include('../../controller/js/affiliate/schools.php'); ?>
+
+    <script>
+
+        function generateLeadSwal() {
+            const leadReferralCode = "<?php echo $referral_code; ?>";
+            const baseSignupUrl = "<?php echo $defaultUrl; ?>signup";
+            
+            let options = '<option value="">-- Select Main Affiliate --</option>';
+            allAffiliates.forEach(aff => {
+                options += `<option value="${aff.ref}">${aff.name}</option>`;
+                // alert(aff.ref);
+            });
+
+            Swal.fire({
+                title: 'Generate as Lead',
+                html: `
+                    <select id="mainAffiliateSelect" class="swal2-input" style="width:100%;">
+                        ${options}
+                    </select>
+                    <input type="text" id="generatedLeadLink" class="swal2-input" placeholder="Generated link will appear here" readonly />
+                `,
+                confirmButtonText: 'Copy Link',
+                showCancelButton: true,
+                cancelButtonText: 'Cancel',
+                didOpen: () => {
+                    const select = Swal.getPopup().querySelector('#mainAffiliateSelect');
+                    const output = Swal.getPopup().querySelector('#generatedLeadLink');
+
+                    select.addEventListener('change', () => {
+                        const selectedRef = select.value;
+                        if (selectedRef) {
+                            const fullLink = `${baseSignupUrl}?ref=${selectedRef}&lead=${leadReferralCode}`;
+                            output.value = fullLink;
+                        } else {
+                            output.value = '';
+                        }
+                    });
+                },
+                preConfirm: () => {
+                    const link = Swal.getPopup().querySelector('#generatedLeadLink').value;
+                    if (!link) {
+                        Swal.showValidationMessage('Please select an affiliate first');
+                        return false;
+                    }
+                    navigator.clipboard.writeText(link);
+                    return Swal.fire('Copied!', 'Referral link copied to clipboard.', 'success');
+                }
+            });
+        }
+        
+    </script>
+
 
 
     

@@ -38,6 +38,7 @@
     <!-- <script src="../../css/app_css/tailwind.16"></script> -->
   
     <link href="../../assets/plugins/notify/wnoty.css" rel="stylesheet">
+    <script src="../../assets/plugins/sweetalert2@11.js"></script>
 
 
     
@@ -508,54 +509,117 @@
                 <!-- </div> -->
             </div>
         </main>
-    </div>
+                </div>
 
 
 
 
-    <!--==== Transfer Modal==== -->
-        <!-- <div class="modal fade" id="pros_withdrawModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="pros_withdrawModalLabel" tabindex="-1">
+                <!-- Trigger button -->
+            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#paymentModal">
+            Manage Payment / Upgrade
+            </button> -->
+
+                    <!-- Sleek Upgrade Modal -->
+           <!-- Button to open modal -->
+
+        <!-- Modal -->
+            <div class="modal fade" id="upgradeModal" tabindex="-1" aria-labelledby="upgradeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="border-radius: 20px;">
-                    <div class="modal-body">
-                       <h3 id="modal-title" class="text-3xl font-extrabold text-gray-900 mb-6 select-text">Assign Subscription</h3>
-                        <form id="modal-form" class="space-y-6" novalidate>
-                            <div>
+                <div class="modal-content shadow-lg border-0 rounded-4 bg-white">
 
-                                <select id="student-assign-sel" name="student-assign-count" 
-                                        required  
-                                        class="form-control w-full rounded-xl border border-gray-300 px-5 py-3 text-gray-900 text-lg 
-                                        placeholder-gray-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition" >
-                                        <option>Select term</option>
-                                        <option>Prosper ortese</option>
-                                        <option>Favour ortese</option>
-                                </select>
-                             </div>
-                             <div>
-                                <label for="student-assign-count"
-                                    class="block mb-2 text-lg font-semibold text-gray-700 select-text">Number of Students to
-                                    Assign</label>
-                                <input id="student-assign-count" name="student-assign-count" type="number" min="1" max="800"
-                                    required placeholder="Enter number of students" aria-describedby="assign-count-error"
-                                    class="w-full rounded-xl border border-gray-300 px-5 py-3 text-gray-900 text-lg placeholder-gray-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition" />
-                                <p id="assign-count-error" role="alert" class="mt-2 text-sm text-red-600 hidden"></p>
+                <!-- Modal Header -->
+                <div class="modal-header border-0 rounded-top-4 bg-light px-4 py-3">
+                    <h5 class="modal-title fw-semibold text-primary" id="upgradeModalLabel">
+                    <i class="bi bi-arrow-up-circle me-2"></i> Upgrade Summary
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body px-4 py-3">
+
+
+                 <!-- Header with Wallet -->
+                 <div class="row mb-4">
+                        <div class="col-6">
+                           
+                        </div>
+                        <div class="col-6 text-md-end">
+                            <div class="d-flex align-items-center justify-content-md-end gap-3 mb-2">
+                                <p class="text-muted small mb-0">Wallet Balance</p>
+                                <a href="../wallet" class="btn btn-link text-primary p-0 small">
+                                    <i class="fas fa-plus-circle me-1"></i>
+                                    Top Up
+                                </a>
                             </div>
-                            <div class="text-gray-900 text-2xl font-semibold" aria-live="polite" aria-atomic="true">
-                                Total Cost: <span id="modal-total-cost">₦0</span>
-                            </div>
-                            <div class="flex justify-end mt-8 space-x-4">
-                                <button type="button" id="modal-cancel" data-bs-dismiss="modal" aria-label="Close"
-                                    class="rounded-xl px-6 py-3 border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition">Cancel</button>
-                                <button type="submit" id="modal-submit" disabled
-                                    class="rounded-xl px-8 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition disabled:opacity-50 disabled:cursor-not-allowed">Assign</button>
-                            </div>
-                        </form>
-                                
-                        
+                            
+                            <p class="h2 fw-bold mb-0">₦ 
+                              <?php 
+                                echo $pros_wallet_bal =  (!empty($rowGetUserDetails['WalletBalance']) && is_numeric($rowGetUserDetails['WalletBalance'])) 
+                                    ? number_format($rowGetUserDetails['WalletBalance'], 2) 
+                                    : number_format(0, 2); 
+
+                                    
+
+                                     echo '<input type="hidden" value="'.$rowGetUserDetails['WalletBalance'].'" id="pros_wall_bal">';
+                                ?>
+                            </p>
+                        </div>
                     </div>
+
+                    <div class="row mb-3">
+                    <div class="col-6"><strong>Total Students:</strong></div>
+                    <div class="col-6 text-end"><span id="modalTotal" class="text-dark">0</span></div>
+                    </div>
+
+                    <div class="row mb-3">
+                    <div class="col-6"><strong>Paid Students:</strong></div>
+                    <div class="col-6 text-end"><span id="modalPaid" class="text-success">0</span></div>
+                    </div>
+
+                    <div class="row mb-3">
+                    <div class="col-6"><strong>Unpaid Students:</strong></div>
+                    <div class="col-6 text-end"><span id="modalUnpaid" class="text-danger">0</span></div>
+                    </div>
+
+                    <div class="row mb-3">
+                    <div class="col-6"><strong>Top-Up (Paid):</strong></div>
+                    <div class="col-6 text-end"><span id="modalTopUp" class="text-warning">₦0</span></div>
+                    </div>
+
+                    <div class="row mb-3">
+                    <div class="col-6"><strong>Cost for Unpaid:</strong></div>
+                    <div class="col-6 text-end"><span id="modalUnpaidCost" class="text-warning">₦0</span></div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-dark">Total To Pay:</h5>
+                    <h5 class="text-success fw-bold"><span id="modalTotalCost">0</span></h5>
+                    </div>
+
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer border-0 bg-light rounded-bottom-4 px-4 py-3">
+                    <button type="button" id="proceedToPayment" class="btn btn-success w-100 py-2 rounded-pill shadow-sm">
+                    <i class="bi bi-check-circle me-2"></i> Confirm Upgrade
+                    </button>
+                </div>
+
                 </div>
             </div>
-        </div> -->
+            </div>
+
+
+
+
+
+
+
+
+
 
 
     <!-- Scripts -->
@@ -587,6 +651,7 @@
             // Smooth scroll for pricing cards
             $('.pricing-button').click(function() {
                 // Add your upgrade logic 
+
                     var choosed_plain = $(this).data('id');
 
                     var current_plan = '<?php echo $pros_menuData['school_plan']; ?>';
@@ -594,74 +659,210 @@
                     var UserID = $('#user_id').val();
                     var UserType = $('#user_type').val();
                        
+                    
                    
 
                     if(choosed_plain == current_plan)
                     {
-                        $.wnoty({
-                            type: 'warning',
-                            message: 'Hey!! your school is already on this plan',
-                            autohideDelay: 10000
-                        }); 
-                    }else{
 
-                       const formDatanew = {
-                        'choosed_plain': choosed_plain,
-                        'UserID':UserID,
-                        'institutionId':institutionId,
-                        'UserType':UserType
-                        };//pros collect data for ajax 
-                   
-                    // Send AJAX request to backend
-                    $.ajax({
-                        url: '../../controller/scripts/owner/upgradeplan/change_plan.php',
-                        type: 'POST',
-                        data: {...formDatanew},
-                        beforeSend: function() {
-                            
-                            $(this).prop('disabled', true).html('<i class="bx bx-loader-alt bx-spin"></i> upgrading...');
-                        },
-                        success: function(response) {
-
-                            if(response.status === 'success') {
-
-                                $.wnoty({
-                                    type: 'success',
-                                    message: response.message,
-                                    autohideDelay: 3000
-                                }); 
-
-                                setTimeout(() => location.reload(), 1000);
-                                // windows.reload();
-                            }else{
-                                $.wnoty({
-                                    type: 'warning',
-                                    message: response.message,
-                                    autohideDelay: 3000
-                                }); 
-                            }
-                            // alert(response.message);
-                        },
-                        error: function(xhr, status, error) {
-                            
-                            console.error('Error:', error);
-                        },
-                        complete: function() {
-                            
-                            $(this).prop('disabled', false).html('Upgrade Now');
-                        }
-                    });
-
+                             Swal.fire({
+                                icon: 'warning',
+                                title: 'Hey!!',
+                                text: 'Your school is already on this plan',
+                                confirmButtonText: 'OK'
+                            });
+                            return;
                     }
 
+                    loadUpgradeModal(institutionId, UserID, UserType, current_plan, choosed_plain);
 
-                
-                // alert(choosed_plain);
-                // console.log('Upgrade clicked');
             });
 
 
         });
+
+        function loadUpgradeModal(institutionId, UserID, UserType, current_plan, choosed_plain) {
+                    fetch('../../controller/scripts/owner/upgradeplan/get_plan_payment_status.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ institutionId, UserID, UserType, choosed_plain, current_plan })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === 'fail') {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Hold on!',
+                                text: data.reason,
+                                confirmButtonText: 'OK'
+                            });
+                            return;
+                        }
+
+                        let totalStudents = 0;
+                        let paidStudents = 0;
+                        let topUpTotal = 0;
+                        let unpaidStudents = 0;
+                        let unpaidCost = 0;
+
+                        if (!Array.isArray(data.campuses)) {
+                            console.error('Invalid data format:', data);
+                            alert('Unexpected error occurred. Please try again.');
+                            return;
+                        }
+
+                        data.campuses.forEach(campus => {
+                            const total = parseInt(campus.totalStudents) || 0;
+                            const paid = parseInt(campus.studentsPaid) || 0;
+                            const topUp = parseFloat(campus.topUp) || 0;
+
+                            totalStudents += total;
+                            paidStudents += paid;
+                            topUpTotal += topUp;
+
+                            const unpaid = total - paid;
+                            unpaidStudents += unpaid;
+                            unpaidCost += unpaid * parseFloat(data.perStudentNewPlanAmount || 0);
+                        });
+
+
+                        const allCampusPayments = data.campuses.map(c => ({
+                                campusID: c.campusId,
+                                totalStudents: c.totalStudents,
+                                paidStudents: c.studentsPaid,
+                                unpaidStudents: c.totalStudents - c.studentsPaid,
+                                topUp: parseFloat(c.topUp),
+                                totalCost: parseFloat(c.topUp)
+                            }));
+                            console.log(allCampusPayments);
+                            const transaction_method = 'wallet';
+                            const walletBalance = parseFloat($('#pros_wall_bal').val()) || 0;
+                            document.getElementById('proceedToPayment').dataset.paymentPayload = JSON.stringify({
+                                institutionId,
+                                UserID,
+                                UserType,
+                                current_plan,
+                                choosed_plain,
+                                transaction_method,
+                                walletBalance,
+                                campuses: allCampusPayments,
+                                totalCost: allCampusPayments.reduce((sum, c) => sum + c.topUp, 0)
+                                // totalCost: allCampusPayments.reduce((sum, c) => sum + c.topUp, 0)
+                            });
+                            // alert(topUpTotal + unpaidCost);
+
+                        document.getElementById('modalTotal').textContent = totalStudents;
+                        document.getElementById('modalPaid').textContent = paidStudents;
+                        document.getElementById('modalUnpaid').textContent = unpaidStudents;
+                        document.getElementById('modalTopUp').textContent = `₦${topUpTotal.toLocaleString()}`;
+                        document.getElementById('modalUnpaidCost').textContent = `₦${unpaidCost.toLocaleString()}`;
+                        document.getElementById('modalTotalCost').textContent = `₦${(topUpTotal + unpaidCost).toLocaleString()}`;
+
+                        const modal = new bootstrap.Modal(document.getElementById('upgradeModal'));
+                        modal.show();
+                    })
+                    .catch(error => {
+                        console.error('Error loading upgrade data:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Load Failed',
+                            text: 'Something went wrong while loading upgrade details.',
+                            confirmButtonText: 'Close'
+                        });
+                    });
+        }
+
+
+
+
+         $('#proceedToPayment').off('click').on('click', function() {
+                const payload = JSON.parse(this.dataset.paymentPayload);
+             
+                if(payload.totalCost > payload.walletBalance) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Insufficient Wallet Balance',
+                        text: `Your wallet balance is ₦${payload.walletBalance.toLocaleString()}. Please top up to proceed.`,
+                        showCancelButton: true,
+                        confirmButtonText: 'Top Up Wallet'
+                    }).then(result => {
+
+                        if (result.isConfirmed) {
+                        // Step 4: Start payment
+                        window.location.href = '../../app/wallet/';
+                     }
+                       
+                    });
+                    return;
+                }
+                // Optional: Show confirmation
+                Swal.fire({
+                    title: 'Proceed to Payment?',
+                    text: `You are about to pay ₦${payload.totalCost.toLocaleString()}. Continue?`,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, Pay Now'
+                }).then(result => {
+                    if (result.isConfirmed) {
+                        // Step 4: Start payment
+                        initiatePayment(payload);
+                    }
+                });
+            });
+
+
+
+
+
+            function initiatePayment(payload) {
+                const proceedBtn = document.getElementById('proceedToPayment');
+                proceedBtn.disabled = true;
+                proceedBtn.innerText = "Processing...";
+
+                fetch('../../controller/scripts/owner/upgradeplan/insert_payment_upgrade.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            html: data.message,
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            location.reload(); // 🔄 Reload page after user clicks OK
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            html: `Something went wrong:<br>${data.message}`,
+                            confirmButtonText: 'Try Again'
+                        });
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Network Error!',
+                        text: 'Please check your internet connection or try again later.',
+                        confirmButtonText: 'OK'
+                    });
+                })
+                .finally(() => {
+                    proceedBtn.disabled = false;
+                    proceedBtn.innerText = "Proceed to Payment";
+                });
+            }
+
+
+
+
+
     </script>
 </body>
 </html>

@@ -1,8 +1,5 @@
 <script>
 
-
-
-
     $(document).ready(function(){
         var url = window.location.href;
 
@@ -77,12 +74,7 @@
 	        const responsePayload = decodeJwtResponse(response.credential);
             // collect lead id
             var consultandid1 = '<?= isset($consultant_id) && $consultant_id !== null ? htmlspecialchars($consultant_id, ENT_QUOTES, 'UTF-8') : ''; ?>';
-
-            
-            
-           
             var consultandid2 = localStorage.getItem('consultantid');
-
             if (!consultandid2 || consultandid2 === '0' || consultandid2 === null || consultandid2 === 'null' || consultandid2 === undefined) {
                 var consultandid = consultandid1;
             }
@@ -92,13 +84,10 @@
             }
 
           // get ref here
-        //   $(".pros_usertype_signup_google:checked").val()
+          // $(".pros_usertype_signup_google:checked").val()
            var signup_as =  'owner';
-          
-        
-          var tagstateid = $("#googlegrid").data('id');
-
-
+           var lead_id =  $("#pros_leadid").val();
+           var tagstateid = $("#googlegrid").data('id');
             // collect lead id
             var lang = 	localStorage.getItem("lang");
 
@@ -122,16 +111,13 @@
             
             
         if (signup_as === '' || signup_as === '0' || signup_as == null) {
-                    
-                    
-                    $.wnoty({
-                        type: 'warning',
-                        message: "Hey! Kindly select who you want to sign up as (owner or affiliate) just above google button",
-                        autohideDelay: 5000
-                    });
+            $.wnoty({
+                type: 'warning',
+                message: "Hey! Kindly select who you want to sign up as (owner or affiliate) just above google button",
+                autohideDelay: 5000
+            });
         }else
         {
-            
             //  alert(defaultlang);
               //ajax signup request start here
             $.ajax({
@@ -139,58 +125,49 @@
                     type : 'post',
                     url : '../controller/scripts/edumesweb/signupwith-google.php', //Here you will fetch records
                     data : {firstname:firstname,lastname:lastname,image:image,email:email,consultandid:consultandid,
-                    fullname:fullname,defaultlang:defaultlang,tagstateid:tagstateid,maintoken:maintoken,signup_as:signup_as}, //Pass $id
+                    fullname:fullname,defaultlang:defaultlang,
+                    tagstateid:tagstateid,maintoken:maintoken,signup_as:signup_as,
+                    lead_id:lead_id
+                
+                    }, //Pass $id
                     success : function(output)
                     {
-                            
-                            var prosfeedback = (output);
-                            // alert(prosfeedback);
+                        var prosfeedback = (output);
+                        // alert(prosfeedback);
+                        if(prosfeedback.trim() === 'found')
+                        {
 
-
-                                if(prosfeedback.trim() === 'found')
-                                {
-
-
-                                    $.wnoty({
-                                        type: 'warning',
-                                        message: "Hey! email already exist click to login.",
-                                        autohideDelay: 5000
-                                    });
-                                            
-                                }else
-                                {
-                                            
-                                            
-                                            var redirectUrl2 = "../validate-password/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=" + prosfeedback + "&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&lang=" + lang + "&utype="+signup_as;
-
-                                            var ref_id = localStorage.getItem('ref');
-                                            var my_name = firstname+' '+lastname;
-                                            var my_email = email;
-                                            var number_new = '';
-                                            var amount = '';
-                                            var paymentRef = '';
-                                            
-
-                                        // salesplode_api(ref_id,my_name,my_email,number_new,amount,paymentRef,redirectUrl2);
-
-                                                $.wnoty({
-                                                    type: 'success',
-                                                            message: "Great!! signup with google successfully.",
-                                                            autohideDelay: 5000
-                                                });
-                                                window.location.href = redirectUrl2;
-                                            
-                                }
+                            $.wnoty({
+                                type: 'warning',
+                                message: "Hey! email already exist click to login.",
+                                autohideDelay: 5000
+                            });
                                     
+                        }else
+                        {
+                            var redirectUrl2 = "../validate-password/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=" + prosfeedback + "&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&lang=" + lang + "&utype="+signup_as;
+
+                            var ref_id = localStorage.getItem('ref');
+                            var my_name = firstname+' '+lastname;
+                            var my_email = email;
+                            var number_new = '';
+                            var amount = '';
+                            var paymentRef = '';
+                            // salesplode_api(ref_id,my_name,my_email,number_new,amount,paymentRef,redirectUrl2);
+
+                            $.wnoty({
+                                type: 'success',
+                                        message: "Great!! signup with google successfully.",
+                                        autohideDelay: 5000
+                            });
+                            window.location.href = redirectUrl2;
+                                    
+                        }
                     }
                 
             });
             //ajax signup request end here
-            
         }
-
-          
-                
 	}
 
     function decodeJwtResponse(data){
@@ -204,8 +181,6 @@
 
     $('body').on('click','#signup-btn',function(){
 
-        
-
         $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
         var firstname = $('#firstname').val();
         var lastname = $('#lastname').val();
@@ -216,11 +191,9 @@
     
         var password = $('#password').val();
         var signup_as = 'owner';
-        
+        var lead_id =  $("#pros_leadid").val();
         // $('#signup_usertype_main option:selected').val();
         
-      
-    
         var regexLength = /.{8,}/;
         var regexUppercase = /[A-Z]/;
         var regexLowercase = /[a-z]/;
@@ -239,9 +212,6 @@
         var consultandid  = '<?= isset($consultant_id) && $consultant_id !== null ? htmlspecialchars($consultant_id, ENT_QUOTES, 'UTF-8') : ''; ?>';
         var tagstateid = $(this).data('id');
         
-
-
-
         var lang = 	localStorage.getItem("lang");
         if(lang == '' ||lang === undefined || lang === null)
         {
@@ -253,9 +223,6 @@
 
         //  var MainNumberfull = MainNumber.getNumber(intlTelInputUtils.numberFormat.E164);
         // $("input[name='phonenum[full]'").val(MainNumberfull);
-        
-    
-
         
        if (signup_as === '' || signup_as === '0' || signup_as == null) {
             $('.usertype_validate').css('outline', '1px solid red');
@@ -404,18 +371,16 @@
                     consultandid:consultandid,
                     defaultlang:defaultlang,
                     tagid:tagstateid,
-                    signup_as:signup_as
+                    signup_as:signup_as,
+                    lead_id:lead_id
         		}, //Pass $id
                 success : function(output)
                 {
-        							        
         	       // alert(output);						    
         	        var prosfeedback = (output);
 
                     if(prosfeedback.trim() === 'found')
                     {
-
-
                         $.wnoty({
                             type: 'warning',
                             message: "Hey! email already exist click to login.",
@@ -427,13 +392,10 @@
                         $('#email').val('');
                         $('#Phone').val('');
                         $('#password').val('');
-                                                                            
-                                                    
                     }else
                     {
                     					           
                         var redirectUrl2 = "../signup-verification/?LcH6eMciwz3OOqP7KOrjjFf2V1DYE6=mkiuytrcccvvUR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&oionxx=&UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr=kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6&marana=" + email + "&kjgytrexcdsLcH6eMciwz3OOqP7KOrjjFf2V1DYE6=UR93vlqtfuRp3GPYGbHuyx9Y2LjWhr&tak=&oionxx=" + prosfeedback + "&lang=" + defaultlang +"&utype=" + signup_as;
-
                         var ref_id = localStorage.getItem('ref');
                         var my_name = firstname+' '+lastname;
                         var my_email = email;
@@ -448,15 +410,12 @@
                             message: "Great!! signup  successfully.",
                             autohideDelay: 5000
                         });
-                        
                         window.location.href = redirectUrl2;
                                                 
                     }
-                    
                     // $('#successdisplay').html(output);//Show fetched data from database
                     $('#signup-btn').html('Sign up');
                     $('#signup-btn').prop('disabled', false);
-        						
         		}
         	});
 		}
@@ -599,141 +558,92 @@
     // registration cllaback
 
 
-                //change password here
+    //change password here
 
-        // registration cllaback
-        $('body').on('click','#signinbtn',function(){
-                $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+    // registration cllaback
+    $('body').on('click','#signinbtn',function(){
+            $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
 
-                var lang = 	localStorage.getItem("lang");
-                if(lang == '' ||lang === undefined || lang === null)
+            var lang = 	localStorage.getItem("lang");
+            if(lang == '' ||lang === undefined || lang === null)
+            {
+            var defaultlang = 'english';
+            }else
                 {
-                var defaultlang = 'english';
-                }else
-                    {
-                    var defaultlang = lang;
-                }
+                var defaultlang = lang;
+            }
 
-                    var email = $('#resemail').val();
+                var email = $('#resemail').val();
 
-                    if(email == '')
-                    {
-
-                            $('.centerlogin').css('outline', '1px solid red');
-                            $(this).html('Reset')
-
-                            $.wnoty({
-                                    type: 'warning',
-                                        message: 'Hey!! email required.',
-                                        autohideDelay: 8000
-                            });
-                
-                
-                }else
+                if(email == '')
                 {
 
-                        $('.centerlogin').css('outline', '1px solid green');
+                        $('.centerlogin').css('outline', '1px solid red');
+                        $(this).html('Reset')
 
-                        $.ajax({
-                            type : 'post',
-                            url : '../controller/scripts/edumesweb/resetpasswordscript.php', //Here you will fetch records
-                            data : {email:email,defaultlang:defaultlang}, //Pass $id
-                            success : function(output)
-                            {
-                                
-                                    // alert(output);
-                                            
-                                        var prosfeeedback = (output);
-
-                                        if(prosfeeedback.trim() === 'verificationsent')
-                                        {
-                                            $.wnoty({
-                                                type: 'success',
-                                                message: 'Great!! a password reset link has been sent to this email provided.',
-                                                autohideDelay: 8000
-                                            });
-                                                    
-                                                }else if(prosfeeedback.trim() === 'noaccountfound')
-                                        {
-                                            $.wnoty({
-                                                type: 'warning',
-                                                message: 'Hey!! seems this user does not exist.',
-                                                autohideDelay: 8000
-                                            });  
-                                        }
-
-
-
-                                    $('#signinbtn').html('Reset');
-                            }
-                        
+                        $.wnoty({
+                                type: 'warning',
+                                    message: 'Hey!! email required.',
+                                    autohideDelay: 8000
                         });
-                }
-                
-            });
-        // registration cllaback
+            
+            
+            }else
+            {
 
-                // password word strength 
+                    $('.centerlogin').css('outline', '1px solid green');
 
-          $('body').on('keyup','.signuppassword', function() {
-        
-                    var password_strength = document.getElementById("password-text");
-                     var password = $(this).val();
+                    $.ajax({
+                        type : 'post',
+                        url : '../controller/scripts/edumesweb/resetpasswordscript.php', //Here you will fetch records
+                        data : {email:email,defaultlang:defaultlang}, //Pass $id
+                        success : function(output)
+                        {
+                            
+                                // alert(output);
+                                        
+                                    var prosfeeedback = (output);
 
-                    //TextBox left blank.
-                    if (password.length == 0) {
-                        password_strength.innerHTML = "";
-                    return;
-                    }
+                                    if(prosfeeedback.trim() === 'verificationsent')
+                                    {
+                                        $.wnoty({
+                                            type: 'success',
+                                            message: 'Great!! a password reset link has been sent to this email provided.',
+                                            autohideDelay: 8000
+                                        });
+                                                
+                                            }else if(prosfeeedback.trim() === 'noaccountfound')
+                                    {
+                                        $.wnoty({
+                                            type: 'warning',
+                                            message: 'Hey!! seems this user does not exist.',
+                                            autohideDelay: 8000
+                                        });  
+                                    }
 
-                    //Regular Expressions.
-                    var regex = new Array();
-                    regex.push("[A-Z]"); //Uppercase Alphabet.
-                    regex.push("[a-z]"); //Lowercase Alphabet.
-                    regex.push("[0-9]"); //Digit.
-                    regex.push("[$@$!%*#?&]"); //Special Character.
 
-                    var passed = 0;
 
-                    //Validate for each Regular Expression.
-                    for (var i = 0; i < regex.length; i++) {
-                            if (new RegExp(regex[i]).test(password)) {
-                                passed++;
-                            }
-                    }
+                                $('#signinbtn').html('Reset');
+                        }
+                    
+                    });
+            }
+            
+        });
+    // registration cllaback
 
-                    //Display status.
-                    var strength = "";
-                    switch (passed) {
-                                case 0:
-                                case 1:
-                                case 2:
-                                strength = "<small class='progress-bar bg-warning' style='width: 40%'>Weak</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
-                                break;
-                                case 3:
-                                strength = "<small class='progress-bar bg-warning' style='width: 60%'>Weak</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
-                                break;
-                                case 4:
-                                strength = "<small class='progress-bar bg-success' style='width: 100%'>Strong</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
-                                break;
+    // password word strength 
 
-                    }
-                    password_strength.innerHTML = strength;
+    $('body').on('keyup','.signuppassword', function() {
 
-          });
-
-                //passwrord strenghth
-
-        $('body').on('keyup','.prosperchnagepassword', function() {
-    
-                var password_strength = document.getElementById("password-text");
+            var password_strength = document.getElementById("password-text");
                 var password = $(this).val();
 
-                //TextBox left blank.
-                if (password.length == 0) {
-                    password_strength.innerHTML = "";
-                return;
-                }
+            //TextBox left blank.
+            if (password.length == 0) {
+                password_strength.innerHTML = "";
+            return;
+            }
 
             //Regular Expressions.
             var regex = new Array();
@@ -746,32 +656,81 @@
 
             //Validate for each Regular Expression.
             for (var i = 0; i < regex.length; i++) {
-                if (new RegExp(regex[i]).test(password)) {
-                    passed++;
-                }
+                    if (new RegExp(regex[i]).test(password)) {
+                        passed++;
+                    }
             }
 
             //Display status.
             var strength = "";
             switch (passed) {
-                    case 0:
-                    case 1:
-                    case 2:
-                    strength = "<small class='progress-bar bg-warning' style='width: 40%'>Weak</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
-                    break;
-                    case 3:
-                    strength = "<small class='progress-bar bg-warning' style='width: 60%'>Weak</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
-                    break;
-                    case 4:
-                    strength = "<small class='progress-bar bg-success' style='width: 100%'>Strong</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
-                    break;
+                        case 0:
+                        case 1:
+                        case 2:
+                        strength = "<small class='progress-bar bg-warning' style='width: 40%'>Weak</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
+                        break;
+                        case 3:
+                        strength = "<small class='progress-bar bg-warning' style='width: 60%'>Weak</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
+                        break;
+                        case 4:
+                        strength = "<small class='progress-bar bg-success' style='width: 100%'>Strong</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
+                        break;
+
             }
             password_strength.innerHTML = strength;
 
-        });
+    });
+
+    //passwrord strenghth
+
+    $('body').on('keyup','.prosperchnagepassword', function() {
+
+            var password_strength = document.getElementById("password-text");
+            var password = $(this).val();
+
+            //TextBox left blank.
+            if (password.length == 0) {
+                password_strength.innerHTML = "";
+            return;
+            }
+
+        //Regular Expressions.
+        var regex = new Array();
+        regex.push("[A-Z]"); //Uppercase Alphabet.
+        regex.push("[a-z]"); //Lowercase Alphabet.
+        regex.push("[0-9]"); //Digit.
+        regex.push("[$@$!%*#?&]"); //Special Character.
+
+        var passed = 0;
+
+        //Validate for each Regular Expression.
+        for (var i = 0; i < regex.length; i++) {
+            if (new RegExp(regex[i]).test(password)) {
+                passed++;
+            }
+        }
+
+        //Display status.
+        var strength = "";
+        switch (passed) {
+                case 0:
+                case 1:
+                case 2:
+                strength = "<small class='progress-bar bg-warning' style='width: 40%'>Weak</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
+                break;
+                case 3:
+                strength = "<small class='progress-bar bg-warning' style='width: 60%'>Weak</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
+                break;
+                case 4:
+                strength = "<small class='progress-bar bg-success' style='width: 100%'>Strong</small><small class='mt-5'>your password should least have:8 characters,1 upper case letter (A-Z),1 lower case letter (a-z),1 number (0-9),1 special character(!@#$%^&*)</small>";
+                break;
+        }
+        password_strength.innerHTML = strength;
+
+    });
   
-//             function salesplode_api(ref_id,my_name,my_email,number_new,amount,paymentRef,redirectUrl2)
-//             {
+//         function salesplode_api(ref_id,my_name,my_email,number_new,amount,paymentRef,redirectUrl2)
+//          {
         
     //     // alert(ref_id);
     //     var data = {

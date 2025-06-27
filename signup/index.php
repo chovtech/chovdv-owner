@@ -13,49 +13,41 @@
         	$lang = $_GET['lang'];
         	
         }
-        
         include ('../lang/'.$lang.'.php'); 
 
+        $consultant_uname = $_GET['ref'] ?? '';
+		$lead_code = $_GET['lead'] ?? '';
+		$lead_id = '';
+		$consultant_id = '';
 
+		if ($consultant_uname === '') {
+			// fallback to default company affiliate
+			$query = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='edumessinc@gmail.com'";
+			$result = mysqli_query($link, $query);
+			if (mysqli_num_rows($result) > 0) {
+				$row = mysqli_fetch_assoc($result);
+				$consultant_id = $row['UserID'];
+			}
+		} else {
+			$ref_code = mysqli_real_escape_string($link, $consultant_uname);
+			$query = "SELECT * FROM `affiliate` WHERE referral_code='$ref_code'";
+			$result = mysqli_query($link, $query);
+			if (mysqli_num_rows($result) > 0) {
+				$row = mysqli_fetch_assoc($result);
+				$consultant_id = $row['AffiliateID'];
+			}
 
- 
-         @$consultant_uname = $_GET['ref'];
-        
-        if ($consultant_uname == '') {
-        
-                $select_comany = "SELECT * FROM `userlogin` WHERE UserType='affiliate' AND UserRegNumberOrUsername='edumessinc@gmail.com'";
-                $select_company_result = mysqli_query($link, $select_comany);
-                $select_company_result_cnt = mysqli_num_rows($select_company_result);
-                $select_company_result_cnt_row = mysqli_fetch_assoc($select_company_result);
-                
-                
-                if($select_company_result_cnt > 0)
-                {
-                	$consultant_id = $select_company_result_cnt_row['UserID'];
-                }else{
-                	$consultant_id = '';
-                }
-        
-        
-        
-        } else {
-            
-            
-                $select_aff = "SELECT * FROM `affiliate` WHERE referral_code='$consultant_uname'";
-                $select_aff_result = mysqli_query($link, $select_aff);
-                $select_aff_result_cnt = mysqli_num_rows($select_aff_result);
-                $select_aff_result_cnt_row = mysqli_fetch_assoc($select_aff_result);
-                
-                
-                if($select_aff_result_cnt > 0)
-                {
-                	$consultant_id = $select_aff_result_cnt_row['AffiliateID'];
-                }else{
-                	$consultant_id = '';
-                }
-            
-        	
-        }
+			if ($lead_code !== '') {
+				$lead_code = mysqli_real_escape_string($link, $lead_code);
+				$query = "SELECT * FROM `affiliate` WHERE referral_code='$lead_code'";
+				$result = mysqli_query($link, $query);
+				if (mysqli_num_rows($result) > 0) {
+					$row = mysqli_fetch_assoc($result);
+					$lead_id = $row['AffiliateID'];
+				}
+			}
+		}
+
 
 
 ?>
@@ -320,6 +312,8 @@
 				</div>
 			</div>
 
+			
+			
 			<div class="col-sm-8 col-md-6 col-lg-8">
 		    	<div class="chiFormLogo" style="float: right; margin-top: 10px; display: none;">
 					<img src="../assets/images/website_images/edumes-blue.png" width="110" alt="">
@@ -374,6 +368,7 @@
 						
 						<div class="col-12">
 							<div align="center">
+							<input type="hidden" id="pros_leadid" value="<?php echo $lead_id; ?>" >
 								<button class="btn btn-primary btn-lg" data-id="2" id="signup-btn" type="button" style="padding: 12px; border-radius: 10px; font-size: 13px; width: 100%"><?php echo $website_signup_buttontitle; ?></button>
 							</div>
 						</div>

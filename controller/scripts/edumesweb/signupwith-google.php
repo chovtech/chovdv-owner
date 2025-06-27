@@ -21,6 +21,7 @@
     $email = $_POST['email'];
     $tagid = $_POST['tagstateid'];
     $signup_as = $_POST['signup_as'];
+    $lead_id =  isset($_POST['lead_id']) ? mysqli_real_escape_string($link, $_POST['lead_id']) : '';
     
     
     
@@ -103,10 +104,14 @@
              if($signup_as == 'owner')
              {
                  
-                 
+               
                  // school owner insert sqli
-                $insertownert = mysqli_query($link,"INSERT INTO `agencyorschoolowner`(`AffiliateID`, `AgencyOrSchoolOwnerName`,`AgencyOrSchoolOwnerNameTwo`,`AgencyOrSchoolOwnerEmail`, `photo`, `SessionOfSignup`, `TermOfSignup`, `DateOfSignup`,`TagState`)
-                 VALUES ('$consultantid','$FName','$lastName','$email','$image','$session_startcount','$termname','$currentdate','$tagid')");
+                $insertownert = mysqli_query($link,"INSERT INTO `agencyorschoolowner`(`AffiliateID`,`affiliate_lead`,
+                 `AgencyOrSchoolOwnerName`,`AgencyOrSchoolOwnerNameTwo`,`AgencyOrSchoolOwnerEmail`, 
+                 `photo`, `SessionOfSignup`, `TermOfSignup`, `DateOfSignup`,`TagState`)
+                 VALUES ('$consultantid','$lead_id', '$FName','$lastName',
+                 '$email','$image','$session_startcount',
+                 '$termname','$currentdate','$tagid')");
                  
                 
                 // $notifycationinsert = mysqli_query($link,"INSERT INTO `notifications`(`UserID`, `UserType`, `Description`,  `DateandTime`) VALUES ('$ownerid','owner','Congratulations for your account with EduMESS Software has been registered successfully','$currentdate')");//notification email

@@ -298,6 +298,18 @@
                                             <div class="pros-menu-description">Track and manage school assets</div>
                                         </div>
                                     </a>
+
+
+                                    <a href="../payment-allocation" class="pros-menu-item">
+                                        <div class="pros-menu-icon">
+                                            <i class="fas fa-user-check"></i>
+                                        </div>
+                                        <div class="pros-menu-text">
+                                            <div class="pros-menu-title">Student Allocation</div>
+                                            <div class="pros-menu-description">Assign paid plans to eligible students</div>
+                                        </div>
+                                    </a>
+
                                 </div>
                             </div>
 

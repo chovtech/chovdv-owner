@@ -1,0 +1,14 @@
+[24-Jun-2025 13:03:57 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to undefined function sendWhatsAppMsg() in C:\xampp\htdocs\chovdv-owner\controller\scripts\owner\upgradeplan\insert_payment_upgrade.php:148
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\chovdv-owner\controller\scripts\owner\upgradeplan\insert_payment_upgrade.php on line 148
+[24-Jun-2025 18:36:19 Europe/Berlin] PHP Warning:  Undefined variable $paidPerStudent in C:\xampp\htdocs\chovdv-owner\controller\scripts\owner\upgradeplan\get_plan_payment_status.php on line 113
+[24-Jun-2025 18:36:19 Europe/Berlin] PHP Warning:  Undefined variable $paidPerStudent in C:\xampp\htdocs\chovdv-owner\controller\scripts\owner\upgradeplan\get_plan_payment_status.php on line 121
+[24-Jun-2025 18:36:20 Europe/Berlin] PHP Warning:  Undefined variable $paidPerStudent in C:\xampp\htdocs\chovdv-owner\controller\scripts\owner\upgradeplan\get_plan_payment_status.php on line 113
+[24-Jun-2025 18:36:20 Europe/Berlin] PHP Warning:  Undefined variable $paidPerStudent in C:\xampp\htdocs\chovdv-owner\controller\scripts\owner\upgradeplan\get_plan_payment_status.php on line 121
+[24-Jun-2025 18:36:47 Europe/Berlin] PHP Fatal error:  Uncaught DivisionByZeroError: Division by zero in C:\xampp\htdocs\chovdv-owner\controller\scripts\owner\upgradeplan\get_plan_payment_status.php:108
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\chovdv-owner\controller\scripts\owner\upgradeplan\get_plan_payment_status.php on line 108
+[24-Jun-2025 18:37:20 Europe/Berlin] PHP Warning:  Undefined variable $paidPerStudent in C:\xampp\htdocs\chovdv-owner\controller\scripts\owner\upgradeplan\get_plan_payment_status.php on line 113
+[24-Jun-2025 18:37:20 Europe/Berlin] PHP Warning:  Undefined variable $paidPerStudent in C:\xampp\htdocs\chovdv-owner\controller\scripts\owner\upgradeplan\get_plan_payment_status.php on line 121

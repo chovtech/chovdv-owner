@@ -39,6 +39,8 @@
     <!-- <script src="../../css/app_css/tailwind.16"></script> -->
   
     <link href="../../assets/plugins/notify/wnoty.css" rel="stylesheet">
+    <script src="../../assets/plugins/sweetalert2@11.js"></script>
+
 
 
     
@@ -421,8 +423,9 @@
                                     <input type="hidden" class="pros_number_student_input">
                                     <input type="hidden" class="pros_amount_per_student_input">
                                     <input type="hidden" class="pros_plan_id_hidden">
+                                    <input type="hidden" class="pros_load_paid_studnum">
 
-                                    
+                                   
 
                                    
                                     <button id="makePaymentBtn" disabled class="btn btn-primary w-100">
@@ -516,50 +519,6 @@
 
 
 
-    <!--==== Transfer Modal==== -->
-        <!-- <div class="modal fade" id="pros_withdrawModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="pros_withdrawModalLabel" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="border-radius: 20px;">
-                    <div class="modal-body">
-                       <h3 id="modal-title" class="text-3xl font-extrabold text-gray-900 mb-6 select-text">Assign Subscription</h3>
-                        <form id="modal-form" class="space-y-6" novalidate>
-                            <div>
-
-                                <select id="student-assign-sel" name="student-assign-count" 
-                                        required  
-                                        class="form-control w-full rounded-xl border border-gray-300 px-5 py-3 text-gray-900 text-lg 
-                                        placeholder-gray-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition" >
-                                        <option>Select term</option>
-                                        <option>Prosper ortese</option>
-                                        <option>Favour ortese</option>
-                                </select>
-                             </div>
-                             <div>
-                                <label for="student-assign-count"
-                                    class="block mb-2 text-lg font-semibold text-gray-700 select-text">Number of Students to
-                                    Assign</label>
-                                <input id="student-assign-count" name="student-assign-count" type="number" min="1" max="800"
-                                    required placeholder="Enter number of students" aria-describedby="assign-count-error"
-                                    class="w-full rounded-xl border border-gray-300 px-5 py-3 text-gray-900 text-lg placeholder-gray-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-600 transition" />
-                                <p id="assign-count-error" role="alert" class="mt-2 text-sm text-red-600 hidden"></p>
-                            </div>
-                            <div class="text-gray-900 text-2xl font-semibold" aria-live="polite" aria-atomic="true">
-                                Total Cost: <span id="modal-total-cost">₦0</span>
-                            </div>
-                            <div class="flex justify-end mt-8 space-x-4">
-                                <button type="button" id="modal-cancel" data-bs-dismiss="modal" aria-label="Close"
-                                    class="rounded-xl px-6 py-3 border border-gray-300 text-gray-700 font-semibold hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition">Cancel</button>
-                                <button type="submit" id="modal-submit" disabled
-                                    class="rounded-xl px-8 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 transition disabled:opacity-50 disabled:cursor-not-allowed">Assign</button>
-                            </div>
-                        </form>
-                                
-                        
-                    </div>
-                </div>
-            </div>
-    </div> -->
-
 
     <!-- Scripts -->
     <script src="../../assets/plugins/jquery/code.jquery.com_jquery-3.5.1.min.js"></script>
@@ -585,6 +544,7 @@
                 
 
                 function prosload_payment_campus(instutitionID) {
+                  
                     $('.pro_load_payment_campus').html('<option value="NULL">Loading..</option>');
                     // get campus ajax
                     var dataString = 'pros_instituion_id=' + instutitionID;
@@ -602,8 +562,10 @@
                             var numStudent = parseInt(selectedOption.data('numstudent')) || 0;
                             var plan_amount = parseInt(selectedOption.data('planprice')) || 0;
                             var planid = parseInt(selectedOption.data('planid')) || 0;
+                            var studpaid = parseInt(selectedOption.data('studpaid')) || 0;
 
-                            proload_number_student(numStudent,plan_amount,planid);
+
+                            proload_number_student(numStudent,plan_amount,planid,studpaid);
                         }
                     });
                     
@@ -616,7 +578,9 @@
                     var numStudent = parseInt(selectedOption.data('numstudent')) || 0;
                     var plan_amount = parseInt(selectedOption.data('planprice')) || 0;
                     var planid = parseInt(selectedOption.data('planid')) || 0;
-                    proload_number_student(numStudent,plan_amount,planid);
+                    var studpaid = parseInt(selectedOption.data('studpaid')) || 0;
+
+                    proload_number_student(numStudent,plan_amount,planid,studpaid);
 
                     var campusID = $(this).find('option:selected').val();
 
@@ -669,13 +633,16 @@
                         $('#studentsRemaining').html(reamining);
                 }
 
-                function proload_number_student(numStudent,plan_amount,planid) {
+                function proload_number_student(numStudent,plan_amount,planid, studpaid) {
                         $('.prosloadnumber_student').text('No.of Students: ' + numStudent);
                         $('.pros_number_student_input').val(numStudent);
 
                         $('.prosload_amount_per_student').text(plan_amount + '/student/term' );
                         $('.pros_amount_per_student_input').val(plan_amount);
                         $('.pros_plan_id_hidden').val(planid);
+                        $('.pros_load_paid_studnum').val(studpaid);
+
+                        
                 }   
 
         });
@@ -796,13 +763,13 @@
                         <td>
                             <span class="badge badge-payment">
                                 <i class="fas fa-credit-card me-1"></i>
-                                ${tx.transaction_type || 'N/A'}
+                                ${tx.transaction_method || 'N/A'}
                             </span>
                         </td>
                         <td class="small">${tx.CampusName || 'N/A'}</td>
                         <td class="small">${tx.SessionName || 'N/A'}</td>
                         <td class="small">${tx.TermAliasName || 'N/A'}</td>
-                        <td class="small">${tx.num_of_student || 0}</td>
+                        <td class="small">${tx.num_of_studentnew || 0}</td>
                         <td>
                             <div class="small fw-medium">₦${parseFloat(tx.ActualAmount || 0).toLocaleString()}</div>
                         </td>
@@ -826,7 +793,7 @@
             const filtered = allTransactions.filter(tx => {
                 return (
                     (tx.ref_number && tx.ref_number.toLowerCase().includes(query)) ||
-                    (tx.transaction_type && tx.transaction_type.toLowerCase().includes(query)) ||
+                    (tx.transaction_type && tx.transaction_method.toLowerCase().includes(query)) ||
                     (tx.CampusName && tx.CampusName.toLowerCase().includes(query)) ||
                     (tx.SessionName && tx.SessionName.toLowerCase().includes(query)) ||
                     (tx.TermOrSemesterName && tx.TermOrSemesterName.toLowerCase().includes(query))||
@@ -896,6 +863,7 @@
             const perstudentinput = document.querySelector('.pros_amount_per_student_input');
             const number_studdent = document.querySelector('.pros_number_student_input');
             const planidsec = document.querySelector('.pros_plan_id_hidden');
+            const paidnostu_sel = document.querySelector('.pros_load_paid_studnum');
 
             
             const pros_wallet = document.getElementById('pros_wall_bal');
@@ -908,15 +876,26 @@
 
                 const pricePerStudent =  parseInt(perstudentinput.value) || 0;
                 const number_student_val =  parseInt(number_studdent.value) || 0;
-                
+                const paid_studencount = parseInt(paidnostu_sel.value) || 0; 
                 const count = parseInt(this.value) || 0;
+                // alert(number_student_val);
+
                 if(count > number_student_val)
                 {
-                    showError('Hey!! your input should not be greater than your number of student for the campus selected');
+                    showError('Hey!! your input value should not be greater than your number of student for the campus selected');
                     totalAmountSpan.textContent = 0.00.toFixed(2);
                     return;
                     
                 }
+
+                // if(paid_studencount >= number_student_val)
+                // {
+
+                //     showError('Hey!! payment already made for all the student of the campus selected');
+                //     totalAmountSpan.textContent = 0.00.toFixed(2);
+                //     return;
+
+                // }
                 
 
                 const total = count * pricePerStudent;
@@ -924,15 +903,27 @@
                 
                 if(total > parseInt(pros_wallet.value))
                 {
-                    showError('Opps!! wallet insufficient, kindly fund your wallet to proceed');
+
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Insufficient Wallet Balance',
+                        text: `Your wallet balance is ₦${pros_wallet.value.toLocaleString()}. Please top up to proceed.`,
+                        showCancelButton: true,
+                        confirmButtonText: 'Top Up Wallet'
+                    }).then(result => {
+
+                        if (result.isConfirmed) {
+                        // Step 4: Start payment
+                         window.location.href = '../../app/wallet/';
+                       }
+                       
+                    });
+                    // return;
+                    // showError('Opps!! wallet insufficient, kindly fund your wallet to proceed');
                     totalAmountSpan.textContent = 0.00.toFixed(2);
-                    return;
-                    
                     makePaymentBtn.disabled = true;
-
+                    return;
                 }
-
-
 
                 totalAmountSpan.textContent = total.toFixed(2);
                 makePaymentBtn.disabled = false; // Enable button when input is valid
@@ -993,7 +984,27 @@
                         if (response.status === 'success') {
                             // alert(response.message); // or display in DOM
 
-                            showSuccess(response.message)
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Payment Successful!',
+                                html: 'Your payment has been recorded successfully.<br><br>' +
+                                    '<strong>Do you want to allocate this payment to students now?</strong><br>' +
+                                    '<small class="text-muted">You can always do this later from the Student Allocation menu.</small>',
+                                showCancelButton: true,
+                                confirmButtonText: 'Yes, Allocate Now',
+                                cancelButtonText: 'Close',
+                                reverseButtons: true
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    // Redirect to the allocation page
+                                    window.location.href = '../payment-allocation';
+                                } else {
+                                    // Reload the page if user closes/cancels
+                                    location.reload();
+                                }
+                            });
+
+                            // showSuccess(response.message)
                         } else {
                             // alert("Error: " + response.message);
                             showError(response.message)
@@ -1034,30 +1045,25 @@
             modal.classList.remove('active');
         }
 
-        // Close modal when clicking outside
-        // document.getElementById('transactionModal').addEventListener('click', function(e) {
-        //     if (e.target === this) {
-        //         hideTransactionDetails();
-        //     }
-        // });
-
         function showError(message) {
-            $.wnoty({
-                type: 'warning',
-                message: message,
-                autohideDelay: 5000
-            });
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+            confirmButtonText: 'Close'
+             });
         }
 
 
         function showSuccess(message) {
-            $.wnoty({
-                type: 'success',
-                message: message,
-                autohideDelay: 5000
-            });
+            Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: message,
+            confirmButtonText: 'Close'
+             });
         }
-
+       
    </script>
 
 </body>

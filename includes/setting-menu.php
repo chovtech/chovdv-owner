@@ -67,6 +67,12 @@
                                 </a>
                             </li>
 
+                            <!-- <li>
+                                <a href="../assets">
+                                <i class="fas fa-user-check  sideicon" style="margin-right: 10px;"></i> Allocate Students Payment
+                                </a>
+                            </li> -->
+
                             <li class="chiTag">ACADEMICS</li>
                             <li class="chiTagLine"> </li>
                             
