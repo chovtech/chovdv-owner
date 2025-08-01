@@ -26,6 +26,7 @@ try {
             a.id AS AllocationID,
             a.Session,
             a.Term,
+             a.CampusID,
             a.Date AS AllocationDate,
             s.StudentID,
             s.StudentFirstName,

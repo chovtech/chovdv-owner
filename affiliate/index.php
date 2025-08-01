@@ -629,7 +629,7 @@ if ($consultant_uname == '') {
                                     <i class="fa fa-1x fa-edit" aria-hidden="true"></i>
                                 </span> -->
                                 <textarea class="form-control prosgroupof-textareacontrol prostelabout-yourself-input"
-                                    style="height: 80px; box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;"
+                                    style="height: 60px; box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;"
                                     rows="3" id="aboutYourself" placeholder="Write about yourself..."></textarea>
                                 <label for="aboutYourself" style="color: #555; margin-top: 2px; font-size: 11px; font-weight: 500;">Write about yourself <span style="color:orangered;">*</span></label>
                             </div>
@@ -642,7 +642,7 @@ if ($consultant_uname == '') {
                                     <i class="fa fa-1x fa-edit" aria-hidden="true"></i>
                                 </span> -->
                                 <textarea class="form-control prosgroupof-textareacontrol pros-how-youwant-market-edumess"
-                                    style="height: 80px; box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;"
+                                    style="height: 60px; box-shadow: 0 2px 5px 0 #D3D3D3, 0 3px 11px 0 #D3D3D3; border: none; border-radius: 6px;"
                                     rows="3" id="tellusaboutyou_want_market" placeholder=""></textarea>
                                 <label for="tellusaboutyou_want_market" style="color: #555; margin-top: 2px; font-size: 11px; font-weight: 500;">Why do you intend to Sale EduMESS<span style="color:orangered;">*</span></label>
                             </div>
@@ -652,7 +652,17 @@ if ($consultant_uname == '') {
 								<button class="btn btn-primary btn-lg animated" data-id="2" id="pros_signupaff_btn" type="button" style="padding: 12px; border-radius: 10px; font-size: 13px; width: 100%"><i class="fas fa-user-plus"></i> Register Now </button>
 							</div>
 						</div>
+						<div align="center" >
+						
+						<small style="font-size:12px;color:#6c757d;"><?php echo $signupterms_one ; ?> <b>EduMESS</b> <a
+								target="_blank" href="<?php echo $defaultUrl; ?>affiliate-terms/?lang=<?php echo $lang; ?>"><?php echo $signupterms_two;?></a>
+								
+						</small>
 					</div>
+						
+					</div>
+					
+					
 					
 
 					

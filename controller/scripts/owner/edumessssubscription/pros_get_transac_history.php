@@ -110,14 +110,35 @@ try {
         $termalias = $term_row['TermAliasName'] ?? '';
 
         $row['TermAliasName'] = $termalias;
-        $row['num_of_studentnew'] = $total_paid_students;
+        // Set num_of_studentnew to 'Upgrade' or 'Downgrade' for respective transactions
+        if (isset($row['transaction_type'])) {
+            if ($row['transaction_type'] === 'upgrade') {
+                $row['num_of_studentnew'] = 'Upgrade';
+            } elseif ($row['transaction_type'] === 'downgrade') {
+                $row['num_of_studentnew'] = 'Downgrade';
+            } else {
+                $row['num_of_studentnew'] = $row['num_of_student'];
+            }
+        } else {
+            $row['num_of_studentnew'] = $row['num_of_student'];
+        }
         $transactions[] = $row;
+    }
+
+    // Group transactions by term alias name (or fallback to term name)
+    $grouped_transactions = [];
+    foreach ($transactions as $tx) {
+        $term = $tx['TermAliasName'] ?: ($tx['TermOrSemesterName'] ?? 'Unknown Term');
+        if (!isset($grouped_transactions[$term])) {
+            $grouped_transactions[$term] = [];
+        }
+        $grouped_transactions[$term][] = $tx;
     }
 
     $response = [
         'success' => true,
         'data' => [
-            'transactions' => $transactions,
+            'transactions_grouped' => $grouped_transactions,
             'pagination' => [
                 'current_page' => $page,
                 'total_pages' => $total_pages,

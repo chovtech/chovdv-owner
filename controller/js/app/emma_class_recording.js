@@ -42,7 +42,7 @@ $("body").on('change','#emma_load_campus_for_class_recording,#emma_load_campus_f
         success:function(results){
             $("#emma_load_term_for_class_recording").html(results);
             $("#emma_load_term_for_class_recordingmodal").html(results);
-            alert(results);
+            // alert(results);
         }
     });
 
@@ -452,7 +452,7 @@ $("body").on("click","#startRecordingButton",function(){
 
    
     var datastring = "emma_send_campus=" + emma_campus_for_rec + "&emma_send_session=" + emma_session_for_rec + "&emma_send_term=" + emma_term_for_rec + "&emma_send_class=" + emma_class_for_rec + "&emma_send_subject=" + emma_subject_for_rec;               
-    alert(datastring);
+    // alert(datastring);
     $.ajax({
         type:'POST',
         url:'../../controller/scripts/owner/emma_class_recording/emma_load_recording_values.php',

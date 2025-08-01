@@ -164,7 +164,7 @@ if ($institution_result && mysqli_num_rows($institution_result) > 0) {
             $affiliate_percentage = $pros_count_amount_row['affiliate_percentage'];
             
             
-             $final_amt = (intVal($affiliate_percentage) / 100) * $amount;
+             $final_amt = intVal($amount) ;
              
              $termly_amount+=$final_amt;
             

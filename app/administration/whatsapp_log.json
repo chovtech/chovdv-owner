@@ -1,0 +1,20 @@
+{
+    "timestamp": "2025-07-17 09:22:21",
+    "http_code": 401,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{name}}, your school's subscription for {{school}} is overdue.\n\nTerm: {{term}},\nSession: {{session}}.\n\nPlease renew to avoid service interruption.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "PROSPER",
+                "school": "legend coder school",
+                "term": "Third",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"message\":\"Invalid API Key\"}"
+}

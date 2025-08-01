@@ -52,6 +52,7 @@ error_reporting(E_ALL);
     $Bank = $rowGetUserDetails['Bank'];
     $BankCode = $rowGetUserDetails['BankCode'];
     $referral_code = $rowGetUserDetails['referral_code'];
+    $withdrawal_recipient_code = $rowGetUserDetails['withdrawal_recipient_code'];
     
     
     

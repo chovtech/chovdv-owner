@@ -2821,7 +2821,8 @@
                                                                                             $getlowsco = round($rowgetlowestscore['Exam + CA1 + CA2 + CA3 + CA4 + CA5 + CA6 + CA7 + CA8 + CA9 + CA10'], 2);
             
             
-                                                                                            $sqlgetscorepos = "SELECT * FROM (SELECT StudentID, SUM(Exam+CA1+CA2+CA3+CA4+CA5+CA6+CA7+CA8+CA9+CA10) AS total, DENSE_RANK() OVER (ORDER BY SUM(Exam+CA1+CA2+CA3+CA4+CA5+CA6+CA7+CA8+CA9+CA10) DESC) AS n FROM score WHERE (`Exam` !='0' OR `CA1` !='0' OR `CA2` !='0' OR `CA3` !='0' OR `CA4` !='0' OR `CA5` !='0' OR `CA6` !='0' OR `CA7` !='0' OR `CA8` !='0' OR `CA9` !='0' OR `CA10` !='0') AND CampusID = '$camp' AND ClassOrDepartmentID = '$class_id' AND Session = '$session' AND CourseOrSubjectID= '$subid' GROUP BY StudentID ORDER BY total DESC) as tbl WHERE StudentID = '$studid'";
+                                                                                            $sqlgetscorepos = "SELECT * FROM (SELECT StudentID, SUM(Exam+CA1+CA2+CA3+CA4+CA5+CA6+CA7+CA8+CA9+CA10) AS total, DENSE_RANK() OVER (ORDER BY SUM(Exam+CA1+CA2+CA3+CA4+CA5+CA6+CA7+CA8+CA9+CA10) DESC) AS n FROM score WHERE (`Exam` !='0' OR `CA1` !='0' OR `CA2` !='0' OR `CA3` !='0' OR `CA4` !='0' OR `CA5` !='0' OR `CA6` !='0' OR `CA7` !='0' OR `CA8` !='0' OR `CA9` !='0' OR `CA10` !='0') AND CampusID = '$camp' AND ClassOrDepartmentID = '$class_id'
+                                                                                            AND Session = '$session' AND CourseOrSubjectID= '$subid' GROUP BY StudentID ORDER BY total DESC) as tbl WHERE StudentID = '$studid'";
                                                                                             $resultgetscorepos = mysqli_query($link, $sqlgetscorepos);
                                                                                             $rowgetscorepos = mysqli_fetch_assoc($resultgetscorepos);
                                                                                             $row_cntgetscorepos = mysqli_num_rows($resultgetscorepos);
@@ -2831,11 +2832,9 @@
                                                                                             $rowgetsubper = mysqli_fetch_assoc($resultgetsubper);
                                                                                             $row_cntgetsubper = mysqli_num_rows($resultgetsubper);
             
-                                                                                            $getsubper = round($rowgetsubper['average'] / $row_cntClasscount, 2);
-            
-                                                                                            $getsco = round($rowgetscorepos['total'], 2);
-            
-                                                                                            $getscorpos = $rowgetscorepos['n'];
+                                                                                           $getsubper = round(($rowgetsubper['average'] ?? 0) / ($row_cntClasscount ?: 1), 2);
+                                                                                            $getsco = round($rowgetscorepos['total'] ?? 0, 2);
+                                                                                            $getscorpos = $rowgetscorepos['n'] ?? '';
             
                                                                                         }
             

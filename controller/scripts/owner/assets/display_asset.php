@@ -81,6 +81,7 @@ if( $rowcount > 0)
    echo '<div class="table-Side-Chi topSecCards" style="padding: 50px 50px 50px 50px;">
    <div class="table-responsive emma-load-transloadnofieldaction-history">
              <div align="center" id="emma--selectedoptionalfee-content">
+                                    <div align="center" class="mt-2"><img src="../../assets/images/adminImg/err.png" style="width:15%;"/><p class="pt-2 fs-6 text-secondary">We couldn\'t find any record.</p></div>
                  
                </div>
                  

@@ -365,9 +365,11 @@
                                         
                                         <div class="col-xl-3 col-md-6 mb-1">
                                             <select class="form-select form-select-sm" id="aff_level" aria-label=".form-select-sm example">
-                                                <option value="0" selected>Affiliate Level</option>
-                                                <option value="1">Direct Affiliates</option>
-                                                <option value="2">2nd Lvl Affiliates</option>
+                                                <option value="main" selected>Affiliate Level</option>
+                                                <option value="level 1">Direct Affiliates</option>
+                                                <option value="level 2">2nd Lvl Affiliates</option>
+                                                 <option value="lead">Lead</option>
+                                                 <option value="transferred">Transferred School</option>
                                             </select>
                                         </div>
                                         
@@ -414,7 +416,9 @@
                                     <div style="padding-top:20px;padding-left:5px;padding-right:5px;color:#fff;letter-spacing: 2px;font-size:15px;">
                                         <span> Mine: <span id="aff_earn_l0_input"></span></span><br>
                                         <span> Direct Affiliates: <span id="aff_earn_l1_input"></span></span><br>
-                                        <span> 2nd Lvl Affiliates: <span id="aff_earn_l2_input"></span></span>
+                                        <span> 2nd Lvl Affiliates: <span id="aff_earn_l2_input"></span></span><br>
+                                        <span> Lead: <span id="aff_earn_lead_input"></span></span><br>
+                                        <span> Transferred Schools: <span id="aff_earn_transfered_input"></span></span> 
                                     </div>
                                     <div style="padding-top:10px;padding-left:5px;padding-right:5px;padding-bottom:10px;color:#fff;">
                                         <!--<span style="font-size:18px;" class="wallet_balance abba_amt_1"></span>-->

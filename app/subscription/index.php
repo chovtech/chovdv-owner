@@ -1,6 +1,6 @@
 <?php
     include('../../controller/session/session-checker-owner.php');
-    include('../../controller/config/function.php');
+   
     if ($DefaultLanguage == '') {
         include('../../lang/english.php');
     } else {
@@ -41,9 +41,8 @@
     <link href="../../assets/plugins/notify/wnoty.css" rel="stylesheet">
     <script src="../../assets/plugins/sweetalert2@11.js"></script>
 
+    <script type="text/javascript" src="https://sdk.monnify.com/plugin/monnify.js"></script>
 
-
-    
 
     <style>
       
@@ -262,12 +261,63 @@
             color: #1e293b;
         }
 
-       
+        /* --- Enhanced Transaction History UI --- */
+        .term-section {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .term-header {
+            cursor: pointer;
+            padding: 1rem 1.5rem;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 0.75rem 0.75rem 0 0;
+            transition: background 0.2s;
+        }
+        .term-header:hover {
+            background: #e0e7ff;
+        }
+        .term-table-container {
+            padding: 0 1.5rem 1rem 1.5rem;
+            display: none;
+        }
+        .term-table-container.active {
+            display: block;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f6f8fa;
+        }
+        .collapse-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            margin-left: 0.5rem;
+            color: #6366f1;
+            cursor: pointer;
+        }
        
     </style>
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div id="preloader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.7);z-index:9999;display:none;align-items:center;justify-content:center;">
+        <div style="border:8px solid #f3f3f3;border-top:8px solid #3498db;border-radius:50%;width:60px;height:60px;animation:spin 1s linear infinite;"></div>
+    </div>
+    <style>
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    </style>
     <div class="grid-container">
         <!-- Header -->
         <?php include('../../includes/app-header.php'); ?>
@@ -365,6 +415,25 @@
 
                         <!-- Right Column: Payment & History -->
                         <div class="col-lg-8 order-1 order-lg-2">
+                            <!-- Move Payment Method to the top -->
+                            <div class="card mb-3 pros_card">
+                                <div class="card-body p-3">
+                                    <div class="mb-2">
+                                         <h4 class="h6 fw-medium mb-1 " style="color: #212529;">Payment Method</h4>
+                                        <!-- <label class="form-label fw-medium">Payment Method</label> -->
+                                        <div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="paymentMethod" id="walletPayment" value="wallet">
+                                                <label class="form-check-label" for="walletPayment">Wallet</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="paymentMethod" id="instantPayment" value="instant" checked>
+                                                <label class="form-check-label" for="instantPayment">Instant Payment </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Payment Card -->
                             <div class="card mb-4 pros_card">
                                 <div class="card-body p-4">
@@ -428,10 +497,12 @@
                                    
 
                                    
-                                    <button id="makePaymentBtn" disabled class="btn btn-primary w-100">
-                                        <i class="fas fa-credit-card me-2"></i>
-                                        Make Payment
-                                    </button> 
+                                    <div class="mb-4">
+                                        <button id="makePaymentBtn" disabled class="btn btn-primary w-100">
+                                            <i class="fas fa-credit-card me-2"></i>
+                                            Make Payment
+                                        </button> 
+                                    </div>
                                     <center><small class="small text-muted mb-0 ">₦ <span class="prosload_amount_per_student"></span></small> </center>
                                 </div>
                             </div>
@@ -544,8 +615,8 @@
                 
 
                 function prosload_payment_campus(instutitionID) {
-                  
-                    $('.pro_load_payment_campus').html('<option value="NULL">Loading..</option>');
+                    showPreloader();
+                    $('.pro_load_payment_campus').html('<option value="NULL"><i class="fa fa-spinner fa-spin"></i> Loading...</option>');
                     // get campus ajax
                     var dataString = 'pros_instituion_id=' + instutitionID;
 
@@ -563,10 +634,15 @@
                             var plan_amount = parseInt(selectedOption.data('planprice')) || 0;
                             var planid = parseInt(selectedOption.data('planid')) || 0;
                             var studpaid = parseInt(selectedOption.data('studpaid')) || 0;
+                            
+                            var prosload_campval = selectedOption.val();
 
+                            prosload_term_forpayment(prosload_campval)
 
                             proload_number_student(numStudent,plan_amount,planid,studpaid);
-                        }
+                            hidePreloader();
+                        },
+                        error: function() { hidePreloader(); }
                     });
                     
                 }
@@ -590,7 +666,8 @@
                 // pros load term here
                 function prosload_term_forpayment(campusID)
                 {
-                    $('.pro_load_payment_term').html('<option value="NULL">Loading..</option>');
+                    showPreloader();
+                    $('.pro_load_payment_term').html('<option value="NULL"><i class="fa fa-spinner fa-spin"></i> Loading...</option>');
                     var instutitionID = $(".abba-change-institution option:selected").val();
                     var userID = $('#user_id').val();
                     var usertype = $('#user_type').val();
@@ -614,8 +691,9 @@
                             var reamining = parseInt(selectedOption.data('rem')) || 0;
                             
                             prosload_payrem(paidfor,reamining);
-
-                        }
+                            hidePreloader();
+                        },
+                        error: function() { hidePreloader(); }
                     });
                 }
 
@@ -687,6 +765,9 @@
             currentUserType = usertype;
             currentSession = session;
 
+            // Show loading spinner for transaction history
+            $('.prosload_transaction_history').html('<div align="center"><i class="fas fa-spinner fa-spin fs-1" style="color:#007ffb;"></i><br><small class="text-muted">Loading transaction history...</small></div>');
+            showPreloader();
             $.ajax({
                 url: "../../controller/scripts/owner/edumessssubscription/pros_get_transac_history.php",
                 type: 'POST',
@@ -699,28 +780,30 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        allTransactions = response.data.transactions; // Store all for search
+                        allTransactions = response.data.transactions_grouped; // Now grouped by term
                         displaytractions(allTransactions);
                         renderPagination(response.data.pagination);
                     } else {
                         showError('Failed to load transactions.');
                     }
+                    hidePreloader();
                 },
                 error: function (xhr, status, error) {
                     console.error("AJAX Status:", status);
                     console.error("AJAX Error:", error);
                     console.log("Response Text:", xhr.responseText);
                     showError('Error occurred while loading.');
+                    hidePreloader();
                 }
             });
         }
 
-        //Display Transactions
-        function displaytractions(transactions) {
+        //Display Transactions (Grouped by Term)
+        function displaytractions(groupedTransactions) {
             const container = $('.prosload_transaction_history');
             container.empty();
 
-            if (!Array.isArray(transactions) || transactions.length === 0) {
+            if (!groupedTransactions || Object.keys(groupedTransactions).length === 0) {
                 const emptyCard = `
                     <div class="col-sm-12 col-md-12 col-lg-12 text-center">
                         <img src="https://cdn-icons-png.flaticon.com/512/7486/7486800.png" alt="No data" style="width: 60px; opacity: 0.8;">
@@ -731,54 +814,107 @@
                 return;
             }
 
-            let table = `
-                <table class="table table-hover align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Date & Time</th>
-                            <th>Transaction Ref</th>
-                            <th>Type</th>
-                            <th>Campus</th>
-                            <th>Session</th>
-                            <th>Term/Semester</th>
-                            <th>Students</th>
-                            <th>Amount Paid</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            // Collapse/Expand All Buttons
+            let controls = `
+                <div class="d-flex justify-content-end mb-2 gap-2">
+                    <button class="btn btn-sm btn-outline-secondary" id="expandAllTerms">Expand All</button>
+                    <button class="btn btn-sm btn-outline-secondary" id="collapseAllTerms">Collapse All</button>
+                </div>
             `;
+            container.append(controls);
 
-            transactions.forEach(tx => {
-                const dateTime = new Date(tx.DatePaid);
-                const date = dateTime.toLocaleDateString();
-                const time = dateTime.toLocaleTimeString();
-
-                table += `
-                    <tr>
-                        <td>
-                            <div class="small fw-medium">${date}</div>
-                            <div class="small text-muted">${time}</div>
-                        </td>
-                        <td class="small text-muted">${tx.ref_number || 'N/A'}</td>
-                        <td>
-                            <span class="badge badge-payment">
-                                <i class="fas fa-credit-card me-1"></i>
-                                ${tx.transaction_method || 'N/A'}
+            let html = '';
+            let termIndex = 0;
+            for (const [term, transactions] of Object.entries(groupedTransactions)) {
+                const sectionId = `term-section-${termIndex}`;
+                html += `
+                    <div class="term-section">
+                        <div class="term-header" data-target="#${sectionId}">
+                            <span>
+                                <i class="fas fa-chevron-down me-2"></i>
+                                ${term} <span class="badge bg-primary ms-2">${transactions.length}</span>
                             </span>
-                        </td>
-                        <td class="small">${tx.CampusName || 'N/A'}</td>
-                        <td class="small">${tx.SessionName || 'N/A'}</td>
-                        <td class="small">${tx.TermAliasName || 'N/A'}</td>
-                        <td class="small">${tx.num_of_studentnew || 0}</td>
-                        <td>
-                            <div class="small fw-medium">₦${parseFloat(tx.ActualAmount || 0).toLocaleString()}</div>
-                        </td>
-                    </tr>
+                        </div>
+                        <div class="term-table-container" id="${sectionId}">
+                            <table class="table table-hover table-striped align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Transaction Ref</th>
+                                        <th>Type</th>
+                                        <th>Campus</th>
+                                        <th>Session</th>
+                                        <th>Term/Semester</th>
+                                        <th>Students</th>
+                                        <th>Amount Paid</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                 `;
+                transactions.forEach(tx => {
+                    const dateTime = new Date(tx.DatePaid);
+                    const date = dateTime.toLocaleDateString();
+                    const time = dateTime.toLocaleTimeString();
+
+                    html += `
+                        <tr>
+                            <td>
+                                <div class="small fw-medium">${date}</div>
+                                <div class="small text-muted">${time}</div>
+                            </td>
+                            <td class="small text-muted">${tx.ref_number || 'N/A'}</td>
+                            <td>
+                                <span class="badge badge-payment">
+                                    <i class="fas fa-credit-card me-1"></i>
+                                    ${tx.transaction_method || 'N/A'}
+                                </span>
+                            </td>
+                            <td class="small">${tx.CampusName || 'N/A'}</td>
+                            <td class="small">${tx.SessionName || 'N/A'}</td>
+                            <td class="small">${tx.TermAliasName || 'N/A'}</td>
+                            <td class="small">${isNaN(tx.num_of_studentnew) ? (tx.num_of_studentnew || 'N/A') : tx.num_of_studentnew}</td>
+                            <td>
+                                <div class="small fw-medium">₦${parseFloat(tx.ActualAmount || 0).toLocaleString()}</div>
+                            </td>
+                        </tr>
+                    `;
+                });
+                html += `
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+                termIndex++;
+            }
+            container.append(html);
+
+            // By default, expand the first term section
+            $('.term-table-container').first().addClass('active');
+            $('.term-header').first().find('i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+
+            // Toggle collapse/expand on header click
+            $('.term-header').on('click', function() {
+                const target = $($(this).data('target'));
+                const icon = $(this).find('i');
+                if (target.hasClass('active')) {
+                    target.removeClass('active');
+                    icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+                } else {
+                    target.addClass('active');
+                    icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+                }
             });
 
-            table += `</tbody></table>`;
-            container.append(table);
+            // Expand/Collapse All
+            $('#expandAllTerms').on('click', function() {
+                $('.term-table-container').addClass('active');
+                $('.term-header i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            });
+            $('#collapseAllTerms').on('click', function() {
+                $('.term-table-container').removeClass('active');
+                $('.term-header i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            });
         }
 
         // Live Search Input
@@ -790,19 +926,34 @@
                 return;
             }
 
-            const filtered = allTransactions.filter(tx => {
+            // Flatten all grouped transactions into a single array
+            let flatTransactions = [];
+            for (const txArr of Object.values(allTransactions)) {
+                flatTransactions = flatTransactions.concat(txArr);
+            }
+
+            // Filter the flat array
+            const filtered = flatTransactions.filter(tx => {
                 return (
                     (tx.ref_number && tx.ref_number.toLowerCase().includes(query)) ||
-                    (tx.transaction_type && tx.transaction_method.toLowerCase().includes(query)) ||
+                    (tx.transaction_type && tx.transaction_method && tx.transaction_method.toLowerCase().includes(query)) ||
                     (tx.CampusName && tx.CampusName.toLowerCase().includes(query)) ||
                     (tx.SessionName && tx.SessionName.toLowerCase().includes(query)) ||
                     (tx.TermOrSemesterName && tx.TermOrSemesterName.toLowerCase().includes(query))||
-                    (tx.ActualAmount && tx.ActualAmount.toLowerCase().includes(query)) ||
+                    (tx.ActualAmount && tx.ActualAmount.toString().toLowerCase().includes(query)) ||
                     (tx.TermAliasName && tx.TermAliasName.toLowerCase().includes(query))
                 );
             });
 
-            displaytractions(filtered);
+            // Regroup filtered transactions by term
+            const regrouped = {};
+            filtered.forEach(tx => {
+                const term = tx.TermAliasName || tx.TermOrSemesterName || 'Unknown Term';
+                if (!regrouped[term]) regrouped[term] = [];
+                regrouped[term].push(tx);
+            });
+
+            displaytractions(regrouped);
         });
 
         // Pagination Renderer
@@ -900,132 +1051,218 @@
 
                 const total = count * pricePerStudent;
 
-                
-                if(total > parseInt(pros_wallet.value))
-                {
-
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Insufficient Wallet Balance',
-                        text: `Your wallet balance is ₦${pros_wallet.value.toLocaleString()}. Please top up to proceed.`,
-                        showCancelButton: true,
-                        confirmButtonText: 'Top Up Wallet'
-                    }).then(result => {
-
-                        if (result.isConfirmed) {
-                        // Step 4: Start payment
-                         window.location.href = '../../app/wallet/';
-                       }
-                       
-                    });
-                    // return;
-                    // showError('Opps!! wallet insufficient, kindly fund your wallet to proceed');
-                    totalAmountSpan.textContent = 0.00.toFixed(2);
-                    makePaymentBtn.disabled = true;
-                    return;
+                // Check selected payment method
+                const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+                if(paymentMethod === 'wallet') {
+                    if(total > parseInt(pros_wallet.value))
+                    {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Insufficient Wallet Balance',
+                            text: `Your wallet balance is ₦${pros_wallet.value.toLocaleString()}. Please top up to proceed.`,
+                            showCancelButton: true,
+                            confirmButtonText: 'Top Up Wallet'
+                        }).then(result => {
+                            if (result.isConfirmed) {
+                                window.location.href = '../../app/wallet/';
+                            }
+                        });
+                        totalAmountSpan.textContent = 0.00.toFixed(2);
+                        makePaymentBtn.disabled = true;
+                        return;
+                    }
                 }
 
                 totalAmountSpan.textContent = total.toFixed(2);
                 makePaymentBtn.disabled = false; // Enable button when input is valid
             });
 
+            // Listen for payment method change to update button state
+            document.querySelectorAll('input[name="paymentMethod"]').forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    studentCountInput.dispatchEvent(new Event('input'));
+                });
+            });
+
+            // Set 'instant' as the default payment method on page load
+            document.getElementById('instantPayment').checked = true;
+            document.getElementById('walletPayment').checked = false;
+
             // Make payment button click handler
             makePaymentBtn.addEventListener('click', function() {
-
                 const count = parseInt(studentCountInput.value) || 0;
                 const campus = campusSelect.value;
                 const pricePerStudent =  parseInt(perstudentinput.value) || 0;
-                
                 const plan_id = parseInt(planidsec.value) || 0;
                 const total_payment = count * pricePerStudent;
-
                 var userID = $('#user_id').val();
                 var usertype = $('#user_type').val();
                 var session = $('#currentSessionID').val();
                 var term = $('.pro_load_payment_term').val();
-                
-                
                 const pros_wallet_bal = $('#pros_wall_bal').val();
-
                 if (!campus) {
                     showError('Please select a campus');
                     return;
                 }
-                
                 if (count < 1) {
                     showError('Please enter a valid number of students');
                     return;
                 }
-
-
-                $('#makePaymentBtn').html('processing...<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true);
-              
-                
-                var instutitionID = $(".abba-change-institution option:selected").val();
-                $.ajax({
-                    type: "POST",
-                    url: "../../controller/scripts/owner/edumessssubscription/pros_sch_payment.php",
-                    data: {
-                        num_student: count,
-                        campus_id: campus,
-                        total_payment: total_payment,
-                        institutionID: instutitionID,
-                        userID: userID,
-                        usertype: usertype,
-                        session: session,
-                        term: term,
-                        transaction_method: 'wallet',
-                        plan_id: plan_id,
-                        discount: '0'
-                    },
-                    dataType: "json", // IMPORTANT
-                  
-                    success: function (response) {
-                        if (response.status === 'success') {
-                            // alert(response.message); // or display in DOM
-
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Payment Successful!',
-                                html: 'Your payment has been recorded successfully.<br><br>' +
-                                    '<strong>Do you want to allocate this payment to students now?</strong><br>' +
-                                    '<small class="text-muted">You can always do this later from the Student Allocation menu.</small>',
-                                showCancelButton: true,
-                                confirmButtonText: 'Yes, Allocate Now',
-                                cancelButtonText: 'Close',
-                                reverseButtons: true
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    // Redirect to the allocation page
-                                    window.location.href = '../payment-allocation';
-                                } else {
-                                    // Reload the page if user closes/cancels
-                                    location.reload();
-                                }
-                            });
-
-                            // showSuccess(response.message)
-                        } else {
-                            // alert("Error: " + response.message);
-                            showError(response.message)
+                // Check selected payment method
+                const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+                if(paymentMethod === 'wallet') {
+                    // Show confirmation dialog before proceeding
+                    Swal.fire({
+                        icon: 'question',
+                        title: 'Confirm Payment',
+                        html: `This payment of <b>₦${total_payment.toLocaleString()}</b> will be deducted from your wallet. Do you want to proceed?`,
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, Proceed',
+                        cancelButtonText: 'Cancel',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (!result.isConfirmed) {
+                            return;
                         }
-                    },
-                    error: function (xhr, status, error) {
-                        // alert("AJAX Error: " + error);
+                        $('#makePaymentBtn').html('<i class="fa fa-spinner fa-spin me-2"></i>Processing Payment...').prop('disabled', true);
+                        showPreloader();
+                        var instutitionID = $(".abba-change-institution option:selected").val();
+                        $.ajax({
+                            type: "POST",
+                            url: "../../controller/scripts/owner/edumessssubscription/pros_sch_payment.php",
+                            data: {
+                                num_student: count,
+                                campus_id: campus,
+                                total_payment: total_payment,
+                                institutionID: instutitionID,
+                                userID: userID,
+                                usertype: usertype,
+                                session: session,
+                                term: term,
+                                transaction_method: 'wallet',
+                                plan_id: plan_id,
+                                discount: '0'
+                            },
+                            dataType: "json",
+                            success: function (response) {
+                                if (response.status === 'success') {
+                                   
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Payment Successful!',
+                                        html: 'Your payment has been recorded successfully.<br><br>' +
+                                            '<strong>Do you want to allocate this payment to students now?</strong><br>' +
+                                            '<small class="text-muted">You can always do this later from the Student Allocation menu.</small>',
+                                        showCancelButton: true,
+                                        confirmButtonText: 'Yes, Allocate Now',
+                                        cancelButtonText: 'Close',
+                                        reverseButtons: true
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.href = '../payment-allocation';
+                                        } else {
+                                            location.reload();
+                                        }
+                                    });
+                                } else {
+                                    showError(response.message)
+                                }
+                                hidePreloader();
+                            },
+                            error: function (xhr, status, error) {
+                                console.log("AJAX Error: " + error);
+                                console.log("Raw response from server:", xhr.responseText);
+                                hidePreloader();
+                            },
+                            complete: function () {
+                                $('#makePaymentBtn').prop('disabled', false).html(`<i class="fas fa-credit-card me-2"></i>\n                        Make Payment`);
+                            }
+                        });
+                    });
+                } else if(paymentMethod === 'instant') {
+                    // Monnify Instant Payment Integration
+                    // TODO: Replace with your Monnify public key and contract code
+                    const monnifyApiKey = '<?php echo $MonnifyTestPaymentApi; ?>'; // <-- Replace
+                    const monnifyContractCode = '<?php echo $MonnifyTestContractCode; ?>'; // <-- Replace
+                    const customerEmail = '<?php echo $Email; ?>' || 'customer@email.com';
+                    const customerName = '<?php echo $PrimaryName; ?>' || 'Customer';
+                    // You may want to generate a unique reference for each payment
+                    const paymentReference = 'EDUMESS-' + Date.now();
+                    // Open Monnify modal
+                    MonnifySDK.initialize({
+                        amount: total_payment,
+                        currency: 'NGN',
+                        reference: paymentReference,
+                        customerName: customerName,
+                        customerEmail: customerEmail,
+                        apiKey: monnifyApiKey,
+                        contractCode: monnifyContractCode,
+                        paymentDescription: `Subscription payment for ${count} students`,
+                        onComplete: function(response) {
+                            // Handle Monnify payment completion
 
-                        console.log("AJAX Error: " + error);
-                        console.log("Raw response from server:", xhr.responseText);
-                    },
-                    complete: function () {
-                        // Re-enable the button regardless of success or error
-                        $('#makePaymentBtn').prop('disabled', false).html(`<i class="fas fa-credit-card me-2"></i>
-                        Make Payment`);
-                    }
-                });
-
-                
-                // Here you would typically integrate with your payment gateway
-                // alert(`Processing payment for ${count} students at ${campusSelect.options[campusSelect.selectedIndex].text}`);
+                            
+                            if(response.paymentReference && response.status === 'SUCCESS') {
+                                // Notify your backend to credit the user
+                                showPreloader();
+                                $.ajax({
+                                    type: "POST",
+                                    url: "../../controller/scripts/owner/edumessssubscription/pros_sch_payment.php",
+                                    data: {
+                                        num_student: count,
+                                        campus_id: campus,
+                                        total_payment: total_payment,
+                                        institutionID: $(".abba-change-institution option:selected").val(),
+                                        userID: userID,
+                                        usertype: usertype,
+                                        session: session,
+                                        term: term,
+                                        transaction_method: 'transfer',
+                                        plan_id: plan_id,
+                                        discount: '0',
+                                        monnify_reference: response.paymentReference
+                                    },
+                                    dataType: "json",
+                                    success: function (res) {
+                                        if (res.status === 'success') {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Payment Successful!',
+                                                html: 'Your payment has been recorded successfully.<br><br>' +
+                                                    '<strong>Do you want to allocate this payment to students now?</strong><br>' +
+                                                    '<small class="text-muted">You can always do this later from the Student Allocation menu.</small>',
+                                                showCancelButton: true,
+                                                confirmButtonText: 'Yes, Allocate Now',
+                                                cancelButtonText: 'Close',
+                                                reverseButtons: true
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.href = '../payment-allocation';
+                                                } else {
+                                                    location.reload();
+                                                }
+                                            });
+                                        } else {
+                                            showError(res.message)
+                                        }
+                                        hidePreloader();
+                                    },
+                                    error: function (xhr, status, error) {
+                                        alert(error);
+                                        showError('Error processing Monnify payment.');
+                                        hidePreloader();
+                                    }
+                                });
+                            } else {
+                                showError('Monnify payment was not successful.');
+                                hidePreloader();
+                            }
+                        },
+                        onClose: function() {
+                            // User closed Monnify modal
+                        }
+                    });
+                }
             });
 
             // View History button click handler
@@ -1066,5 +1303,21 @@
        
    </script>
 
+    <script>
+        function showPreloader() {
+            document.getElementById('preloader').style.display = 'flex';
+        }
+        function hidePreloader() {
+            document.getElementById('preloader').style.display = 'none';
+        }
+    </script>
+
+    <!-- Add Monnify SDK script tag if not already present -->
+    <?php
+        if (!isset($monnify_sdk_loaded)) {
+            echo '<script src="https://sdk.monnify.com/plugin/monnify.js"></script>';
+            $monnify_sdk_loaded = true;
+        }
+    ?>
 </body>
 </html>

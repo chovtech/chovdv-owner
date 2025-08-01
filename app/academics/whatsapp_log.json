@@ -1,0 +1,60 @@
+{
+    "timestamp": "2025-06-29 21:19:16",
+    "http_code": 0,
+    "curl_error": "Could not resolve host: wamator.com",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{name}}, your school's subscription for {{school}} is overdue.\n\nTerm: {{term}},\nSession: {{session}}.\n\nPlease renew to avoid service interruption.",
+        "contacts": [
+            {
+                "number": "+2347063859559",
+                "name": "Chike",
+                "school": "Oakseed Internatinal School",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": false
+}
+{
+    "timestamp": "2025-06-29 21:24:29",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{name}}, your school's subscription for {{school}} is overdue.\n\nTerm: {{term}},\nSession: {{session}}.\n\nPlease renew to avoid service interruption.",
+        "contacts": [
+            {
+                "number": "+2347063859559",
+                "name": "Chike",
+                "school": "Oakseed Internatinal School",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"ea0c6093-05d1-484d-8a53-14550626790f\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 21:25:01",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{name}}, your school's subscription for {{school}} is overdue.\n\nTerm: {{term}},\nSession: {{session}}.\n\nPlease renew to avoid service interruption.",
+        "contacts": [
+            {
+                "number": "+2347063859559",
+                "name": "Chike",
+                "school": "Oakseed Internatinal School",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"c4631b08-049b-4cc7-9221-8cfcd36507c5\",\"count\":1}"
+}

@@ -1,8 +1,13 @@
+
+
+
+
 <!-- Complete Countdown and Subscription Modal Integration -->
 
 <!-- COUNTDOWN DISPLAY SECTION -->
 <?php 
-
+            use PHPMailer\PHPMailer\PHPMailer;
+            use PHPMailer\PHPMailer\Exception;
 
         date_default_timezone_set("Africa/Lagos");
 
@@ -54,6 +59,7 @@
                       AND Status = 0
                   )
             ");
+            
             $row = mysqli_fetch_assoc($studentsQuery);
             $totalStudents = (int)$row['totalStudents'];
         
@@ -70,7 +76,7 @@
             // If campus has students and hasn't paid, and we're past the delay period
             if ($totalStudents > 0 && !$hasPaid && !empty($Resumption_Date)) {
                 $daysSinceResumption = (strtotime($today) - strtotime($Resumption_Date)) / 86400;
-                $startDelay = 14;
+                $startDelay = 7;
         
                 if ($daysSinceResumption >= $startDelay && $NoDaysToCount > 0) {
                     $startCountdown = true;
@@ -78,12 +84,14 @@
                     $countdownEnd = date("Y-m-d 23:59:59", strtotime("$countdownStart + $NoDaysToCount days"));
                     $styleContent = 'style="border-radius: 14px;display:block;"';
 
-
-
-
                     $institutionID = $campus['InstitutionID'];
 
-                    // ✅ Check if reminder already sent
+
+
+                  
+
+
+                    // Check if reminder already sent
                     $reminderCheck = mysqli_query($link, "
                         SELECT 1 FROM subscription_reminder_log 
                         WHERE InstitutionID = '$institutionID' 
@@ -101,16 +109,16 @@
             }
         }
 
-
         // pros prepared msg here
+        
 
         if($send_message)
         {
 
+            
             $wamentorData = mysqli_fetch_assoc(mysqli_query($link, "SELECT * FROM whatsappapikey WHERE Purpose='Default' AND Api_source='wamentor'"));
             $wamentor_key = $wamentorData['ApiKey'] ?? '';
-            $wamentor_userid = $wamentorData['Api_userid'] ?? '';
-
+            $wamentor_userid = isset($wamentorData['Api_userid']) ? (int)$wamentorData['Api_userid'] : 0;
 
             // Fetch institution and owner data
 			$select_schoolowner = mysqli_query($link, "
@@ -128,8 +136,7 @@
 				$AgencyOrSchoolOwnerMainPhone = $select_schoolowner_row['AgencyOrSchoolOwnerMainPhone'];
                 $AgencyOrSchoolOwnerName = $select_schoolowner_row['AgencyOrSchoolOwnerName'];
                 $InstitutionGeneralName = $select_schoolowner_row['InstitutionGeneralName'];
-
-
+                $AgencyOrSchoolOwnerEmail = $select_schoolowner_row['AgencyOrSchoolOwnerEmail'] ?? '';
 
                   if (!empty($AgencyOrSchoolOwnerMainPhone)):
                     sendWhatsAppMsg([
@@ -144,12 +151,113 @@
                             "session" => $sessionName
                         ]]
                     ], $wamentor_key);
+                else:
                 endif;
+
+
+                 
+
+                // Send email notification to school owner
+                if (!empty($AgencyOrSchoolOwnerEmail)) {
+                    // Fetch SMTP server details from DB if available
+                    $smtpResult = mysqli_query($link, "SELECT * FROM `serverpassword` LIMIT 1");
+                    $smtpConfig = mysqli_fetch_assoc($smtpResult);
+                    $smtpUser = $smtpConfig['ServerName'] ?? '';
+                    $smtpPass = $smtpConfig['ServerPassword'] ?? '';
+                    $smtpHost = $smtpConfig['Host'] ?? '';
+
+                    // Ensure PHPMailer classes are loaded before use
+                    $phpmailerPath = '../../controller/scripts/PHPMailer-master/';
+                    require_once($phpmailerPath . 'PHPMailer.php');
+                    require_once($phpmailerPath . 'Exception.php');
+                    require_once($phpmailerPath . 'SMTP.php');
+
+                    $mail = new PHPMailer(true);
+                    try {
+                        $mail->isSMTP();
+                        $mail->Host = $smtpHost;
+                        $mail->SMTPAuth = true;
+                        $mail->Username = $smtpUser;
+                        $mail->Password = $smtpPass;
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                        $mail->Port = 465;
+                        $mail->Timeout = 30;
+                        
+                        $mail->setFrom($smtpUser, 'EduMESS');
+                        $mail->addAddress($AgencyOrSchoolOwnerEmail, $AgencyOrSchoolOwnerName);
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Action Required: School Subscription Overdue Notice';
+                        $mail->Body = "
+                                <!DOCTYPE html>
+                                <html>
+                                <head>
+                                <meta charset='UTF-8'>
+                                <title>Subscription Overdue Notice</title>
+                                </head>
+                                <body style='font-family: Arial, sans-serif; background: #f4f6f8; margin: 0; padding: 0;'>
+                                <div style='max-width: 600px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow: hidden;'>
+                                    <div style='background: #4F46E5; color: #fff; padding: 24px 32px; text-align: center;'>
+                                    <h2 style='margin: 0; font-size: 1.7rem; font-weight: 700; letter-spacing: 1px;'>
+                                        Subscription Overdue Notice
+                                    </h2>
+                                    </div>
+                                    <div style='padding: 32px;'>
+                                    <p style='font-size: 1.1rem; color: #333;'>
+                                        Dear <strong>{$AgencyOrSchoolOwnerName}</strong>,
+                                    </p>
+                                    <p style='color: #444;'>
+                                        This is a friendly reminder that your school's subscription for <strong>{$InstitutionGeneralName}</strong> is currently <span style='color: #e53e3e; font-weight: bold;'>overdue</span>.
+                                    </p>
+                                    <table style='width: 100%; margin: 24px 0; border-collapse: collapse;'>
+                                        <tr>
+                                        <td style='padding: 8px 0; color: #555;'><strong>School:</strong></td>
+                                        <td style='padding: 8px 0; color: #222;'>{$InstitutionGeneralName}</td>
+                                        </tr>
+                                        <tr>
+                                        <td style='padding: 8px 0; color: #555;'><strong>Term:</strong></td>
+                                        <td style='padding: 8px 0; color: #222;'>{$termName}</td>
+                                        </tr>
+                                        <tr>
+                                        <td style='padding: 8px 0; color: #555;'><strong>Session:</strong></td>
+                                        <td style='padding: 8px 0; color: #222;'>{$sessionName}</td>
+                                        </tr>
+                                    </table>
+                                    <div style='background: #FFF3CD; padding: 18px; border-radius: 8px; color: #856404; margin-bottom: 24px;'>
+                                        Please renew your subscription as soon as possible to avoid any interruption in your school's access to EduMESS services.
+                                    </div>
+                                    <p style='color: #888; font-size: 0.97rem; margin-top: 32px;'>
+                                        If you have already made your payment, kindly ignore this message.<br>
+                                        For assistance, contact our support team.
+                                    </p>
+                                    <p style='color: #888; font-size: 0.97rem; margin-top: 32px;'>
+                                        Best regards,<br>
+                                        <strong>EduMESS Team</strong>
+                                    </p>
+                                    </div>
+                                </div>
+                                </body>
+                                </html>
+                                ";
+                        $mail->AltBody = "Dear {$AgencyOrSchoolOwnerName},\n\nYour school's subscription for {$InstitutionGeneralName} is overdue.\nTerm: {$termName}\nSession: {$sessionName}\n\nPlease renew your subscription as soon as possible to avoid service interruption.\n\nIf you have already paid, kindly ignore this message.\n\nBest regards,\nEduMESS Team";
+                        
+                        $mail->send();
+                
+                    } catch (Exception $e) {
+                        // Email sending failed - could log error here if needed
+                    }
+                } else {
+                }
 
                 mysqli_query($link, "
                 INSERT IGNORE INTO subscription_reminder_log (InstitutionID, Session, Term) 
                 VALUES ('$groupschoolID_new', '$sessionName', '{$termData['TermOrSemesterID']}')
               ");
+
+                // In-app notification for countdown overdue subscription
+                $notif_msg = "Your school's subscription 
+                for $InstitutionGeneralName is overdue. A countdown has started for
+                 renewal. Please renew as soon as possible to avoid service interruption.";
+                insert_notifications(0, $select_schoolowner_row['AgencyOrSchoolOwnerID'], 'owner', $notif_msg);
 
             endif;
     
@@ -238,7 +346,11 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("prosloadcountdowncontent").style.display = 'none';
 
             var UserID = '<?php echo $UserID; ?>';
-
+            if(UserID == '121'){
+            
+            }else
+            {
+            
             $.ajax({
                 type: "POST",
                 url: "../../controller/scripts/owner/edumessssubscription/updateinstitutionstatus.php",
@@ -250,6 +362,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                 }
             });
+            
+            }
             // alert("Your subscription has expired. You have been moved to the Free plan.");
             // Optional: AJAX call to backend to update subscription to free
         }

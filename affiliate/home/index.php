@@ -102,7 +102,7 @@
                 <small style="font-size: 12px;">Welcome Back !!!</small>
             </div>
 
-           
+            <div id="transferNotificationsSection"></div>
 
             <div class="main-title" style="margin-top: 30px;">
                 <span class="font-weight-bold" style="font-size:18px;">Dashboard Overview </span>
@@ -286,6 +286,34 @@
          
          
      </script>
+   
+
+    <!-- header js -->
+    <?php include('../../controller/js/app/header.php'); ?>
+    <?php include('../../controller/js/affiliate/dashboard.php'); ?>
+
+    <script>
+    $(document).ready(function() {
+        $.ajax({
+            url: '../../controller/scripts/affiliate/school/load_transfer_notifications.php',
+            type: 'POST',
+            data: { user_id: $('#user_id').val() },
+            dataType: 'json',
+            success: function(data) {
+                if (data.success && data.schools.length > 0) {
+                    let msg = data.schools.length === 1
+                        ? `You have <b>1</b> incoming school transfer awaiting your approval. <a href="../schools/" class="alert-link">View Schools</a>`
+                        : `You have <b>${data.schools.length}</b> incoming school transfers awaiting your approval. <a href="../schools/" class="alert-link">View Schools</a>`;
+                    let notifHtml = `<div class="alert alert-warning d-flex align-items-center justify-content-between" role="alert">
+                        <div><i class="fas fa-exchange-alt me-2"></i>${msg}</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>`;
+                    $('#transferNotificationsSection').html(notifHtml);
+                }
+            }
+        });
+    });
+    </script>
    
 
     <!-- header js -->

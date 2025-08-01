@@ -150,7 +150,7 @@ if ($selectcomppusinfocnt > 0) {
 
                         $totaltransactiontotalgrandcomp = '0.00';
               } else {
-                        $totaltransactiontotalgrandcomp = number_format($TransactionInamounttotalcom );
+                        $totaltransactiontotalgrandcomp = number_format(intval($TransactionInamounttotalcom) );
               }
 
 

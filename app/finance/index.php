@@ -255,6 +255,9 @@
 
         <!----Main----->
         <main class="main-container">
+            <!---====Subscription count down here====-->
+            <?php include('../../includes/sub_scriptioncont.php'); ?>
+            <!---====Subscription count down here====-->
 
             <?php include('pros-financetopdashboard.php'); ?>
             
@@ -568,8 +571,7 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     
-        <!-- current page js -->
-        <?php include('../../js/current_page.php'); ?>
+    
     
     
     <!-- jsPDF -->

@@ -169,3 +169,630 @@
     },
     "response": false
 }
+{
+    "timestamp": "2025-06-29 03:39:27",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, \u20a6{{amount}} was earned from {{school}} ({{plan_status}}).\n\n Ref: {{ref}},\n\n Term: {{term}},\n\n Session: {{session}}.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "450.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade",
+                "ref": "CREDIT-20250629033925-2E2E",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"b677b823-9661-4052-811b-d5af860d1a07\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 03:39:27",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned \u20a6{{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "22.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "13.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "300.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"c20283fc-92af-4cb2-89f2-0c900d908c1d\",\"count\":3}"
+}
+{
+    "timestamp": "2025-06-29 15:49:54",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, NGN {{amount}} was earned from {{school}} ({{plan_status}}).\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "1,350.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade",
+                "ref": "CREDIT-20250629154952-F3AB",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"900d847b-b87f-422e-970b-f7c413de848b\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 15:49:55",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "67.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "40.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "900.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"5d0d55e6-30c1-4fa5-903c-2fa2cfe931d2\",\"count\":3}"
+}
+{
+    "timestamp": "2025-06-29 15:53:12",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, NGN {{amount}} was earned from {{school}} ({{plan_status}}).\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "450.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade",
+                "ref": "CREDIT-20250629155310-DDD2",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"d8a1011f-7573-4695-8425-b2ac96cffd44\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 15:53:13",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "22.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "13.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "300.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"89c4629e-bcb0-436a-b83a-092ae47b31e9\",\"count\":3}"
+}
+{
+    "timestamp": "2025-06-29 16:01:21",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, NGN {{amount}} was earned from {{school}} ({{plan_status}}).\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "1,350.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade",
+                "ref": "CREDIT-20250629160119-7936",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"1e6a6e4a-e204-4050-bee3-357314c9abf3\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:01:22",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "67.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "40.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "900.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"841cbb68-9be8-459e-9bda-dcf00678f380\",\"count\":3}"
+}
+{
+    "timestamp": "2025-06-29 16:08:06",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, NGN {{amount}} was earned from {{school}} ({{plan_status}}).\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "900.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade",
+                "ref": "CREDIT-20250629160805-821B",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"bcad6e67-aa33-42e7-aa59-ca5c35f88eb1\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:08:07",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "45.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "27.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "600.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"5c6f4059-b969-477a-bd4d-add7d4385d51\",\"count\":3}"
+}
+{
+    "timestamp": "2025-06-29 16:45:04",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, NGN {{amount}} was earned from {{school}} ({{plan_status}}).\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "1,350.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade",
+                "ref": "CREDIT-20250629164503-C368",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"6616c074-362c-4b33-af21-23e8f1d6bd73\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:45:05",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "67.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "40.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "900.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"c782164c-aed0-42cc-8141-c0bc5694bb38\",\"count\":3}"
+}
+{
+    "timestamp": "2025-07-02 18:01:40",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, NGN {{amount}} was earned from {{school}} ({{plan_status}}).\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "450.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade",
+                "ref": "CREDIT-20250702180138-A1C7",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"d7401f40-ca23-440a-bf60-d0213cc4a196\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-02 18:01:41",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "22.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "13.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "300.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"c8dd07f8-d2dc-4b52-a08f-dbc4d67e5dac\",\"count\":3}"
+}
+{
+    "timestamp": "2025-07-07 17:06:20",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, NGN {{amount}} was earned from {{school}} ({{plan_status}}).\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "1,350.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade",
+                "ref": "CREDIT-20250707170618-CD4E",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"99cada4c-3d2d-4d27-897f-7bbf7d6d58b9\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-07 17:06:22",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "67.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "40.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "900.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"f8e05c1f-f768-44ec-abd6-a23fcdd5b985\",\"count\":3}"
+}
+{
+    "timestamp": "2025-07-07 17:07:36",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, NGN {{amount}} was earned from {{school}} ({{plan_status}}).\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "1,350.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade",
+                "ref": "CREDIT-20250707170731-FC67",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"f76f452c-1cb7-4934-9580-ed13ba9e8304\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-07 17:07:40",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "67.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "40.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "900.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"efc27aa8-9ede-44b6-b0fe-4bd67bbf3856\",\"count\":3}"
+}
+{
+    "timestamp": "2025-07-07 17:10:56",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, NGN {{amount}} was earned from {{school}} ({{plan_status}}).\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "1,350.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade",
+                "ref": "CREDIT-20250707171052-23D2",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"b9ca7727-1e76-418a-a6ee-f3af9c595ee8\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-07 17:10:57",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "67.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "40.50",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "900.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "downgrade"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"a2b062b4-0d5a-4ba7-8f1d-7304070bba1f\",\"count\":3}"
+}
+{
+    "timestamp": "2025-07-16 14:12:18",
+    "http_code": 401,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{number}}, NGN {{amount}} was earned from {{school}} ({{plan_status}}).\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS",
+                "amount": "1,800.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade",
+                "ref": "CREDIT-20250716141215-66DB",
+                "term": "Second",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"message\":\"Invalid API Key\"}"
+}
+{
+    "timestamp": "2025-07-16 14:12:19",
+    "http_code": 401,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "plan-notify",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription ({{plan_status}}).",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike",
+                "amount": "90.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "EduMESS",
+                "amount": "54.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            },
+            {
+                "number": "2349035315300",
+                "name": "FUCHI HUB",
+                "amount": "1,200.00",
+                "school": "Oakseed Internatinal School",
+                "plan_status": "upgrade"
+            }
+        ]
+    },
+    "response": "{\"message\":\"Invalid API Key\"}"
+}

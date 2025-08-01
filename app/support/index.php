@@ -333,7 +333,13 @@
                         </div>
                         <h3>Google Meet</h3>
                         <p>Schedule a meeting with our support team using Google Meet. Perfect for quick consultations and technical support.</p>
-                        <a style="cursor:pointer;" class="meeting-button" data-platform="google" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/d/cncj-9ny-28b/edumess-support'});return false;">Schedule Google Meet</a>
+                        
+                         <a style="cursor:pointer;" class="meeting-button" data-platform="google"
+                             onclick="Calendly.initPopupWidget({url: 'https://calendly.com/edumessinc/new-meeting'}); return false;">
+                             Schedule Google Meet
+                          </a>
+                        <!--<a style="cursor:pointer;" class="meeting-button" data-platform="google"-->
+                        <!--onclick="Calendly.initPopupWidget({url: 'https://calendly.com/d/cncj-9ny-28b/edumess-support'});return false;">Schedule Google Meet</a>-->
                     </div>
 
                     <div class="meeting-card coming_soon">

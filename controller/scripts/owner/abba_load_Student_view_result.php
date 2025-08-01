@@ -150,7 +150,8 @@
                     $abba_get_student_name_shortened_or_not = $abba_get_student_name;
                 }
 
-                $abba_get_parent_email = strtolower($abba_row_student['ParentEmail']);
+                $abba_get_parent_email = strtolower($abba_row_student['ParentEmail'] ?? '');
+
 
                 $abba_get_parent_email_string_length = strlen($abba_get_parent_email);
 

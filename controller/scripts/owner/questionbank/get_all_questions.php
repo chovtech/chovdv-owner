@@ -173,7 +173,7 @@
                                     }
                                     
                                     
-                                    echo '<div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-3 prosloadcardinforquestion" id="prosloadquestioncontent'.$questionID2.'">
+                                    echo '<div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-3 prosloadcardinforquestion" id="prosloadquestioncontent'.$questionID.'">
                                             <div class="card shadow-sm question_card2 "   data-id="'.$questionID.'"  data-cat="'.$QuestionCategory.'">
                                                 <div class="form-check" style="margin-left: 20px; padding-top: 5px;">
                                                     <input class="form-check-input prosloadquestioncheckbox" style="font-size: 20px;" name="abba_get_multi_student_id" type="checkbox" value="'.$questionID.'"  data-camp="'.$CampusIDgotten.'" >
@@ -243,6 +243,7 @@
                         </figcaption>
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#createQuestionDirect" style="font-size:12px;">Create Question</button>
                     </figure></center>'; 
+                    
 
 
                 }

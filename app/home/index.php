@@ -4,14 +4,13 @@
         include('../../lang/english.php');
     
     } else {
-
-        
-        include('../../lang/' . $DefaultLanguage . '.php');
+        include('../../lang/'.$DefaultLanguage.'.php');
     }
     mysqli_set_charset($link, 'utf8');
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="utf-8">
@@ -72,7 +71,8 @@
 
     </style>
     
-   
+    
+    
 </head>
 
 <body>
@@ -111,10 +111,15 @@
 
         <!----Main----->
         <main class="main-container">
-             <!---====Subscription count down here====-->
+            
+            
+           <!---====Subscription count down here====-->
             <?php include('../../includes/sub_scriptioncont.php'); ?>
             <!---====Subscription count down here====-->
-      
+            
+            
+            
+
             <div class="main-title">
                 <span class="font-weight-bold">Hello <?php echo $PrimaryName; ?> </span>
                 <br>
@@ -794,7 +799,10 @@
     
     
     
- 
+    
+    
+       
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.40.0/apexcharts.min.js"></script>
     <script src="../../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -806,12 +814,9 @@
     <script src="../../js/admin_js/adminScript.js"></script>
     <?php include("../../js/app_js/dashboardjs.php"); ?>
 
-        <!-- current page js -->
-        <?php include('../../js/current_page.php'); ?>
-
     <!-- header js -->
     <?php include('../../controller/js/app/header.php'); ?>
-    <?php #include('../../controller/js/app/edumesssubscription.php'); ?>
+        <?php #include('../../controller/js/app/edumesssubscription.php'); ?>
     <!-- get dashboard contents -->
     <script src="../../controller/js/app/dashboard-data.js"></script>
     

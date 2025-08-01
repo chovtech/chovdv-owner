@@ -25,14 +25,18 @@ $ownerId = mysqli_real_escape_string($link, $_POST['ownerId']);
 if ($ownerId == 'all') {
     
     $pros_sql_institution = "
-        SELECT * FROM `institution` 
+        SELECT institution.AgencyOrSchoolOwnerID, institution.InstitutionID, institution.InstitutionGeneralName,institution.CustomUrl
+        FROM `institution` 
         INNER JOIN `agencyorschoolowner` 
         ON `institution`.`AgencyOrSchoolOwnerID` = `agencyorschoolowner`.`AgencyOrSchoolOwnerID` 
         WHERE `agencyorschoolowner`.`AffiliateID` = '$user_id' AND `institution`.`TrashStatus`='0'
     ";
 } else {
     $pros_sql_institution = "
-        SELECT * FROM `institution` 
+        SELECT 
+       AgencyOrSchoolOwnerID, InstitutionID, InstitutionGeneralName,CustomUrl
+        
+        FROM `institution` 
         WHERE `AgencyOrSchoolOwnerID` = '$ownerId' AND `TrashStatus`='0'
     ";
 }
@@ -47,9 +51,30 @@ if ($pros_row_cnt_institution_cont > 0) {
         $InstitutionID = $pros_result_institution_cont_row['InstitutionID'];
         $InstitutionGeneralName = $pros_result_institution_cont_row['InstitutionGeneralName'];
         $CustomUrl = $pros_result_institution_cont_row['CustomUrl'];
+        $AgencyOrSchoolOwnerID = $pros_result_institution_cont_row['AgencyOrSchoolOwnerID'];
 
 
-       
+        $pros_check_transfer_sql = "SELECT id FROM affiliate_transfer_history 
+                           WHERE AgencyOrSchoolOwnerID = '$AgencyOrSchoolOwnerID' AND Status = 'pending'";
+
+        $pros_check_transfer_result = mysqli_query($link, $pros_check_transfer_sql);
+        $pros_check_transfer_count = mysqli_num_rows($pros_check_transfer_result);
+
+        $transfer_status = ($pros_check_transfer_count) ?  'pending' : '';
+
+        // Check if this school was transferred to the current user
+        $check_transferred_to_user_sql = "SELECT from_affilliate_id, to_affilliate_id, Status 
+                                        FROM affiliate_transfer_history 
+                                        WHERE AgencyOrSchoolOwnerID = '$AgencyOrSchoolOwnerID' 
+                                        AND to_affilliate_id = '$user_id' 
+                                        AND Status = 'approved'
+                                        ORDER BY request_date DESC 
+                                        LIMIT 1";
+        $check_transferred_to_user_result = mysqli_query($link, $check_transferred_to_user_sql);
+        $transferred_to_user = mysqli_fetch_assoc($check_transferred_to_user_result);
+        
+        $is_transferred_to_user = ($transferred_to_user) ? true : false;
+        $original_owner_id = ($transferred_to_user) ? $transferred_to_user['from_affilliate_id'] : null;
 
         // Get campuses
         $select_campus_count_sql = mysqli_query($link, "
@@ -145,6 +170,10 @@ if ($pros_row_cnt_institution_cont > 0) {
 
         $usercontent[] = [
             'school_id' => $InstitutionID,
+            'AgencyOrSchoolOwnerID' => $AgencyOrSchoolOwnerID,
+            'transfer_status' => $transfer_status,
+            'is_transferred_to_user' => $is_transferred_to_user,
+            'original_owner_id' => $original_owner_id,
             'school_name' => $InstitutionGeneralName,
             'shool_login' => $CustomUrl,
             'campus_sch_count' => $campus_camp,

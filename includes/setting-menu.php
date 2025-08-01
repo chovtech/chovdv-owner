@@ -67,22 +67,16 @@
                                 </a>
                             </li>
 
-                            <!-- <li>
-                                <a href="../assets">
-                                <i class="fas fa-user-check  sideicon" style="margin-right: 10px;"></i> Allocate Students Payment
-                                </a>
-                            </li> -->
-
                             <li class="chiTag">ACADEMICS</li>
                             <li class="chiTagLine"> </li>
                             
                             
                             
-                             <li>
-                                <a href="../activity-log">
-                                <i class="fa fa-archive sideicon" style="margin-right: 10px;"></i> Activity Log
-                                </a>
-                            </li>
+                                <!-- <li>-->
+                                <!--    <a href="../activity-log">-->
+                                <!--    <i class="fa fa-archive sideicon" style="margin-right: 10px;"></i> Activity Log-->
+                                <!--    </a>-->
+                                <!--</li>-->
 
                             <!--<li>-->
                             <!--    <a href="/subjects">-->
@@ -96,11 +90,12 @@
                             <!--    </a>-->
                             <!--</li>-->
 
-                            <li>
-                                <a href="<?php echo $defaultUrl;?>app/scheme-of-work">
-                                    <i class="fa fa-address-book menuicons"></i> Scheme of work
-                                </a>
-                            </li>
+                            <!--<li>-->
+                            <!--    <a href="
+                            app/scheme-of-work">-->
+                            <!--        <i class="fa fa-address-book menuicons"></i> Scheme of work-->
+                            <!--    </a>-->
+                            <!--</li>-->
 
                             <!--<li>-->
                             <!--    <a href="/grading-format">-->

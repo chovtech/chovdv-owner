@@ -284,7 +284,7 @@
 
 
              $pros_other_expensesamount = $select_expenditure1_cnt_rows['TransactionOut'];
-             $pros_rentamount = $select_expenditure2_cnt_rows['TransactionOut'];
+             $pros_rentamount = $select_expenditure1_cnt_rows['TransactionOut'];
              $pros_utilitiesamount = $select_expenditure3_cnt_rows['TransactionInt'];
              $pros_maintainanceamount = $select_expenditure4_cnt_rows['TransactionOut'];
              $prosstaff_salary = $prosget_staff_ssalary_cnt_row ['staffsalary'];

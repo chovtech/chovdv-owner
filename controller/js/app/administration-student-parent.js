@@ -1215,10 +1215,8 @@ $('body').on('click', '#abba_proceed_to_create_student', function() {
     var abba_get_student_last_name = $('#abba_get_student_last_name').val();
 
     // alert(abba_campus_id);
-    // var studentphonefull = studentphone.getNumber(intlTelInputUtils.numberFormat.E164);
-    // $("input[name='studentphone[full]'").val(studentphonefull);
-
-    var studentphonefull = '0903531530';
+    var studentphonefull = studentphone.getNumber(intlTelInputUtils.numberFormat.E164);
+    $("input[name='studentphone[full]'").val(studentphonefull);
 
     var abba_get_student_email = $('#abba_get_student_email').val();
     var abba_get_student_disability = $('#abba_get_student_disability').val();
@@ -1384,8 +1382,6 @@ $('body').on('click', '#abba_proceed_to_create_student', function() {
             },
 
             success: function(result) {
-
-                alert(result);
 
                 $('#abba_proceed_to_create_student').html('<i class="fa fa-plus"> Create</i>');
 

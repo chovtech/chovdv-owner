@@ -1,33 +1,63 @@
 <style>
     
-    #verification-input > input {
-        width: 40px;
-        height: 60px;
-        font-size: 36px;
-        text-align: center;
-        border: 2px solid #666;
-        border-radius: 8px;
-        color:#666;
-    }
-    
     .center-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     
-    /* Chrome, Safari, Edge, Opera */
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+    #verification-input {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
     }
     
-    /* Firefox */
-    input[type="number"] {
-        -moz-appearance: textfield;
+    #verification-input input {
+      width: 42px;
+      height: 50px;
+      text-align: center;
+      font-size: 18px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #f8f9fa;
+      outline: none;
+      transition: all 0.2s ease-in-out;
     }
+    
+    #verification-input input:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+      background-color: white;
+    }
+    
+    #verification-input input::-webkit-inner-spin-button,
+    #verification-input input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    #countdown {
+      font-weight: 500;
+      color: #dc3545; /* red-ish */
+    }
+    
+    #resendLink {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    
+    #resendLink:not(.disabled):hover {
+      color: #007bff;
+      text-decoration: underline;
+    }
+    
+    #resendLink.disabled {
+      cursor: not-allowed;
+      color: lightgray;
+    }
+
     
 </style>
 
@@ -97,6 +127,7 @@
                     <h4 class="mt-3"><i class="fas fa-money-bill-wave"></i> Withdraw</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                
                 <div class="row" style="padding-top: 50px; margin: 0 5px 0 5px;">
 
                     <div class="col-12 account_user_name">
@@ -114,19 +145,22 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- </div>
-                        </div> -->
-                        <div class="mb-2" style="font-weight:600;">
-                            Withdrawal Account Details
-                        </div>
-                        <div class="mb-2" style="font-weight:500;">
-                            <span class="">Bank: <?php echo $Bank; ?></span>
-                        </div>
-                        <div class="mb-2" style="font-weight:500;">
-                            <span class="">Acc. No.: <?php echo $BankAccNo; ?></span>
-                        </div>
-                        <div class="mb-2" style="font-weight:500;">
-                            <span class="account_holder_name">Acc. Name: <?php echo $BankAccName; ?></span>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="p-3 border rounded bg-light">
+                            <h6 class="fw-semibold text-primary mb-3">Withdrawal Account Details</h6>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Bank:</span>
+                                <span class="fw-medium"><span class=""><?php echo $Bank; ?></span></span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Acc. No.:</span>
+                                <span class="fw-medium"><span class=""> <?php echo $BankAccNo; ?></span></span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Acc. Name:</span>
+                                <span class="fw-medium"><span class=""> <?php echo $BankAccName; ?></span></span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12">
@@ -154,14 +188,15 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="pros_withdrawModal2" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true" aria-labelledby="pros_withdrawModalLabel2" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" style="border-radius: 20px;">
             <div class="modal-body">
-                <div align="center">
-                    <h4 class="mt-3"><i class="fas fa-money-bill-wave"></i> Withdraw Verification</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="d-flex align-items-center mb-3">
+                    <button type="button" class="btn btn-sm btn-outline-secondary me-2" id="backBtn_withdraw">
+                        ← Back
+                    </button>
+                    <h5 class="mb-0">Withdraw Verification</h5>
                 </div>
                 <div class="row" style="padding-top: 50px; margin: 0 5px 0 5px;">
 
@@ -179,11 +214,25 @@
                         <div class="row">
                             <div class="col-12 mb-4">
                                 <div class="row">
-                                    <div class="col-md-12 ps-0">
-                                    <p class="ps-3 textmuted fw-medium h6 mb-0">Withdrawal Amount</p>
-                                    <span class="h4 fw-medium d-flex ps-3">₦ <span class="textmuted withdrawal_md_amt"></span></span>
+                                    <div class="col-md-12">
+                                        <div class="p-3 border rounded bg-light">
+                                            <h6 class="fw-semibold text-primary mb-3">Withdrawal Details</h6>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span class="text-muted">Amount:</span>
+                                                <span class="fw-medium">₦ <span class="withdrawal_md_amt"></span></span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span class="text-muted">Fee:</span>
+                                                <span class="fw-medium">₦ <span class="withdrawal_fee_amt"></span></span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span class="text-dark fw-semibold">Total Amount:</span>
+                                                <span class="fw-bold text-success">₦ <span class="withdrawal_tot_amt"></span></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -196,16 +245,18 @@
                             <input type="number" class="n5"/>
                             <input type="number" class="n6"/>
                         </div>
-                        <p>Click to <a href="#" id="resendLink" class="disabled">resend code</a> in <span id="countdown"></span></p>
+                        <p class="mt-2">Code Expires in <span id="countdown"></span></p>
+                        <p class="mt-2" style="font-size:13px;">Code Expired? - <span style="font-weight:500;color:lightgrey;" id="resendLink" class="disabled">Resend Code</span></p>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" align="center">
                     <div class="col-12" style="padding: 30px;">
                         <button class="btn btn-primary proceed_withdrawal" style="width: 100%;" type="button">
                             <i class="fas fa-money-bill-wave"></i> Withdraw
                         </button>
-                        <div align="center" style="color: #afafaf; font-size: 11px; font-weight: 500;">Powered
+                        <div style="cursor:pointer;" class="mt-2" data-bs-dismiss="modal"> Close</div>
+                        <div class="mt-2" align="center" style="color: #afafaf; font-size: 11px; font-weight: 500;">Powered
                             by EduMESS
                         </div>
                     </div>

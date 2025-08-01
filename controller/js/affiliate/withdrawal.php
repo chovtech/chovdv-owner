@@ -3,7 +3,37 @@
     // verify withdrawal
     $('body').on('click', '.verify_withdrawal', function(){
 
+        send_code();
+
+    });
+    
+    $('body').on('click', '#backBtn_withdraw', function(){
+
+        $('#pros_withdrawModal').modal('show');
+        $('#pros_withdrawModal2').modal('hide');
+        
+        $('.n1').val('');
+        $('.n2').val('');
+        $('.n3').val('');
+        $('.n4').val('');
+        $('.n5').val('');
+        $('.n6').val('');
+        
+    });
+    
+    function send_code() {
+        
         var withdraw_amt = parseFloat($('.withdraw_amt').val());
+
+        var transfer_fee = (parseFloat(<?php echo $transfer_fee; ?>) / 100) * withdraw_amt;
+        var transfer_cap = parseFloat(<?php echo $transfer_cap; ?>);
+        var transfer_min = 10; // minimum fee
+        
+        // Clamp the fee between ₦10 (min) and transfer_cap (max)
+        var transfer_fee_final = Math.min(Math.max(transfer_fee, transfer_min), transfer_cap);
+        
+        var final_withdraw_amt = withdraw_amt + transfer_fee_final;
+
 
         var wallet_bal = parseFloat(<?php echo $WalletBal; ?>);
 
@@ -14,18 +44,16 @@
         var user_id = "<?php echo $UserID; ?>";
 
         var Email = "<?php echo $Email; ?>";
+        
+        // alert(Email);
 
-        $('.verify_withdrawal').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
-
-        if (withdraw_amt < 500 || withdraw_amt === '' || withdraw_amt === null || withdraw_amt === undefined || isNaN(withdraw_amt))
+        if (withdraw_amt < 100 || withdraw_amt === '' || withdraw_amt === null || withdraw_amt === undefined || isNaN(withdraw_amt))
         {
             $.wnoty({
                 type: 'error',
-                message: "A minimum of 500 is allowed.",
+                message: "A minimum of 100 is allowed.",
                 autohideDelay: 5000
             });
-
-            $('.verify_withdrawal').html('<i class="fas fa-money-bill-wave"></i> Withdraw');
         }
         else if(wallet_bal < withdraw_amt)
         {
@@ -34,15 +62,27 @@
                 message: "Insufficient Funds.",
                 autohideDelay: 5000
             });
-
-            $('.verify_withdrawal').html('<i class="fas fa-money-bill-wave"></i> Withdraw');
         }
         else
         {
+            
+                
+            $('.verify_withdrawal').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
+            $('#resendLink').html('<i class="fas fa-spinner fa-spin"></i>');
+
 
             var formatted = withdraw_amt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            
+            var formatted_transfer_fee_final = transfer_fee_final.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            
+            var formatted_final_withdraw_amt = final_withdraw_amt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            
 
             $('.withdrawal_md_amt').html(formatted);
+            
+            $('.withdrawal_fee_amt').html(formatted_transfer_fee_final);
+            
+            $('.withdrawal_tot_amt').html(formatted_final_withdraw_amt);
 
             $.ajax({
                 url:'../../controller/scripts/affiliate/withdrawal/verify_withdrawal.php',
@@ -51,13 +91,23 @@
                 success: function(data) {
                     
                     // console.log(data);
+                    
 
                     var verificationData = JSON.parse(data);
+                   
 
                     if (verificationData.status == 1)
                     {
                         $('#pros_withdrawModal').modal('hide');
                         $('#pros_withdrawModal2').modal('show');
+                        
+                        startCountdown();
+                        
+                        $.wnoty({
+                            type: 'success',
+                            message: "A verification code has been sent your registered email address",
+                            autohideDelay: 7000
+                        });
 
                     }
                     else
@@ -76,8 +126,8 @@
                 }
             });
         }
-
-    });
+        
+    }
 
     //Generate Transfer Token
     function minnify_innitialization() {
@@ -106,9 +156,21 @@
     // Proceed withdrawal
     $('body').on('click', '.proceed_withdrawal', function(){
 
-        minnify_innitialization();
+        // minnify_innitialization();
 
         var withdraw_amt = parseFloat($('.withdraw_amt').val());
+
+        var transfer_fee = (parseFloat(<?php echo $transfer_fee; ?>) / 100) * withdraw_amt;
+        var transfer_cap = parseFloat(<?php echo $transfer_cap; ?>);
+        var transfer_min = 10; // minimum fee
+        
+        // Clamp the fee between ₦10 (min) and transfer_cap (max)
+        var transfer_fee_final = Math.min(Math.max(transfer_fee, transfer_min), transfer_cap);
+        
+        var final_withdraw_amt = withdraw_amt;
+        
+        console.log(transfer_fee_final);
+
 
         var wallet_bal = parseFloat("<?php echo $WalletBal; ?>");
 
@@ -124,7 +186,9 @@
 
         var BankCode = "<?php echo $BankCode; ?>";
 
-        var storedtoken = localStorage.getItem('storedtoken');
+        var withdrawal_recipient_code = "<?php echo $withdrawal_recipient_code; ?>";
+
+        // var storedtoken = localStorage.getItem('storedtoken');
 
         var n1 = $('.n1').val();
         var n2 = $('.n2').val();
@@ -139,19 +203,19 @@
 
         $('.proceed_withdrawal').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
 
-        if (withdraw_amt < 500 || withdraw_amt === '' || withdraw_amt === null || withdraw_amt === undefined || isNaN(withdraw_amt))
+        if (withdraw_amt < 100 || withdraw_amt === '' || withdraw_amt === null || withdraw_amt === undefined || isNaN(withdraw_amt))
         {
             $.wnoty({
                 type: 'error',
-                message: "A minimum of 500 is allowed.",
+                message: "A minimum of 100 is allowed.",
                 autohideDelay: 5000
             });
 
             $('.proceed_withdrawal').html('<i class="fas fa-money-bill-wave"></i> Withdraw');
         }
-        else if(wallet_bal < withdraw_amt)
+        else if(wallet_bal < final_withdraw_amt)
         {
-             $.wnoty({
+            $.wnoty({
                 type: 'error',
                 message: "Insufficient Funds.",
                 autohideDelay: 5000
@@ -172,23 +236,27 @@
         else
         {
 
-            var formatted = withdraw_amt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            var formatted = final_withdraw_amt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
             $('.withdrawal_md_amt').html(formatted);
 
             $.ajax({
                 url:'../../controller/scripts/affiliate/withdrawal/proceed_withdrawal.php',
                 type:'POST',
-                data:{"withdraw_amt":withdraw_amt,
+                data:{"withdraw_amt":final_withdraw_amt,
                     "wallet_bal":wallet_bal,
                     "session":session,
                     "term":term,
                     "user_id":user_id,
                     "BankAccName":BankAccName,
                     "BankAccNo":BankAccNo,
-                   "BankCode":BankCode,
-                   "storedtoken":storedtoken,
-                   "ver_code_entered":ver_code_entered},
+                  "BankCode":BankCode,
+                //   "storedtoken":storedtoken,
+                  "ver_code_entered":ver_code_entered,
+                  "transfer_fee_final":transfer_fee_final,
+                  "withdrawal_recipient_code":withdrawal_recipient_code
+                    
+                },
                 success:function(data){
 
                     console.log(data);
@@ -333,21 +401,22 @@
     });
 
 
-</script>
-
-
-<script>
     let countdownTime = 5 * 60; // 5 minutes in seconds
     let countdownElement = document.getElementById('countdown');
     let resendLink = document.getElementById('resendLink');
     let countdownInterval;
 
-    // Start countdown
     function startCountdown() {
+        // Clear any existing interval
+        clearInterval(countdownInterval);
+
+        // Reset the time
+        countdownTime = 5 * 60;
+
         updateCountdownDisplay();
         resendLink.classList.add('disabled');
-        resendLink.classList.remove('verify_withdrawal');
-        resendLink.removeEventListener('click', handleResendClick); // Remove previous click if any
+        resendLink.style.color = 'lightgrey';
+        resendLink.removeEventListener('click', handleResendClick);
 
         countdownInterval = setInterval(() => {
             countdownTime--;
@@ -356,7 +425,7 @@
                 clearInterval(countdownInterval);
                 countdownElement.textContent = '0:00';
                 resendLink.classList.remove('disabled');
-                resendLink.classList.add('verify_withdrawal');
+                resendLink.style.color = '#007ffb';
                 resendLink.addEventListener('click', handleResendClick);
             } else {
                 updateCountdownDisplay();
@@ -364,23 +433,16 @@
         }, 1000);
     }
 
-    // Update the countdown display
     function updateCountdownDisplay() {
         let minutes = Math.floor(countdownTime / 60);
         let seconds = countdownTime % 60;
         countdownElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
     }
 
-    // Handle resend click
     function handleResendClick(e) {
         e.preventDefault();
-        // You can put your resend code logic here (e.g., send an AJAX request)
-
-        // Restart the timer
-        countdownTime = 5 * 60;
-        startCountdown();
+        send_code(); // your custom function
+        startCountdown(); // restart from 5 minutes
     }
 
-    // Initial start
-    startCountdown();
 </script>

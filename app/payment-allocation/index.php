@@ -1,6 +1,6 @@
 <?php
     include('../../controller/session/session-checker-owner.php');
-    include('../../controller/config/function.php');
+    
     if ($DefaultLanguage == '') {
         include('../../lang/english.php');
     } else {
@@ -80,12 +80,12 @@
                         <div class="card shadow-sm border-0 rounded-4 p-5">
                             <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
                                 <div>
-                                    <h4 class="fw-bold mb-1 text-dark">🎓 Allocated Students For Subscription</h4>
+                                    <h4 class="fw-bold mb-1 text-dark">🎓 Subscribed Students For System Subscription</h4>
                                     <!-- <small class="text-muted">School: <strong>EduMaster High School</strong></small> -->
                                 </div>
                                 <div class="text-end text-muted small" id="allocationStats">
                                     <p class="mb-1">🧾 Paid Slots: <strong id="paidSlots">0</strong></p>
-                                    <p class="mb-1">✅ Allocated: <strong id="allocatedSlots" class="text-primary">0</strong></p>
+                                    <p class="mb-1">✅ Subscribed: <strong id="allocatedSlots" class="text-primary">0</strong></p>
                                     <p class="mb-0">🕒 Remaining: <strong id="remainingSlots" class="text-success">0</strong></p>
                                 </div>
 
@@ -132,13 +132,13 @@
                                 <button class="btn btn-secondary btn-sm" id="pros_load_btn">Load</button>
 
                                 <button class="btn btn-primary btn-sm  " data-bs-toggle="modal" data-bs-target="#allocateModal">
-                                    ➕ Allocate Students
+                                    ➕ Subscribe Students
                                 </button>
                             </div>
 
                             <!--Table -->
                             <div class="table-responsive border rounded">
-
+                          
                                 <table class="table table-hover align-middle" id="allocatedTable">
                                     <thead class="table-light text-uppercase small">
                                         <tr>
@@ -147,26 +147,13 @@
                                             <th>Session/Term</th>
                                             <th>Class</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody id="allocatedTableBody">
 
-                                     <tr><td colspan="5" class=" text-center">Filter to load allocated students.</td></tr>
-                                        <!-- <tr>
-                                            <td>1</td>
-                                            <td>Faith Abiola</td>
-                                            <td>2024/2025/First Term</td>
-                                            
-                                            <td>JSS2</td>
-                                            <td><span class="badge bg-success">Allocated</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>John Musa</td>
-                                            <td>2024/2025/First Term</td>
-                                            <td>SS1</td>
-                                            <td><span class="badge bg-success">Allocated</span></td>
-                                        </tr> -->
+                                     <tr><td colspan="6" class=" text-center">Filter to load subscribed students.</td></tr>
+                                       
                                     </tbody>
                                 </table>
 
@@ -187,7 +174,7 @@
         
         <!-- Header -->
         <div class="modal-header bg-white border-0 pt-4 pb-2 px-4">
-            <h5 class="modal-title fw-bold text-dark" id="allocateModalLabel">🎓 Allocate Students</h5>
+            <h5 class="modal-title fw-bold text-dark" id="allocateModalLabel">🎓 Subscribe Students</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -229,7 +216,7 @@
             <div id="filterNotice" class="text-center border rounded-3 py-5 px-3 bg-light-subtle">
                 <img src="https://cdn-icons-png.flaticon.com/512/7486/7486800.png" alt="No Data" style="width: 120px;" class="mb-3">
                 <h5 class="fw-semibold text-dark">Filter Required</h5>
-                <p class="text-muted small">Please select both <strong>Campus</strong> and <strong>Class</strong> to load students.</p>
+                <p class="text-muted small">Please select both <strong>Campus</strong> and <strong>Class</strong> to load students for subscription.</p>
             </div>
 
            
@@ -251,8 +238,8 @@
         <!-- Footer -->
         <div class="modal-footer bg-light border-0 px-4 py-3">
             <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary rounded-pill px-5 fw-semibold" id="confirmAllocationBtn">
-             Allocate Selected
+            <button type="button" class="btn btn-primary rounded-pill px-5 fw-semibold" id="confirmSubscriptionBtn">
+             Subscribe Selected
             </button>
         </div>
         </div>
@@ -273,8 +260,8 @@
     <script src="../../assets/plugins/notify/wnoty.js"></script>
     <script src="../../js/admin_js/adminScript.js"></script>
 
-    <!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script> -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
     
     <?php include('../../controller/js/app/header.php'); ?>
@@ -418,7 +405,7 @@
                             <div class="text-muted small student-class">${student.ClassOrDepartmentName || ''}</div>
                             </div>
                         </div>
-                        <span class="badge bg-info text-dark fw-normal px-3 py-1">Unallocated</span>
+                        <span class="badge bg-info text-dark fw-normal px-3 py-1">Not Subscribed</span>
                         </label>
                     `);
                     });
@@ -437,17 +424,13 @@
                 }
 
                 // Confirm allocation
-                $('#confirmAllocationBtn').on('click', function () {
+                $('#confirmSubscriptionBtn').on('click', function () {
                     const selected = $('.student-checkbox:checked');
-                    if (!selected.length) return showError("Please select at least one student to allocate.");
+                    if (!selected.length) return showError("Please select at least one student to subscribe.");
 
                     const studentIDs = selected.map(function () { return this.value; }).get();
 
-                      var student_count =  studentIDs.length;
-
-                      
-
-
+                    var student_count =  studentIDs.length;
 
                     const campusID = $('#modalCampusSelect').val();
                     const pros_get_raminslot = parseInt($('#remainingSlots').text()) || 0;
@@ -455,11 +438,10 @@
 
                     if(selected.length > pros_get_raminslot)
                     {
-
                         Swal.fire({
                                 icon: 'warning',
                                 title: 'Slot Elapsed',
-                                text: `You have only ${pros_get_raminslot.toLocaleString()} student slot(s) remaining. You cannot assign more students than you have paid for. Please top up your payment.`,
+                                text: `You have only ${pros_get_raminslot.toLocaleString()} student slot(s) remaining. You cannot subscribe more students than you have paid for. Please top up your payment.`,
                                 showCancelButton: true,
                                 confirmButtonText: 'Make Payment'
                             }).then(result => {
@@ -468,7 +450,6 @@
                                     window.location.href = '../../app/subscription/';
                                 } 
                         });
-
                         return;
                     }
 
@@ -476,7 +457,7 @@
                     var userID = $('#user_id').val();
                     var usertype = $('#user_type').val();
 
-                    const $btn = $(this).prop('disabled', true).text('Allocating...');
+                    const $btn = $(this).prop('disabled', true).text('Subscribing...');
                     $.ajax({
                     type: "POST",
                     url: "../../controller/scripts/owner/edumessssubscription/allocate-students.php",
@@ -484,17 +465,21 @@
                     dataType: "json",
                     success: function (res) {
                         if (res.success) {
-                        showSuccess(res.message);
+                            showSuccess(res.message);
 
-                        $('#allocateModal').modal('hide');
-                        pros_load_slotsdata(instutitionID,campusID,userID,usertype);
-                        // checkFiltersAndLoadStudents();
+                            $('#allocateModal').modal('hide');
+                            // Immediately reload slot counts and table
+                            pros_load_slotsdata(instutitionID, campusID, userID, usertype);
+                            const sessionVal = $('#pros_session_list').val();
+                            const termVal = $('#pros_term_list').val();
+                            const classID = $('#load_class_list').val();
+                            loadAllocatedStudents(campusID, sessionVal, termVal, classID, instutitionID, userID, usertype);
                         } else {
-                        showError("Failed: " + res.message);
+                            showError("Failed: " + res.message);
                         }
                     },
                     complete: function () {
-                        $btn.prop('disabled', false).text('Confirm Allocation');
+                        $btn.prop('disabled', false).text('Confirm Subscription');
                     }
                     });
                 });
@@ -514,11 +499,11 @@
                         if (res.success) {
                         renderAllocatedStudents(res.data || []);
                         } else {
-                        showError(res.message || "No allocated students found.");
+                        showError(res.message || "No subscribed students found.");
                         }
                     },
                     error: function () {
-                        $('#allocatedTableBody').html('<tr><td colspan="6" class="text-danger text-center">Error loading allocated students.</td></tr>');
+                        $('#allocatedTableBody').html('<tr><td colspan="6" class="text-danger text-center">Error loading subscribed students.</td></tr>');
                     }
                     });
                 }
@@ -532,7 +517,7 @@
                     $tbody.empty();
 
                     if (!students.length) {
-                    $tbody.html('<tr><td colspan="6" class="text-muted text-center">No allocated students.</td></tr>');
+                    $tbody.html('<tr><td colspan="6" class="text-muted text-center">No subscribed students.</td></tr>');
                     return;
                     }
 
@@ -543,13 +528,76 @@
                         <td>${student.StudentFirstName} ${student.StudentLastName}</td>
                         <td>${student.Session}-${student.TermOrSemesterName} Term</td>
                         <td>${student.ClassOrDepartmentName}</td>
-                        <td><span class="badge bg-success">Allocated</span></td>
-                        
+                        <td><span class="badge bg-success">Subscribed</span></td>
+                        <td>
+                          <div class="dropdown">
+                            <button class="btn btn-link text-dark p-0 m-0" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.1rem;">
+                              <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li>
+                                <a class="dropdown-item unsubscribe-btn"
+                                 href="#" data-student-id="${student.StudentID}" 
+                                 data-campus-id="${student.CampusID}" data-session="${student.Session}" data-term="${student.Term}">
+                                  <i class="fas fa-user-slash me-2 text-danger"></i>Unsubscribe
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </td>
                         </tr>
                     `);
                     });
+                    $('#allocatedTable').DataTable();
                 }
 
+                // Handle Unsubscribe button click
+                $('body').on('click', '.unsubscribe-btn', function() {
+                    const studentID = $(this).data('student-id');
+                    const campusID = $(this).data('campus-id');
+                    const session = $(this).data('session');
+                    const term = $(this).data('term');
+                    const instutitionID = $('.abba-change-institution option:selected').val();
+                    const userID = $('#user_id').val();
+                    const usertype = $('#user_type').val();
+                    // alert(campusID)
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Unsubscribe Student',
+                        text: 'Are you sure you want to unsubscribe this student from the system subscription? They will lose access.',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, Unsubscribe',
+                        cancelButtonText: 'Cancel',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (!result.isConfirmed) return;
+                        $.ajax({
+                            type: 'POST',
+                            url: '../../controller/scripts/owner/edumessssubscription/unsubscribe-student.php',
+                            data: { studentID, campusID, session, term, userID, usertype, instutitionID },
+                            dataType: 'json',
+                            success: function(res) {
+                                // alert(studentID+ campusID+ session+ term+ userID+ usertype + instutitionID)
+                                // console.log(res);
+                                if (res.success) {
+                                    showSuccess(res.message || 'Student unsubscribed successfully.');
+                                    // Reload the list and slot counts
+                                    pros_load_slotsdata(instutitionID, campusID, userID, usertype);
+                                    // Optionally reload the table
+                                    const sessionVal = $('#pros_session_list').val();
+                                    const termVal = $('#pros_term_list').val();
+                                    const classID = $('#load_class_list').val();
+                                    loadAllocatedStudents(campusID, sessionVal, termVal, classID, instutitionID, userID, usertype);
+                                } else {
+                                    showError(res.message || 'Failed to unsubscribe student.');
+                                }
+                            },
+                            error: function() {
+                                showError('Error occurred while unsubscribing student.');
+                            }
+                        });
+                    });
+                });
 
                 // Trigger load
                 $('#pros_load_btn').on('click', function (e) {
@@ -565,7 +613,7 @@
                     if (campusID && campusID !== 'NULL') {
                     loadAllocatedStudents(campusID, session, term, classID, institutionID, userID, usertype);
                     } else {
-                    showError("Please select a campus to view allocations.");
+                    showError("Please select a campus to view subscriptions.");
                     }
                 });
 

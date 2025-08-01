@@ -40,6 +40,8 @@
     <link href="../../assets/plugins/notify/wnoty.css" rel="stylesheet">
     <script src="../../assets/plugins/sweetalert2@11.js"></script>
 
+    <script type="text/javascript" src="https://sdk.monnify.com/plugin/monnify.js"></script>
+
 
     
 
@@ -346,6 +348,16 @@
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div id="preloader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.7);z-index:9999;display:none;align-items:center;justify-content:center;">
+        <div style="border:8px solid #f3f3f3;border-top:8px solid #3498db;border-radius:50%;width:60px;height:60px;animation:spin 1s linear infinite;"></div>
+    </div>
+    <style>
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    </style>
     <div class="grid-container">
         <!-- Header -->
         <?php include('../../includes/app-header.php'); ?>
@@ -537,9 +549,21 @@
 
                 <!-- Modal Body -->
                 <div class="modal-body px-4 py-3">
-
-
-                 <!-- Header with Wallet -->
+                    <!-- Payment Method Selection -->
+                    <div class="mb-3">
+                        <h4 class="h6 fw-medium mb-1" style="color: #212529;">Payment Method</h4>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="upgradePaymentMethod" id="upgradeWalletPayment" value="wallet">
+                                <label class="form-check-label" for="upgradeWalletPayment">Wallet</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="upgradePaymentMethod" id="upgradeInstantPayment" value="instant" checked>
+                                <label class="form-check-label" for="upgradeInstantPayment">Instant Payment</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Header with Wallet -->
                  <div class="row mb-4">
                         <div class="col-6">
                            
@@ -681,95 +705,105 @@
 
         });
 
+        function showPreloader() {
+            document.getElementById('preloader').style.display = 'flex';
+        }
+        function hidePreloader() {
+            document.getElementById('preloader').style.display = 'none';
+        }
+
         function loadUpgradeModal(institutionId, UserID, UserType, current_plan, choosed_plain) {
-                    fetch('../../controller/scripts/owner/upgradeplan/get_plan_payment_status.php', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ institutionId, UserID, UserType, choosed_plain, current_plan })
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.status === 'fail') {
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'Hold on!',
-                                text: data.reason,
-                                confirmButtonText: 'OK'
-                            });
-                            return;
-                        }
-
-                        let totalStudents = 0;
-                        let paidStudents = 0;
-                        let topUpTotal = 0;
-                        let unpaidStudents = 0;
-                        let unpaidCost = 0;
-
-                        if (!Array.isArray(data.campuses)) {
-                            console.error('Invalid data format:', data);
-                            alert('Unexpected error occurred. Please try again.');
-                            return;
-                        }
-
-                        data.campuses.forEach(campus => {
-                            const total = parseInt(campus.totalStudents) || 0;
-                            const paid = parseInt(campus.studentsPaid) || 0;
-                            const topUp = parseFloat(campus.topUp) || 0;
-
-                            totalStudents += total;
-                            paidStudents += paid;
-                            topUpTotal += topUp;
-
-                            const unpaid = total - paid;
-                            unpaidStudents += unpaid;
-                            unpaidCost += unpaid * parseFloat(data.perStudentNewPlanAmount || 0);
-                        });
-
-
-                        const allCampusPayments = data.campuses.map(c => ({
-                                campusID: c.campusId,
-                                totalStudents: c.totalStudents,
-                                paidStudents: c.studentsPaid,
-                                unpaidStudents: c.totalStudents - c.studentsPaid,
-                                topUp: parseFloat(c.topUp),
-                                totalCost: parseFloat(c.topUp)
-                            }));
-                            console.log(allCampusPayments);
-                            const transaction_method = 'wallet';
-                            const walletBalance = parseFloat($('#pros_wall_bal').val()) || 0;
-                            document.getElementById('proceedToPayment').dataset.paymentPayload = JSON.stringify({
-                                institutionId,
-                                UserID,
-                                UserType,
-                                current_plan,
-                                choosed_plain,
-                                transaction_method,
-                                walletBalance,
-                                campuses: allCampusPayments,
-                                totalCost: allCampusPayments.reduce((sum, c) => sum + c.topUp, 0)
-                                // totalCost: allCampusPayments.reduce((sum, c) => sum + c.topUp, 0)
-                            });
-                            // alert(topUpTotal + unpaidCost);
-
-                        document.getElementById('modalTotal').textContent = totalStudents;
-                        document.getElementById('modalPaid').textContent = paidStudents;
-                        document.getElementById('modalUnpaid').textContent = unpaidStudents;
-                        document.getElementById('modalTopUp').textContent = `₦${topUpTotal.toLocaleString()}`;
-                        document.getElementById('modalUnpaidCost').textContent = `₦${unpaidCost.toLocaleString()}`;
-                        document.getElementById('modalTotalCost').textContent = `₦${(topUpTotal + unpaidCost).toLocaleString()}`;
-
-                        const modal = new bootstrap.Modal(document.getElementById('upgradeModal'));
-                        modal.show();
-                    })
-                    .catch(error => {
-                        console.error('Error loading upgrade data:', error);
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Load Failed',
-                            text: 'Something went wrong while loading upgrade details.',
-                            confirmButtonText: 'Close'
-                        });
+            showPreloader();
+            fetch('../../controller/scripts/owner/upgradeplan/get_plan_payment_status.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ institutionId, UserID, UserType, choosed_plain, current_plan })
+            })
+            .then(res => res.json())
+            .then(data => {
+                hidePreloader();
+                if (data.status === 'fail') {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Hold on!',
+                        text: data.reason,
+                        confirmButtonText: 'OK'
                     });
+                    return;
+                }
+
+                let totalStudents = 0;
+                let paidStudents = 0;
+                let topUpTotal = 0;
+                let unpaidStudents = 0;
+                let unpaidCost = 0;
+
+                if (!Array.isArray(data.campuses)) {
+                    console.error('Invalid data format:', data);
+                    // alert('Unexpected error occurred. Please try again.');
+                    return;
+                }
+
+                data.campuses.forEach(campus => {
+                    const total = parseInt(campus.totalStudents) || 0;
+                    const paid = parseInt(campus.studentsPaid) || 0;
+                    const topUp = parseFloat(campus.topUp) || 0;
+
+                    totalStudents += total;
+                    paidStudents += paid;
+                    topUpTotal += topUp;
+
+                    const unpaid = total - paid;
+                    unpaidStudents += unpaid;
+                    unpaidCost += unpaid * parseFloat(data.perStudentNewPlanAmount || 0);
+                });
+
+
+                const allCampusPayments = data.campuses.map(c => ({
+                        campusID: c.campusId,
+                        totalStudents: c.totalStudents,
+                        paidStudents: c.studentsPaid,
+                        unpaidStudents: c.totalStudents - c.studentsPaid,
+                        topUp: parseFloat(c.topUp),
+                        totalCost: parseFloat(c.topUp)
+                    }));
+                    console.log(allCampusPayments);
+                    const transaction_method = 'wallet';
+                    const walletBalance = parseFloat($('#pros_wall_bal').val()) || 0;
+                    document.getElementById('proceedToPayment').dataset.paymentPayload = JSON.stringify({
+                        institutionId,
+                        UserID,
+                        UserType,
+                        current_plan,
+                        choosed_plain,
+                        transaction_method,
+                        walletBalance,
+                        campuses: allCampusPayments,
+                        totalCost: allCampusPayments.reduce((sum, c) => sum + c.topUp, 0)
+                        // totalCost: allCampusPayments.reduce((sum, c) => sum + c.topUp, 0)
+                    });
+                    // alert(topUpTotal + unpaidCost);
+
+                document.getElementById('modalTotal').textContent = totalStudents;
+                document.getElementById('modalPaid').textContent = paidStudents;
+                document.getElementById('modalUnpaid').textContent = unpaidStudents;
+                document.getElementById('modalTopUp').textContent = `₦${topUpTotal.toLocaleString()}`;
+                document.getElementById('modalUnpaidCost').textContent = `₦${unpaidCost.toLocaleString()}`;
+                document.getElementById('modalTotalCost').textContent = `₦${(topUpTotal).toLocaleString()}`;
+
+                const modal = new bootstrap.Modal(document.getElementById('upgradeModal'));
+                modal.show();
+            })
+            .catch(error => {
+                hidePreloader();
+                console.error('Error loading upgrade data:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Load Failed',
+                    text: 'Something went wrong while loading upgrade details.',
+                    confirmButtonText: 'Close'
+                });
+            });
         }
 
 
@@ -778,36 +812,107 @@
          $('#proceedToPayment').off('click').on('click', function() {
                 const payload = JSON.parse(this.dataset.paymentPayload);
              
-                if(payload.totalCost > payload.walletBalance) {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Insufficient Wallet Balance',
-                        text: `Your wallet balance is ₦${payload.walletBalance.toLocaleString()}. Please top up to proceed.`,
-                        showCancelButton: true,
-                        confirmButtonText: 'Top Up Wallet'
-                    }).then(result => {
+                // Get selected payment method
+                const paymentMethod = document.querySelector('input[name="upgradePaymentMethod"]:checked').value;
+                payload.transaction_method = paymentMethod === 'instant' ? 'transfer' : 'wallet';
 
-                        if (result.isConfirmed) {
-                        // Step 4: Start payment
-                        window.location.href = '../../app/wallet/';
-                     }
-                       
-                    });
-                    return;
-                }
-                // Optional: Show confirmation
-                Swal.fire({
-                    title: 'Proceed to Payment?',
-                    text: `You are about to pay ₦${payload.totalCost.toLocaleString()}. Continue?`,
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, Pay Now'
-                }).then(result => {
-                    if (result.isConfirmed) {
-                        // Step 4: Start payment
-                        initiatePayment(payload);
+                console.log(payload);
+
+                if(paymentMethod === 'wallet') {
+                    if(payload.totalCost > payload.walletBalance) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Insufficient Wallet Balance',
+                            text: `Your wallet balance is ₦${payload.walletBalance.toLocaleString()}. Please top up to proceed.`,
+                            showCancelButton: true,
+                            confirmButtonText: 'Top Up Wallet'
+                        }).then(result => {
+                            if (result.isConfirmed) {
+                                window.location.href = '../../app/wallet/';
+                            }
+                        });
+                        return;
                     }
-                });
+                    Swal.fire({
+                        title: 'Proceed to Payment?',
+                        text: `You are about to pay ₦${payload.totalCost.toLocaleString()}. Continue?`,
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, Pay Now'
+                    }).then(result => {
+                        if (result.isConfirmed) {
+                            initiatePayment(payload);
+                        }
+                    });
+                } else if(paymentMethod === 'instant') {
+                    // Monnify Instant Payment Integration
+                    const monnifyApiKey = '<?php echo $MonnifyTestPaymentApi; ?>';
+                    const monnifyContractCode = '<?php echo $MonnifyTestContractCode; ?>';
+
+                    // alert(payload.totalCost);
+                    const customerEmail = '<?php echo $Email; ?>' || 'customer@email.com';
+                    const customerName = '<?php echo $PrimaryName; ?>' || 'Customer';
+                    const paymentReference = 'EDUMESS-UPGRADE-' + Date.now();
+                    MonnifySDK.initialize({
+                        amount: payload.totalCost,
+                        currency: 'NGN',
+                        reference: paymentReference,
+                        customerName: customerName,
+                        customerEmail: customerEmail,
+                        apiKey: monnifyApiKey,
+                        contractCode: monnifyContractCode,
+                        paymentDescription: `Upgrade plan payment`,
+                        onComplete: function(response) {
+                            if(response.paymentReference && response.status === 'SUCCESS') {
+                                showPreloader();
+                                // Send to backend for processing
+                                payload.monnify_reference = response.paymentReference;
+                                $.ajax({
+                                    type: "POST",
+                                    url: "../../controller/scripts/owner/upgradeplan/insert_payment_upgrade.php",
+                                    data: JSON.stringify(payload),
+                                    contentType: "application/json",
+                                    dataType: "json",
+                                    success: function (data) {
+                                        hidePreloader();
+                                        if (data.success) {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Success!',
+                                                html: data.message,
+                                                confirmButtonText: 'OK'
+                                            }).then(() => {
+                                                location.reload();
+                                            });
+                                        } else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Error!',
+                                                html: `Something went wrong:<br>${data.message}`,
+                                                confirmButtonText: 'Try Again'
+                                            });
+                                        }
+                                    },
+                                    error: function () {
+                                        hidePreloader();
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Error!',
+                                            text: 'Error processing Monnify payment.',
+                                            confirmButtonText: 'Close'
+                                        });
+                                    }
+                                });
+                            } else {
+                                showError('Monnify payment was not successful.');
+                                hidePreloader();
+                            }
+                        },
+                        onClose: function() {
+                            // User closed Monnify modal
+                        }
+                    });
+                }
             });
 
 
@@ -815,6 +920,7 @@
 
 
             function initiatePayment(payload) {
+                showPreloader();
                 const proceedBtn = document.getElementById('proceedToPayment');
                 proceedBtn.disabled = true;
                 proceedBtn.innerText = "Processing...";
@@ -826,6 +932,7 @@
                 })
                 .then(res => res.json())
                 .then(data => {
+                    hidePreloader();
                     if (data.success) {
                         Swal.fire({
                             icon: 'success',
@@ -845,6 +952,7 @@
                     }
                 })
                 .catch(err => {
+                    hidePreloader();
                     console.error(err);
                     Swal.fire({
                         icon: 'error',
@@ -863,6 +971,26 @@
 
 
 
+    </script>
+    <!-- Utility functions for error/success popups -->
+    <script>
+        function showError(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message,
+                confirmButtonText: 'Close'
+            });
+        }
+
+        function showSuccess(message) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: message,
+                confirmButtonText: 'Close'
+            });
+        }
     </script>
 </body>
 </html>

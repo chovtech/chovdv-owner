@@ -9,19 +9,30 @@
     $aff_level  = $_POST['aff_level'];
     $session  = $_POST['session'];
     $term  = $_POST['term'];
-    $trans_type  = $_POST['trans_type'];
+     $trans_type  = $_POST['trans_type'];
 
 
     $query = "SELECT * FROM `affiliate_earning` WHERE affiliate_id = '$user_id'";
 
-    if($aff_level == 1)
-    {
-        $query .= " AND `earning_level` = '$aff_level'";
+   if ($aff_level != '0') {
+       
+       if($aff_level == 'main')
+       {
+            $query .= " AND (`earning_type` = 'debit' OR `earning_type` = '$aff_level')";
+           
+       }else
+       {
+           $query .= " AND  `earning_type` = '$aff_level'"; 
+       }
+   
+      
     }
-    elseif($aff_level == 2)
-    {
-        $query .= " AND `earning_level` = '$aff_level'";
-    }
+    
+    // elseif($aff_level == 2)
+    // {
+    //     $query .= " AND `earning_level` = '$aff_level'";
+    // }
+    
 
     // Add session filter if needed
     if($session != '0')
@@ -43,19 +54,22 @@
 
     // Order by name
     $query .= " ORDER BY `date` DESC";
+    
+    
+    // echo "<pre>$query</pre>";
 
     // Now run the query
     $sql_affiliate = mysqli_query($link, $query);
     $sql_affiliate_row = mysqli_fetch_assoc($sql_affiliate);
-    $sql_affiliate_cnt = mysqli_num_rows($sql_affiliate);
+     $sql_affiliate_cnt = mysqli_num_rows($sql_affiliate);
 
     if($sql_affiliate_cnt > 0)
     {
         $cnt = 1;
         
-        echo '<tr id="noRecordsRow" style="display: none;">
-            <td colspan="6" class="text-center text-muted">No records found</td>
-        </tr>';
+        // echo '<tr id="noRecordsRow" style="display: none;">
+        //     <td colspan="6" class="text-center text-muted">No records found</td>
+        // </tr>';
         
         do{
 
@@ -68,13 +82,20 @@
             $status = $sql_affiliate_row['transaction_type'];
             $InstitutionID = $sql_affiliate_row['InstitutionID'];
             $affiliate_percentage = $sql_affiliate_row['affiliate_percentage'];
+            $fee = $sql_affiliate_row['fee'];
             
-            $final_amt = (intVal($affiliate_percentage) / 100) * $amount;
             
-            if($sub_affiliate_id == '0')
+            
+            // SELECT `id`, `affiliate_id`, `sub_affiliate_id`, `earning_type`, `earning_level`, `is_transfered`, `InstitutionID`, `affiliate_percentage`,
+            // `amount`, `date`, `Session`, `Term`, `transaction_type`, `status`, `ref_number` FROM `affiliate_earning` WHERE 1
+            
+            // $final_amt = intVal($amount);
+            
+            if($sub_affiliate_id == '0' || $sub_affiliate_id == 'NULL' || $sub_affiliate_id == '')
             {
                 
                 $affiliate = 'Direct Earning';
+                
 
                 $affiliate_lvl = '';
             }
@@ -118,13 +139,18 @@
             if($status == 'credit')
             {
                 $color = 'success';
+                 $final_amt =  $amount;
             }
             else
             {
-                $color = 'danger';
+                
+                 $color = 'danger';
+                
+                $final_amt = $amount;
+               
             }
             
-            $abba_sql_institution = ("SELECT * FROM `institution` WHERE `InstitutionID` = $InstitutionID");
+            $abba_sql_institution = ("SELECT * FROM `institution` WHERE `InstitutionID` = '$InstitutionID'");
             $abba_result_institution = mysqli_query($link, $abba_sql_institution);
             $abba_row_institution = mysqli_fetch_assoc($abba_result_institution);
             $abba_row_cnt_institution = mysqli_num_rows($abba_result_institution);
@@ -147,11 +173,16 @@
             echo '<tr>
                 <th scope="row">'.$cnt++.'</th>
                 <td>'.$ref_number.'</td>
-                <td>'.$inst_name .'</td>
-                <td>₦'.number_format($final_amt).'</td>
-                <td class="text-'.$color.'">'.strtoupper($status).'</td>
+                <td>₦'.number_format($final_amt, 2).'</td>';
+                // <td>'.$inst_name .'</td>
+                // <td>₦'.number_format($fee, 2).'</td>
+                // <td>₦'.number_format(($final_amt + $fee), 2).'</td>
+            echo '<td class="text-'.$color.'">'.strtoupper($status).' </td>
                 <td>'.$date.'</td>
-                <td><i class="fas fa-eye text-primary view_details_btn" data-bs-toggle="modal" data-bs-target="#trans_det_Modal" style="cursor:pointer;" data-affname = "'.$abba_row_affiliate_dis['AffiliateFName'].' '.$abba_row_affiliate_dis['AffiliateMName'].' '.$abba_row_affiliate_dis['AffiliateLName'].'" data-lvl = "'.$earning_level.'" data-term = "'.$Term_name.'" data-session = "'.$Session_new.'" data-ref = "'.$ref_number.'" data-inst = "'.$inst_name.'"  data-amt = "₦'.number_format($amount).'" data-status = "'.strtoupper($status).'" data-date = "'.$date.'"></i></td>
+                <td><i class="fas fa-eye text-primary view_details_btn" data-bs-toggle="modal" data-bs-target="#trans_det_Modal"
+                style="cursor:pointer;" data-affname = "'.$abba_row_affiliate_dis['AffiliateFName'].' 
+                '.$abba_row_affiliate_dis['AffiliateMName'].' '.$abba_row_affiliate_dis['AffiliateLName'].'" data-lvl = "'.$earning_level.'" data-term = "'.$Term_name.'" data-session = "'.$Session_new.'" data-ref = "'.$ref_number.'" data-inst = "'.$inst_name.'"  data-amt = "₦'.number_format($amount, 2).'" data-status = "'.strtoupper($status).'" data-date = "'.$date.'" 
+                data-fee = "₦'.number_format($fee, 2).'"  data-totamt = "₦'.number_format($final_amt + $fee, 2).'"></i></td>
                 
             </tr>';
 
@@ -165,7 +196,8 @@
     }
 
     // For DB Credit
-    $sql_affiliate_earning_l1_query = "SELECT SUM((affiliate_percentage / 100) * amount) AS earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `transaction_type` = 'credit'";
+    $sql_affiliate_earning_l1_query = "SELECT SUM(amount) AS earning_amt_db FROM `affiliate_earning`
+    WHERE affiliate_id = '$user_id' AND `transaction_type` = 'credit'";
 
     // Add session filter if needed
     if ($session != '0') {
@@ -218,7 +250,8 @@
     
     
     // For Earn
-    $query_aff_earn_l1 = "SELECT SUM((affiliate_percentage / 100) * amount) AS earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `transaction_type` = 'credit' AND `earning_level` = '1'";
+    $query_aff_earn_l1 = "SELECT SUM(amount) AS earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id'
+    AND `transaction_type` = 'credit' AND `earning_type` = 'level_1'";
 
     // Add session filter if needed
     if ($session != '0') {
@@ -249,7 +282,8 @@
     
     
     // For DB Debit
-    $query_aff_earn_l2 = "SELECT SUM((affiliate_percentage / 100) * amount) AS earning_amt_db FROM `affiliate_earning` WHERE affiliate_id = '$user_id' AND `transaction_type` = 'credit' AND `earning_level` = '2'";
+    $query_aff_earn_l2 = "SELECT SUM(amount) AS earning_amt_db FROM `affiliate_earning` 
+    WHERE affiliate_id = '$user_id' AND `transaction_type` = 'credit' AND `earning_type` = 'level_2'";
 
     // Add session filter if needed
     if ($session != '0') {
@@ -280,11 +314,11 @@
     
     
     // For DB Debit
-    $query_aff_earn_l0 = "SELECT SUM((affiliate_percentage / 100) * amount) AS earning_amt_db
+    $query_aff_earn_l0 = "SELECT SUM(amount) AS earning_amt_db
                         FROM `affiliate_earning`
                         WHERE affiliate_id = '$user_id'
                           AND `transaction_type` = 'credit'
-                          AND `earning_level` = '0'";
+                          AND `earning_type` = 'main'";
 
     // Add session filter if needed
     if ($session != '0') {
@@ -308,6 +342,76 @@
     }
 
     echo '<input type="hidden" id="aff_earn_l0" value="₦'.$aff_earn_l0.'">';
+    
+    
+    
+    // affiliate lead amount sql
+    
+     // For DB Debit
+    $query_aff_earn_lead = "SELECT SUM(amount) AS earning_amt_db
+                        FROM `affiliate_earning`
+                        WHERE affiliate_id = '$user_id'
+                          AND `transaction_type` = 'credit'
+                          AND `earning_type` = 'lead'";
+
+    // Add session filter if needed
+    if ($session != '0') {
+        $query_aff_earn_lead .= " AND `Session` = '$session'";
+    }
+
+    // Add term filter if needed
+    if ($term != '0') {
+        $query_aff_earn_lead .= " AND `Term` = '$term'";
+    }
+
+    // Execute the query
+    $query_aff_earn_lead_db = mysqli_query($link, $query_aff_earn_lead);
+    $query_aff_earn_lead_db_row = mysqli_fetch_assoc($query_aff_earn_lead_db);
+    $query_aff_earn_lead_db_cnt = mysqli_num_rows($query_aff_earn_lead_db);
+
+    if ($query_aff_earn_lead_db_cnt > 0) {
+        $aff_earn_lead = number_format($query_aff_earn_lead_db_row['earning_amt_db'] ?? 0);
+    } else {
+        $aff_earn_lead = 0;
+    }
+
+    echo '<input type="hidden" id="aff_earn_lead" value="₦'.$aff_earn_lead.'">';
+    
+    
+    
+    
+       // affiliate transferred amount sql
+    
+     // For DB Debit
+    $query_aff_earn_transfered = "SELECT SUM(amount) AS earning_amt_db
+                        FROM `affiliate_earning`
+                        WHERE affiliate_id = '$user_id'
+                          AND `transaction_type` = 'credit'
+                          AND `earning_type` = 'transferred'";
+
+    // Add session filter if needed
+    if ($session != '0') {
+        $query_aff_earn_transfered .= " AND `Session` = '$session'";
+    }
+
+    // Add term filter if needed
+    if ($term != '0') {
+        $query_aff_earn_transfered .= " AND `Term` = '$term'";
+    }
+
+    // Execute the query
+    $query_aff_earn_transfered_db = mysqli_query($link, $query_aff_earn_transfered);
+    $query_aff_earn_transfered_db_row = mysqli_fetch_assoc($query_aff_earn_transfered_db);
+    $query_aff_earn_transfered_db_cnt = mysqli_num_rows($query_aff_earn_transfered_db);
+
+    if ($query_aff_earn_transfered_db_cnt > 0) {
+        $aff_earn_transfered = number_format($query_aff_earn_transfered_db_row['earning_amt_db'] ?? 0);
+    } else {
+        $aff_earn_transfered = 0;
+    }
+
+    echo '<input type="hidden" id="aff_earn_transfered" value="₦'.$aff_earn_transfered.'">';
+    
 
 
 ?>

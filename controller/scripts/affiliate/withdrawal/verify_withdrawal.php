@@ -12,13 +12,20 @@
     $session  = $_POST['session'];
     $term  = $_POST['term'];
     $user_id  = $_POST['user_id'];
-    $recipientEmail  = 'sunnyogaje@gmail.com';
+    $recipientEmail  = $_POST['Email'];
     $senderEmail = $EduMESS_verify_email;
     $subject = 'Withdrawal Verification';
 
     $verification_code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+    
+     date_default_timezone_set('Africa/Lagos');
+    
+    $date = date('Y-m-d h:i:sa');
 
-    $sql_affiliate = mysqli_query($link, "UPDATE `affiliate` SET `TokenID`='$verification_code' WHERE `AffiliateID` = '$user_id'");
+    $verification_code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+
+
+    $sql_affiliate = mysqli_query($link, "UPDATE `affiliate` SET `TokenID`='$verification_code', `TokenDuration`='$date' WHERE `AffiliateID` = '$user_id'");
 
     $data = [
         'ver_code' => $verification_code,

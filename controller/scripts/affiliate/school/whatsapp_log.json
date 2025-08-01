@@ -1,0 +1,1145 @@
+{
+    "timestamp": "2025-06-29 01:53:57",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2348061236566",
+                "name": "SchoolZone ",
+                "school": "Goodnews Heritage Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2348061236566\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 02:01:18",
+    "http_code": 0,
+    "curl_error": "Could not resolve host: wamator.com",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "GREAT KIDS ACADEMY",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "30",
+                "from_share": "70"
+            }
+        ]
+    },
+    "response": false
+}
+{
+    "timestamp": "2025-06-29 02:06:56",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "20",
+                "from_share": "80"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 02:10:09",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "Bailiwick Schools",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 02:12:51",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "GREAT KIDS ACADEMY",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 2:12 AM"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 02:13:02",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "GREAT KIDS ACADEMY",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 02:13:20",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "GREAT KIDS ACADEMY",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 2:13 AM"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 02:13:34",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "Bailiwick Schools",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 2:13 AM"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 02:13:49",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "Joshuas Porch Academy",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 2:13 AM"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 02:29:30",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "return-transfer-request",
+        "message": "Hi {{name}}, you have received a school return request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\n\nThis is a return transfer request. The school will be returned to you as the original owner.\n\nPlease login to approve or reject this return request.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "Chike OKOLI",
+                "school": "Wisdom Covenant Innovative School",
+                "from_affiliate": "SchoolZone "
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"970746e6-3d18-4faf-afa1-7707f37bf4f0\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 02:30:05",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "return-transfer-approved",
+        "message": "Hi {{name}}, your school return request has been APPROVED!\n\nSchool: {{school}}\nReturned to: {{returned_to}}\nReturn Date: {{return_date}}\n\nThe school has been successfully returned to the original owner.",
+        "contacts": [
+            {
+                "number": "2348061236566",
+                "name": "SchoolZone ",
+                "school": "Wisdom Covenant Innovative School",
+                "returned_to": "Chike OKOLI",
+                "return_date": "June 29, 2025 2:30 AM"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"2348061236566\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 02:30:26",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-approved",
+        "message": "Hi {{name}}, your school transfer request has been APPROVED!\n\nSchool: {{school}}\nApproved by: {{approved_by}}\nYour Share: {{your_share}}%\nNew Affiliate Share: {{new_share}}%\n\nTransfer Date: {{transfer_date}}\n\nThe school has been successfully transferred.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike OKOLI",
+                "school": "Goodnews Heritage Academy",
+                "approved_by": "SchoolZone ",
+                "your_share": "50",
+                "new_share": "50",
+                "transfer_date": "June 29, 2025 2:30 AM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"f4018a4f-a603-4b43-abd7-c66bb7c8a842\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 02:30:41",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "return-transfer-request",
+        "message": "Hi {{name}}, you have received a school return request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\n\nThis is a return transfer request. The school will be returned to you as the original owner.\n\nPlease login to approve or reject this return request.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "Chike OKOLI",
+                "school": "Goodnews Heritage Academy",
+                "from_affiliate": "SchoolZone "
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"e7661b5e-eab5-43f9-9199-da3a322c8513\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 02:31:24",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "return-transfer-approved",
+        "message": "Hi {{name}}, your school return request has been APPROVED!\n\nSchool: {{school}}\nReturned to: {{returned_to}}\nReturn Date: {{return_date}}\n\nThe school has been successfully returned to the original owner.",
+        "contacts": [
+            {
+                "number": "2348061236566",
+                "name": "SchoolZone ",
+                "school": "Goodnews Heritage Academy",
+                "returned_to": "Chike OKOLI",
+                "return_date": "June 29, 2025 2:31 AM"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"2348061236566\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 03:18:13",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2348061236566",
+                "name": "SchoolZone ",
+                "school": "Bailiwick Schools",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2348061236566\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 16:12:36",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2348061236566",
+                "name": "SchoolZone ",
+                "school": "Bailiwick Schools",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 4:12 PM"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"2348061236566\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 16:13:11",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS INC",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"c0429e0d-8341-4234-a90a-7fbd8339e3a6\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:14:49",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "EduMESS INC",
+                "school": "Joshuas Porch Academy",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 4:14 PM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"1523796e-12c7-4dd7-bd09-bbc4cb40e64d\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:23:39",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS INC",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"33eb8182-bf95-4177-a2e3-3505f1b83907\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:27:11",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS INC",
+                "school": "GREAT KIDS ACADEMY",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"6fb3603c-d86c-44bc-8380-7f454a3f2f1b\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:32:29",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "EduMESS INC",
+                "school": "Joshuas Porch Academy",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 4:32 PM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"26cea07c-3cfb-4453-a4fa-3a284b7a1fd2\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:32:45",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS INC",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"25378b1d-8f04-4ec7-a345-0c0be7e66bc7\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:36:04",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS INC",
+                "school": "Bailiwick Schools",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"97466cf5-3283-4502-b8ef-8bf934cf1c8b\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:37:18",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "EduMESS INC",
+                "school": "Bailiwick Schools",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 4:37 PM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"aed97275-23f8-401c-8846-5cc04540a3d8\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:37:44",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "EduMESS INC",
+                "school": "Joshuas Porch Academy",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 4:37 PM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"247e7e15-e546-464d-a818-27454751b5c8\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:38:03",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "EduMESS INC",
+                "school": "GREAT KIDS ACADEMY",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 4:38 PM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"016c79a6-c3d2-405a-b675-1f9b25ef0442\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:38:39",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "70",
+                "from_share": "30"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 16:39:07",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "Joshuas Porch Academy",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "June 29, 2025 4:39 PM"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-06-29 16:39:27",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS INC",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"5aa9b86b-6805-4704-beb4-24082f4bb218\",\"count\":1}"
+}
+{
+    "timestamp": "2025-06-29 16:40:58",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "EduMESS INC",
+                "school": "GREAT KIDS ACADEMY",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "30",
+                "from_share": "70"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"eb582272-ddcb-42ea-9d3e-a29f44d678a2\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-07 19:00:31",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "EduMESS INC",
+                "school": "GREAT KIDS ACADEMY",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "July 7, 2025 7:00 PM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"a9543bda-85d0-4900-8f2d-a21500be14ec\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-07 19:10:43",
+    "http_code": 0,
+    "curl_error": "OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to wamator.com:443 ",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "EduMESS INC",
+                "school": "Joshuas Porch Academy",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "July 7, 2025 7:09 PM"
+            }
+        ]
+    },
+    "response": false
+}
+{
+    "timestamp": "2025-07-07 19:15:07",
+    "http_code": 0,
+    "curl_error": "OpenSSL SSL_connect: Connection was reset in connection to wamator.com:443 ",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": false
+}
+{
+    "timestamp": "2025-07-07 19:42:40",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-approved",
+        "message": "Hi {{name}}, your school transfer request has been APPROVED!\n\nSchool: {{school}}\nApproved by: {{approved_by}}\nYour Share: {{your_share}}%\nNew Affiliate Share: {{new_share}}%\n\nTransfer Date: {{transfer_date}}\n\nThe school has been successfully transferred.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Chike OKOLI",
+                "school": "Joshuas Porch Academy",
+                "approved_by": "Prosper Ortese",
+                "your_share": "50",
+                "new_share": "50",
+                "transfer_date": "July 7, 2025 7:42 PM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"701acdb6-055c-4076-aa2b-a86c815ae569\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-07 19:43:11",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "return-transfer-request",
+        "message": "Hi {{name}}, you have received a school return request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\n\nThis is a return transfer request. The school will be returned to you as the original owner.\n\nPlease login to approve or reject this return request.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "Chike OKOLI",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Prosper Ortese"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"cd514457-460e-4046-af10-5ec46f024912\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-07 19:45:54",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "return-transfer-approved",
+        "message": "Hi {{name}}, your school return request has been APPROVED!\n\nSchool: {{school}}\nReturned to: {{returned_to}}\nReturn Date: {{return_date}}\n\nThe school has been successfully returned to the original owner.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Joshuas Porch Academy",
+                "returned_to": "Chike OKOLI",
+                "return_date": "July 7, 2025 7:45 PM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"22007e73-7d85-4701-ba15-7c8ae77edb7c\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-08 05:50:58",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "Prosper Ortese",
+                "school": "GREAT KIDS ACADEMY",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"fea32f88-9a71-438b-be49-5986b94766d1\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-08 05:53:27",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Prosper Ortese",
+                "school": "GREAT KIDS ACADEMY",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "July 8, 2025 5:53 AM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"f1cd5491-19a0-4da1-8a1a-ba2a817f8eed\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-08 05:53:55",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"f1b0f8ec-b02e-4c95-9341-181126a38b76\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-08 05:54:10",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Joshuas Porch Academy",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "July 8, 2025 5:54 AM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"9f42c7c5-4822-47b7-86be-28d660c8623f\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-08 05:56:29",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-07-08 05:56:44",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "+2349168037345",
+                "name": "David Oguname",
+                "school": "Joshuas Porch Academy",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "July 8, 2025 5:56 AM"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"+2349168037345\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-07-08 06:00:24",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Joshuas Porch Academy",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"3f1780d4-d57e-4b07-9ae3-ebf644e554b6\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-08 06:01:56",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Joshuas Porch Academy",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "July 8, 2025 6:01 AM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"1e356644-38a6-4415-9628-632a4862e98b\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-11 16:35:45",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Learning Field International Schools",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "July 11, 2025 4:35 PM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"d6cc8ca2-9b56-45c5-ab08-1ac1f1e21d7d\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-17 10:19:20",
+    "http_code": 401,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2347032146314",
+                "name": "Chike OKOLI",
+                "school": "legend coder school",
+                "from_affiliate": "EduMESS INC",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"message\":\"Invalid API Key\"}"
+}
+{
+    "timestamp": "2025-07-17 10:21:15",
+    "http_code": 401,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "transfer-approved",
+        "message": "Hi {{name}}, your school transfer request has been APPROVED!\n\nSchool: {{school}}\nApproved by: {{approved_by}}\nYour Share: {{your_share}}%\nNew Affiliate Share: {{new_share}}%\n\nTransfer Date: {{transfer_date}}\n\nThe school has been successfully transferred.",
+        "contacts": [
+            {
+                "number": "2347045277801",
+                "name": "EduMESS INC",
+                "school": "legend coder school",
+                "approved_by": "Chike OKOLI",
+                "your_share": "50",
+                "new_share": "50",
+                "transfer_date": "July 17, 2025 10:21 AM"
+            }
+        ]
+    },
+    "response": "{\"message\":\"Invalid API Key\"}"
+}
+{
+    "timestamp": "2025-07-17 10:22:53",
+    "http_code": 401,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "return-transfer-request",
+        "message": "Hi {{name}}, you have received a school return request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\n\nThis is a return transfer request. The school will be returned to you as the original owner.\n\nPlease login to approve or reject this return request.",
+        "contacts": [
+            {
+                "number": "+2347045277801",
+                "name": "EduMESS INC",
+                "school": "legend coder school",
+                "from_affiliate": "Chike OKOLI"
+            }
+        ]
+    },
+    "response": "{\"message\":\"Invalid API Key\"}"
+}
+{
+    "timestamp": "2025-07-17 10:24:17",
+    "http_code": 401,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "return-transfer-approved",
+        "message": "Hi {{name}}, your school return request has been APPROVED!\n\nSchool: {{school}}\nReturned to: {{returned_to}}\nReturn Date: {{return_date}}\n\nThe school has been successfully returned to the original owner.",
+        "contacts": [
+            {
+                "number": "2347032146314",
+                "name": "Chike OKOLI",
+                "school": "legend coder school",
+                "returned_to": "EduMESS INC",
+                "return_date": "July 17, 2025 10:24 AM"
+            }
+        ]
+    },
+    "response": "{\"message\":\"Invalid API Key\"}"
+}
+{
+    "timestamp": "2025-07-28 04:47:08",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": 11,
+        "template_id": "transfer-cancelled",
+        "message": "Hi {{name}}, a school transfer request has been CANCELLED.\n\nSchool: {{school}}\nCancelled by: {{cancelled_by}}\nCancellation Date: {{cancellation_date}}\n\nYou no longer need to take any action on this transfer request.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Learning Field International Schools",
+                "cancelled_by": "Chike OKOLI",
+                "cancellation_date": "July 28, 2025 4:47 AM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"109cd020-c1f3-43c3-9c30-53c1045849b4\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-28 04:47:49",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": 11,
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Learning Field International Schools",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"676efb2e-78b3-4d5e-afe7-cd8229dbdbcb\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-28 04:48:31",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": 11,
+        "template_id": "transfer-rejected",
+        "message": "Hi {{name}}, your school transfer request has been REJECTED.\n\nSchool: {{school}}\nRejected by: {{rejected_by}}\nRejection Date: {{rejection_date}}\n\nThe school remains under your management. You can continue to manage it or initiate a new transfer request.",
+        "contacts": [
+            {
+                "number": "2347032146314",
+                "name": "Chike OKOLI",
+                "school": "Learning Field International Schools",
+                "rejected_by": "Prosper Ortese",
+                "rejection_date": "July 28, 2025 4:48 AM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"b0ebaab8-9eb5-40bd-8838-67b3e0dea1f7\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-28 04:51:41",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": 11,
+        "template_id": "transfer-request",
+        "message": "Hi {{name}}, you have received a school transfer request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\nYour Share: {{your_share}}%\nFrom Share: {{from_share}}%\n\nPlease login to approve or reject this transfer.",
+        "contacts": [
+            {
+                "number": "+2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Learning Field International Schools",
+                "from_affiliate": "Chike OKOLI",
+                "your_share": "50",
+                "from_share": "50"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"3867cdc1-e31a-4fbc-bde8-51a062459f69\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-28 04:52:24",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": 11,
+        "template_id": "transfer-approved",
+        "message": "Hi {{name}}, your school transfer request has been APPROVED!\n\nSchool: {{school}}\nApproved by: {{approved_by}}\nYour Share: {{your_share}}%\nNew Affiliate Share: {{new_share}}%\n\nTransfer Date: {{transfer_date}}\n\nThe school has been successfully transferred.",
+        "contacts": [
+            {
+                "number": "2347063859559",
+                "name": "Chike OKOLI",
+                "school": "Learning Field International Schools",
+                "approved_by": "Prosper Ortese",
+                "your_share": "50",
+                "new_share": "50",
+                "transfer_date": "July 28, 2025 4:52 AM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"2309d820-8493-41d6-a75a-80e37ead80c5\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-28 04:53:05",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": 11,
+        "template_id": "return-transfer-request",
+        "message": "Hi {{name}}, you have received a school return request.\n\nSchool: {{school}}\nFrom: {{from_affiliate}}\n\nThis is a return transfer request. The school will be returned to you as the original owner.\n\nPlease login to approve or reject this return request.",
+        "contacts": [
+            {
+                "number": "+2347063859559",
+                "name": "Chike OKOLI",
+                "school": "Learning Field International Schools",
+                "from_affiliate": "Prosper Ortese"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"bd684e5d-605d-45e4-b744-d3422b9ee42f\",\"count\":1}"
+}
+{
+    "timestamp": "2025-07-28 04:54:27",
+    "http_code": 200,
+    "curl_error": "",
+    "payload": {
+        "user_id": 11,
+        "template_id": "return-transfer-approved",
+        "message": "Hi {{name}}, your school return request has been APPROVED!\n\nSchool: {{school}}\nReturned to: {{returned_to}}\nReturn Date: {{return_date}}\n\nThe school has been successfully returned to the original owner.",
+        "contacts": [
+            {
+                "number": "2349035315300",
+                "name": "Prosper Ortese",
+                "school": "Learning Field International Schools",
+                "returned_to": "Chike OKOLI",
+                "return_date": "July 28, 2025 4:54 AM"
+            }
+        ]
+    },
+    "response": "{\"status\":\"queued\",\"batch_id\":\"e20d52f0-f084-413d-b026-991baf5475e1\",\"count\":1}"
+}

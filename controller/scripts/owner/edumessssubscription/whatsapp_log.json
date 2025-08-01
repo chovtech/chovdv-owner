@@ -1,456 +1,123 @@
 {
-    "timestamp": "2025-06-24 15:16:40",
-    "http_code": 0,
-    "curl_error": "Could not resolve host: wamator.com",
+    "timestamp": "2025-07-28 04:25:32",
+    "http_code": 200,
+    "curl_error": "",
     "payload": {
-        "user_id": "9",
+        "user_id": 11,
         "template_id": "plan-notify",
-        "message": "Hi {{name}}, you\u2019ve just earned \u20a6{{amount}} from {{school}} subscription.",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription.",
         "contacts": [
             {
-                "number": "2349035315300",
-                "name": "Chike",
-                "amount": "45.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
+                "number": "2347045277801",
                 "name": "EduMESS",
-                "amount": "27.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
-                "name": "FUCHI HUB",
                 "amount": "600.00",
-                "school": "Oakseed Internatinal School"
+                "school": "Legend School"
             }
         ]
     },
-    "response": false
+    "response": "{\"status\":\"queued\",\"batch_id\":\"671cf5fb-5532-4a0a-8f64-0cfa12a6c957\",\"count\":1}"
 }
 {
-    "timestamp": "2025-06-24 15:16:40",
-    "http_code": 0,
-    "curl_error": "Could not resolve host: wamator.com",
+    "timestamp": "2025-07-28 04:25:32",
+    "http_code": 200,
+    "curl_error": "",
     "payload": {
-        "user_id": "9",
+        "user_id": 11,
         "template_id": "admin-notify",
-        "message": "Dear {{name}}, your subscription payment of \u20a6{{amount}} for {{school}}  was received successfully. \r\n                  Ref: {{ref}}, Term: {{term}}, Session: {{session}}.",
+        "message": "Dear {{name}},\n\nYour subscription payment of NGN {{amount}} for {{school}} was received successfully.\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
         "contacts": [
             {
-                "number": "+2347063859559",
-                "name": "Chike",
+                "number": "+2349035315300",
+                "name": "PROSPER",
                 "amount": "1,500.00",
-                "school": "Oakseed Internatinal School",
-                "ref": "CREDIT-20250624151640-7998",
-                "term": "2",
+                "school": "Legend School",
+                "ref": "CREDIT-20250728042532-ACA2",
+                "term": "Third",
                 "session": "2024\/2025"
             }
         ]
     },
-    "response": false
+    "response": "{\"status\":\"queued\",\"batch_id\":\"cc5245cc-3802-4eaf-af3d-7a5a63702d26\",\"count\":1}"
 }
 {
-    "timestamp": "2025-06-24 15:16:40",
-    "http_code": 0,
-    "curl_error": "Could not resolve host: wamator.com",
-    "payload": {
-        "user_id": "9",
-        "template_id": "admin-notify",
-        "message": "New subscription received.\r\n              Ref: {{ref}}, \r\n              School: {{school}}, \r\n              Amount Paid: \u20a6{{amountpaid}},\r\n              Company Share: \u20a6{{companyshare}},\r\n              Term: {{term}}, Session: {{session}}.",
-        "contacts": [
-            {
-                "number": "+2347063859559",
-                "name": "Chike",
-                "amount": "1,500.00",
-                "amountpaid": "Oakseed Internatinal School",
-                "companyshare": "900.00",
-                "ref": "CREDIT-20250624151640-7998",
-                "term": "2",
-                "session": "2024\/2025"
-            }
-        ]
-    },
-    "response": false
-}
-{
-    "timestamp": "2025-06-24 18:40:28",
-    "http_code": 0,
-    "curl_error": "Could not resolve host: wamator.com",
-    "payload": {
-        "user_id": "9",
-        "template_id": "plan-notify",
-        "message": "Hi {{name}}, you\u2019ve just earned \u20a6{{amount}} from {{school}} subscription.",
-        "contacts": [
-            {
-                "number": "2349035315300",
-                "name": "Chike",
-                "amount": "15.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
-                "name": "EduMESS",
-                "amount": "9.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
-                "name": "FUCHI HUB",
-                "amount": "200.00",
-                "school": "Oakseed Internatinal School"
-            }
-        ]
-    },
-    "response": false
-}
-{
-    "timestamp": "2025-06-24 18:40:28",
-    "http_code": 0,
-    "curl_error": "Could not resolve host: wamator.com",
-    "payload": {
-        "user_id": "9",
-        "template_id": "admin-notify",
-        "message": "Dear {{name}}, your subscription payment of \u20a6{{amount}} for {{school}}  was received successfully. \r\n                  \n\n Ref: {{ref}}, \n\nTerm: {{term}},\n\n Session: {{session}}.",
-        "contacts": [
-            {
-                "number": "+2347063859559",
-                "name": "Chike",
-                "amount": "500.00",
-                "school": "Oakseed Internatinal School",
-                "ref": "CREDIT-20250624184028-18CD",
-                "term": "2",
-                "session": "2024\/2025"
-            }
-        ]
-    },
-    "response": false
-}
-{
-    "timestamp": "2025-06-24 18:40:28",
-    "http_code": 0,
-    "curl_error": "Could not resolve host: wamator.com",
-    "payload": {
-        "user_id": "9",
-        "template_id": "admin-notify",
-        "message": "New subscription received.\r\n              \n\nRef: {{ref}}, \n\n\r\n              School: {{school}},\n\n \r\n              Amount Paid: \u20a6{{amountpaid}},\n\n\r\n              Company Share: \u20a6{{companyshare}},\n\n\r\n              Term: {{term}}, Session: {{session}}.",
-        "contacts": [
-            {
-                "number": "+2347063859559",
-                "name": "Chike",
-                "amount": "500.00",
-                "amountpaid": "Oakseed Internatinal School",
-                "companyshare": "300.00",
-                "ref": "CREDIT-20250624184028-18CD",
-                "term": "2",
-                "session": "2024\/2025"
-            }
-        ]
-    },
-    "response": false
-}
-{
-    "timestamp": "2025-06-24 18:44:39",
-    "http_code": 0,
-    "curl_error": "Could not resolve host: wamator.com",
-    "payload": {
-        "user_id": "9",
-        "template_id": "plan-notify",
-        "message": "Hi {{name}}, you\u2019ve just earned \u20a6{{amount}} from {{school}} subscription.",
-        "contacts": [
-            {
-                "number": "2349035315300",
-                "name": "Chike",
-                "amount": "15.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
-                "name": "EduMESS",
-                "amount": "9.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
-                "name": "FUCHI HUB",
-                "amount": "200.00",
-                "school": "Oakseed Internatinal School"
-            }
-        ]
-    },
-    "response": false
-}
-{
-    "timestamp": "2025-06-24 18:44:39",
-    "http_code": 0,
-    "curl_error": "Could not resolve host: wamator.com",
-    "payload": {
-        "user_id": "9",
-        "template_id": "admin-notify",
-        "message": "Dear {{name}}, your subscription payment of \u20a6{{amount}} for {{school}}  was received successfully. \r\n                  \n\n Ref: {{ref}}, \n\nTerm: {{term}},\n\n Session: {{session}}.",
-        "contacts": [
-            {
-                "number": "+2347063859559",
-                "name": "Chike",
-                "amount": "500.00",
-                "school": "Oakseed Internatinal School",
-                "ref": "CREDIT-20250624184439-AF66",
-                "term": "2",
-                "session": "2024\/2025"
-            }
-        ]
-    },
-    "response": false
-}
-{
-    "timestamp": "2025-06-24 18:44:39",
-    "http_code": 0,
-    "curl_error": "Could not resolve host: wamator.com",
-    "payload": {
-        "user_id": "9",
-        "template_id": "admin-notify",
-        "message": "New subscription received.\r\n              \n\nRef: {{ref}}, \n\n\r\n              School: {{school}},\n\n \r\n              Amount Paid: \u20a6{{amountpaid}},\n\n\r\n              Company Share: \u20a6{{companyshare}},\n\n\r\n              Term: {{term}}, Session: {{session}}.",
-        "contacts": [
-            {
-                "number": "+2347063859559",
-                "name": "Chike",
-                "amount": "500.00",
-                "amountpaid": "Oakseed Internatinal School",
-                "companyshare": "300.00",
-                "ref": "CREDIT-20250624184439-AF66",
-                "term": "2",
-                "session": "2024\/2025"
-            }
-        ]
-    },
-    "response": false
-}
-{
-    "timestamp": "2025-06-25 05:47:01",
+    "timestamp": "2025-07-28 04:35:29",
     "http_code": 200,
     "curl_error": "",
     "payload": {
-        "user_id": "9",
+        "user_id": 11,
         "template_id": "plan-notify",
-        "message": "Hi {{name}}, you\u2019ve just earned \u20a6{{amount}} from {{school}} subscription.",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription.",
         "contacts": [
             {
-                "number": "2349035315300",
-                "name": "Chike",
-                "amount": "30.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
+                "number": "2347063859559",
                 "name": "EduMESS",
-                "amount": "18.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
-                "name": "FUCHI HUB",
-                "amount": "400.00",
-                "school": "Oakseed Internatinal School"
-            }
-        ]
-    },
-    "response": "{\"status\":\"queued\",\"batch_id\":\"bf772356-434e-4393-81c8-f789493de55d\",\"count\":3}"
-}
-{
-    "timestamp": "2025-06-25 05:47:02",
-    "http_code": 200,
-    "curl_error": "",
-    "payload": {
-        "user_id": "9",
-        "template_id": "admin-notify",
-        "message": "Dear {{name}}, your subscription payment of \u20a6{{amount}} for {{school}}  was received successfully. \r\n                  \n\n Ref: {{ref}}, \n\nTerm: {{term}},\n\n Session: {{session}}.",
-        "contacts": [
-            {
-                "number": "+2347063859559",
-                "name": "Chike",
-                "amount": "1,000.00",
-                "school": "Oakseed Internatinal School",
-                "ref": "CREDIT-20250625054658-C0DA",
-                "term": "2",
-                "session": "2024\/2025"
-            }
-        ]
-    },
-    "response": "{\"status\":\"queued\",\"batch_id\":\"2db68bb4-f3c4-4d0e-afb3-41ba061b90a4\",\"count\":1}"
-}
-{
-    "timestamp": "2025-06-25 05:47:03",
-    "http_code": 200,
-    "curl_error": "",
-    "payload": {
-        "user_id": "9",
-        "template_id": "admin-notify",
-        "message": "New subscription received.\r\n              \n\nRef: {{ref}}, \n\n\r\n              School: {{school}},\n\n \r\n              Amount Paid: \u20a6{{amountpaid}},\n\n\r\n              Company Share: \u20a6{{companyshare}},\n\n\r\n              Term: {{term}}, Session: {{session}}.",
-        "contacts": [
-            {
-                "number": "+2347063859559",
-                "name": "Chike",
-                "amount": "1,000.00",
-                "amountpaid": "Oakseed Internatinal School",
-                "companyshare": "600.00",
-                "ref": "CREDIT-20250625054658-C0DA",
-                "term": "2",
-                "session": "2024\/2025"
-            }
-        ]
-    },
-    "response": "{\"status\":\"queued\",\"batch_id\":\"1dd7a751-1304-40f5-91bd-21b62d62d943\",\"count\":1}"
-}
-{
-    "timestamp": "2025-06-25 07:15:27",
-    "http_code": 0,
-    "curl_error": "Failed to connect to wamator.com port 443: Timed out",
-    "payload": {
-        "user_id": "9",
-        "template_id": "plan-notify",
-        "message": "Hi {{name}}, you\u2019ve just earned \u20a6{{amount}} from {{school}} subscription.",
-        "contacts": [
-            {
-                "number": "2349035315300",
-                "name": "Chike",
-                "amount": "45.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
-                "name": "EduMESS",
-                "amount": "27.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
-                "name": "FUCHI HUB",
                 "amount": "600.00",
-                "school": "Oakseed Internatinal School"
+                "school": "Legend School"
             }
         ]
     },
-    "response": false
+    "response": "{\"status\":\"queued\",\"batch_id\":\"0d9035e0-653d-4fd9-849c-035fe61cc66e\",\"count\":1}"
 }
 {
-    "timestamp": "2025-06-25 07:15:39",
+    "timestamp": "2025-07-28 04:35:29",
     "http_code": 200,
     "curl_error": "",
     "payload": {
-        "user_id": "9",
+        "user_id": 11,
         "template_id": "admin-notify",
-        "message": "Dear {{name}}, your subscription payment of \u20a6{{amount}} for {{school}}  was received successfully. \r\n                  \n\n Ref: {{ref}}, \n\nTerm: {{term}},\n\n Session: {{session}}.",
+        "message": "Dear {{name}},\n\nYour subscription payment of NGN {{amount}} for {{school}} was received successfully.\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
         "contacts": [
             {
-                "number": "+2347063859559",
-                "name": "Chike",
+                "number": "+2349035315300",
+                "name": "PROSPER",
                 "amount": "1,500.00",
-                "school": "Oakseed Internatinal School",
-                "ref": "CREDIT-20250625071506-4032",
-                "term": "2",
+                "school": "Legend School",
+                "ref": "CREDIT-20250728043529-7F82",
+                "term": "Third",
                 "session": "2024\/2025"
             }
         ]
     },
-    "response": "{\"status\":\"queued\",\"batch_id\":\"5177f2a9-6389-4415-b23c-35a69c325113\",\"count\":1}"
+    "response": "{\"status\":\"queued\",\"batch_id\":\"5fa102ca-eb54-4210-83d1-9a2eae234bd8\",\"count\":1}"
 }
 {
-    "timestamp": "2025-06-25 07:15:40",
+    "timestamp": "2025-07-28 04:40:32",
     "http_code": 200,
     "curl_error": "",
     "payload": {
-        "user_id": "9",
-        "template_id": "admin-notify",
-        "message": "New subscription received.\r\n              \n\nRef: {{ref}}, \n\n\r\n              School: {{school}},\n\n \r\n              Amount Paid: \u20a6{{amountpaid}},\n\n\r\n              Company Share: \u20a6{{companyshare}},\n\n\r\n              Term: {{term}}, Session: {{session}}.",
-        "contacts": [
-            {
-                "number": "+2347063859559",
-                "name": "Chike",
-                "amount": "1,500.00",
-                "amountpaid": "Oakseed Internatinal School",
-                "companyshare": "900.00",
-                "ref": "CREDIT-20250625071506-4032",
-                "term": "2",
-                "session": "2024\/2025"
-            }
-        ]
-    },
-    "response": "{\"status\":\"queued\",\"batch_id\":\"ef4905d9-e2d1-48ae-a19f-dbfc898d142c\",\"count\":1}"
-}
-{
-    "timestamp": "2025-06-25 08:58:49",
-    "http_code": 200,
-    "curl_error": "",
-    "payload": {
-        "user_id": "9",
+        "user_id": 11,
         "template_id": "plan-notify",
-        "message": "Hi {{name}}, you\u2019ve just earned \u20a6{{amount}} from {{school}} subscription.",
+        "message": "Hi {{name}}, you've just earned NGN {{amount}} from {{school}} subscription.",
         "contacts": [
             {
-                "number": "2349035315300",
-                "name": "Chike",
-                "amount": "45.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
+                "number": "2347045277801",
                 "name": "EduMESS",
-                "amount": "27.00",
-                "school": "Oakseed Internatinal School"
-            },
-            {
-                "number": "2349035315300",
-                "name": "FUCHI HUB",
                 "amount": "600.00",
-                "school": "Oakseed Internatinal School"
+                "school": "Legend School"
             }
         ]
     },
-    "response": "{\"status\":\"queued\",\"batch_id\":\"9610bb5b-3e6e-48c6-a45a-2caada1fc6a8\",\"count\":3}"
+    "response": "{\"status\":\"queued\",\"batch_id\":\"4e635362-fa20-44a6-b3c7-478255d03940\",\"count\":1}"
 }
 {
-    "timestamp": "2025-06-25 08:58:50",
+    "timestamp": "2025-07-28 04:40:32",
     "http_code": 200,
     "curl_error": "",
     "payload": {
-        "user_id": "9",
+        "user_id": 11,
         "template_id": "admin-notify",
-        "message": "Dear {{name}}, your subscription payment of \u20a6{{amount}} for {{school}}  was received successfully. \r\n                  \n\n Ref: {{ref}}, \n\nTerm: {{term}},\n\n Session: {{session}}.",
+        "message": "Dear {{name}},\n\nYour subscription payment of NGN {{amount}} for {{school}} was received successfully.\n\nReference: {{ref}}\nTerm: {{term}}\nSession: {{session}}\n\nThank you for using EduMESS!",
         "contacts": [
             {
-                "number": "+2347063859559",
-                "name": "Chike",
+                "number": "2347063859559",
+                "name": "PROSPER",
                 "amount": "1,500.00",
-                "school": "Oakseed Internatinal School",
-                "ref": "CREDIT-20250625085847-95A7",
-                "term": "2",
+                "school": "Legend School",
+                "ref": "CREDIT-20250728044032-C72F",
+                "term": "Third",
                 "session": "2024\/2025"
             }
         ]
     },
-    "response": "{\"status\":\"queued\",\"batch_id\":\"ada9a035-3d56-478a-ad4a-1f4d5ca382e9\",\"count\":1}"
-}
-{
-    "timestamp": "2025-06-25 08:58:52",
-    "http_code": 200,
-    "curl_error": "",
-    "payload": {
-        "user_id": "9",
-        "template_id": "admin-notify",
-        "message": "New subscription received.\r\n              \n\nRef: {{ref}}, \n\n\r\n              School: {{school}},\n\n \r\n              Amount Paid: \u20a6{{amountpaid}},\n\n\r\n              Company Share: \u20a6{{companyshare}},\n\n\r\n              Term: {{term}}, Session: {{session}}.",
-        "contacts": [
-            {
-                "number": "+2347063859559",
-                "name": "Chike",
-                "amount": "1,500.00",
-                "amountpaid": "Oakseed Internatinal School",
-                "companyshare": "900.00",
-                "ref": "CREDIT-20250625085847-95A7",
-                "term": "2",
-                "session": "2024\/2025"
-            }
-        ]
-    },
-    "response": "{\"status\":\"queued\",\"batch_id\":\"6a430488-ac80-46b9-9cd3-ccf1c9b18a2d\",\"count\":1}"
+    "response": "{\"status\":\"queued\",\"batch_id\":\"40193636-3dc3-4d9e-ab0c-9371026557f1\",\"count\":1}"
 }

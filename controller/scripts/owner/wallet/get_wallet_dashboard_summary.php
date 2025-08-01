@@ -61,9 +61,9 @@
             curl_close($ch);
 
             //var_dump($response);
-            print_r($object = json_decode($response, true));
+           $object = json_decode($response, true);
             
-            @$responseMessage = $object["responseMessage"];
+            $responseMessage = isset($object["responseMessage"]) ? $object["responseMessage"] : '';
             
             if($responseMessage == 'success')
             {
@@ -88,7 +88,9 @@
                 
                 $abba_wallet_checker = 0;
     
-                $sqlinsertaccountdetailsUPDATE = mysqli_query($link, "UPDATE `agencyorschoolowner` SET `ReservedAccountStatus`='1',`NIN`='$NIN',`BVN`='$BVN',`WalletBank`='$bankname',`WalletAccountName`='$accountname',`WalletAccountNumber`='$accountnumber',`WalletAccountReference`='$reservationReference',`WalletBalance`='0',`PendingWithdrawal`='0',`AmountWithdrawn`='0' WHERE `AgencyOrSchoolOwnerID` = '$user_id'");
+                $sqlinsertaccountdetailsUPDATE = mysqli_query($link, "UPDATE `agencyorschoolowner` SET `ReservedAccountStatus`='1',
+                `NIN`='$NIN',`BVN`='$BVN',`WalletBank`='$bankname',`WalletAccountName`='$accountname',`WalletAccountNumber`='$accountnumber',
+                `WalletAccountReference`='$reservationReference',`WalletBalance`='0',`PendingWithdrawal`='0',`AmountWithdrawn`='0' WHERE `AgencyOrSchoolOwnerID` = '$user_id'");
     
             }
             else

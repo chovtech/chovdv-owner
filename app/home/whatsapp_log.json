@@ -1,0 +1,100 @@
+{
+    "timestamp": "2025-07-11 16:01:16",
+    "http_code": 400,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{name}}, your school's subscription for {{school}} is overdue.\n\nTerm: {{term}},\nSession: {{session}}.\n\nPlease renew to avoid service interruption.",
+        "contacts": [
+            {
+                "number": "2348037192212",
+                "name": "Doris Nwoboshi",
+                "school": "Bloomingfield Preparatory School",
+                "term": "Third",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"error\":\"Some numbers are not authorized for messaging\",\"code\":\"UNAUTHORIZED_NUMBERS\",\"invalidContacts\":[\"2348037192212\"],\"allowedNumbers\":[]}"
+}
+{
+    "timestamp": "2025-07-14 05:14:40",
+    "http_code": 502,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{name}}, your school's subscription for {{school}} is overdue.\n\nTerm: {{term}},\nSession: {{session}}.\n\nPlease renew to avoid service interruption.",
+        "contacts": [
+            {
+                "number": "2348140938938",
+                "name": "Nsofor Kaycee",
+                "school": "Learning Field International Schools",
+                "term": "Third",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "<html>\r\n<head><title>502 Bad Gateway<\/title><\/head>\r\n<body>\r\n<center><h1>502 Bad Gateway<\/h1><\/center>\r\n<hr><center>nginx\/1.24.0 (Ubuntu)<\/center>\r\n<\/body>\r\n<\/html>\r\n"
+}
+{
+    "timestamp": "2025-07-14 17:39:50",
+    "http_code": 401,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{name}}, your school's subscription for {{school}} is overdue.\n\nTerm: {{term}},\nSession: {{session}}.\n\nPlease renew to avoid service interruption.",
+        "contacts": [
+            {
+                "number": "23499999999",
+                "name": "Dalunga Usman",
+                "school": "GOD'S GRACE INTERNATIONAL ACADEMY ",
+                "term": "Third",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"message\":\"Invalid API Key\"}"
+}
+{
+    "timestamp": "2025-07-14 17:51:40",
+    "http_code": 401,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{name}}, your school's subscription for {{school}} is overdue.\n\nTerm: {{term}},\nSession: {{session}}.\n\nPlease renew to avoid service interruption.",
+        "contacts": [
+            {
+                "number": "2348135408088",
+                "name": "IFEYINWA G. KENNETH OKERE",
+                "school": "FABULOUS INTERNATIONAL SCHOOLS",
+                "term": "Third",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"message\":\"Invalid API Key\"}"
+}
+{
+    "timestamp": "2025-07-14 17:53:10",
+    "http_code": 401,
+    "curl_error": "",
+    "payload": {
+        "user_id": "9",
+        "template_id": "admin-notify",
+        "message": "Hi {{name}}, your school's subscription for {{school}} is overdue.\n\nTerm: {{term}},\nSession: {{session}}.\n\nPlease renew to avoid service interruption.",
+        "contacts": [
+            {
+                "number": "2348033140738",
+                "name": "Funbi Moronke Ajisegiri",
+                "school": "Funcare Royal Star Schools",
+                "term": "Third",
+                "session": "2024\/2025"
+            }
+        ]
+    },
+    "response": "{\"message\":\"Invalid API Key\"}"
+}

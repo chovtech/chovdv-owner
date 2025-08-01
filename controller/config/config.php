@@ -85,15 +85,43 @@
 	$ipAddress = getClientIp();
 
 
-	function insert_activity_log($activity_log_inst_camp_id, $activity_log_userid, $activity_log_usertype,$activity_log_description, $activity_log_longitude, $activity_log_latitude, $link, $ipAddress){
+	function insert_activity_log($activity_log_inst_camp_id, $activity_log_userid,
+	 $activity_log_usertype,$activity_log_description, $activity_log_longitude, 
+	 $activity_log_latitude, $link, $ipAddress){
 
 		date_default_timezone_set("Africa/Lagos");
 		$DateCreated = date('Y-m-d H:i:s');
 
-		$sql_activity_log = mysqli_query($link, "INSERT INTO `activitylog`(`ActitvityLogID`, `InstitutionIDOrCampusID`, `UserID`, `UserType`, `IpAddress`, `Location`, `Longitude`, `Latitude`, `Description`, `Date/Time`) VALUES (NULL,'$activity_log_inst_camp_id','$activity_log_userid','$activity_log_usertype','$ipAddress','0','$activity_log_longitude','$activity_log_latitude','$activity_log_description','$DateCreated')");
+		$sql_activity_log = mysqli_query($link, "INSERT INTO `activitylog`(`ActitvityLogID`, `InstitutionIDOrCampusID`,
+		 `UserID`, `UserType`, `IpAddress`, `Location`, `Longitude`, `Latitude`, `Description`, `Date/Time`) 
+		 VALUES (NULL,'$activity_log_inst_camp_id','$activity_log_userid','$activity_log_usertype',
+		 '$ipAddress','0','$activity_log_longitude','$activity_log_latitude','$activity_log_description',
+		 '$DateCreated')");
 
 	}
+		function insert_notifications($instcampus, $userid, $usertype, $des) {
+			global $link;
+			date_default_timezone_set("Africa/Lagos");
+			$DateCreated = date('Y-m-d H:i:s');
 
+			// Escape strings
+			$instcampus = mysqli_real_escape_string($link, $instcampus);
+			$userid     = mysqli_real_escape_string($link, $userid);
+			$usertype   = mysqli_real_escape_string($link, $usertype);
+			$des        = mysqli_real_escape_string($link, $des);
+
+			$sql_notifications = mysqli_query($link, "
+				INSERT INTO `notifications` 
+				(`NotificationID`, `InstitutionIDOrCampusID`, `UserID`, `UserType`, `Description`, `ViewStatus`, `DateandTime`) 
+				VALUES 
+				(NULL, '$instcampus', '$userid', '$usertype', '$des', '0', '$DateCreated')
+			");
+		}
+
+
+
+
+	
 
 	// pros lock menu oboarding process and subscription status
 	function pros_locked_menu_onboarding($UserID) {

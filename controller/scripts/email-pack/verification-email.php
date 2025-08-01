@@ -263,13 +263,10 @@
                                                               <h1
                                                                 style="margin: 16px 0px"
                                                               >
-                                                                Please confirm your
-                                                                email
+                                                                Withdrawal Verification Code
                                                               </h1>
                                                               <p>
-                                                                Use this code to confirm
-                                                                your email and complete
-                                                                withdrawal.
+                                                                Use the code below to verify your withdrawal request. Do not share this code with anyone.
                                                               </p>
                                                             </div>
                                                           </td>
@@ -417,7 +414,7 @@
                                                             >
                                                               <p>
                                                                 This code is valid for
-                                                                15 minutes.
+                                                                5 minutes.
                                                               </p>
                                                             </div>
                                                           </td>

@@ -93,6 +93,21 @@
             <span><i class='bx bx-calendar'></i> <?php echo $pros_get_current_term_fetch['sessionName']?> / <?php echo $pros_get_current_term_fetch['TermOrSemesterName']?> Term</span>
         </span>
 
+
+         <div class="dropdown d-inline-block" id="notificationDropdownWrapper" style="position: relative;">
+            <a href="#" id="notificationBell" style=" color: #666666; text-decoration: none; font-size: 20px; margin-right: 10px;" data-bs-toggle="dropdown" aria-expanded="false">
+           <i class='bx bxs-bell'></i>
+                <span id="notif-badge" style="position:absolute;top:2px;right:2px;display:none;background:#dc3545;color:#fff;font-size:10px;padding:2px 5px;border-radius:50%;">0</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow facebook-notif-dropdown" id="notificationDropdown" style="min-width:360px;max-width:400px;max-height:480px;overflow-y:auto;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,0.18);padding:0.5rem 0;">
+                <li class="dropdown-header fw-bold px-3 pb-2" style="font-size:1.1rem;">Notifications</li>
+                <li class="text-center text-muted small py-2" id="notif-loading">Loading...</li>
+                <!-- Notifications will be injected here -->
+                <li><hr class="dropdown-divider"></li>
+                <li class="text-center"><a href="../notifications/" class="dropdown-item text-primary">See all notifications</a></li>
+            </ul>
+        </div>
+
         <div class="btn-group" style="margin-top: -5px; ">
             <span type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown">
                 <?php
@@ -120,3 +135,60 @@
     </div>
 </header>
 <!--End Header -->
+
+
+
+
+<script src="../../assets/plugins/jquery/code.jquery.com_jquery-3.5.1.min.js"></script>
+<script src="../../controller/js/app/notification.js"></script>
+
+
+<style>
+.facebook-notif-dropdown {
+    border-radius: 18px !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18) !important;
+    padding: 0.5rem 0 !important;
+    background: #fff !important;
+}
+.facebook-notif-item {
+    border-radius: 12px;
+    margin: 0 8px 4px 8px;
+    transition: background 0.18s;
+    cursor: pointer;
+}
+.facebook-notif-item:hover {
+    background: #f0f2f5 !important;
+}
+.notif-fb-avatar {
+    width: 36px;
+    height: 36px;
+    background: #e4e6eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #1877f2;
+    margin-right: 8px;
+}
+.notif-fb-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #1877f2;
+    margin-left: 10px;
+    margin-top: 8px;
+    display: inline-block;
+}
+.notif-fb-dot-read {
+    background: #cfd8dc;
+}
+.notif-fb-unread {
+    font-weight: 600;
+    background: #e7f3ff;
+}
+.notif-fb-read {
+    font-weight: 400;
+    background: #fff;
+}
+</style>

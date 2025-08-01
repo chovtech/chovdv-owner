@@ -76,11 +76,13 @@ if ($get_row_cnt_get > 0) {
             AND student.StudentID NOT IN (
                 SELECT UserID FROM deactivateuser
                 WHERE UserType = 'student'
-                AND sessionName = '$pros_session'
-                AND (TermOrSemesterName = '$termid' OR '$termid' IS NULL)
-                AND Status = 0
+               
+                AND   Status IN(0,2)
             )
         ";
+        
+        //  AND sessionName = '$pros_session'
+        //         AND (TermOrSemesterName = '$termid' OR '$termid' IS NULL)
         $pros_query_active = mysqli_query($link, $pros_sql_active);
         $total_student = 0;
 

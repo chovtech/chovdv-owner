@@ -95,11 +95,13 @@ while ($pros_get_details_campus = mysqli_fetch_assoc($pros_query_link_campus)) {
           AND student.StudentID NOT IN (
               SELECT UserID FROM deactivateuser
               WHERE UserType = 'student'
-                AND sessionName = '$pros_session'
-                AND (TermOrSemesterName = '$TermOrSemesterID' OR '$TermOrSemesterID' IS NULL)
-                AND Status = 0
+               
+                AND   Status IN(0,2)
           )
     ";
+    
+    //  AND sessionName = '$pros_session'
+    //             AND (TermOrSemesterName = '$TermOrSemesterID' OR '$TermOrSemesterID' IS NULL)
 
     $pros_query_active = mysqli_query($link, $pros_sql_active);
     $total_student = 0;

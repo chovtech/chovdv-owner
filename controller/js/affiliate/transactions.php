@@ -1,11 +1,43 @@
 <script>
 
+   function paginateTable(tableSelector, rowsPerPage = 6) {
+        const table = $(tableSelector);
+        const tbody = table.find('tbody');
+        const rows = tbody.find('tr');
+        const totalRows = rows.length;
+        const totalPages = Math.ceil(totalRows / rowsPerPage);
+    
+        let currentPage = 1;
+    
+        function renderPage(page) {
+            tbody.find('tr').hide();
+    
+            const start = (page - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+    
+            rows.slice(start, end).show();
+    
+            $('#pagination').html('');
+    
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = $('<button>')
+                    .addClass('btn btn-sm mx-1 ' + (i === page ? 'btn-primary' : 'btn-outline-primary'))
+                    .text(i)
+                    .on('click', () => renderPage(i));
+    
+                $('#pagination').append(btn);
+            }
+        }
+    
+        renderPage(currentPage);
+    }
+
+
     $(document).ready(function(){
 
         loadAffiliates();
 
     });
-
     // Search Functionality
     $(document).ready(function(){
 
@@ -74,26 +106,44 @@
         $('#aff_earn_l1_input').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
         $('#aff_earn_l2_input').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
         $('#aff_earn_l0_input').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
+        
+         $('#aff_earn_lead_input').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
+         $('#aff_earn_transfered_input').html('<i class="fas fa-spinner fa-spin" style="color:#ffffff;"></i>');
 
         $.ajax({
             url:'../../controller/scripts/affiliate/transactions/transaction.php',
             type:'POST',
             data:{"user_id":user_id, "aff_level":aff_level, "session":session, "term":term, "trans_type":trans_type},
             success:function(data){
+                
+                // alert(data);
 
-                $(".display_transactions").html(data);
+               $(".display_transactions").html(data); 
+                 paginateTable('#myTable', 6);
 
                 var f_l_aff_earn_input = $('#credit').val();
                 var s_l_aff_earn_input = $('#debit').val();
                 var aff_earn_l1_input = $('#aff_earn_l1').val();
                 var aff_earn_l2_input = $('#aff_earn_l2').val();
                 var aff_earn_l0_input = $('#aff_earn_l0').val();
+                var aff_earn_lead_input = $('#aff_earn_lead').val();
+                var aff_earn_transfered_input = $('#aff_earn_transfered').val();
+                
+                // alert(f_l_aff_earn_input);
+                
+                 
                 
                 $('#f_l_aff_earn').html(f_l_aff_earn_input);
                 $('#s_l_aff_earn').html(s_l_aff_earn_input);
                 $('#aff_earn_l1_input').html(aff_earn_l1_input);
                 $('#aff_earn_l2_input').html(aff_earn_l2_input);
                 $('#aff_earn_l0_input').html(aff_earn_l0_input);
+                
+                
+                 $('#aff_earn_lead_input').html(aff_earn_lead_input);
+                 $('#aff_earn_transfered_input').html(aff_earn_transfered_input);
+                
+                 
 
             }
         });
@@ -103,7 +153,7 @@
     
     $('body').on('click', '.view_details_btn', function(){
         
-        var affname = $(this).data('affname');
+         var affname = $(this).data('affname');
         var lvl = $(this).data('lvl');
         var term = $(this).data('term');
         var session = $(this).data('session');
@@ -111,15 +161,20 @@
         var amt = $(this).data('amt');
         var status = $(this).data('status');
         var date = $(this).data('date');
+        var fee = $(this).data('fee');
+        var totamt = $(this).data('totamt');
+        var inst = $(this).data('inst');
         
         if(lvl == '0' || lvl == '' || lvl == 0)
         {
             $('#earning_type').html('Direct');
             $('#affiliate_name').html('NIL');
             $('#affiliate_type').html('NIL');
+            $('#earning_from').html(inst);
         }
         else
         {
+            $('#earning_from').html('NIL');
             $('#earning_type').html('Affiliate');
             $('#affiliate_name').html(affname);
             $('#affiliate_type').html('Level '+lvl+' Affiliate');
@@ -141,11 +196,15 @@
         
         $('#reference').html(ref);
         
-        $('#earn_amount').html(amt);
-        
-        $('#trans_session').html(session);
-        $('#trans_term').html(term);
-        $('#trans_date').html(date);
+            $('#earn_amount').html(amt);
+            
+            $('#earn_amount_fee').html(fee);
+            
+            $('#earn_amount_plus_fee').html(totamt);
+            
+            $('#trans_session').html(session);
+            $('#trans_term').html(term);
+            $('#trans_date').html(date);
     });
 
 </script>

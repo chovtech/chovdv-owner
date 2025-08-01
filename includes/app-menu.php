@@ -3,20 +3,34 @@
 
 
 <?php
+// disable menu setup mode
+$pros_menuData = pros_locked_menu_onboarding($UserID);
 
-       
-        
-            // disable menu setup mode
-            $pros_menuData = pros_locked_menu_onboarding($UserID);
+// Add payment status check for current term/session
+$sessionRes = mysqli_query($link, "SELECT sessionName FROM session WHERE sessionStatus = '1'");
+$termRes = mysqli_query($link, "SELECT TermOrSemesterName, TermOrSemesterID FROM termorsemester WHERE status = '1'");
+$sessionData = mysqli_fetch_assoc($sessionRes);
+$termData = mysqli_fetch_assoc($termRes);
 
-            // echo $pros_menuData['menu_class'];
-            // echo $pros_menuData['lock_icon'];
-            //  $pros_menuData['status'];
+$sessionName = $sessionData['sessionName'] ?? '';
+$termID = $termData['TermOrSemesterID'] ?? '';
 
-            
-           
+$institutionRes = mysqli_query($link, "SELECT InstitutionID FROM institution WHERE AgencyOrSchoolOwnerID = '$UserID'");
+$institution = mysqli_fetch_assoc($institutionRes);
+$institutionId = $institution['InstitutionID'] ?? 0;
 
-
+$campusRes = mysqli_query($link, "SELECT CampusID FROM campus WHERE InstitutionID = '$institutionId'");
+$hasPaid = false;
+while ($campus = mysqli_fetch_assoc($campusRes)) {
+    $campusID = $campus['CampusID'];
+    $paymentRes = mysqli_query($link, "SELECT 1 FROM plantransaction 
+    WHERE CampusID = '$campusID' AND SessionName = '$sessionName' 
+    AND TermOrSemesterName = '$termID' LIMIT 1");
+    if (mysqli_num_rows($paymentRes) > 0) {
+        $hasPaid = true;
+        break;
+    }
+}
 ?>
 
 
@@ -111,11 +125,19 @@
         <li class="">
             <div class="upgrades">
                 <span class="material-icons-sharp">credit_card</span>
-                <h6>Click to subscribe below</h6>
-                <a href="<?php echo $defaultUrl; ?>app/subscription" type="button" style="font-size: 10px;" class="btn btn-sm btn-primary">
-                <i class="fas fa-credit-card me-2"></i>
-                    Pay Now
-            </a>
+                <?php if ($hasPaid): ?>
+                    <h6>Click to upgrade your plan</h6>
+                    <a href="<?php echo $defaultUrl; ?>app/subscription" type="button" style="font-size: 10px;" class="btn btn-sm btn-primary">
+                        <i class="fas fa-arrow-up me-2"></i>
+                        Upgrade
+                    </a>
+                <?php else: ?>
+                    <h6>Click to subscribe below</h6>
+                    <a href="<?php echo $defaultUrl; ?>app/subscription" type="button" style="font-size: 10px;" class="btn btn-sm btn-primary">
+                        <i class="fas fa-credit-card me-2"></i>
+                        Pay Now
+                    </a>
+                <?php endif; ?>
             </div>
 
             <a href="<?php echo $defaultUrl; ?>app/menus" class="<?php echo $pros_menuData['menu_class'];?>"

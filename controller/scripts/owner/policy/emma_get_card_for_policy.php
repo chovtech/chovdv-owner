@@ -101,8 +101,13 @@ if($emma_rows_for_policy_card > 0){
     if($emma_default_images_rows > 0){
         $emmadisplaynorecordimage = $emma_default_images_fetch['BaseSixtyFour'];
 
-        echo '<img src="'.$emmadisplaynorecordimage.'" alt="" ';
+        // echo '<img src="'.$emmadisplaynorecordimage.'" alt="" ';
+        
+         echo '<div align="center" class="mt-2"><img src="../../assets/images/adminImg/err.png" style="width:15%;"/><p class="pt-2 fs-6 text-secondary">We couldn\'t find any record.</p></div>';
     }else{
+        
+        
+         echo '<div align="center" class="mt-2"><img src="../../assets/images/adminImg/err.png" style="width:15%;"/><p class="pt-2 fs-6 text-secondary">We couldn\'t find any record.</p></div>';
 
     }
 }

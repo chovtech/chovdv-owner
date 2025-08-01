@@ -63,6 +63,111 @@
 
     <script src="../../assets/plugins/dselect.js"></script>
     <script src="../../assets/plugins/sweetalert2@11.js"></script>
+
+
+    <style>
+        .pros-bg-gradient-primary {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        }
+        
+        .pros-bg-light-info {
+            background-color: rgba(13, 202, 240, 0.1);
+        }
+        
+        .pros-modal-dialog-centered {
+            display: flex;
+            align-items: center;
+            min-height: calc(100% - 1rem);
+        }
+        
+        .pros-modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .pros-modal-header {
+            padding: 1.5rem 2rem;
+        }
+        
+        .pros-modal-body {
+            padding: 2rem;
+        }
+        
+        .pros-modal-footer {
+            padding: 1.5rem 2rem;
+        }
+        
+        .pros-form-select-lg {
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .pros-form-select-lg:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        
+        .pros-btn-lg {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .pros-btn-primary {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border: none;
+        }
+        
+        .pros-btn-primary:hover {
+            background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+        
+        .pros-btn-light {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+        
+        .pros-btn-light:hover {
+            background: #e9ecef;
+            border-color: #adb5bd;
+            color: #495057;
+        }
+        
+        .pros-alert {
+            border-radius: 10px;
+            padding: 1.25rem;
+        }
+        
+        .pros-text-muted {
+            color: #6c757d !important;
+        }
+        
+        .pros-fw-semibold {
+            font-weight: 600 !important;
+        }
+        
+        /* Animation for modal */
+        .pros-modal.fade .modal-dialog {
+            transition: transform 0.3s ease-out;
+            transform: translate(0, -50px);
+        }
+        
+        .pros-modal.show .modal-dialog {
+            transform: none;
+        }
+    </style>
+    
+
+
+
+
     
     <style>
         /* .qr-code {
@@ -207,6 +312,114 @@
 
 
 
+    <!-- Transfer School Modal -->
+    <div class="modal fade pros-modal" id="transferSchoolModal" tabindex="-1" aria-labelledby="transferSchoolModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow-lg pros-modal-content">
+                <div class="modal-header bg-gradient-primary text-white border-0 pros-bg-gradient-primary">
+                    <h5 class="modal-title" id="transferSchoolModalLabel">
+                        <i class="fas fa-exchange-alt me-2"></i>Transfer School
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white pros-btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 pros-modal-body">
+                    <div class="text-center mb-4">
+                        <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-school text-primary fs-4"></i>
+                        </div>
+                        <h6 class="text-muted mb-0">Transfer Request</h6>
+                        <p id="transferSchoolName" class="fw-bold text-dark mb-0 pros-fw-bold"></p>
+                    </div>
+                    
+                    <div class="alert alert-info mb-3">
+                      <strong>Note:</strong> The percentage you set here is from your own share. You are sharing part of your earnings with the affiliate you are transferring the school to. For example, if you currently earn 100%, and you set 60% for yourself and 40% for the new affiliate, you will now earn 60% and the new affiliate will earn 40% from this school.
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="newAffiliateSelect" class="form-label fw-semibold text-dark">
+                            <i class="fas fa-user-tie me-2 text-primary"></i>Select New Affiliate
+                        </label>
+                        <select class="form-select form-select-lg border-2 pros-form-select-lg" id="newAffiliateSelect" style="border-color: #e9ecef;">
+                            <option value="" class="text-muted">Choose an affiliate...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="row mb-4 percentage-section">
+                        <div class="col-md-6">
+                            <label for="fromPercentage" class="form-label fw-semibold text-dark">
+                                <i class="fas fa-percentage me-2 text-success"></i>Your Share (%)
+                            </label>
+                            <div class="input-group">
+                                <input type="number" class="form-control form-control-lg pros-form-select-lg border-2" id="fromPercentage" 
+                                       min="0" max="100" value="50" style="border-color: #e9ecef;">
+                                <span class="input-group-text bg-light border-2">%</span>
+                            </div>
+                            <small class="text-muted">Percentage you want to keep</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="toPercentage" class="form-label fw-semibold text-dark">
+                                <i class="fas fa-percentage me-2 text-info"></i>New Affiliate Share (%)
+                            </label>
+                            <div class="input-group">
+                                <input type="number" class="form-control form-control-lg border-2 pros-form-select-lg" id="toPercentage" 
+                                       min="0" max="100" value="50" style="border-color: #e9ecef;">
+                                <span class="input-group-text bg-light border-2">%</span>
+                            </div>
+                            <small class="text-muted">Percentage for the new affiliate</small>
+                        </div>
+                    </div>
+                    
+                    <!-- Return Transfer Info Section (hidden by default) -->
+                    <div class="alert alert-info border-0 bg-light-info return-transfer-info" role="alert" style="display: none;">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-undo text-info me-3 mt-1"></i>
+                            <div>
+                                <h6 class="alert-heading text-info mb-2">Return Transfer</h6>
+                                <p class="mb-0 text-muted">
+                                    This school will be returned to its original owner. No revenue sharing percentages are needed for return transfers.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="transferReason" class="form-label fw-semibold text-dark">
+                            <i class="fas fa-comment me-2 text-warning"></i>Transfer Reason (Optional)
+                        </label>
+                        <textarea class="form-control border-2" id="transferReason" rows="3" 
+                                  placeholder="Explain why you're transferring this school..." 
+                                  style="border-color: #e9ecef; resize: none;"></textarea>
+                    </div>
+                    
+                    <div class="alert alert-info border-0 bg-light-info pros-alert" role="alert">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-info-circle text-info me-3 mt-1"></i>
+                            <div>
+                                <h6 class="alert-heading text-info mb-2">Transfer Process</h6>
+                                <p class="mb-0 text-muted pros-text-muted">
+                                    A transfer request will be sent to the selected affiliate for approval. 
+                                    The school will remain under your management until the request is approved.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer pros-modal-footer border-0 bg-light p-4">
+                    <button type="button" class="btn btn-light btn-lg px-4 pros-btn-light" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Cancel
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg px-4 pros-btn-primary" id="confirmTransferBtn">
+                        <i class="fas fa-paper-plane me-2"></i>Send Request
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+
+
+
 
         <!-- create owner -->
         <div class="modal fade modalshow modalfade" id="pros_create_owner_Modal" tabindex="-1"
@@ -260,11 +473,14 @@
                                             <input type="text" id="pros-text-to-copy" value="<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>" readonly style="border:none;width:100%;"><br><br>
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-file" id="copy-button"> Copy</i></button>
                                              <!-- Open Link in New Tab Button -->
-                                                <a href="<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>" target="_blank" class="btn btn-info btn-sm">
+
+                                                <a href="<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>"
+                                                 target="_blank" class="btn btn-info btn-sm">
                                                     <i class="fas fa-external-link-alt"></i> Open 
                                                 </a>
                                                     <!-- Action Buttons -->
-                                                <a href="whatsapp://send?text=<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>"  type="button" class="btn btn-success btn-sm" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"> Share via WhatsApp</i></a>
+                                                <a href="whatsapp://send?text=<?php echo $defaultUrl ?>signup?ref=<?php echo $referral_code; ?>"
+                                                  type="button" class="btn btn-success btn-sm" data-action="share/whatsapp/share"><i class="fab fa-whatsapp"> Share via WhatsApp</i></a>
 
                                                 <button type="button" class="btn btn-warning btn-sm" onclick="generateLeadSwal()">
                                                     <i class="fas fa-link"></i> Generate Lead Link

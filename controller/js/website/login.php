@@ -128,14 +128,14 @@
 
                     var userrole = (data);
                    
-                    if (userrole.trim() == 'affiliate') {
+                    if (userrole == 'affiliate') {
                         $(this).html("Login");
                         $(this).prop("disabled", false);
                         $(this).html("Redirecting...<i class='fas fa-circle-notch fa-spin'></i>");
                         window.location.href = "../affiliate/home";
                         
                         localStorage.setItem('current_username', uname);
-                    } else if (userrole.trim() == 'owner') {
+                    } else if (userrole == 'owner') {
                         
                         $(this).html("Login");
                         $(this).prop("disabled", false);
@@ -143,7 +143,7 @@
                         window.location.href = "../app/home/";
                         
                         localStorage.setItem('current_username', uname);
-                    }else if (userrole.trim() == 'affnotapproved') {
+                    }else if (userrole == 'affnotapproved') {
                         
                         $('#signinbtn').html("Login");
                         $('#signinbtn').prop("disabled", false);

@@ -13,7 +13,14 @@
 
 
   
-    $fetch = mysqli_query($link,"SELECT * FROM `cbtsetquestionssettings` INNER JOIN `campus` ON `cbtsetquestionssettings`.`CampusID` = `campus`.`CampusID` WHERE `campus`.`InstitutionID`='$tari_get_stored_instituion_id' AND `cbtsetquestionssettings`.sessionID='$sessionID' AND   (`cbtsetquestionssettings`.`TermOrSemesterID` = '$termID' OR  $termID IS NULL) AND   (`cbtsetquestionssettings`.`CampusID` = '$campusIDSent' OR    $campusIDSent  IS NULL) AND (`cbtsetquestionssettings`.`ClassOrDepartmentID` = '$classID ' OR   $classID   IS NULL) AND (`cbtsetquestionssettings`.`SubjectOrCourseID` = '$subjectID' OR      $subjectID   IS NULL) AND `cbtsetquestionssettings`.DeleteStatus='0'");
+    $fetch = mysqli_query($link,"SELECT * FROM `cbtsetquestionssettings` INNER JOIN 
+    `campus` ON `cbtsetquestionssettings`.`CampusID` = `campus`.`CampusID` WHERE 
+    `campus`.`InstitutionID`='$tari_get_stored_instituion_id' 
+    AND `cbtsetquestionssettings`.sessionID='$sessionID' AND  
+    (`cbtsetquestionssettings`.`TermOrSemesterID` = '$termID' OR  $termID IS NULL) AND 
+    (`cbtsetquestionssettings`.`CampusID` = '$campusIDSent' OR    $campusIDSent  IS NULL) 
+    AND (`cbtsetquestionssettings`.`ClassOrDepartmentID` = '$classID ' OR   $classID   IS NULL)
+    AND (`cbtsetquestionssettings`.`SubjectOrCourseID` = '$subjectID' OR      $subjectID   IS NULL) AND `cbtsetquestionssettings`.DeleteStatus='0'");
   
                                
                                
@@ -26,13 +33,26 @@
        
         do{
         
-        $cbtsetquestionssettingsID =  $fetch_row['cbtsetquestionssettingsID'];
+           $cbtsetquestionssettingsID =  $fetch_row['cbtsetquestionssettingsID'];
 
-        $ClassOrDepartmentName =  $fetch_row['ClassOrDepartmentName'];
-        $ClassOrDepartmentID =  $fetch_row['ClassOrDepartmentID'];
-
-        $SubjectOrCourseTitle =  $fetch_row['SubjectOrCourseTitle'];
-        $SubjectOrCourseID =  $fetch_row['SubjectOrCourseID'];
+        // $ClassOrDepartmentName =  $fetch_row['ClassOrDepartmentName'];
+         $ClassOrDepartmentID =  $fetch_row['ClassOrDepartmentID'];
+          $SubjectOrCourseID =  $fetch_row['SubjectOrCourseID'];
+          
+      $subject_sql = mysqli_query($link, "SELECT SubjectOrCourseTitle FROM subjectorcourse WHERE SubjectOrCourseID = '$SubjectOrCourseID'");
+    $SubjectOrCourseTitle = ($subject_sql_row = mysqli_fetch_assoc($subject_sql)) 
+        ? (strlen($subject_sql_row['SubjectOrCourseTitle']) > 11 
+            ? substr($subject_sql_row['SubjectOrCourseTitle'], 0, 11) . '..' 
+            : $subject_sql_row['SubjectOrCourseTitle']) 
+        : "Nill";
+    
+    $class_sql = mysqli_query($link, "SELECT ClassOrDepartmentName FROM classordepartment WHERE ClassOrDepartmentID = '$ClassOrDepartmentID'");
+    $ClassOrDepartmentName = ($class_sql_row = mysqli_fetch_assoc($class_sql)) 
+        ? (strlen($class_sql_row['ClassOrDepartmentName']) > 11 
+            ? substr($class_sql_row['ClassOrDepartmentName'], 0, 11) . '..' 
+            : $class_sql_row['ClassOrDepartmentName']) 
+        : "Nill";
+      
     
         $CampusName =  $fetch_row['CampusName'];
         $CampusID =  $fetch_row['CampusID'];

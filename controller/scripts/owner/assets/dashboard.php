@@ -25,8 +25,8 @@ $ekene_row_cnt_category = mysqli_num_rows($user_query_link_category);
 
 
 
-$totalassetvalue = number_format($ekene_get_details_category['InitialValue']);
-$totalasset = number_format($user_row_cnt_category);
+$totalassetvalue = number_format(intval($ekene_get_details_category['InitialValue']));
+$totalasset = number_format(intval($user_row_cnt_category));
 
 echo '<input type="hidden" id="totalassetvalue" value="'.$totalassetvalue.'">
 <input type="hidden" id="totalasset" value="'.$totalasset.'">';
